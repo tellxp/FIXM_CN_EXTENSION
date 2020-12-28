@@ -1,0 +1,682 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:include schemaLocation="./base/Messaging.xsd"/>
+    <xs:include schemaLocation="./base/Address.xsd"/>
+    <xs:include schemaLocation="./base/Aerodrome.xsd"/>
+    <xs:include schemaLocation="./base/Airspace.xsd"/>
+    <xs:include schemaLocation="./base/Extension.xsd"/>
+    <xs:include schemaLocation="./base/Measures.xsd"/>
+    <xs:include schemaLocation="./base/Navaid.xsd"/>
+    <xs:include schemaLocation="./base/UnitsOfMeasure.xsd"/>
+    <xs:include schemaLocation="./base/Organization.xsd"/>
+    <xs:include schemaLocation="./base/Types.xsd"/>
+    <xs:include schemaLocation="./base/RangesAndChoices.xsd"/>
+	<xs:include schemaLocation="./base/RouteTrajectory.xsd"/>
+	<xs:include schemaLocation="./base/RankedTrajectory.xsd"/>
+	<xs:include schemaLocation="./base/Constraints.xsd" />
+	<xs:include schemaLocation="./base/RouteChanges.xsd" />
+
+	<xs:element name="AtmbFlightData" type="AtmbFlightData"/>
+	<xs:complexType name="AtmbFlightData">
+		<xs:complexContent>
+			<xs:extension base="ExtensibleType">
+				<xs:sequence>
+					<xs:element name="flightIdentification" type="CharacterStringType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>航班标识:用于标识航班，计划匹配与动态更新。</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="formerFlightIdentification" type="CharacterStringType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>前序航班标识</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="formerGufi" type="FIXMUniqueMessageIdentifierType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>前序航班Gufi</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="gufi" type="FIXMUniqueMessageIdentifierType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>全球航班唯一标识符</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="missionDate" type="TimeType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>航班任务日期:用于飞行计划匹配</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="missionProperty" type="missionProperty" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="flightStatus" type="flightStatus" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="formerFlightStatus" type="formerFlightStatus"  minOccurs="0" maxOccurs="1"/>
+					<xs:element name="AtmbAircraft" type="AtmbAircraft" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="AtmbDeparture" type="AtmbDeparture" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="AtmbArrival" type="AtmbArrival" minOccurs="1" maxOccurs="1"/>
+
+					<xs:element name="current" type="RouteTrajectoryType" minOccurs="0" maxOccurs="1" >
+						<xs:annotation>
+							<xs:documentation>
+								引入CORE中4DT定义，表示当前4DT
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="desired" type="RankedTrajectoryType" minOccurs="0" maxOccurs="1" >
+						<xs:annotation>
+							<xs:documentation>
+								引入CORE中有序4DT定义，表示期望4DT
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="rankedTrajectories" type="RankedTrajectoryType" minOccurs="0" maxOccurs="2000" >
+						<xs:annotation>
+							<xs:documentation>
+								引入CORE中有序4DT定义，表示期望的备选4DT（多条）
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="filed" type="RouteTrajectoryType" minOccurs="0" maxOccurs="1" >
+						<xs:annotation>
+							<xs:documentation>
+								引入CORE中有序4DT定义，表示拍发4DT
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="negotiating" type="RouteTrajectoryType" minOccurs="0" maxOccurs="1" >
+						<xs:annotation>
+							<xs:documentation>
+								引入CORE中有序4DT定义，表示协商4DT
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="agreed" type="RouteTrajectoryType" minOccurs="0" maxOccurs="1" >
+						<xs:annotation>
+							<xs:documentation>
+								引入CORE中有序4DT定义，表示商定4DT
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<!-- 航空器 -->
+	<xs:element name="AtmbAircraft" type="AtmbAircraft"/>
+	<xs:complexType name="AtmbAircraft">
+		<xs:sequence>
+			<xs:element name="aircraftColours" type="ColourChoiceType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The colour of the aircraft. [ICAO Doc 4444, Appendix 3]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="numberOfAircraft" type="CountType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The number of aircraft, if more than one. The number equals the sum of counts of all aircraft types.  [ICAO Doc 4444, Appendix 2, ITEM 9]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="significantMarkings" type="CharacterStringType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A description of the aircraft's significant markings. [FIXM]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="agentAirline" type="CharacterStringType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>运营代理人：用于明确数据共享范围</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="airline" type="CharacterStringType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>所属航空公司:用于明确数据共享范围</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="branchAirline" type="CharacterStringType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>运营分公司:用于明确数据共享范围</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="requipment" type="CharacterStringType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>机载设备与能力</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<!-- 起飞阶段 -->
+	<xs:element name="AtmbDeparture" type="AtmbDeparture"/>
+	<xs:complexType name="AtmbDeparture">
+		<xs:sequence>
+			<xs:element name="aerodrome" type="IcaoAerodromeReferenceType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The aerodrome from which the flight departs. [FIXM]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="takeoffAlternateAerodrome" type="IcaoAerodromeReferenceType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>An alternate aerodrome at which an aircraft can land should this become necessary shortly after take-off and it is not possible to use the aerodrome of departure. [ICAO Doc 4444]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="actualDepartureAerodrome" type="IcaoAerodromeReferenceType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>实际起飞机场</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="estimatedDepartureAerodrome" type="IcaoAerodromeReferenceType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="scheduledDepartureAerodrome" type="IcaoAerodromeReferenceType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>计划起飞机场</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BoardingAndClosedDoorsTime" type="BoardingAndClosedDoorsTime" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="OffBlockTime" type="OffBlockTime" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="TakeoffTime" type="TakeoffTime" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="actualTimeOfDeparture" type="TimeType">
+			<xs:annotation>
+				<xs:documentation>The actual time of departure from the aerodrome. [ICAO Doc 4444, Appendix 3, Field Type 13]</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="airportSlotIdentification" type="AirportSlotIdentificationType">
+			<xs:annotation>
+				<xs:documentation>The identifier of the departure airport slot allocated to the flight. [FIXM]</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="estimatedOffBlockTime" type="TimeType">
+			<xs:annotation>
+				<xs:documentation>The estimated time at which the aircraft will commence movement associated with departure. [ICAO Doc 4444]</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="runwayDirection" type="RunwayDirectionDesignatorType">
+			<xs:annotation>
+				<xs:documentation>The runway direction used for taking off. [FIXM]</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="actualStand" type="CharacterStringType">
+			<xs:annotation>
+				<xs:documentation>实际停机位</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	
+	<xs:element name="OffBlockTime" type="OffBlockTime"/>
+	<xs:complexType name="OffBlockTime">
+		<xs:complexContent>
+			<xs:extension base="ExtensibleType">
+				<xs:sequence>
+					<xs:element name="actualOffBlockTime" type="TimeType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>实际撤轮挡时间:跟踪航班地面保障状态，用于流量预测和流控措施制定等。</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="calculatedOffBlockTime" type="TimeType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>计算撤轮挡时间:用于航空器运行动态和地面运行时间节点的保障、机位资源调整、相应的地面服务的合理调配</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="estimatedOffBlockTime" type="TimeType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>预计撤轮挡时间:时隙安排参考基准</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="initialOffBlockTime" type="TimeType" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="scheduledOffBlockTime" type="TimeType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>计划离港时间:用于飞行计划匹配；排序优先级判定；流量预测基准。</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="targetOffBlockTime" type="TimeType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>目标撤轮挡时间:《民航协同流量管理运行规则》中规定航空公司应负责提供运行所需关键信息（如TOBT、航班运行状态等）；用于战术、预战术阶段的流量预测；航班排序时CTOT的计算。</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:element name="TakeoffTime" type="TakeoffTime"/>
+	<xs:complexType name="TakeoffTime">
+		<xs:complexContent>
+			<xs:extension base="ExtensibleType">
+				<xs:sequence>
+					<xs:element name="actualReadyTime" type="TimeType" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="actualStartUpApprovalTime" type="TimeType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>实际同意开车时间</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="actualStartUpResquestTime" type="TimeType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>实际申请开车时间</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="actualTakeOffTime" type="TimeType" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="calculatedTakeOffTime" type="TimeType" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="scheduledTakeOffTime" type="TimeType" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="targetTakeOffTime" type="TimeType" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:element name="BoardingAndClosedDoorsTime" type="BoardingAndClosedDoorsTime"/>
+	<xs:complexType name="BoardingAndClosedDoorsTime">
+		<xs:complexContent>
+			<xs:extension base="ExtensibleType">
+				<xs:sequence>
+					<xs:element name="actualClosedDoorsTime" type="TimeType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>实际关舱门时间:跟踪航班地面保障状态，用于流量预测和流控措施制定等。</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="actualEndBoardingTime" type="TimeType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>实际完成登机时间</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="actualEndDeicingTime" type="TimeType" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="actualStartBoardingTime" type="TimeType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>实际开始登机时间</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="actualStartDeicingTime" type="TimeType" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="estimatedClosedDoorsTime" type="TimeType" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<!-- 降落阶段 -->
+	<xs:element name="AtmbArrival" type="AtmbArrival"/>
+	<xs:complexType name="AtmbArrival">
+		<xs:sequence>
+			<xs:element name="aerodrome" type="IcaoAerodromeReferenceType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The aerodrome at which the flight has actually arrived. [FIXM]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="arrivalAerodrome" type="IcaoAerodromeReferenceType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The aerodrome at which the flight has actually arrived. [FIXM]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="destinationAerodrome" type="IcaoAerodromeReferenceType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The aerodrome of intended landing. [ICAO Doc 4444 - extracted from the definition of Destination Alternate]
+This is the aerodrome at which the flight is scheduled to arrive. [FIXM]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="destinationAerodromeAlternate" type="IcaoAerodromeReferenceType" minOccurs="0" maxOccurs="2">
+				<xs:annotation>
+					<xs:documentation>An alternate aerodrome to which an aircraft may proceed should it become either impossible or inadvisable to land at the aerodrome of intended landing. [ICAO Doc 4444]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="actualArrivalAerodrome" type="IcaoAerodromeReferenceType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>实际目的地机场:该航班最新的目的地机场信息</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="estimatedArrivalAerodrome" type="IcaoAerodromeReferenceType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="scheduledArrivalAerodrome" type="IcaoAerodromeReferenceType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>计划目的地机场:预先飞行计划管理部门批准的目的地机场</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LandingTime" type="LandingTime" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="InBlockTime" type="InBlockTime" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="OpenTime" type="OpenTime" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="actualTimeOfArrival" type="TimeType">
+			<xs:annotation>
+				<xs:documentation>The actual time of arrival. [ICAO Doc 4444, Appendix 3, Field Type 17]</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="airportSlotIdentification" type="AirportSlotIdentificationType">
+			<xs:annotation>
+				<xs:documentation>The identifier of the arrival airport slot allocated to the flight. [FIXM]</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="runwayDirection" type="RunwayDirectionDesignatorType">
+			<xs:annotation>
+				<xs:documentation>The runway direction on which the flight has actually landed. [FIXM]</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="actualStand" type="CharacterStringType">
+			<xs:annotation>
+				<xs:documentation>降落机场停机位</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	
+	<xs:element name="OpenTime" type="OpenTime"/>
+	<xs:complexType name="OpenTime">
+		<xs:complexContent>
+			<xs:extension base="ExtensibleType">
+				<xs:sequence>
+					<xs:element name="actualOpenDoorTime" type="TimeType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>实际开舱门时间:到港航班实际打开第一个舱门的时间，不区分客、货舱门</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="estimatedOpenDoorTime" type="TimeType" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:element name="InBlockTime" type="InBlockTime"/>
+	<xs:complexType name="InBlockTime">
+		<xs:complexContent>
+			<xs:extension base="ExtensibleType">
+				<xs:sequence>
+					<xs:element name="actualInBlockTime" type="TimeType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>实际到港时间:飞机在机位停稳后，地面机务人员实施挡上航空器第一个轮挡这一动作的时间</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="estimatedInBlockTime" type="TimeType" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="scheduledInBlockTime" type="TimeType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>计划到港时间</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:element name="LandingTime" type="LandingTime"/>
+	<xs:complexType name="LandingTime">
+		<xs:sequence>
+			<xs:element name="actualLandingTime" type="TimeType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="estimatedLandingTime" type="TimeType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>预计落地时间</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="scheduledLandingTime" type="TimeType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!--任务类型-->
+	<xs:simpleType name="missionProperty">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="A/V">
+				<xs:annotation>
+					<xs:documentation>航线熟练飞行</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="B/F">
+				<xs:annotation>
+					<xs:documentation>播种飞行</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="B/W">
+				<xs:annotation>
+					<xs:documentation>专机飞行</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="C/B">
+				<xs:annotation>
+					<xs:documentation>旅客加班</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="D/M">
+				<xs:annotation>
+					<xs:documentation>展示飞行</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="D/Y">
+				<xs:annotation>
+					<xs:documentation>带飞飞行</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="F/J">
+				<xs:annotation>
+					<xs:documentation>校验飞行</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="H/G">
+				<xs:annotation>
+					<xs:documentation>货运包机</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="H/Y">
+				<xs:annotation>
+					<xs:documentation>货运加班</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="J/B">
+				<xs:annotation>
+					<xs:documentation>按专机保障的定期航班</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="K/L">
+				<xs:annotation>
+					<xs:documentation>本场训练飞行</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="L/W">
+				<xs:annotation>
+					<xs:documentation>旅客包机</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="N/M">
+				<xs:annotation>
+					<xs:documentation>调机飞行</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="R/Z">
+				<xs:annotation>
+					<xs:documentation>试航飞行</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="S/F">
+				<xs:annotation>
+					<xs:documentation>试飞飞行</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="U/H">
+				<xs:annotation>
+					<xs:documentation>公务飞行</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VIP">
+				<xs:annotation>
+					<xs:documentation>要客飞行</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="X/L">
+				<xs:annotation>
+					<xs:documentation>训练飞行</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="O/F">
+				<xs:annotation>
+					<xs:documentation>急救飞行</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="W/Z">
+				<xs:annotation>
+					<xs:documentation>正班飞行</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Z/P">
+				<xs:annotation>
+					<xs:documentation>补班飞行</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Z/F">
+				<xs:annotation>
+					<xs:documentation>执法飞行</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Y/Z">
+				<xs:annotation>
+					<xs:documentation>验证飞行</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="W/A">
+				<xs:annotation>
+					<xs:documentation>转场飞行</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="S/Q">
+				<xs:annotation>
+					<xs:documentation>视察飞行（含巡线飞行）</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="H/F">
+				<xs:annotation>
+					<xs:documentation>航摄飞行 </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="X/X">
+				<xs:annotation>
+					<xs:documentation> 其它飞行</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OVERFLIGHT">
+				<xs:annotation>
+					<xs:documentation>临时飞越</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TECH STOP">
+				<xs:annotation>
+					<xs:documentation>技术经停</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="H/B">
+				<xs:annotation>
+					<xs:documentation>货运包机飞行</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="K/B">
+				<xs:annotation>
+					<xs:documentation>旅客包机飞行</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!--航班状态-->
+	<xs:simpleType name="flightStatus">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="OFFLINE">
+				<xs:annotation>
+					<xs:documentation>OFFLINE</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SCH">
+				<xs:annotation>
+					<xs:documentation>计划</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FPL">
+				<xs:annotation>
+					<xs:documentation>已发FPL</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CNL">
+				<xs:annotation>
+					<xs:documentation>取消</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CNL_TOMORROW">
+				<xs:annotation>
+					<xs:documentation>次日取消</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BOARDING">
+				<xs:annotation>
+					<xs:documentation>上客</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CLD">
+				<xs:annotation>
+					<xs:documentation>关门</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OUT">
+				<xs:annotation>
+					<xs:documentation>撤轮挡</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DEP">
+				<xs:annotation>
+					<xs:documentation>已起飞</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ARR">
+				<xs:annotation>
+					<xs:documentation>已降落</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="INN">
+				<xs:annotation>
+					<xs:documentation>挡轮档</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OPN">
+				<xs:annotation>
+					<xs:documentation>开舱门</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="formerFlightStatus">
+		<xs:annotation>
+			<xs:documentation>前序航班状态:掌握前序航班运行状态，方便开展地面保障</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SCH">
+				<xs:annotation>
+					<xs:documentation>计划状态</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FPL">
+				<xs:annotation>
+					<xs:documentation>领航计划状态（收到FPL到推出前）</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DEP">
+				<xs:annotation>
+					<xs:documentation>离港</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AIR">
+				<xs:annotation>
+					<xs:documentation>离港航班已离地</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="LND">
+				<xs:annotation>
+					<xs:documentation>进港（落地到滑入前）</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OVE">
+				<xs:annotation>
+					<xs:documentation>已入位</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FIN">
+				<xs:annotation>
+					<xs:documentation>计划终止</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CNL">
+				<xs:annotation>
+					<xs:documentation>取消</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="UNK">
+				<xs:annotation>
+					<xs:documentation>未知状态</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

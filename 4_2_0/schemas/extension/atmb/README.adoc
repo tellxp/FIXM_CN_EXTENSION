@@ -1,0 +1,43 @@
+= FIXM 开发注意事项
+
+== NAS 扩展
+
+fx的引用很少，只有两条，大量fb的引用
+
+== FIXM 4.2.0 主要变化
+
+大量取消了抽象类，包括 AerodromeReferenceType, 通过在每个类型中增加 extension 对类型进行强约束, 扩展字段只允许在每个类型的 extension 下操作, 例如:
+
+[plantuml,diagram-classes,png]
+----
+abstract class AerodromeReferenceExtensionType
+
+class AtmbAerodromeReferenceType {
+    field1
+    field2
+}
+
+class AerodromeReferenceType {
+    List<AerodromeReferenceExtensionType> extensions
+}
+
+AtmbAerodromeReferenceType <|-- AerodromeReferenceExtensionType
+AerodromeReferenceExtensionType *-- AerodromeReferenceType
+AtmbAerodromeReferenceType *-- AerodromeReferenceType
+----
+
+NOTE: Allow to add or redefine the core FIXM elements and create regional scope extensions such as NAS extension or Eurocontrol extension.
+This approach is not recommended, however as the preferred method is to extend individual classes and replace the core classes where appropriate as described in the FIXM Modeling Best Practices Guide.
+
+== CN 扩展
+
+* 尽量不要引用 fx 名字空间
+* 抽象类还是 choice ?
+** choice 类型不能形成多态
+** 抽象类转换成 java class 后是多态
+** 但是涉及到本来 core 内的某些类型, 不能修改继承类
+
+=== Departure.xsd
+
+
+

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+        targetNamespace="http://www.atmb.aero/4.2"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:fb="http://www.fixm.aero/base/4.2"
+        xmlns:fx="http://www.fixm.aero/flight/4.2"
+        xmlns:msg="http://www.fixm.aero/app/msg/1.0"
+        xmlns:atmb="http://www.atmb.aero/4.2"
+        elementFormDefault="qualified"
+        version="4.2.0">
+    <xs:annotation>
+        <xs:documentation>
+            [CN] 定义通用消息的元数据, 为发送消息集合提供一个基础框架.
+            [EN] Defines generic message metadata elements and provides a framework for developing messaging extensions
+            and sending message collections.
+
+            ===========================================
+            Copyright (c) 2020 Air Traffic Management Bureau China (ATMB)
+            ===========================================
+            All rights reserved.
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:import namespace="http://www.fixm.aero/base/4.2" schemaLocation="../../../../core/base/Base.xsd"/>
+    <xs:import namespace="http://www.fixm.aero/flight/4.2" schemaLocation="../../../../core/flight/Flight.xsd"/>
+    <xs:import namespace="http://www.fixm.aero/app/msg/1.0"
+               schemaLocation="../../../../applications/basicmessage/BasicMessage.xsd"/>
+
+    <xs:include schemaLocation="../../Atmb.xsd"/>
+
+    <xs:element name="message" type="atmb:AtmbMessageType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 基础消息类型, 是消息集合的元素.
+                [EN] The Message element is an element of message collection.
+            </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="messageCollection" type="atmb:AtmbMessageCollectionType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 消息集合元素是模型的入口.
+                [EN] The MessageCollection element is an entry point to the FIXM model.
+            </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:complexType name="AtmbMessagePayloadType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 消息负载, 包含实际的航班或者流量信息.
+                [EN] Payload of a message, which is an actual flight or traffic flow management entity.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:choice>
+            <xs:element name="flight" type="atmb:AtmbFlightType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 消息关联的飞行对象.
+                        [EN] A flight associated with the message.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="tfm" type="atmb:AtmbAtfmType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 消息关联的流量管理对象.
+                        [EN] A traffic flow management object associated with the message.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:complexType name="AtmbMessageType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 由多个字段组成的消息, 从一个地点发送到另外一个地点.
+                [EN] A communication sent from one location to another and comprising an integral number of fields.
+                [ICAO Doc 9426].
+
+                [extended] payload
+                [removed] extension, timestamp, flight
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:restriction base="msg:MessageType">
+                <xs:sequence>
+                    <xs:element name="payload" type="atmb:AtmbMessagePayloadType" minOccurs="0" maxOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 消息的实际内容.
+                                [EN] Actual content payload of a message.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="timestamp" type="fb:TimeType" minOccurs="0" maxOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 消息发送的时间戳.
+                                [EN] The time and date that the communication was sent. [FIXM]
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="type" type="fb:CharacterStringType" minOccurs="0" maxOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 消息的类型.
+                                [EN] Represents the type of message collection. [FIXM]
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AtmbMessageCollectionType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 允许多消息发送的结构.
+                [EN] A structure allowing multiple messages to be sent together. [FIXM]
+
+                [removed] extension
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:restriction base="msg:MessageCollectionType">
+                <xs:sequence>
+                    <xs:element name="message" type="atmb:AtmbMessageType" minOccurs="0" maxOccurs="2000">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 消息集合中的具体一条消息.
+                                [EN] Each of the messages grouped in a Message Collection [FIXM]
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="timestamp" type="fb:TimeType" minOccurs="0" maxOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 消息发送的时间戳.
+                                [EN] The time and date that the communication was sent. [FIXM]
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="type" type="fb:CharacterStringType" minOccurs="0" maxOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 消息集合的类型.
+                                [EN] Represents the type of message collection. [FIXM]
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+</xs:schema>

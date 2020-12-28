@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.fixm.aero/base/4.2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fb="http://www.fixm.aero/base/4.2" elementFormDefault="qualified" version="4.2.0">
+	<xs:annotation>
+		<xs:documentation>This package contains classes that model information about the airspace infrastructure (Airspace, ATS routes, ATC Units, Significant Points, Aerodromes, Runways, and Designators) needed by flight data. [FIXM]
+
+===========================================
+Copyright (c) 2020 Airservices Australia, DSNA, EUROCONTROL, GCAA UAE, IATA, International Coordinating Council of Aerospace Industries Associations, JCAB, NATS Limited, NAV CANADA, SESAR Joint Undertaking and US FAA
+===========================================
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+	- Redistributions of source code must retain the above copyright notice, this list of conditions and the disclaimer.
+	- Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the disclaimer in the documentation and/or other materials provided with the distribution.
+	- Neither the names of Airservices Australia, DSNA, EUROCONTROL, GCAA UAE, IATA, International Coordinating Council of Aerospace Industries Associations, JCAB, NATS Limited, NAV CANADA, SESAR Joint Undertaking and US FAA nor the names of their contributors may be used to endorse or promote products derived from this specification without specific prior written permission.
+
+DISCLAIMER
+
+THIS SPECIFICATION IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+==========================================
+Editorial note: this license is an instance of the BSD license template as provided by the Open Source Initiative:
+http://www.opensource.org/licenses/bsd-license.php
+
+The authoritative reference for FIXM is www.FIXM.aero.
+
+Details on Airservices Australia: http://www.airservicesaustralia.com/
+Details on DSNA: http://www.developpement-durable.gouv.fr/-Navigation-aerienne-.html
+Details on EUROCONTROL: http://www.eurocontrol.int/
+Details on IATA: http://www.iata.org/Pages/default.aspx
+Details on JCAB: http://www.mlit.go.jp/en/koku/index.html
+Details on NATS Limited: http://www.nats.co.uk/
+Details on NAV CANADA: http://www.navcanada.ca/
+Details on the UAE GCAA: https://www.gcaa.gov.ae
+Details on the ICCAIA: www.iccaia.org
+Details on the SESAR JU and its members: http://www.sesarju.eu/discover-sesar/partnering-smarter-aviation/members
+Details on the US FAA: http://www.faa.gov/ </xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="Extension.xsd"/>
+	<xs:include schemaLocation="Types.xsd"/>
+	<xs:include schemaLocation="Measures.xsd"/>
+	<xs:simpleType name="AerodromeNameType">
+		<xs:annotation>
+			<xs:documentation>The primary official name of an aerodrome as designated by an appropriate authority. [AIXM 5.1]</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="fb:TextNameType">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="60"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AtcUnitNameType">
+		<xs:annotation>
+			<xs:documentation>The name of the ATC center with authority over the corresponding Flight Information Region (FIR). [FIXM]</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="fb:CharacterStringType">
+			<xs:pattern value="[A-Za-z0-9]{1,}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DesignatedPointDesignatorType">
+		<xs:annotation>
+			<xs:documentation>The name of the designated point.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="fb:CharacterStringType">
+			<xs:pattern value="[A-Z0-9]{1,5}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="IataAerodromeDesignatorType">
+		<xs:annotation>
+			<xs:documentation>The three letter coded location identifier of an aerodrome according to the IATA Resolution 763. [adapted from AIXM 5.1]</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="fb:CharacterStringType">
+			<xs:pattern value="[A-Z]{3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LatLongPosType">
+		<xs:annotation>
+			<xs:documentation>A series of coordinates limited to two instances.  Latitude followed by longitude.  </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="fb:LatLongPosListType">
+			<xs:maxLength value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LatLongPosListType">
+		<xs:annotation>
+			<xs:documentation>A series of coordinates.</xs:documentation>
+		</xs:annotation>
+		<xs:list itemType="xs:double"/>
+	</xs:simpleType>
+	<xs:simpleType name="LocationIndicatorType">
+		<xs:annotation>
+			<xs:documentation>A four-letter code group formulated in accordance with rules prescribed by ICAO and assigned to an aerodrome, a region or an ATS unit. [ICAO Doc 4444]</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="fb:CharacterStringType">
+			<xs:pattern value="[A-Z]{4}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LongitudeType">
+		<xs:annotation>
+			<xs:documentation>Longitude value expressed to a decimal precision. </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="fb:MeasureType">
+			<xs:maxInclusive value="180"/>
+			<xs:minInclusive value="-180"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="NavaidDesignatorType">
+		<xs:annotation>
+			<xs:documentation>A name of the Navaid.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="fb:CharacterStringType">
+			<xs:pattern value="[A-Z0-9]{1,4}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="NavaidServiceTypeType">
+		<xs:annotation>
+			<xs:documentation>Types of Navaid Services. [AIXM 5.1]</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="DF">
+				<xs:annotation>
+					<xs:documentation>Direction Finder.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DME">
+				<xs:annotation>
+					<xs:documentation>Distance Measuring Equipment.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ILS">
+				<xs:annotation>
+					<xs:documentation>Instrument Landing System</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ILS_DME">
+				<xs:annotation>
+					<xs:documentation>ILS with collocated DME. Collocation can be with the antenna or the loc.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="LOC">
+				<xs:annotation>
+					<xs:documentation>Localizer</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="LOC_DME">
+				<xs:annotation>
+					<xs:documentation>Localizer and DME collocated</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MKR">
+				<xs:annotation>
+					<xs:documentation>Marker Beacon</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MLS">
+				<xs:annotation>
+					<xs:documentation>Microwave Landing System</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MLS_DME">
+				<xs:annotation>
+					<xs:documentation>MLS and DME collocated</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NDB">
+				<xs:annotation>
+					<xs:documentation>Non-Directional Radio Beacon</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NDB_DME">
+				<xs:annotation>
+					<xs:documentation>NDB and DME collocated</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NDB_MKR">
+				<xs:annotation>
+					<xs:documentation>Non-Directional Radio Beacon and Marker Beacon</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SDF">
+				<xs:annotation>
+					<xs:documentation>Simplified Directional Facility</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TACAN">
+				<xs:annotation>
+					<xs:documentation>Tactical Air Navigation Beacon</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TLS">
+				<xs:annotation>
+					<xs:documentation>Transponder Landing System</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VOR">
+				<xs:annotation>
+					<xs:documentation>VHF Omni directional Radio Range.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VOR_DME">
+				<xs:annotation>
+					<xs:documentation>VOR and DME collocated</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VORTAC">
+				<xs:annotation>
+					<xs:documentation>VOR and TACAN collocated.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RestrictedAirspaceDesignatorType">
+		<xs:annotation>
+			<xs:documentation>Helper type for restrictions on AirspaceDesignator.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="fb:CharacterStringType">
+			<xs:pattern value="([A-Z]|[0-9]|[, !&quot;&amp;#$%'\(\)\*\+\-\./:;&lt;=&gt;\?@\[\\\]\^_\|\{\}])*"/>
+			<xs:minLength value="1"/>
+			<xs:maxLength value="10"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RestrictedRouteDesignatorType">
+		<xs:annotation>
+			<xs:documentation>Helper type for restrictions on RouteDesignator.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="fb:CharacterStringType">
+			<xs:pattern value="[A-Z][A-Z0-9]{1,7}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RestrictedRunwayDirectionDesignatorType">
+		<xs:annotation>
+			<xs:documentation>Helper type for restrictions on RunwayDirectionDesignator.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="fb:CharacterStringType">
+			<xs:pattern value="(0[1-9]|[12][0-9]|3[0-6])[LRC]{0,1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SidStarAbbreviatedDesignatorType">
+		<xs:annotation>
+			<xs:documentation>A shortened designator of the SID or STAR. [FIXM] This abbreviated designator is based on ARINC 424 chapter 7.4 rules.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="fb:CharacterStringType">
+			<xs:pattern value="([A-Z]|[0-9])+([ \+\-/]*([A-Z]|[0-9])+)*"/>
+			<xs:minLength value="1"/>
+			<xs:maxLength value="6"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SidStarDesignatorType">
+		<xs:annotation>
+			<xs:documentation>The textual designator of a SID or STAR. [Specialised from AIXM 5.1]</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="fb:CharacterStringType">
+			<xs:pattern value="([A-Z]|[0-9])+([ \+\-/]*([A-Z]|[0-9])+)*"/>
+			<xs:minLength value="1"/>
+			<xs:maxLength value="7"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="AerodromeReferenceType">
+		<xs:annotation>
+			<xs:documentation>An aerodrome reference being either:
+- the ICAO location indicator of the aerodrome, as listed in ICAO Doc 7910 (E.g. "KDFW")
+- if no location indicator is available, the aerodrome name (E.g. "Dallas Fort Worth") or the identifier assigned to the aerodrome location in accordance with rules (resolution 767) governed by the International Air Transport Association. (E.g. "DFW")
+[FIXM]</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="extension" type="fb:AerodromeReferenceExtensionType" minOccurs="0" maxOccurs="2000" nillable="true">
+				<xs:annotation>
+					<xs:documentation>An extension hook for attaching extension (non-core) classes.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="iataDesignator" type="fb:IataAerodromeDesignatorType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>The three letter coded location identifier of an aerodrome according to the IATA Resolution 763. [adapted from AIXM 5.1]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="locationIndicator" type="fb:LocationIndicatorType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>A four-letter code group formulated in accordance with rules prescribed by ICAO and assigned to the aerodrome. [Specialised from ICAO Annex 10]
+The list of ICAO location indicators is provided by ICAO Doc 7910. [FIXM]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name" type="fb:AerodromeNameType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>The primary official name of an aerodrome as designated by an appropriate authority. [AIXM 5.1]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="referencePoint" type="fb:GeographicalPositionType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>The designated geographical location of an aerodrome. [ICAO]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="href" use="optional" type="fb:HypertextReferenceType">
+			<xs:annotation>
+				<xs:documentation>Provides an optional mechanism enabling FIXM aeronautical fields to be supplemented with references to AIXM features.  This field should be considered functionally equivalent to the xlink:href field used in AIXM to reference features.  [FIXM]</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="AirspaceDesignatorType">
+		<xs:annotation>
+			<xs:documentation>A published sequence of characters allowing the identification of the airspace. [AIXM 5.1]</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="fb:RestrictedAirspaceDesignatorType">
+				<xs:attribute name="href" use="optional" type="fb:HypertextReferenceType">
+					<xs:annotation>
+						<xs:documentation>Provides an optional mechanism enabling FIXM aeronautical fields to be supplemented with references to AIXM features.  This field should be considered functionally equivalent to the xlink:href field used in AIXM to reference features. [FIXM]</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="AtcUnitReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference to an area control centre, approach control unit or aerodrome control tower being either:
+- the ICAO location indicator of the atc unit, as listed in ICAO Doc 7910
+- if no ICAO location indicator is available, the ATC unit name and optionally its geographical position. [FIXM]</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="atcUnitNameOrAlternate" type="fb:TextNameType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>The full textual name of the ATC unit [adapted from AIXM 5.1] or an alternate identifier for the unit. [FIXM]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="controlSectorDesignator" type="fb:AirspaceDesignatorType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>A published sequence of characters allowing the identification of a subdivision of a designated control area within which responsibility is assigned to one controller or to a small group of controllers. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="extension" type="fb:AtcUnitReferenceExtensionType" minOccurs="0" maxOccurs="2000" nillable="true">
+				<xs:annotation>
+					<xs:documentation>An extension hook for attaching extension (non-core) classes.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="locationIndicator" type="fb:LocationIndicatorType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>A four-letter code group formulated in accordance with rules prescribed by ICAO and assigned to the atc unit. [Specialised from ICAO Annex 10] The list of ICAO location indicators is provided by ICAO Doc 7910.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="position" type="fb:GeographicalPositionType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>The geographical point of the Unit. [AIXM 5.1]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="href" use="optional" type="fb:HypertextReferenceType">
+			<xs:annotation>
+				<xs:documentation>Provides an optional mechanism enabling FIXM aeronautical fields to be supplemented with references to AIXM features.  This field should be considered functionally equivalent to the xlink:href field used in AIXM to reference features. [FIXM]</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="DesignatedPointType">
+		<xs:annotation>
+			<xs:documentation>A named geographical location used in defining an ATS route, the flight path of an aircraft or for other navigation or ATS purposes. [FIXM]
+
+The coded designator of a designated point is not always sufficient for unambiguously referring to that feature:
+The 5-letter coded designator of a waypoint is supposed to be unique world-wide (according to ICAO Annex 11), but in reality it is not.
+
+The combinations of fields that would make the references unique are name + position.
+
+This FIXM class adds an optional properties 'position' which may be used as a complement to the 'name' information in order to remove any ambiguity on the coded designator.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="designator" type="fb:DesignatedPointDesignatorType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The name of the designated point.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="extension" type="fb:DesignatedPointExtensionType" minOccurs="0" maxOccurs="2000" nillable="true">
+				<xs:annotation>
+					<xs:documentation>An extension hook for attaching extension (non-core) classes.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="position" type="fb:GeographicalPositionType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>The values of latitude and longitude that define the position of the Designated Point on the surface of the Earth with respect to a reference datum. [specialised from ICAO Doc 9881]
+
+This optional field may be used to achieve unambiguous reference to the designated point.
+The combinations of fields that would make the reference unique are name + position.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="href" use="optional" type="fb:HypertextReferenceType">
+			<xs:annotation>
+				<xs:documentation>Provides an optional mechanism enabling FIXM aeronautical fields to be supplemented with references to AIXM features.  This field should be considered functionally equivalent to the xlink:href field used in AIXM to reference features. [FIXM]</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="GeographicalPositionType">
+		<xs:annotation>
+			<xs:documentation>An unnamed point designated only with a set of coordinates - latitude/longitude. [FIXM]
+
+Set of coordinates (latitude and longitude) referenced to the mathematical reference ellipsoid which define the position of a  point on the surface of the Earth. [ICAO Annex 15]
+
+The "srsName" attribute names the coordinate reference system (CRS) that defines the semantics of the lat/long pair according to the ISO6709 standard. FIXM uses only "urn:ogc:def:crs:EPSG::4326".</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="extension" type="fb:GeographicalPositionExtensionType" minOccurs="0" maxOccurs="2000" nillable="true">
+				<xs:annotation>
+					<xs:documentation>An extension hook for attaching extension (non-core) classes.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="pos" type="fb:LatLongPosType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>This list of doubles contains the latitude and longitude of the location
+in order of LATITUDE FIRST, THEN LONGITUDE.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="srsName" use="required" fixed="urn:ogc:def:crs:EPSG::4326" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Names the coordinate reference system (CRS) that defines the semantics of the lat/long pair according to the ISO6709 standard. FIXM uses only "urn:ogc:def:crs:EPSG::4326".</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="NavaidType">
+		<xs:annotation>
+			<xs:documentation>A radio navigation aid used in defining an ATS route, the flight path of an aircraft or for other navigation or ATS purposes. [FIXM]
+
+The coded designator of a navaid is not always sufficient for unambiguously referring to that feature:
+The en-route navaids (VOR, DME, NDB) designator is supposed to be unique (according to ICAO Annex 11) within 600 NM. This means that these designators are not unique world-wide. For airport navaids, there is no limitation.
+
+The combinations of fields that would make the references unique are designator + position + navaid service type.
+
+This FIXM class adds two optional properties 'position' and 'navaidServiceType' which may be used as a complement to the 'designator' information in order to remove any ambiguity on the coded designator.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="designator" type="fb:NavaidDesignatorType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The name of the navaid.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="extension" type="fb:NavaidExtensionType" minOccurs="0" maxOccurs="2000" nillable="true">
+				<xs:annotation>
+					<xs:documentation>An extension hook for attaching extension (non-core) classes.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="navaidServiceType" type="fb:NavaidServiceTypeType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>Type of the navaid service. [AIXM 5.1]
+This optional field may be used as a complement of the designator in order to achieve unambiguous reference to the navaid.
+The combinations of fields that would make the reference unique are designator + position + navaid service type.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="position" type="fb:GeographicalPositionType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>The values of latitude and longitude that define the position of the Navaid on the surface of the Earth with respect to a reference datum. [specialised from ICAO Doc 9881]
+
+This optional field may be used to achieve unambiguous reference to the navaid.
+The combinations of fields that would make the reference unique are name + position + navaid service type.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="href" use="optional" type="fb:HypertextReferenceType">
+			<xs:annotation>
+				<xs:documentation>Provides an optional mechanism enabling FIXM aeronautical fields to be supplemented with references to AIXM features.  This field should be considered functionally equivalent to the xlink:href field used in AIXM to reference features. [FIXM]</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="RelativePointType">
+		<xs:annotation>
+			<xs:documentation>Bearing and distance from a reference point. [ICAO Doc 4444, Appendix 2, ITEM 15]
+This FIXM class adds one optional property 'position' which may be used as a complement to the bearing, distance and reference point information in order to provide the computed position of the relative point, if available.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="bearing" type="fb:BearingType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The radius from a chosen Navaid </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="distance" type="fb:DistanceType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Distance from the chosen Navaid to the Intersection.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="extension" type="fb:RelativePointExtensionType" minOccurs="0" maxOccurs="2000" nillable="true">
+				<xs:annotation>
+					<xs:documentation>An extension hook for attaching extension (non-core) classes.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="position" type="fb:GeographicalPositionType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>The values of latitude and longitude that define the position of the Relative Point on the surface of the Earth with respect to a reference datum. [specialised from ICAO Doc 9881]
+
+This optional field may be used to provide the actual position of the relative point if already known / computed.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="referencePoint" type="fb:NavaidType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The navaid used as reference for building an intersection</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RouteDesignatorType">
+		<xs:annotation>
+			<xs:documentation>The coded designator for a published ATS route or route segment.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="fb:RestrictedRouteDesignatorType">
+				<xs:attribute name="href" use="optional" type="fb:HypertextReferenceType">
+					<xs:annotation>
+						<xs:documentation>Provides an optional mechanism enabling FIXM aeronautical fields to be supplemented with references to AIXM features.  This field should be considered functionally equivalent to the xlink:href field used in AIXM to reference features. [FIXM]</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="RunwayDirectionDesignatorType">
+		<xs:annotation>
+			<xs:documentation>- A number between 01 and 36
+- Optionally  Left (L), Center (C), or Right (R)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="fb:RestrictedRunwayDirectionDesignatorType">
+				<xs:attribute name="href" use="optional" type="fb:HypertextReferenceType">
+					<xs:annotation>
+						<xs:documentation>Provides an optional mechanism enabling FIXM aeronautical fields to be supplemented with references to AIXM features.  This field should be considered functionally equivalent to the xlink:href field used in AIXM to reference features. [FIXM]</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="SidStarReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference to a SID or a STAR. [FIXM]</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="abbreviatedDesignator" type="fb:SidStarAbbreviatedDesignatorType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>A shortened designator of the SID or STAR. [FIXM] This abbreviated designator is based on ARINC 424 chapter 7.4 rules.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="designator" type="fb:SidStarDesignatorType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>The textual designator of a SID or STAR. [Specialised from AIXM 5.1]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="extension" type="fb:SidStarReferenceExtensionType" minOccurs="0" maxOccurs="2000" nillable="true">
+				<xs:annotation>
+					<xs:documentation>An extension hook for attaching extension (non-core) classes.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="href" use="optional" type="fb:HypertextReferenceType">
+			<xs:annotation>
+				<xs:documentation>Provides an optional mechanism enabling FIXM aeronautical fields to be supplemented with references to AIXM features.  This field should be considered functionally equivalent to the xlink:href field used in AIXM to reference features. [FIXM]</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="SignificantPointChoiceType">
+		<xs:annotation>
+			<xs:documentation>A location type restricted to lat/long location, named location, or reference location.</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="aerodromeReferencePoint" type="fb:AerodromeReferenceType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The designated geographical location of an aerodrome. [ICAO Annex 14].</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="designatedPoint" type="fb:DesignatedPointType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A named geographical location used in defining an ATS route, the flight path of an aircraft or for other navigation or ATS purposes. [FIXM]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="navaid" type="fb:NavaidType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A radio navigation aid used in defining an ATS route, the flight path of an aircraft or for other navigation or ATS purposes. [FIXM]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="position" type="fb:GeographicalPositionType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The values of latitude and longitude that define the position of a point on the surface of the Earth with respect to a reference datum. [specialised from ICAO Doc 9881]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="relativePoint" type="fb:RelativePointType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Bearing and distance from a reference point. [ICAO Doc 4444, Appendix 2, ITEM 15]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.fixm.aero/flight/4.2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fx="http://www.fixm.aero/flight/4.2" xmlns:fb="http://www.fixm.aero/base/4.2" elementFormDefault="qualified" version="4.2.0">
+	<xs:annotation>
+		<xs:documentation>An FF-ICE Filed Flight Plan message RouteChanges template.
+
+=========================================== 
+Copyright (c) 2020 Airservices Australia, DSNA, EUROCONTROL, GCAA UAE, IATA, International Coordinating Council of Aerospace Industries Associations, JCAB, NATS Limited, NAV CANADA, SESAR Joint Undertaking and US FAA 
+=========================================== 
+All rights reserved. 
+          
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met: 
+	- Redistributions of source code must retain the above copyright notice, this list of conditions and the disclaimer.
+	- Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the disclaimer in the documentation and/or other materials provided with the distribution.
+	- Neither the names of Airservices Australia, DSNA, EUROCONTROL, GCAA UAE, IATA, International Coordinating Council of Aerospace Industries Associations, JCAB, NATS Limited, NAV CANADA, SESAR Joint Undertaking and US FAA nor the names of their contributors may be used to endorse or promote products derived from this specification without specific prior written permission.
+          
+DISCLAIMER 
+          
+THIS SPECIFICATION IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+          
+========================================== 
+Editorial note: this license is an instance of the BSD license template as provided by the Open Source Initiative: 
+http://www.opensource.org/licenses/bsd-license.php 
+          
+The authoritative reference for FIXM is www.FIXM.aero. 
+          
+Details on Airservices Australia: http://www.airservicesaustralia.com/ 
+Details on DSNA: http://www.developpement-durable.gouv.fr/-Navigation-aerienne-.html 
+Details on EUROCONTROL: http://www.eurocontrol.int/ 
+Details on IATA: http://www.iata.org/Pages/default.aspx 
+Details on JCAB: http://www.mlit.go.jp/en/koku/index.html 
+Details on NATS Limited: http://www.nats.co.uk/ 
+Details on NAV CANADA: http://www.navcanada.ca/ 
+Details on the UAE GCAA: https://www.gcaa.gov.ae 
+Details on the ICCAIA: www.iccaia.org 
+Details on the SESAR JU and its members: http://www.sesarju.eu/discover-sesar/partnering-smarter-aviation/members 
+Details on the US FAA: http://www.faa.gov/</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://www.fixm.aero/base/4.2" schemaLocation="../../base/FficeTRP_Base.xsd"/>
+	<xs:include schemaLocation="../../../../../../core/flight/flightroutetrajectory/RouteChanges.xsd"/>
+	<xs:complexType name="FficeTRP_CruiseClimbStartType">
+		<xs:annotation>
+			<xs:documentation>Describes the cruise climb parameters at the point at which a cruise climb is planned to commence.  Includes the speed, the lower level and the upper level of the cruise climb.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="fx:CruiseClimbStartType">
+				<xs:sequence>
+					<xs:element name="atOrAboveAltitude" type="fx:AtOrAboveAltitudeIndicatorType" minOccurs="0" maxOccurs="1" nillable="true">
+						<xs:annotation>
+							<xs:documentation>Indicates the cruise climb start  level indicates a  level above which cruise climb is planned.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="extension" type="fb:CruiseClimbStartExtensionType" minOccurs="0" maxOccurs="2000" nillable="true">
+						<xs:annotation>
+							<xs:documentation>An extension hook for attaching extension (non-core) classes.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="level" type="fb:FlightLevelOrAltitudeOrRangeChoiceType" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Either the minimum and maximum levels defining the layer to be occupied during cruise climb, or the level above which cruise climb is planned</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="speed" type="fb:TrueAirspeedType" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The speed to be maintained during cruise climb.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="FficeTRP_CruisingLevelChangeType">
+		<xs:annotation>
+			<xs:documentation>Describes a new planned altitude or level at the specified point at which the change is planned to commence.  (May also describe a point at which the altitude or level change is planned to be attained.)</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="fx:CruisingLevelChangeType">
+				<xs:sequence>
+					<xs:element name="activation" type="fx:ActivationType" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Qualifies the position associated with the level constraint.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="extension" type="fb:CruisingLevelChangeExtensionType" minOccurs="0" maxOccurs="2000" nillable="true">
+						<xs:annotation>
+							<xs:documentation>An extension hook for attaching extension (non-core) classes.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="level" type="fb:FlightLevelOrAltitudeChoiceType" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A new planned altitude or level at the specified point at which the change is planned to commence</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="FficeTRP_CruisingSpeedChangeType">
+		<xs:annotation>
+			<xs:documentation>Describes the new planned speed at the specified point at which the change to the new speed is planned to commence.  (May also describe a point at which the speed change is planned to be attained).</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="fx:CruisingSpeedChangeType">
+				<xs:sequence>
+					<xs:element name="activation" type="fx:ActivationType" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Qualifies the position associated with the speed constraint.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="extension" type="fb:CruisingSpeedChangeExtensionType" minOccurs="0" maxOccurs="2000" nillable="true">
+						<xs:annotation>
+							<xs:documentation>An extension hook for attaching extension (non-core) classes.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="speed" type="fb:TrueAirspeedType" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Describes the new planned speed at the specified point at which the change to the new speed is planned to commence
+.Speed Change: Describes the new planned speed at the specified point at which the change to the new speed is planned to commence.  (May also describe a point at which the speed change is planned to be attained).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="FficeTRP_RouteChangeType">
+		<xs:annotation>
+			<xs:documentation>A requested change that is applicable to a route or trajectory point. Can be any of the several defined requested changes.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="fx:RouteChangeType">
+				<xs:sequence>
+					<xs:element name="cruiseClimbStart" type="fx:FficeTRP_CruiseClimbStartType" minOccurs="0" maxOccurs="1" nillable="true">
+						<xs:annotation>
+							<xs:documentation>The parameters of a cruise climb executed at the associated significant point. It contains the following parameters: 1. the speed to be maintained during cruise climb; 2. either the minimum and maximum levels defining the layer to be occupied during cruise climb, or the level above which cruise climb is planned.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="extension" type="fb:RouteChangeExtensionType" minOccurs="0" maxOccurs="2000" nillable="true">
+						<xs:annotation>
+							<xs:documentation>An extension hook for attaching extension (non-core) classes.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="level" type="fx:FficeTRP_CruisingLevelChangeType" minOccurs="0" maxOccurs="1" nillable="true">
+						<xs:annotation>
+							<xs:documentation>The planned altitude that the aircraft will change to upon reaching the associated Significant Point along its Route.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="speed" type="fx:FficeTRP_CruisingSpeedChangeType" minOccurs="0" maxOccurs="1" nillable="true">
+						<xs:annotation>
+							<xs:documentation>The planned speed  that the aircraft will change to upon reaching the associated Significant Point along its Route.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

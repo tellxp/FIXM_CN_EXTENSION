@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+        targetNamespace="http://www.atmb.aero/4.2"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:fb="http://www.fixm.aero/base/4.2"
+        xmlns:fx="http://www.fixm.aero/flight/4.2"
+        xmlns:atmb="http://www.atmb.aero/4.2"
+        elementFormDefault="qualified"
+        version="4.2.0">
+    <xs:annotation>
+        <xs:documentation>
+            [CN] Arrival package 包含了飞行器导航信息, 包括进近, 着陆, 抵达航站楼.
+            [EN] The Arrival package contains information about the arrival of the flight at an airport, including
+            approach, landing, and arrival at terminal.
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:import namespace="http://www.fixm.aero/base/4.2" schemaLocation="../../../../core/base/Base.xsd"/>
+    <xs:import namespace="http://www.fixm.aero/flight/4.2" schemaLocation="../../../../core/flight/Flight.xsd"/>
+    <xs:include schemaLocation="../../base/AtmbBase.xsd"/>
+    <xs:include schemaLocation="../../flight/AtmbFlight.xsd"/>
+
+    <xs:complexType name="AtmbArrivalType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 实际飞行器到港的信息.
+                [EN] Information about the actual arrival of the flight. [FIXM]
+
+                [extended] landingTime, inBlockTime, aircraftAttachTime, doorOpenTime, freightOpenTime,
+                commenceOfCleaningTime, endOfCleaningTime, endOfRefuelTime, commenceOfCateringTime, endOfCateringTime
+                [removed] extension
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:restriction base="fx:ArrivalType">
+                <xs:sequence>
+                    <xs:element name="timeOfArrival" type="atmb:AtmbTimeOfArrivalType" minOccurs="0" nillable="true">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 实际到港时间.
+                                [EN] The actual time of arrival. [ICAO Doc 4444, Appendix 3, Field Type 17]
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="airportSlotIdentification" type="fb:AirportSlotIdentificationType" minOccurs="0"
+                                nillable="true">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 到港时隙编码.
+                                [EN] The identifier of the arrival airport slot allocated to the flight. [FIXM]
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="arrivalAerodrome" type="fb:AerodromeReferenceType" minOccurs="0"
+                                nillable="true">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 实际降落机场.
+                                [EN] The aerodrome at which the flight has actually arrived. [FIXM]
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="destinationAerodromePrevious" type="fb:AerodromeReferenceType" minOccurs="0"
+                                nillable="true">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 变更前的目的地机场.
+                                [EN] Specifies the previous destination aerodrome value when a change is made.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="destinationAerodrome" type="fb:AerodromeReferenceType" minOccurs="0"
+                                nillable="true">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 计划降落机场.
+                                [EN] The aerodrome of intended landing. [ICAO Doc 4444 - extracted from the definition
+                                of Destination Alternate] This is the aerodrome at which the flight is scheduled to
+                                arrive. [FIXM]
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="destinationAerodromeAlternate" type="fb:AerodromeReferenceType" minOccurs="0"
+                                maxOccurs="2" nillable="true">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 计划备降机场.
+                                [EN] An alternate aerodrome to which an aircraft may proceed should it become either
+                                impossible or inadvisable to land at the aerodrome of intended landing. [ICAO Doc 4444]
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="atis" type="atmb:AtmbAutomaticTerminalInformationServiceType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 终端自动通播信息.
+                                [EN] Automatic terminal information service description.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+
+                    <xs:element name="reclearanceInFlight" type="fx:ReclearanceInFlightType" minOccurs="0"
+                                nillable="true">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 改航飞行落地机场和航路相关信息.
+                                [EN] The route details to the revised destination aerodrome, followed by the ICAO
+                                four-letter location indicator of the aerodrome. The revised route is subject to
+                                reclearance in flight. [ICAO Doc 4444]
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="runwayDirection" type="fb:RunwayDirectionDesignatorType" minOccurs="0"
+                                nillable="true">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 航班实际降落跑道.
+                                [EN] The runway direction on which the flight has actually landed. [FIXM]
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+
+                    <xs:element name="offBoardGate" type="atmb:AtmbGateType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 下客登机口.
+                                [EN] The gate for passengers after off boarding.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="landingTime" type="atmb:AtmbLandingTimeType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 航班着陆时间的序列.
+                                [EN] Time sequence of landing.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="taxiInDuration" type="atmb:AtmbTaxiInDurationType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 航班滑行进入时间.
+                                [EN] Duration sequence of taxi in.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="inBlockTime" type="atmb:AtmbInBlockTimeType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 航班上轮挡时间的序列.
+                                [EN] Time sequence of in-block.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="aircraftAttachTime" type="atmb:AtmbAircraftAttachTimeType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 飞行器对接时间序列.
+                                [EN] Time sequence of aircraft attaching to bridge or stairs.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="doorOpenTime" type="atmb:AtmbDoorOpenTimeType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 航班开客舱门时间序列.
+                                [EN] Time sequence of cabin door open.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="freightOpenTime" type="atmb:AtmbFreightOpenTimeType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 航班货舱门开启时间序列.
+                                [EN] Time sequence of freight open.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+
+                    <xs:element name="startOffBoardTime" type="atmb:AtmbStartOffBoardTimeType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 航班开始下客时间的序列.
+                                [EN] Time sequence of starting off board.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+
+                    <xs:element name="endOffBoardTime" type="atmb:AtmbEndOffBoardTimeType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 航班结束下客时间的序列.
+                                [EN] Time sequence of end off board.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+
+                    <xs:element name="commenceOfCleaningTime" type="atmb:AtmbCommenceOfCleaningTimeType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 航班开始进行保洁时间的序列.
+                                [EN] Time sequence of cleaning start.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="endOfCleaningTime" type="atmb:AtmbEndOfCleaningTimeType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 航班结束保洁时间的序列.
+                                [EN] Time sequence of cleaning end.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+
+                    <xs:element name="commenceOfRefuelTime" type="atmb:AtmbCommenceOfRefuelTimeType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 航班开始加油时间的序列.
+                                [EN] Time sequence of refuel start.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="endOfRefuelTime" type="atmb:AtmbEndOfRefuelTimeType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 航班完成加油时间的序列.
+                                [EN] Time sequence of refuel end.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+
+                    <xs:element name="commenceOfCateringTime" type="atmb:AtmbCommenceOfCateringTimeType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 航班开始配餐时间的序列.
+                                [EN] Time sequence of catering start.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="endOfCateringTime" type="atmb:AtmbEndOfCateringTimeType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 航班结束配餐时间的序列.
+                                [EN] Time sequence of catering end.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+
+                    <xs:element name="turnroundDuration" type="atmb:AtmbTurnRoundTimeDurationType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 航班转场持续时间.
+                                [EN] Duration sequence of turning around.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+
+                </xs:sequence>
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+    <xs:complexType name="AtmbTimeOfArrivalType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 航班到港的时间序列.
+                [EN] Time sequence type of flight arrival.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="estimated" type="fb:TimeType"/>
+        <xs:attribute name="actual" type="fb:TimeType"/>
+    </xs:complexType>
+
+    <xs:complexType name="AtmbLandingTimeType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 航班落地时间序列.
+                [EN] Time sequence type of flight landing.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="scheduled" type="fb:TimeType"/>
+        <xs:attribute name="estimated" type="fb:TimeType"/>
+        <xs:attribute name="calculated" type="fb:TimeType"/>
+        <xs:attribute name="target" type="fb:TimeType"/>
+        <xs:attribute name="actual" type="fb:TimeType"/>
+    </xs:complexType>
+
+    <xs:complexType name="AtmbInBlockTimeType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 航班上轮挡时间序列.
+                [EN] Time sequence type of flight in-block.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="scheduled" type="fb:TimeType"/>
+        <xs:attribute name="estimated" type="fb:TimeType"/>
+        <xs:attribute name="calculated" type="fb:TimeType"/>
+        <xs:attribute name="target" type="fb:TimeType"/>
+        <xs:attribute name="actual" type="fb:TimeType"/>
+    </xs:complexType>
+
+    <xs:complexType name="AtmbAircraftAttachTimeType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 航班与廊桥或登机桥车对接时间序列.
+                [EN] Time sequence type of flight attach to bridge or stairs.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="actual" type="fb:TimeType"/>
+    </xs:complexType>
+
+    <xs:complexType name="AtmbDoorOpenTimeType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 航班开舱门序列.
+                [EN] Time sequence type of flight cabin door open.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="actual" type="fb:TimeType"/>
+    </xs:complexType>
+
+    <xs:complexType name="AtmbFreightOpenTimeType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 航班开货舱门时间序列.
+                [EN] Time sequence type of flight freight open.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="actual" type="fb:TimeType"/>
+    </xs:complexType>
+
+    <xs:complexType name="AtmbStartOffBoardTimeType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 航班开始下客时间.
+                [EN] Time sequence type of flight start of off board.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="actual" type="fb:TimeType"/>
+    </xs:complexType>
+    <xs:complexType name="AtmbEndOffBoardTimeType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 航班结束下客时间.
+                [EN] Time sequence type of flight end of off board.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="actual" type="fb:TimeType"/>
+    </xs:complexType>
+    <xs:complexType name="AtmbCommenceOfCleaningTimeType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 航班开始进行保洁的时间序列.
+                [EN] Time sequence type of flight start of cleaning.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="actual" type="fb:TimeType"/>
+    </xs:complexType>
+
+    <xs:complexType name="AtmbEndOfCleaningTimeType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 航班结束保洁的时间序列.
+                [EN] Time sequence type of flight end of cleaning.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="actual" type="fb:TimeType"/>
+    </xs:complexType>
+
+    <xs:complexType name="AtmbCommenceOfRefuelTimeType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 航班开始加油的时间序列.
+                [EN] Time sequence type of flight start of refuel.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="actual" type="fb:TimeType"/>
+    </xs:complexType>
+
+    <xs:complexType name="AtmbEndOfRefuelTimeType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 航班结束加油的时间序列.
+                [EN] Time sequence type of flight end of refuel.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="actual" type="fb:TimeType"/>
+    </xs:complexType>
+
+    <xs:complexType name="AtmbCommenceOfCateringTimeType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 航班开始配餐的时间序列.
+                [EN] Time sequence type of flight start of catering.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="actual" type="fb:TimeType"/>
+    </xs:complexType>
+
+    <xs:complexType name="AtmbEndOfCateringTimeType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 航班结束配餐的时间序列.
+                [EN] Time sequence type of flight end of catering.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="actual" type="fb:TimeType"/>
+    </xs:complexType>
+
+    <xs:complexType name="AtmbTaxiInDurationType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 航班滑入时间持续时长.
+                [EN] Duration sequence of flight taxi in.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="estimated" type="fb:DurationType"/>
+        <xs:attribute name="actual" type="fb:DurationType"/>
+    </xs:complexType>
+
+</xs:schema>

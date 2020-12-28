@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<atmb:messageCollection xmlns:xlink="http://www.w3.org/1999/xlink"
+                        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                        xmlns:fb="http://www.fixm.aero/base/4.2"
+                        xmlns:fx="http://www.fixm.aero/flight/4.2"
+                        xmlns:atmb="http://www.atmb.aero/4.2"
+                        xsi:schemaLocation="http://www.fixm.aero/base/4.2 ../../../core/base/Base.xsd
+          http://www.fixm.aero/flight/4.2 ../../../core/flight/Flight.xsd
+          http://www.atmb.aero/4.2 ../Atmb.xsd">
+    <atmb:message>
+        <atmb:payload>
+            <atmb:flight>
+                <atmb:aircraft>
+                    <atmb:registration>B6046</atmb:registration>
+                </atmb:aircraft>
+                <atmb:arrival>
+                    <atmb:timeOfArrival actual="2019-10-21T15:59:00Z"/>
+                    <atmb:arrivalAerodrome>
+                        <fb:locationIndicator>ZUUU</fb:locationIndicator>
+                    </atmb:arrivalAerodrome>
+                    <atmb:inBlockTime actual="2019-10-21T15:59:00Z"/>
+                    <atmb:aircraftAttachTime actual="2019-10-21T16:11:00Z"/>
+                </atmb:arrival>
+                <atmb:departure>
+                    <atmb:aerodrome>
+                        <fb:locationIndicator>ZULS</fb:locationIndicator>
+                    </atmb:aerodrome>
+                    <atmb:offBlockTime scheduled="2019-10-21T13:10:00Z" estimated="2019-10-21T13:50:00Z"/>
+                </atmb:departure>
+                <atmb:flightIdentification>
+                    <fx:aircraftIdentification>CCA4406</fx:aircraftIdentification>
+                </atmb:flightIdentification>
+            </atmb:flight>
+        </atmb:payload>
+        <atmb:timestamp>2019-10-28T11:04:10Z</atmb:timestamp>
+        <atmb:type>ARRIVAL</atmb:type>
+    </atmb:message>
+    <atmb:message>
+        <atmb:payload>
+            <atmb:flight>
+                <atmb:aircraft>
+                    <atmb:registration>B6436</atmb:registration>
+                </atmb:aircraft>
+                <atmb:arrival>
+                    <atmb:timeOfArrival actual="2019-10-21T15:50:00Z"/>
+                    <atmb:arrivalAerodrome>
+                        <fb:locationIndicator>ZUUU</fb:locationIndicator>
+                    </atmb:arrivalAerodrome>
+                    <atmb:inBlockTime actual="2019-10-21T15:59:00Z"/>
+                    <atmb:aircraftAttachTime actual="2019-10-21T16:11:00Z"/>
+                </atmb:arrival>
+                <atmb:departure>
+                    <atmb:aerodrome>
+                        <fb:locationIndicator>ZURK</fb:locationIndicator>
+                    </atmb:aerodrome>
+                    <atmb:offBlockTime scheduled="2019-10-21T12:00:00Z" estimated="2019-10-21T12:52:00Z"/>
+                </atmb:departure>
+                <atmb:flightIdentification>
+                    <fx:aircraftIdentification>TBA9817</fx:aircraftIdentification>
+                </atmb:flightIdentification>
+            </atmb:flight>
+        </atmb:payload>
+        <atmb:timestamp>2019-10-28T11:04:10Z</atmb:timestamp>
+        <atmb:type>ARRIVAL</atmb:type>
+
+    </atmb:message>
+    <atmb:message>
+        <atmb:payload>
+            <atmb:flight>
+                <atmb:aircraft>
+                    <atmb:registration>B603P</atmb:registration>
+                </atmb:aircraft>
+                <atmb:arrival>
+                    <atmb:timeOfArrival actual="2019-10-21T16:47:00Z"/>
+                    <atmb:arrivalAerodrome>
+                        <fb:locationIndicator>ZUUU</fb:locationIndicator>
+                    </atmb:arrivalAerodrome>
+                    <atmb:inBlockTime actual="2019-10-21T15:59:00Z"/>
+                    <atmb:aircraftAttachTime actual="2019-10-21T16:11:00Z"/>
+                    <atmb:doorOpenTime actual="2019-10-21T16:55:00Z"/>
+                    <atmb:endOffBoardTime actual="2019-10-21T17:03:00Z"/>
+                </atmb:arrival>
+                <atmb:departure>
+                    <atmb:aerodrome>
+                        <fb:locationIndicator>ZBLF</fb:locationIndicator>
+                    </atmb:aerodrome>
+                    <atmb:offBlockTime scheduled="2019-10-21T14:25:00Z" estimated="2019-10-21T14:25:00Z"/>
+                </atmb:departure>
+                <atmb:flightIdentification>
+                    <fx:aircraftIdentification>UEA6670</fx:aircraftIdentification>
+                </atmb:flightIdentification>
+            </atmb:flight>
+        </atmb:payload>
+        <atmb:timestamp>2019-10-28T11:04:10Z</atmb:timestamp>
+        <atmb:type>ARRIVAL</atmb:type>
+    </atmb:message>
+    <atmb:message>
+        <atmb:payload>
+            <atmb:flight>
+                <atmb:aircraft>
+                    <atmb:registration>B5228</atmb:registration>
+                </atmb:aircraft>
+                <atmb:arrival>
+                    <atmb:arrivalAerodrome>
+                        <fb:locationIndicator>ZBTJ</fb:locationIndicator>
+                    </atmb:arrivalAerodrome>
+                </atmb:arrival>
+                <atmb:departure>
+                    <atmb:aerodrome>
+                        <fb:locationIndicator>ZUUU</fb:locationIndicator>
+                    </atmb:aerodrome>
+                    <atmb:startBoardingTime actual="2019-10-27T11:08:00Z"/>
+                    <atmb:doorClosedTime actual="2019-10-27T11:20:00Z"/>
+                    <atmb:offBlockTime scheduled="2019-10-27T11:40:00Z" estimated="2019-10-27T11:40:00Z"/>
+                </atmb:departure>
+                <atmb:flightIdentification>
+                    <fx:aircraftIdentification>CCA1428</fx:aircraftIdentification>
+                </atmb:flightIdentification>
+            </atmb:flight>
+        </atmb:payload>
+        <atmb:timestamp>2019-10-28T11:04:10Z</atmb:timestamp>
+        <atmb:type>DEPARTURE</atmb:type>
+    </atmb:message>
+    <atmb:message>
+        <atmb:payload>
+            <atmb:flight>
+                <atmb:aircraft>
+                    <atmb:registration>B6711</atmb:registration>
+                </atmb:aircraft>
+                <atmb:arrival>
+                    <atmb:arrivalAerodrome>
+                        <fb:locationIndicator>ZSNJ</fb:locationIndicator>
+                    </atmb:arrivalAerodrome>
+                </atmb:arrival>
+                <atmb:departure>
+                    <atmb:aerodrome>
+                        <fb:locationIndicator>ZUUU</fb:locationIndicator>
+                    </atmb:aerodrome>
+                    <atmb:startBoardingTime actual="2019-10-27T12:03:00Z"/>
+                    <atmb:doorClosedTime actual="2019-10-27T12:13:00Z"/>
+                    <atmb:offBlockTime scheduled="2019-10-27T12:40:00Z" estimated="2019-10-27T12:40:00Z"/>
+                </atmb:departure>
+                <atmb:flightIdentification>
+                    <fx:aircraftIdentification>CCA4505</fx:aircraftIdentification>
+                </atmb:flightIdentification>
+            </atmb:flight>
+        </atmb:payload>
+        <atmb:timestamp>2019-10-28T11:04:10Z</atmb:timestamp>
+        <atmb:type>DEPARTURE</atmb:type>
+    </atmb:message>
+    <atmb:timestamp>2020-12-04T12:13:55Z</atmb:timestamp>
+    <atmb:type>ACDM</atmb:type>
+</atmb:messageCollection>
+

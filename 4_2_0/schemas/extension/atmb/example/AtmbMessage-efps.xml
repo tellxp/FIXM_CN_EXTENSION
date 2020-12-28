@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<atmb:messageCollection xmlns:xlink="http://www.w3.org/1999/xlink"
+                        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                        xmlns:fb="http://www.fixm.aero/base/4.2"
+                        xmlns:fx="http://www.fixm.aero/flight/4.2"
+                        xmlns:atmb="http://www.atmb.aero/4.2"
+                        xsi:schemaLocation="http://www.fixm.aero/base/4.2 ../../../core/base/Base.xsd
+          http://www.fixm.aero/flight/4.2 ../../../core/flight/Flight.xsd
+          http://www.atmb.aero/4.2 ../Atmb.xsd">
+
+    <atmb:message>
+        <atmb:payload>
+            <atmb:flight>
+                <atmb:aircraft>
+                    <atmb:aircraftType>
+                        <fx:type>
+                            <fx:icaoAircraftTypeDesignator>B738</fx:icaoAircraftTypeDesignator>
+                        </fx:type>
+                    </atmb:aircraftType>
+                    <atmb:registration>HSDBS</atmb:registration>
+                    <atmb:wakeTurbulence>M</atmb:wakeTurbulence>
+                </atmb:aircraft>
+                <atmb:atcPhase>FINISHED</atmb:atcPhase>
+                <atmb:arrival>
+                    <atmb:timeOfArrival estimated="2019-11-17T17:29:00Z" actual="2019-11-17T17:27:00Z"/>
+                    <atmb:destinationAerodrome>
+                        <fb:locationIndicator>ZUUU</fb:locationIndicator>
+                    </atmb:destinationAerodrome>
+                    <atmb:runwayDirection>02R</atmb:runwayDirection>
+                </atmb:arrival>
+                <atmb:departure>
+                    <atmb:aerodrome>
+                        <fb:locationIndicator>VTSP</fb:locationIndicator>
+                    </atmb:aerodrome>
+                </atmb:departure>
+                <atmb:enRoute>
+                    <atmb:currentModeACode>6176</atmb:currentModeACode>
+                </atmb:enRoute>
+                <atmb:atcProvider>
+                    <fb:controlSectorDesignator>APN_2</fb:controlSectorDesignator>
+                </atmb:atcProvider>
+                <atmb:flightIdentification>
+                    <fx:aircraftIdentification>NOK3140</fx:aircraftIdentification>
+                </atmb:flightIdentification>
+            </atmb:flight>
+        </atmb:payload>
+        <atmb:timestamp>2019-11-18T01:40:15Z</atmb:timestamp>
+        <atmb:type>ARRIVAL</atmb:type>
+    </atmb:message>
+    <atmb:message>
+        <atmb:payload>
+            <atmb:flight>
+                <atmb:aircraft>
+                    <atmb:aircraftType>
+                        <fx:numberOfAircraft>1</fx:numberOfAircraft>
+                        <fx:type>
+                            <fx:icaoAircraftTypeDesignator>A320</fx:icaoAircraftTypeDesignator>
+                        </fx:type>
+                    </atmb:aircraftType>
+                    <atmb:registration>B6399</atmb:registration>
+                    <atmb:wakeTurbulence>M</atmb:wakeTurbulence>
+                </atmb:aircraft>
+                <atmb:atcPhase>FINISHED</atmb:atcPhase>
+                <atmb:arrival>
+                    <atmb:destinationAerodrome>
+                        <fb:locationIndicator>ZGGG</fb:locationIndicator>
+                    </atmb:destinationAerodrome>
+                </atmb:arrival>
+                <atmb:departure>
+
+                    <atmb:timeOfDeparture actual="2019-11-18T02:02:22Z"/>
+                    <atmb:aerodrome>
+                        <fb:locationIndicator>ZUUU</fb:locationIndicator>
+                    </atmb:aerodrome>
+                    <atmb:runwayDirection>02L</atmb:runwayDirection>
+                    <atmb:atis>
+                        <atmb:code>A</atmb:code>
+                    </atmb:atis>
+                    <atmb:onBoardGate>
+                        <atmb:designator>612</atmb:designator>
+                    </atmb:onBoardGate>
+                    <atmb:offBlockTime estimated="2019-11-18T01:45:00Z"/>
+                    <atmb:pushbackTime actual="2019-11-18T01:44:30Z"/>
+                    <atmb:takeoffTime calculated="2019-11-18T01:55:00Z"/>
+                </atmb:departure>
+                <atmb:enRoute>
+                    <atmb:boundaryCrossingCoordination>
+                        <atmb:initialLevel>
+                            <fb:flightLevel uom="FL">180</fb:flightLevel>
+                        </atmb:initialLevel>
+                        <atmb:requestLevel>
+                            <fb:flightLevel uom="SM">1070</fb:flightLevel>
+                        </atmb:requestLevel>
+                    </atmb:boundaryCrossingCoordination>
+                    <atmb:currentModeACode>1512</atmb:currentModeACode>
+                </atmb:enRoute>
+                <atmb:atcProvider><fb:controlSectorDesignator>TWR_W</fb:controlSectorDesignator></atmb:atcProvider>
+                <atmb:nextFrequency uom="MHZ">124.85</atmb:nextFrequency>
+                <atmb:dateOfFlight>2019-11-18Z</atmb:dateOfFlight>
+                <atmb:flightIdentification>
+                    <fx:aircraftIdentification>CES5321</fx:aircraftIdentification>
+                </atmb:flightIdentification>
+                <atmb:routeTrajectoryGroup>
+                    <fx:current>
+                        <fx:element seqNum="0">
+                            <fx:point4D>
+                                <fx:pointProperty>
+                                    <fx:propertyType>RUNWAY_THRESHOLD</fx:propertyType>
+                                </fx:pointProperty>
+                                <fx:time>
+                                    <fx:absoluteTime>2019-11-18T02:00:46Z</fx:absoluteTime>
+                                </fx:time>
+                            </fx:point4D>
+                        </fx:element>
+                        <fx:element seqNum="1">
+                            <fx:routeDesignatorToNextElement>
+                                <fx:standardInstrumentDeparture>
+                                    <fb:designator>ZYG9W</fb:designator>
+                                </fx:standardInstrumentDeparture>
+                            </fx:routeDesignatorToNextElement>
+                        </fx:element>
+                    </fx:current>
+                </atmb:routeTrajectoryGroup>
+            </atmb:flight>
+        </atmb:payload>
+        <atmb:timestamp>2019-11-18T10:03:12Z</atmb:timestamp>
+        <atmb:type>DEPARTURE</atmb:type>
+    </atmb:message>
+    <atmb:timestamp>2020-12-07T15:36:00Z</atmb:timestamp>
+    <atmb:type>EFPS</atmb:type>
+</atmb:messageCollection>
+

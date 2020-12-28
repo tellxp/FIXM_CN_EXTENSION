@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by XMLSpy 2009 Professional Ed., Installed for 10 users (with SMP from 2009-08-18 to 2011-08-19) (Eurocontrol) -->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:acdm="http://www.fixm.aero/ext/sesar/acdm" xmlns:fb="http://www.fixm.aero/base/2.0" xmlns:ff="http://www.fixm.aero/foundation/2.0" xmlns:fx="http://www.fixm.aero/flight/2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.fixm.aero/ext/sesar/acdm" elementFormDefault="qualified" attributeFormDefault="qualified" version="AcdmFlight:1.1">
+	<annotation>
+		<documentation>
+Copyright (c) 2014 EUROCONTROL
+===========================================
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+  * Redistributions of source code must retain the above copyright notice, this list of conditions and the disclaimer.
+  * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the disclaimer in the documentation and/or other materials provided with the distribution.
+  * Neither the names of EUROCONTROL nor the names of their contributors may be used to endorse or promote products derived from this specification without specific prior written permission.
+
+DISCLAIMER
+
+THIS SPECIFICATION IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+==========================================
+Editorial note: this license is an instance of the BSD license template as provided by the Open Source Initiative:
+http://www.opensource.org/licenses/bsd-license.php
+
+Details on EUROCONTROL: http://www.eurocontrol.int/
+		</documentation>
+	</annotation>
+	<annotation>
+		<documentation>
+		This schema is an extension of the "FlightData" schema of the FIXM core, enriching it with more properties to cover the extension scope.
+		</documentation>
+	</annotation>
+	<import namespace="http://www.fixm.aero/base/2.0" schemaLocation="./../core/base/Base.xsd"/>
+	<import namespace="http://www.fixm.aero/flight/2.0" schemaLocation="./../core/flight/flight/Flight.xsd"/>
+	<import namespace="http://www.fixm.aero/foundation/2.0" schemaLocation="./../core/foundation/Foundation.xsd"/>
+	<include schemaLocation="Acdm.xsd"/>
+	<complexType name="AcdmFlightType">
+		<annotation>
+			<documentation>
+				extension which allows to use dedicated properties in the scope of Airport Collaborative Decision Making.
+			</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="fx:FlightType">
+				<sequence>
+					<element name="acdmFlightID" type="acdm:AcdmFlightIDType" minOccurs="0">
+						<annotation>
+							<documentation>
+								General structure to allow different flight identifiers for systems not supporting GUFI. Many identifiers can coexist.
+							</documentation>
+						</annotation>
+					</element>
+					<element name="acdmOutboundFlight" type="acdm:AcdmAirportTransitViewType" minOccurs="0">
+						<annotation>
+							<documentation>
+								Airport Transit View of the following operations linked to the aircraft in the scope of the next flight leg which the aircraft will operate.
+							</documentation>
+						</annotation>
+					</element>
+					<element name="acdmInboundFlight" type="acdm:AcdmAirportTransitViewType" minOccurs="0">
+						<annotation>
+							<documentation>
+								Airport Transit View of the preceding operations linked to the aircraft in the scope of the previous flight leg which the aircraft has operated.
+							</documentation>
+						</annotation>
+					</element>
+					<element name="acdmFlightAlert" type="acdm:AcdmAlertType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>
+								A-CDM Alert concerning to the flight, as defined in A-CDM Implementation Manual.
+							</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<element name="AcdmFlight" type="acdm:AcdmFlightType" substitutionGroup="fx:Flight"/>
+	<complexType name="AcdmFlightIDType">
+		<sequence>
+			<element name="acdmGufi" type="acdm:AcdmGufiType" minOccurs="0">
+				<annotation>
+					<documentation>
+						Globally Unique Flight Identifier.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="acdmIataFlightID" type="acdm:AcdmIataFlightIDType" minOccurs="0">
+				<annotation>
+					<documentation>
+						IATA Unique Flight Leg Identifier as defined in the Schedule [AIDX, UFI].
+					</documentation>
+				</annotation>
+			</element>
+			<element name="acdmIcaoFlightID" type="acdm:AcdmIcaoFlightIDType" minOccurs="0">
+				<annotation>
+					<documentation>
+						Flight identification based on ICAO fields present in the Flight Plan.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="acdmIfplID" type="acdm:AcdmIfplIDType" minOccurs="0">
+				<annotation>
+					<documentation>
+						Unique identifier assigned to a Flight by IFPS (Integrated Initial Flight Plan Processing System) [EUROCONTROL].
+					</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="AcdmGufiType">
+		<annotation>
+			<documentation>
+				Globally Unique Flight Identifier.
+			</documentation>
+		</annotation>
+		<sequence>
+			<element name="gufi" type="fb:GloballyUniqueFlightIdentifierType" minOccurs="0">
+				<annotation>
+					<documentation>
+						A reference that uniquely identifies a specific flight and that is independent of any particular system.
+					</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="AcdmIataFlightIDType">
+		<annotation>
+			<documentation>
+				Flight identification structure as defined by IATA, also known as UFI (Unique Flight Identifier).
+			</documentation>
+		</annotation>
+		<sequence>
+			<element name="departureAerodromeReference" type="fb:AerodromeReferenceType" minOccurs="0">
+				<annotation>
+					<documentation>
+						Code of scheduled departure airport usually IATA but can be ICAO or otheras defined in the Schedule [AIDX, UFI].
+					</documentation>
+				</annotation>
+			</element>
+			<element name="destinationAerodromeReference" type="fb:AerodromeReferenceType" minOccurs="0">
+				<annotation>
+					<documentation>
+						Code of scheduled arrival airport usually IATA but can be ICAO or otheras defined in the Schedule [AIDX, UFI].
+					</documentation>
+				</annotation>
+			</element>
+			<element name="carrierIdentification" type="acdm:AcdmCarrierIdentifierType" minOccurs="0">
+				<annotation>
+					<documentation>
+						Code of the Aircraft Operator of the identified flight, usually IATA but can be ICAO, as defined in the Schedule [AIDX, UFI].
+					</documentation>
+				</annotation>
+			</element>
+			<element name="iataFlightNumber" type="acdm:AcdmIataFlightNumberType" minOccurs="0">
+				<annotation>
+					<documentation>
+						IATA flight number of the identified flight as defined in the Schedule [AIDX, UFI].
+					</documentation>
+				</annotation>
+			</element>
+			<element name="originDate" type="acdm:AcdmDate" minOccurs="0">
+				<annotation>
+					<documentation>
+						Schduled flight origin date based on the flight as defined in the Schedule [AIDX, UFI].
+					</documentation>
+				</annotation>
+			</element>
+			<element name="repeatNumber" type="fb:CountType" minOccurs="0">
+				<annotation>
+					<documentation>
+						Repeat or departure attempt.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="suffix" type="acdm:AcdmIataSuffixType" minOccurs="0">
+				<annotation>
+					<documentation>
+						suffix of the repeatNumber as defined in the Schedule [AIDX, UFI].
+					</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="AcdmIcaoFlightIDType">
+		<annotation>
+			<documentation>
+				Flight identification structure based on usual ICAO fields present in the Flight Plan.
+			</documentation>
+		</annotation>
+		<sequence>
+			<element name="aircraftIdentification" type="fb:FlightIdentifierType" minOccurs="0">
+				<annotation>
+					<documentation>
+						Name used by ATS units to identify and communicate with an aircraft.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="estimatedOffBlockTime" type="ff:TimeType" minOccurs="0">
+				<annotation>
+					<documentation>
+						Date and time at which the aircraft will off block according to ICAO flight plan filed.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="icaoArrivalAerodrome" type="fb:IcaoAerodromeReferenceType" minOccurs="0">
+				<annotation>
+					<documentation>
+						ICAO code of scheduled destination airport.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="icaoDepartureAerodrome" type="fb:IcaoAerodromeReferenceType" minOccurs="0">
+				<annotation>
+					<documentation>
+						ICAO code of scheduled departure airport.
+					</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="AcdmIfplIDType">
+		<annotation>
+			<documentation>
+				Unique identifier of a flight when the flight plan is submitted to IFPS (Integrated initial Flight Plan Processing System). The identifier is assigned by IFPS.
+			</documentation>
+		</annotation>
+		<sequence>
+			<element name="ifplIdentifier" type="acdm:AcdmIfplIdentifierType" minOccurs="0">
+				<annotation>
+					<documentation>
+						Unique identifier of a flight plan once is submitted to IFPS (Integrated initial Flight Plan Processing System). The identifier is assigned by IFPS.
+					</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+</schema>

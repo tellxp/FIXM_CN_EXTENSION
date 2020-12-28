@@ -1,0 +1,688 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema
+   attributeFormDefault="unqualified"
+   elementFormDefault="qualified"
+   targetNamespace="http://www.faa.aero/nas/4.2"
+   version="4.2.1"
+   xmlns="http://www.w3.org/2001/XMLSchema"
+   xmlns:fb="http://www.fixm.aero/base/4.1"
+   xmlns:fx="http://www.fixm.aero/flight/4.1"
+   xmlns:mesg="http://www.fixm.aero/messaging/4.1"
+   xmlns:nas="http://www.faa.aero/nas/4.2"
+   xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   
+   <annotation>
+      <documentation>
+         Copyright (c) 2018 US Federal Aviation Administration (FAA) 
+         =========================================== 
+         All rights reserved. 
+          
+         Redistribution and use in source and binary forms, with or without modification, 
+         are permitted provided that the following conditions are met: 
+         * Redistributions of source code must retain the above copyright notice, this list 
+         of conditions and the disclaimer. 
+         * Redistributions in binary form must reproduce the above copyright notice, this 
+         list of conditions and the disclaimer in the documentation and/or other materials 
+         provided with the distribution. 
+         * The name of US FAA or the names of its contributors may not be used to endorse 
+         or promote products derived from this specification without specific prior written 
+         permission. 
+          
+         DISCLAIMER 
+          
+         THIS SPECIFICATION IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
+         AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+         WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+         IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+         INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED 
+         TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR 
+         BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
+         CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+         ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH 
+         DAMAGE. 
+          
+         ========================================== 
+         Editorial note: this license is an instance of the BSD license template as provided 
+         by the Open Source Initiative: 
+         http://www.opensource.org/licenses/bsd-license.php 
+          
+         The authoritative reference for FIXM is www.FIXM.aero. 
+          
+         Details on the US FAA: http://www.faa.gov/ 
+      </documentation>
+   </annotation>
+   <include schemaLocation="./NasAirspace.xsd"/>
+   <include schemaLocation="./NasCommon.xsd"/>
+   <include schemaLocation="./NasFlightIntent.xsd"/>
+   <import namespace="http://www.fixm.aero/base/4.1" schemaLocation="./../../../schemas/core/base/Base.xsd"/>
+   <import namespace="http://www.fixm.aero/flight/4.1" schemaLocation="./../../../schemas/core/flight/Flight.xsd"/>
+   <import namespace="http://www.fixm.aero/messaging/4.1" schemaLocation="./../../../schemas/core/messaging/Messaging.xsd"/>
+   <annotation>
+      <documentation>
+         Package contains NAS specific extension to the FIXM Core FlightDeparture. 
+      </documentation>
+   </annotation>
+
+   <complexType name="DeicingInformationType">
+      <annotation>
+         <documentation>
+            Indicates the intent for the flight to be deiced and the intended deicing location. 
+            
+         </documentation>
+      </annotation>
+      <attribute name="deicingIntent" type="nas:DeicingIntentType" use="optional" > 
+         <annotation>
+            <documentation>
+               Indicates the intent for the flight to be deiced. 
+            </documentation>
+         </annotation>
+      </attribute>
+      <attribute name="deicingLocation" type="fb:CharacterStringType" use="optional" > 
+         <annotation>
+            <documentation>
+               Indicates the location where the flight intends to be deiced. 
+            </documentation>
+         </annotation>
+      </attribute>
+   </complexType>
+   <element name="DeicingInformation" type="nas:DeicingInformationType" /> 
+
+   <complexType name="DepartureDelayType">
+      <annotation>
+         <documentation>
+            Contains information about flight departure delay. 
+         </documentation>
+      </annotation>
+      <attribute name="delayEndTime" type="fb:TimeType" use="optional" > 
+         <annotation>
+            <documentation>
+               Departure delay end time. 
+            </documentation>
+         </annotation>
+      </attribute>
+      <attribute name="delayStartTime" type="fb:TimeType" use="optional" > 
+         <annotation>
+            <documentation>
+               Departure delay start time. 
+            </documentation>
+         </annotation>
+      </attribute>
+      <attribute name="facilityToCharge" type="fb:CharacterStringType" use="optional" > 
+         <annotation>
+            <documentation>
+               The facility the delay is attributed to 
+            </documentation>
+         </annotation>
+      </attribute>
+      <attribute name="reason" type="nas:DepartureDelayReasonType" use="optional" > 
+         <annotation>
+            <documentation>
+               Represents the reason for flight departure delay. 
+            </documentation>
+         </annotation>
+      </attribute>
+      <attribute name="remarks" type="fb:CharacterStringType" use="optional" > 
+         <annotation>
+            <documentation>
+               Additional information to explain the conditions or causes associated with the delay 
+               
+            </documentation>
+         </annotation>
+      </attribute>
+      <attribute name="tmiIdentifier" type="fb:CharacterStringType" use="optional" > 
+         <annotation>
+            <documentation>
+               The identified TMI cause, if applicable 
+            </documentation>
+         </annotation>
+      </attribute>
+   </complexType>
+   <element name="DepartureDelay" type="nas:DepartureDelayType" /> 
+
+   <simpleType name="DepartureDelayReasonType">
+      <annotation>
+         <documentation>
+            Represents the reason for flight departure delay. 
+         </documentation>
+      </annotation>
+      <restriction base="xs:string">
+         <enumeration value="WEATHER"/>
+         <enumeration value="EQUIPMENT"/>
+         <enumeration value="RUNWAY_TAXIWAY"/>
+         <enumeration value="OTHER"/>
+         <enumeration value="VOLUME"/>
+      </restriction>
+   </simpleType>
+
+   <simpleType name="DepartureReadinessIndicatorType">
+      <annotation>
+         <documentation>
+            Indicates that the flight is ready for departure. 
+         </documentation>
+      </annotation>
+      <restriction base="xs:string">
+         <enumeration value="DEPARTURE_READY"/>
+      </restriction>
+   </simpleType>
+
+   <complexType name="NasDepartureType">
+      <annotation>
+         <documentation>
+            Extends core Flight Departue with NAS specific Extensions. 
+         </documentation>
+      </annotation>
+      <complexContent>
+         <extension base="fb:ExtensionType">
+            <sequence>
+               <element name="acceptableRunway" minOccurs="0" maxOccurs="1" > 
+                  <annotation>
+                     <documentation>
+                        List of acceptable departure runway names. 
+                     </documentation>
+                  </annotation>
+                  <simpleType>
+                     <list itemType="fb:RunwayDirectionDesignatorType"/>
+                  </simpleType>
+               </element>
+               <element name="deicing" type="nas:DeicingInformationType" minOccurs="0" maxOccurs="1" > 
+                  <annotation>
+                     <documentation>
+                        Indicates the intent for the flight to be deiced and the intended deicing location. 
+                        
+                     </documentation>
+                  </annotation>
+               </element>
+               <element name="departureCenter" type="fb:AtcUnitReferenceType" minOccurs="0" maxOccurs="1" > 
+                  <annotation>
+                     <documentation>
+                        Indicates the Air Route Traffic Control Center (ARTCC) for the departure point for 
+                        a flight. 
+                     </documentation>
+                  </annotation>
+               </element>
+               <element name="departureDelay" type="nas:DepartureDelayType" minOccurs="0" maxOccurs="1" > 
+                  <annotation>
+                     <documentation>
+                        Contains information about flight departure delay. 
+                     </documentation>
+                  </annotation>
+               </element>
+               <element name="departureFix" type="fb:SignificantPointType" minOccurs="0" maxOccurs="1" > 
+                  <annotation>
+                     <documentation>
+                        The point at which the responsibility for control of the flight is transferred from 
+                        the Terminal Air Traffic Control unit to the En Route Air Traffic Control unit (Centre, 
+                        ARTCC). 
+                     </documentation>
+                  </annotation>
+               </element>
+               <element name="departureProcedureTransitionFix" type="fb:SignificantPointType" minOccurs="0" maxOccurs="1" > 
+                  <annotation>
+                     <documentation>
+                        The name for the Departure Procedure Transition Fix 
+                     </documentation>
+                  </annotation>
+               </element>
+               <element name="movementAreaActualEntryTime" type="nas:ReportedTimeType" minOccurs="0" maxOccurs="1" > 
+                  <annotation>
+                     <documentation>
+                        The time at which a flight actually entered  the Airport Movement Area (AMA). 
+                     </documentation>
+                  </annotation>
+               </element>
+               <element name="movementAreaHoldIntent" type="nas:MovementAreaHoldInformationType" minOccurs="0" maxOccurs="1" > 
+                  <annotation>
+                     <documentation>
+                        Indicates the intent for a flight to hold in the airport non-movement area due to 
+                        unavailability of a parking stand or ramp access, and the time when the flight is 
+                        estimated to enter and exit the airport movement area. 
+                     </documentation>
+                  </annotation>
+               </element>
+               <element name="offBlockTime" type="nas:NasOffBlockTimeType" minOccurs="0" maxOccurs="1" > 
+                  <annotation>
+                     <documentation>
+                        Information about flight gate departure time. 
+                     </documentation>
+                  </annotation>
+               </element>
+               <element name="runwayDepartureTime" type="nas:NasRunwayDepartureTimeType" minOccurs="0" maxOccurs="1" > 
+                  <annotation>
+                     <documentation>
+                        Container for NAS Specific Runway Departure Times. 
+                     </documentation>
+                  </annotation>
+               </element>
+               <element name="runwayInformation" type="nas:NasRunwayInformationType" minOccurs="0" maxOccurs="1" > 
+                  <annotation>
+                     <documentation>
+                        Contains supplementary information for the departure runway designator such as provenance 
+                        and classification type. 
+                     </documentation>
+                  </annotation>
+               </element>
+               <element name="standInformation" type="nas:NasStandInformationType" minOccurs="0" maxOccurs="1" > 
+                  <annotation>
+                     <documentation>
+                        The name of the departure stand assignment. 
+                     </documentation>
+                  </annotation>
+               </element>
+               <element name="tfmsDepartureProcedure" type="nas:TfmsInstrumentRouteDesignatorType" minOccurs="0" maxOccurs="1" > 
+                  <annotation>
+                     <documentation>
+                        This is the name of a published departure procedure extending from the departure 
+                        runway to the start of the en route part of the aircraft's route. 
+                     </documentation>
+                  </annotation>
+               </element>
+               <element name="unacceptableRunway" minOccurs="0" maxOccurs="1" > 
+                  <annotation>
+                     <documentation>
+                        List of unacceptable departure runway names. 
+                     </documentation>
+                  </annotation>
+                  <simpleType>
+                     <list itemType="fb:RunwayDirectionDesignatorType"/>
+                  </simpleType>
+               </element>
+            </sequence>
+            <attribute name="airportMonitoringStatus" type="nas:AirportMonitoringStatusType" use="optional" > 
+               <annotation>
+                  <documentation>
+                     Indicates whether the departure airport for the flight is monitored by traffic flow 
+                     management. 
+                  </documentation>
+               </annotation>
+            </attribute>
+            <attribute name="approvalRequestReleaseTime" type="fb:TimeType" use="optional" > 
+               <annotation>
+                  <documentation>
+                     The approved departure time for a flight subject to departure constraints which require 
+                     an approval. 
+                  </documentation>
+               </annotation>
+            </attribute>
+            <attribute name="clearanceDeliveryTime" type="fb:TimeType" use="optional" > 
+               <annotation>
+                  <documentation>
+                     The time at which a flight received route clearance. 
+                  </documentation>
+               </annotation>
+            </attribute>
+            <attribute name="departureFixTime" type="fb:TimeType" use="optional" > 
+               <annotation>
+                  <documentation>
+                     The time the flight is over the departure fix. 
+                  </documentation>
+               </annotation>
+            </attribute>
+            <attribute name="departurePointText" type="fb:CharacterStringType" use="optional" > 
+               <annotation>
+                  <documentation>
+                     Departure Point specified as text. 
+                  </documentation>
+               </annotation>
+            </attribute>
+            <attribute name="departureReadinessIndicator" type="nas:DepartureReadinessIndicatorType" use="optional" > 
+               <annotation>
+                  <documentation>
+                     Indicates that the flight is ready for departure. 
+                  </documentation>
+               </annotation>
+            </attribute>
+            <attribute name="intendedDepartureSpot" type="fb:CharacterStringType" use="optional" > 
+               <annotation>
+                  <documentation>
+                     Indicates the location intended for the flight to enter the airport movement area 
+                     from the non-movement area. 
+                  </documentation>
+               </annotation>
+            </attribute>
+            <attribute name="movementAreaTargetEntryTime" type="fb:TimeType" use="optional" > 
+               <annotation>
+                  <documentation>
+                     The time at which a flight is assigned to enter the Airport Movement Area (AMA) when 
+                     airport surface departure metering procedures are in effect. 
+                  </documentation>
+               </annotation>
+            </attribute>
+            <attribute name="nonMovementAreaHoldIntent" type="nas:HoldIntentType" use="optional" > 
+               <annotation>
+                  <documentation>
+                     Indicates the intent for a flight to hold in the airport movement area due to unavailability 
+                     of a parking stand or ramp access, and the time when the flight is estimated to enter 
+                     and exit the airport movement area. 
+                  </documentation>
+               </annotation>
+            </attribute>
+            <attribute name="runwayActualEntryTime" type="fb:TimeType" use="optional" > 
+               <annotation>
+                  <documentation>
+                     The actual time when the flight enters the runway 
+                  </documentation>
+               </annotation>
+            </attribute>
+            <attribute name="runwayQueueActualEntryTime" type="fb:TimeType" use="optional" > 
+               <annotation>
+                  <documentation>
+                     The actual time when the flight enters the runway queue. 
+                  </documentation>
+               </annotation>
+            </attribute>
+            <attribute name="runwayUnassignedDesignator" type="nas:RunwayUnassignedIndicatorType" use="optional" > 
+               <annotation>
+                  <documentation>
+                     Indicates that the runway associated with a flight is unassigned. 
+                  </documentation>
+               </annotation>
+            </attribute>
+            <attribute name="standReturnIntent" type="nas:StandReturnIntentType" use="optional" > 
+               <annotation>
+                  <documentation>
+                     Indicates the intent for the flight to return to the stand. 
+                  </documentation>
+               </annotation>
+            </attribute>
+            <attribute name="timeOutDelay" type="fb:DurationType" use="optional" > 
+               <annotation>
+                  <documentation>
+                     The amount of delay for a flight calculated by TFMS due to the fact that the flight 
+                     has not departed as projected. 
+                  </documentation>
+               </annotation>
+            </attribute>
+            <attribute name="tmatMarkedForSubstitution" type="nas:TmatMarkedForSubsitutionIndicatorType" use="optional" > 
+               <annotation>
+                  <documentation>
+                     Indicates that a TMAT for the flight is marked for subsitution. 
+                  </documentation>
+               </annotation>
+            </attribute>
+            <attribute name="tmatRelinquishIndicator" type="nas:TmatRelinquishIndicatorType" use="optional" > 
+               <annotation>
+                  <documentation>
+                     Indicates that a TMAT for the flight needs to be relinquished. 
+                  </documentation>
+               </annotation>
+            </attribute>
+         </extension>
+      </complexContent>
+   </complexType>
+   <element name="NasDeparture" type="nas:NasDepartureType" substitutionGroup="fb:Extension" /> 
+
+   <complexType name="NasOffBlockTimeType">
+      <annotation>
+         <documentation>
+            Contains information about flight gate departure time. 
+         </documentation>
+      </annotation>
+      <sequence>
+         <element name="actual" type="nas:ReportedTimeType" minOccurs="0" maxOccurs="1" > 
+            <annotation>
+               <documentation>
+                  The actual off-block time for a flight reported by a source. 
+               </documentation>
+            </annotation>
+         </element>
+         <element name="earliest" type="nas:ReportedTimeType" minOccurs="0" maxOccurs="1" > 
+            <annotation>
+               <documentation>
+                  The earliest time an aircraft can push back or taxi from the stand. 
+               </documentation>
+            </annotation>
+         </element>
+         <element name="estimated" type="nas:ReportedTimeType" minOccurs="0" maxOccurs="2000" > 
+            <annotation>
+               <documentation>
+                  The estimated off-block time for a flight, as provided from the NAS flight plan 
+                  The estimated time at which a flight will depart from the stand as provided by the 
+                  airspace user. 
+               </documentation>
+            </annotation>
+         </element>
+      </sequence>
+      <attribute name="initial" type="fb:TimeType" use="optional" > 
+         <annotation>
+            <documentation>
+               The date and time at which a flight was originally planning to depart the stand. 
+               
+            </documentation>
+         </annotation>
+      </attribute>
+      <attribute name="scheduled" type="fb:TimeType" use="optional" > 
+         <annotation>
+            <documentation>
+               Scheduled gate time of departure for a flight, as provided by the OAG (Official Airline 
+               Guide). 
+            </documentation>
+         </annotation>
+      </attribute>
+   </complexType>
+   <element name="NasOffBlockTime" type="nas:NasOffBlockTimeType" /> 
+
+   <complexType name="NasRunwayDepartureEstimatedType">
+      <annotation>
+         <documentation>
+            The estimated runway departure time considering all data sources, as determined by 
+            Traffic Flow Management System (TFMS). 
+         </documentation>
+      </annotation>
+      <simpleContent>
+         <extension base="fb:TimeType">
+            <attribute name="estimatedType" type="nas:TfmsEstimatedDepartureTypeType" use="optional" > 
+               <annotation>
+                  <documentation>
+                     The type for the estimated runway departure time determined by Traffic Flow Management 
+                     System (TFMS). 
+                  </documentation>
+               </annotation>
+            </attribute>
+         </extension>
+      </simpleContent>
+   </complexType>
+
+   <complexType name="NasRunwayDepartureTimeType">
+      <annotation>
+         <documentation>
+            Container for NAS Specific Runway Departure Times. 
+         </documentation>
+      </annotation>
+      <sequence>
+         <element name="actual" type="nas:ReportedTimeType" minOccurs="0" maxOccurs="2000" > 
+            <annotation>
+               <documentation>
+                  Contains information about actual runway time. 
+                  The actual runway departure time, as determined by a reported source. 
+                   
+                  These fields in the U.S. extension  are used in order to allow providing provenances 
+                  source data.  Actual time that does not include provenance source data should be 
+                  recorded in Core.Departure.actualTimeOfDeparture. 
+               </documentation>
+            </annotation>
+         </element>
+         <element name="earliest" type="nas:ReportedTimeType" minOccurs="0" maxOccurs="1" > 
+            <annotation>
+               <documentation>
+                  The earliest time a flight can takeoff (wheels-off) based on its "earliest off block 
+                  time" and other factors, as determined by the reporting source. 
+               </documentation>
+            </annotation>
+         </element>
+         <element name="estimated" type="nas:NasRunwayDepartureEstimatedType" minOccurs="0" maxOccurs="2000" > 
+            <annotation>
+               <documentation>
+                  The estimated runway departure time considering all data sources, as determined by 
+                  Traffic Flow Management System (TFMS). 
+                  The estimated time of runway departure, as provided by the Airspace User. 
+               </documentation>
+            </annotation>
+         </element>
+      </sequence>
+      <attribute name="base" type="fb:TimeType" use="optional" > 
+         <annotation>
+            <documentation>
+               The last Runway Departure Time - Traffic Flow Management System Estimated modeled 
+               by TFMS before either a Traffic Management Initiative (TMI) is issued, or the flight 
+               departs and includes any time-out delay modeled by TFMS. 
+            </documentation>
+         </annotation>
+      </attribute>
+      <attribute name="controlled" type="fb:TimeType" use="optional" > 
+         <annotation>
+            <documentation>
+               The time at which a flight is required to take off from the runway as a result of 
+               a tactical slot allocation or a Traffic Management Initiative. 
+            </documentation>
+         </annotation>
+      </attribute>
+      <attribute name="original" type="fb:TimeType" use="optional" > 
+         <annotation>
+            <documentation>
+               The last Runway Departure Time - Traffic Flow Management System Estimated modeled 
+               by TFMS before either a Traffic Management Initiative (TMI) is issued, or the flight 
+               departs, or the flight is  time-out  delayed by TFMS. 
+            </documentation>
+         </annotation>
+      </attribute>
+      <attribute name="originalControlled" type="fb:TimeType" use="optional" > 
+         <annotation>
+            <documentation>
+               The first controlled departure time (CTD/EDCT) issued for a flight for the control 
+               element which currently controls the flight. 
+            </documentation>
+         </annotation>
+      </attribute>
+      <attribute name="preferred" type="fb:TimeType" use="optional" > 
+         <annotation>
+            <documentation>
+               A runway departure time which, when considered in aggregate with other flights for 
+               that Airspace User, indicates the preferred departure sequence. 
+            </documentation>
+         </annotation>
+      </attribute>
+      <attribute name="target" type="fb:TimeType" use="optional" > 
+         <annotation>
+            <documentation>
+               Target Take Off Time (TTOT) 
+            </documentation>
+         </annotation>
+      </attribute>
+      <attribute name="tbfmControlled" type="fb:TimeType" use="optional" > 
+         <annotation>
+            <documentation>
+               The time at which a flight is required to take off from the runway as scheduled by 
+               Time Based Flow Management. 
+            </documentation>
+         </annotation>
+      </attribute>
+   </complexType>
+   <element name="NasRunwayDepartureTime" type="nas:NasRunwayDepartureTimeType" /> 
+
+   <simpleType name="TmatMarkedForSubsitutionIndicatorType">
+      <annotation>
+         <documentation>
+            Indicates that a TMAT for the flight is marked for subsitution. 
+         </documentation>
+      </annotation>
+      <restriction base="xs:string">
+         <enumeration value="TMAT_MARKED_FOR_SUBSTITUTION"/>
+      </restriction>
+   </simpleType>
+
+   <simpleType name="TmatRelinquishIndicatorType">
+      <annotation>
+         <documentation>
+            Indicates that a TMAT for the flight needs to be relinquished. 
+         </documentation>
+      </annotation>
+      <restriction base="xs:string">
+         <enumeration value="TMAT_RELINQUISH"/>
+      </restriction>
+   </simpleType>
+
+   <simpleType name="AirportMonitoringStatusType">
+      <annotation>
+         <documentation>
+            Indicates whether the departure airport for the flight is monitored by traffic flow 
+            management. 
+            Indicates whether the arrival airport for the flight is monitored by traffic flow 
+            management. 
+         </documentation>
+      </annotation>
+      <restriction base="xs:string">
+         <enumeration value="MONITORED"/>
+         <enumeration value="NOT_MONITORED"/>
+      </restriction>
+   </simpleType>
+
+   <simpleType name="DeicingIntentType">
+      <annotation>
+         <documentation>
+            Indicates the intent for the flight to be deiced. 
+         </documentation>
+      </annotation>
+      <restriction base="xs:string">
+         <enumeration value="DEICE">
+            <annotation>
+               <documentation>
+                  .Deicing Intent: Indicates the intent for the flight to be deiced. 
+               </documentation>
+            </annotation>
+         </enumeration>
+         <enumeration value="NO_DEICE">
+            <annotation>
+               <documentation>
+                  .Deicing Intent: Indicates the intent for the flight to be deiced. 
+               </documentation>
+            </annotation>
+         </enumeration>
+      </restriction>
+   </simpleType>
+
+   <simpleType name="StandReturnIntentType">
+      <annotation>
+         <documentation>
+            Indicates the intent for the flight to return to the stand. 
+         </documentation>
+      </annotation>
+      <restriction base="xs:string">
+         <enumeration value="RETURN">
+            <annotation>
+               <documentation>
+                  .Stand Return Intent: Indicates the intent for the flight to return to the stand. 
+                  
+               </documentation>
+            </annotation>
+         </enumeration>
+         <enumeration value="NO_RETURN">
+            <annotation>
+               <documentation>
+                  .Stand Return Intent: Indicates the intent for the flight to return to the stand. 
+                  
+               </documentation>
+            </annotation>
+         </enumeration>
+      </restriction>
+   </simpleType>
+
+   <simpleType name="TfmsEstimatedDepartureTypeType">
+      <annotation>
+         <documentation>
+            The type for the estimated runway departure time determined by Traffic Flow Management 
+            System (TFMS). 
+         </documentation>
+      </annotation>
+      <restriction base="xs:string">
+         <enumeration value="SCHEDULED"/>
+         <enumeration value="EARLY_INTENT"/>
+         <enumeration value="PROPOSED"/>
+         <enumeration value="TAXIED"/>
+         <enumeration value="ESTIMATED"/>
+         <enumeration value="METERED"/>
+         <enumeration value="ACTUAL"/>
+         <enumeration value="AIRLINE"/>
+         <enumeration value="REROUTE"/>
+      </restriction>
+   </simpleType>
+</schema>

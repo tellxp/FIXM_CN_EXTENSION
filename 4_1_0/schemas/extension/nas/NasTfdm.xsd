@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema
+   attributeFormDefault="unqualified"
+   elementFormDefault="qualified"
+   targetNamespace="http://www.faa.aero/nas/4.2"
+   version="4.2.1"
+   xmlns="http://www.w3.org/2001/XMLSchema"
+   xmlns:fb="http://www.fixm.aero/base/4.1"
+   xmlns:fx="http://www.fixm.aero/flight/4.1"
+   xmlns:mesg="http://www.fixm.aero/messaging/4.1"
+   xmlns:nas="http://www.faa.aero/nas/4.2"
+   xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   
+   <annotation>
+      <documentation>
+         Copyright (c) 2018 US Federal Aviation Administration (FAA) 
+         =========================================== 
+         All rights reserved. 
+          
+         Redistribution and use in source and binary forms, with or without modification, 
+         are permitted provided that the following conditions are met: 
+         * Redistributions of source code must retain the above copyright notice, this list 
+         of conditions and the disclaimer. 
+         * Redistributions in binary form must reproduce the above copyright notice, this 
+         list of conditions and the disclaimer in the documentation and/or other materials 
+         provided with the distribution. 
+         * The name of US FAA or the names of its contributors may not be used to endorse 
+         or promote products derived from this specification without specific prior written 
+         permission. 
+          
+         DISCLAIMER 
+          
+         THIS SPECIFICATION IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
+         AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+         WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+         IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+         INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED 
+         TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR 
+         BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
+         CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+         ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH 
+         DAMAGE. 
+          
+         ========================================== 
+         Editorial note: this license is an instance of the BSD license template as provided 
+         by the Open Source Initiative: 
+         http://www.opensource.org/licenses/bsd-license.php 
+          
+         The authoritative reference for FIXM is www.FIXM.aero. 
+          
+         Details on the US FAA: http://www.faa.gov/ 
+      </documentation>
+   </annotation>
+   <import namespace="http://www.fixm.aero/base/4.1" schemaLocation="./../../../schemas/core/base/Base.xsd"/>
+   <import namespace="http://www.fixm.aero/flight/4.1" schemaLocation="./../../../schemas/core/flight/Flight.xsd"/>
+   <import namespace="http://www.fixm.aero/messaging/4.1" schemaLocation="./../../../schemas/core/messaging/Messaging.xsd"/>
+   <annotation>
+      <documentation>
+         Contains elements specific to Tower Flight Data Manager (TFDM) not used by other 
+         systems. 
+      </documentation>
+   </annotation>
+
+   <complexType name="ArrivalTaxiOperationsMetricsType">
+      <annotation>
+         <documentation>
+            Provides phase of taxi operations metrics for arrival flights. 
+         </documentation>
+      </annotation>
+      <attribute name="inboundMovementAreaHoldTimeDuration" type="fb:DurationType" use="optional" > 
+         <annotation>
+            <documentation>
+               The time duration spent holding in the movement area by an arriving flight. 
+            </documentation>
+         </annotation>
+      </attribute>
+      <attribute name="inboundMovementAreaTaxiTimeDuration" type="fb:DurationType" use="optional" > 
+         <annotation>
+            <documentation>
+               The time duration for taxi in the movement area by an arriving flight 
+            </documentation>
+         </annotation>
+      </attribute>
+      <attribute name="inboundRampTaxiTimeDuration" type="fb:DurationType" use="optional" > 
+         <annotation>
+            <documentation>
+               The time duration for  taxi in the ramp area by an arriving flight. 
+            </documentation>
+         </annotation>
+      </attribute>
+   </complexType>
+   <element name="ArrivalTaxiOperationsMetrics" type="nas:ArrivalTaxiOperationsMetricsType" /> 
+
+   <complexType name="DepartureTaxiOperationsMetricsType">
+      <annotation>
+         <documentation>
+            Contains phase of taxi operations metrics for departure flights. 
+         </documentation>
+      </annotation>
+      <attribute name="outboundMovementAreaHoldTimeDuration" type="fb:DurationType" use="optional" > 
+         <annotation>
+            <documentation>
+               The time duration spent for holding incurred in the movement area by a departing 
+               flight. 
+            </documentation>
+         </annotation>
+      </attribute>
+      <attribute name="outboundMovementAreaQueuingTimeDuration" type="fb:DurationType" use="optional" > 
+         <annotation>
+            <documentation>
+               The time duration spent in the movement area departure queue by a departing flight 
+               
+            </documentation>
+         </annotation>
+      </attribute>
+      <attribute name="outboundMovementAreaTaxiTimeDuration" type="fb:DurationType" use="optional" > 
+         <annotation>
+            <documentation>
+               The time duration for taxi in the movement area by a departing flight 
+            </documentation>
+         </annotation>
+      </attribute>
+      <attribute name="outboundRampTaxiTimeDuration" type="fb:DurationType" use="optional" > 
+         <annotation>
+            <documentation>
+               The time duration for taxi in the ramp area by a departing flight. 
+            </documentation>
+         </annotation>
+      </attribute>
+      <attribute name="standMeteringHoldTimeDuration" type="fb:DurationType" use="optional" > 
+         <annotation>
+            <documentation>
+               The time duration for metering hold incurred at the stand. 
+            </documentation>
+         </annotation>
+      </attribute>
+   </complexType>
+   <element name="DepartureTaxiOperationsMetrics" type="nas:DepartureTaxiOperationsMetricsType" /> 
+
+   <complexType name="TfdmArrivalType">
+      <annotation>
+         <documentation>
+            Contains TFDM-specific flight arrival information. 
+         </documentation>
+      </annotation>
+      <complexContent>
+         <extension base="fb:ExtensionType">
+            <sequence>
+               <element name="taxiOperationsMetrics" type="nas:ArrivalTaxiOperationsMetricsType" minOccurs="0" maxOccurs="1" > 
+                  <annotation>
+                     <documentation>
+                        Provides phase of taxi operations metrics for arrival flights. 
+                     </documentation>
+                  </annotation>
+               </element>
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <element name="TfdmArrival" type="nas:TfdmArrivalType" substitutionGroup="fb:Extension" /> 
+
+   <complexType name="TfdmDepartureType">
+      <annotation>
+         <documentation>
+            Contains TFDM-specific flight departure information. 
+         </documentation>
+      </annotation>
+      <complexContent>
+         <extension base="fb:ExtensionType">
+            <sequence>
+               <element name="taxiOperationsMetrics" type="nas:DepartureTaxiOperationsMetricsType" minOccurs="0" maxOccurs="1" > 
+                  <annotation>
+                     <documentation>
+                        Contains phase of taxi operations metrics for departure flights. 
+                     </documentation>
+                  </annotation>
+               </element>
+            </sequence>
+            <attribute name="flightInitializationLeadTimePoints" type="fb:CountType" use="optional" > 
+               <annotation>
+                  <documentation>
+                     System assigned number of points for providing the flight initialization lead time 
+                     
+                  </documentation>
+               </annotation>
+            </attribute>
+            <attribute name="offBlockTimeAccuracyPoints" type="fb:CountType" use="optional" > 
+               <annotation>
+                  <documentation>
+                     System assigned points for the provision of accurate EOBT 
+                  </documentation>
+               </annotation>
+            </attribute>
+            <attribute name="timelyProvisionOfActualOffBlockTimeCompliancePoints" type="fb:CountType" use="optional" > 
+               <annotation>
+                  <documentation>
+                     System assigned number of points for the timely provision of Actual Off-Block Time 
+                     for the flight (whether the user provided the AOBT for a flight within five minutes 
+                     of its pushback 
+                  </documentation>
+               </annotation>
+            </attribute>
+         </extension>
+      </complexContent>
+   </complexType>
+   <element name="TfdmDeparture" type="nas:TfdmDepartureType" substitutionGroup="fb:Extension" /> 
+
+   <complexType name="TfdmFlightType">
+      <annotation>
+         <documentation>
+            Contains TFDM specific flight information. 
+         </documentation>
+      </annotation>
+      <complexContent>
+         <extension base="fb:ExtensionType">
+            <attribute name="dataComprehensivenessPoints" type="fb:CountType" use="optional" > 
+               <annotation>
+                  <documentation>
+                     System assigned total number of points for providing the Aircraft Registration Mark, 
+                     the Stand Assignment and/or the Cancellation Intent for the flight. 
+                  </documentation>
+               </annotation>
+            </attribute>
+            <attribute name="dataQualityPoints" type="fb:CountType" use="optional" > 
+               <annotation>
+                  <documentation>
+                     System assigned number of points for data quality. 
+                  </documentation>
+               </annotation>
+            </attribute>
+         </extension>
+      </complexContent>
+   </complexType>
+   <element name="TfdmFlight" type="nas:TfdmFlightType" substitutionGroup="fb:Extension" /> 
+</schema>

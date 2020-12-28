@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<Restriction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:xlink="http://www.w3.org/1999/xlink"
+             xsi:noNamespaceSchemaLocation="restriction.xsd">
+
+    <RestrictionInfo>
+        <Identifier>
+            <restrictionName>National Restrction Example1</restrictionName>
+            <restrictionOriginalSource>ZUUUATFM</restrictionOriginalSource>
+            <restrictionPublishType>FORWARDING</restrictionPublishType>
+            <restrictionPublishUnit>ZGNNATFM</restrictionPublishUnit>
+            <restrictionPublishUser>ZUUUATFM</restrictionPublishUser>
+        </Identifier>
+        <restrictionStatus>FINISHED</restrictionStatus>
+        <restrictionReason>MILITARY</restrictionReason>
+    </RestrictionInfo>
+
+    <RestrictionElement>
+        <RestrictionTime>
+            <restrictionStartTime>2019-12-02T07:20:00.000Z</restrictionStartTime>
+            <restrictionEndTime>2019-12-02T14:20:00.000Z</restrictionEndTime>
+        </RestrictionTime>
+        <RestrictionDirection>
+            <RestrictionAerodrome>
+                <!-- 限制多机场示例 -->
+                <restrictionDepartureAerodrome locationIndicator="ZBAA"/>
+                <restrictionDepartureAerodrome locationIndicator="ZBNY"/>
+                <restrictionDepartureAerodrome locationIndicator="ZBNY"/>
+                <exemptDepartureAerodrome locationIndicator="ZBTJ"/>
+                <exemptDepartureAerodrome locationIndicator="ZBCF"/>
+            </RestrictionAerodrome>
+            <RestrictionPoint>
+                <!-- 限制多点示例 -->
+                <restrictionInPoint designator="IDEPO">
+                    <position>
+                        <pos>25.71527777777778 107.67888888888889</pos>
+                    </position>
+                </restrictionInPoint>
+                <restrictionInPoint designator="AGULU">
+                    <position>
+                        <pos>25.71527777777778 107.67888888888889</pos>
+                    </position>
+                </restrictionInPoint>
+            </RestrictionPoint>
+        </RestrictionDirection>
+        <RestrictionFlight>
+            <RestrictionFlightType>
+                <!-- 限制航班类型示例 -->
+                <restrictionPassengerCargoType>PASSENGER</restrictionPassengerCargoType>
+                <restrictionMissionType>OVERFLY</restrictionMissionType>
+                <restrictionOperationType>HONGKONG</restrictionOperationType>
+            </RestrictionFlightType>
+            <RestrictionAircraftType>
+                <restrictionAircraftType>B770</restrictionAircraftType>
+            </RestrictionAircraftType>
+        </RestrictionFlight>
+        <RestrictionMeasure>
+            <restrictionMode>TC</restrictionMode>
+            <RestrictionTC>
+                <restrictionPeriodValue>2</restrictionPeriodValue>
+                <restrictionPeriodDuration>15min</restrictionPeriodDuration>
+            </RestrictionTC>
+        </RestrictionMeasure>
+    </RestrictionElement>
+
+    <RestrictionElement>
+        <RestrictionTime>
+            <restrictionStartTime>2019-12-02T07:20:00.000Z</restrictionStartTime>
+            <restrictionEndTime>2019-12-02T14:20:00.000Z</restrictionEndTime>
+        </RestrictionTime>
+        <RestrictionDirection>
+            <RestrictionAerodrome>
+                <restrictionDepartureAerodrome locationIndicator="ZBAA"/>
+                <exemptDepartureAerodrome locationIndicator="ZUUU"/>
+            </RestrictionAerodrome>
+            <RestrictionPoint>
+                <restrictionInPoint designator="IDEPO">
+                    <position>
+                        <pos>25.71527777777778 107.67888888888889</pos>
+                    </position>
+                </restrictionInPoint>
+            </RestrictionPoint>
+        </RestrictionDirection>
+        <RestrictionMeasure>
+            <restrictionMode>MIT</restrictionMode>
+            <RestrictionMIT>
+                <restrictionValue>50</restrictionValue>
+            </RestrictionMIT>
+        </RestrictionMeasure>
+    </RestrictionElement>
+
+    <RestrictionElement>
+        <RestrictionTime>
+            <restrictionStartTime>2019-12-02T07:20:00.000Z</restrictionStartTime>
+            <restrictionEndTime>2019-12-02T14:20:00.000Z</restrictionEndTime>
+        </RestrictionTime>
+        <RestrictionDirection>
+            <RestrictionAerodrome>
+                <restrictionDepartureAerodrome locationIndicator="ZBAA"/>
+            </RestrictionAerodrome>
+            <RestrictionPoint>
+                <restrictionInPoint designator="IDEPO">
+                    <position>
+                        <pos>25.71527777777778 107.67888888888889</pos>
+                    </position>
+                </restrictionInPoint>
+            </RestrictionPoint>
+        </RestrictionDirection>
+        <RestrictionMeasure>
+            <restrictionMode>AA</restrictionMode>
+            <!-- 高度限制示例 -->
+            <RestrictionAA>
+                <restrictionMinHeight>
+                    <flightLevel uom="FL">300.0</flightLevel>
+                </restrictionMinHeight>
+                <restrictionMinHeightIncluded>1</restrictionMinHeightIncluded>
+                <restrictionMaxHeight>
+                    <flightLevel uom="FL">360.0</flightLevel>
+                </restrictionMaxHeight>
+                <restrictionMaxHeightIncluded>1</restrictionMaxHeightIncluded>
+            </RestrictionAA>
+        </RestrictionMeasure>
+    </RestrictionElement>
+</Restriction>

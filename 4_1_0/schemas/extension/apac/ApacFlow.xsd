@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema
+   attributeFormDefault="unqualified"
+   elementFormDefault="qualified"
+   targetNamespace="http://www.aerothai.aero/apac/1.0"
+   version="1.00"
+   xmlns="http://www.w3.org/2001/XMLSchema"
+   xmlns:apac="http://www.aerothai.aero/apac/1.0"
+   xmlns:fb="http://www.fixm.aero/base/4.1"
+   xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+   <xs:annotation>
+      <xs:documentation>
+         Copyright (c) 2018 Aeronautical Radio of Thailand Limited
+         ===========================================
+         All rights reserved.
+
+         Redistribution and use in source and binary forms, with or without modification,
+         are permitted
+         provided that the following conditions are met:
+         * Redistributions of source code must retain the above copyright notice, this list
+         of conditions and
+         the disclaimer.
+         * Redistributions in binary form must reproduce the above copyright notice, this
+         list of conditions
+         and the disclaimer in the documentation and/or other materials provided with the
+         distribution.
+         * Neither the name of Aeronautical Radio of Thailand Limited nor the names of their contributors may
+         be used to endorse or
+         promote products derived from this specification without specific prior written permission.
+
+
+         DISCLAIMER
+
+         THIS SPECIFICATION IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+
+         AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+
+         WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+         DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+         ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+         (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS
+
+         OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+         THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+         NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+
+         IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+         Editorial note: this license is an instance of the BSD license template as provided
+         by the Open
+         Source Initiative:
+         http://www.opensource.org/licenses/bsd-license.php
+
+         The authoritative reference for FIXM is www.FIXM.aero.
+
+         Details on Aeronautical Radio of Thailand Limited: http://www.aerothai.co.th/
+      </xs:documentation>
+   </xs:annotation>
+   <xs:import namespace="http://www.fixm.aero/base/4.1" schemaLocation="./../../core/base/Base.xsd"/>
+   <xs:import namespace="http://www.fixm.aero/flight/4.1" schemaLocation="../../core/flight/Flight.xsd"/>
+   <xs:import namespace="http://www.fixm.aero/messaging/4.1" schemaLocation="../../core/messaging/Messaging.xsd"/>
+   <xs:annotation>
+      <xs:documentation>
+         The ApacFlow contains information related to Air Traffic Flow Management and Airport-Collaborative Decision Making operations.
+      </xs:documentation>
+   </xs:annotation>
+
+   <xs:complexType name="ApacAircraftTrackType">
+      <xs:annotation>
+         <xs:documentation>
+            Class containing aircraft track data. This class is to be included in extension field
+            under FlightType class.
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="fb:ExtensionType">
+            <xs:sequence>
+               <xs:element name="actualSpeed" type="fb:GroundSpeedType" minOccurs="0" maxOccurs="1" >
+                  <xs:annotation>
+                     <xs:documentation>
+                        Current aircraft ground speed.
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="flightLevel" type="fb:FlightLevelOrAltitudeType" minOccurs="0" maxOccurs="1" >
+                  <xs:annotation>
+                     <xs:documentation>
+                        Current flight level
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="heading" type="fb:BearingType" minOccurs="0" maxOccurs="1" >
+                  <xs:annotation>
+                     <xs:documentation>
+                        Current aircraft heading
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="position" type="fb:SignificantPointType" minOccurs="0" maxOccurs="1" >
+                  <xs:annotation>
+                     <xs:documentation>
+                        Current aircraft position
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+            <xs:attribute name="positionTime" type="fb:TimeType" use="optional" >
+               <xs:annotation>
+                  <xs:documentation>
+                     Time when all data in this class is reported
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="ApacAircraftTrack" type="apac:ApacAircraftTrackType" substitutionGroup="fb:Extension" />
+
+   <xs:complexType name="ApacArrivalType">
+      <xs:annotation>
+         <xs:documentation>
+            Class containing ATFM data related to destination aerodrome. This class is to be
+            included in extension field under ArrivalType class.
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="fb:ExtensionType">
+            <xs:attribute name="calculatedLandingTime" type="fb:TimeType" use="optional" >
+               <xs:annotation>
+                  <xs:documentation>
+                     A landing time calculated and issued by an ATFM unit, as a result of tactical slot
+                     allocation at which a flight is expected to land on a runway. [ICAO DOC 9971 Manual
+                     on Collaborative ATFM, 3rd Edition, 2018]
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="estimatedLandingTime" type="fb:TimeType" use="optional" >
+               <xs:annotation>
+                  <xs:documentation>
+                     The estimated time that an aircraft will touch-down on the runway (equivalent to
+                     ETA) [ICAO Doc 9971 Manual Collaborative ATFM, 3rd Edition, 2018]
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="ApacArrival" type="apac:ApacArrivalType" substitutionGroup="fb:Extension" />
+
+   <xs:complexType name="ApacDepartureType">
+      <xs:annotation>
+         <xs:documentation>
+            Class containing ATFM data related to departure aerodrome. This class is to be included
+            in extension field under DepartureType class.
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="fb:ExtensionType">
+            <xs:attribute name="actualOffBlockTime" type="fb:TimeType" use="optional" >
+               <xs:annotation>
+                  <xs:documentation>
+                     The time the aircraft pushes back / vacates parking position (equivalent to airline/handler
+                     ATD - Actual Time of Departure and ACARS=OUT). [ICAO Doc 9971 Manual on Colloborative
+                     ATFM, 3rd Edition, 2018]
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="calculatedTakeOffTime" type="fb:TimeType" use="optional" >
+               <xs:annotation>
+                  <xs:documentation>
+                     A time calculated and issued by an ATFM unit, as a result of tactical slot allocation,
+                     at which a flight is expected to become airborne. [ICAO Doc 9971 Manual Collaborative
+                     ATFM, 3rd Edition, 2018]
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="targetOffBlockTime" type="fb:TimeType" use="optional" >
+               <xs:annotation>
+                  <xs:documentation>
+                     A time that an Aircraft Operator or Ground handler estimates that an aircraft will
+                     be ready to startup/be push back immediately upon reception of clearance from the
+                     control tower. [ICAO Asia/Pacific Framework for Collaborative ATFM, Version 3, August
+                     2017]
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="targetStartupApprovalTime" type="fb:TimeType" use="optional" >
+               <xs:annotation>
+                  <xs:documentation>
+                     A time provided by ATC taking into account TOBT, CTOT (Calculated Take-Off Time)
+                     and/or the traffic situation that an aircraft can expect start up/push back approval.
+                     [ICAO Asia/Pacific Framework for Collaborative ATFM, Version 3, August 2017]
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="targetedTakeOffTime" type="fb:TimeType" use="optional" >
+               <xs:annotation>
+                  <xs:documentation>
+                     A time that an aircraft is targeted to be airborne, taking into account TOBT, TSAT,
+                     and other factors such as EXOT, wake turbulence, SID, etc. [ICAO Asia/Pacific Framework
+                     for Collaborative ATFM, Version 3, August 2017] [EUROCONTROL A-CDM Implementation
+                     Manual, Version 5.0, March 2017]
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="ApacDeparture" type="apac:ApacDepartureType" substitutionGroup="fb:Extension" />
+
+   <xs:complexType name="ApacTrajectoryType">
+      <xs:annotation>
+         <xs:documentation>
+            Class containing composition of each trajectory element(s) specified in ApacTrajectoryType
+
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="fb:ExtensionType">
+            <xs:sequence>
+               <xs:element name="element" type="apac:ApacTrajectoryElementType" minOccurs="0" maxOccurs="2000" >
+                  <xs:annotation>
+                     <xs:documentation>
+                        A list of trajectory element.
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="ApacTrajectory" type="apac:ApacTrajectoryType" substitutionGroup="fb:Extension" />
+
+   <xs:complexType name="ApacTrajectoryElementType">
+      <xs:annotation>
+         <xs:documentation>
+            Class containing composition of each trajectory element(s) specified in ApacTrajectoryType.
+
+         </xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="level" type="fb:FlightLevelOrAltitudeChoiceType" minOccurs="0" maxOccurs="1" >
+            <xs:annotation>
+               <xs:documentation>
+                  An estimated flight level of the aircraft at the trajectory element.
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="routePoint" type="fb:SignificantPointType" minOccurs="1" maxOccurs="1" >
+            <xs:annotation>
+               <xs:documentation>
+                  A specified position of this trajectory element [routePoint can be in the following
+                  forms, fix; waypoint; or particular location]
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="actualTimeOver" type="fb:TimeType" use="optional" >
+         <xs:annotation>
+            <xs:documentation>
+               The actual time of aircraft over routePoint
+            </xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="calculatedTimeOver" type="fb:TimeType" use="optional" >
+         <xs:annotation>
+            <xs:documentation>
+               A time calculated and issued by an ATFM unit, as a result of tactical slot allocation,
+               at which a flight is expected to be over routePoint, i.e. a fix, waypoint, or particular
+               location. The implementation of this constraint may be carried out through tactical
+               ATC intervention, such as speed control or route extension, or by having the aircraft
+               meet the constrained time through the use of its Flight Management System RTA - Required
+               Time of Arrival function. [ICAO Doc 9971 Manual on Collaborative ATFM, 3rd Edition,
+               2018]
+            </xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="estimatedTimeOver" type="fb:TimeType" use="optional" >
+         <xs:annotation>
+            <xs:documentation>
+               A estimated time at which an aircraft would be over routePoint, i.e. fix, waypoint
+               or particular location, typically where air traffic congestion is expected. [ICAO
+               Doc 9971 Manual on Collaborative ATFM, 3rd Edition, 2018]
+            </xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="seqNum" type="xs:int" use="required" >
+         <xs:annotation>
+            <xs:documentation>
+               The sequence number of this trajectory element as specified in FlightRouteTrajectoryType
+               class of FIXM version 4.1 Core
+            </xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:element name="ApacTrajectoryElement" type="apac:ApacTrajectoryElementType" />
+</schema>

@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+        targetNamespace="http://www.atmb.aero/4.2"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:fb="http://www.fixm.aero/base/4.2"
+        xmlns:fx="http://www.fixm.aero/flight/4.2"
+        xmlns:atmb="http://www.atmb.aero/4.2"
+        elementFormDefault="qualified"
+        version="4.2.0">
+    <xs:annotation>
+        <xs:documentation>
+            [CN] flight data 包括飞行的核心对象.
+            [EN] The flight data package contains information describing all details associated with the flight. It is a
+            central package of the FIXM model.
+        </xs:documentation>
+    </xs:annotation>
+    <xs:import namespace="http://www.fixm.aero/base/4.2"/>
+    <xs:import namespace="http://www.fixm.aero/flight/4.2" schemaLocation="../../../../core/flight/Flight.xsd"/>
+
+
+    <xs:include schemaLocation="../../base/AtmbBase.xsd"/>
+    <xs:include schemaLocation="../aircraft/AtmbAircraft.xsd"/>
+    <xs:include schemaLocation="../departure/AtmbDeparture.xsd"/>
+    <xs:include schemaLocation="../arrival/AtmbArrival.xsd"/>
+    <xs:include schemaLocation="../enroute/AtmbEnRoute.xsd"/>
+
+    <xs:simpleType name="AtmbFlightPhaseType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 飞行阶段枚举.
+                [EN] Phase of flight life cycle.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="SCHEDULED"/>
+            <xs:enumeration value="INITIATED"/>
+            <xs:enumeration value="AIRBORNE"/>
+            <xs:enumeration value="ENTER_FIR"/>
+            <xs:enumeration value="FINAL"/>
+            <xs:enumeration value="LANDED"/>
+            <xs:enumeration value="IN_BLOCK"/>
+            <xs:enumeration value="BOARDING"/>
+            <xs:enumeration value="READY"/>
+            <xs:enumeration value="OFF_BLOCK"/>
+            <xs:enumeration value="READY_FOR_DEICING"/>
+            <xs:enumeration value="DEICING"/>
+            <xs:enumeration value="DEPARTED"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="AtmbAtcPhaseType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 飞行阶段枚举.
+                [EN] Phase of flight life cycle.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="PRE_ACTIVATION"/>
+            <xs:enumeration value="ACTIVATION"/>
+            <xs:enumeration value="CONTROL"/>
+            <xs:enumeration value="HANDOVER"/>
+            <xs:enumeration value="FINISHED"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="AtmbFlightPlanCategoryType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 飞行计划的类型.
+                [EN] Type of flight plan.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="SCHEDULED">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 正班飞行.
+                        [EN] Scheduled flight in a flight season.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="NON_SCHEDULED">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 非正班飞行.
+                        [EN] Non-scheduled flight in a flight season.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="SUPPLEMENTARY">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 补班飞行.
+                        [EN] Supplementary flight added.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="TEMPORARY">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 临时加班飞行.
+                        [EN] Temporary flight added.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="AtmbTaskClassificationType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 标识飞行任务类型 (ICAO doc 4444 文件中任务类型的补充).
+                [EN] Task classification (supplementary to ICAO doc 4444).
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="PASSENGER">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 民用运输航空飞行.
+                        [EN] Civil transportation flight.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="CARGO">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 民用货运航空飞行.
+                        [EN] Civil cargo flight.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="GENERAL">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 通用航空飞行.
+                        [EN] General aviation flight.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="MILITARY">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 军用航空飞行.
+                        [EN] Military flight.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="AtmbIataTypeOfFlightType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] IATA 中对于飞行任务的分类.
+                [EN] Task of flight classification in IATA.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="AV"/>
+            <xs:enumeration value="BF"/>
+            <xs:enumeration value="BW"/>
+            <xs:enumeration value="CB"/>
+            <xs:enumeration value="DM"/>
+            <xs:enumeration value="DY"/>
+            <xs:enumeration value="OF"/>
+            <xs:enumeration value="FJ"/>
+            <xs:enumeration value="HF"/>
+            <xs:enumeration value="HB"/>
+            <xs:enumeration value="HY"/>
+            <xs:enumeration value="JB"/>
+            <xs:enumeration value="KL"/>
+            <xs:enumeration value="LW"/>
+            <xs:enumeration value="NM"/>
+            <xs:enumeration value="RZ"/>
+            <xs:enumeration value="SF"/>
+            <xs:enumeration value="SQ"/>
+            <xs:enumeration value="UH"/>
+            <xs:enumeration value="VP"/>
+            <xs:enumeration value="XL"/>
+            <xs:enumeration value="WZ"/>
+            <xs:enumeration value="WA"/>
+            <xs:enumeration value="YZ"/>
+            <xs:enumeration value="ZF"/>
+            <xs:enumeration value="ZP"/>
+            <xs:enumeration value="XX"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="AtmbRouteClassificationType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 航线分类.
+                [EN] Classification of flight route.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="CHN_TO_CHN">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 中国大陆到中国大陆.
+                        [EN] China mainland to china mainland.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="CHN_TO_FOREIGN">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 中国大陆到境外.
+                        [EN] China mainland to foreign country.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="CHN_TO_HKG">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 中国大陆到香港特别行政区.
+                        [EN] China mainland to HongKong SAR.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="CHN_TO_MAC">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 中国大陆到澳门特别行政区.
+                        [EN] China mainland to Macao SAR.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="CHN_TO_TWN">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 中国大陆到台湾地区.
+                        [EN] China mainland to Taiwan region.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="FOREIGN_TO_CHN">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 境外国家地区到中国大陆.
+                        [EN] Foreign country or region to China mainland.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="HKG_TO_CHN">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 香港特别行政区到中国大陆.
+                        [EN] HongKong SAR to China mainland.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="MAC_TO_CHN">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 澳门特别行政区到中国大陆.
+                        [EN] Macao SAR to China mainland.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="TWN_TO_CHN">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 台湾地区到中国大陆.
+                        [EN] Taiwan region to China mainland.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="CHN_OVERFLY">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 中国大陆内飞越.
+                        [EN] Route which will overfly in China mainland.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="AtmbTurnRoundTimeDurationType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 航班过站时间长度序列.
+                [EN] Time sequence type of flight turn-round duration.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="minimum" type="fb:DurationType"/>
+        <xs:attribute name="scheduled" type="fb:DurationType"/>
+        <xs:attribute name="estimated" type="fb:DurationType"/>
+        <xs:attribute name="actual" type="fb:DurationType"/>
+    </xs:complexType>
+
+
+    <xs:complexType name="AtmbFlightType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 这是 FIXM 的核心逻辑对象. 这一对象包含了飞行的所有信息.
+                [EN] This is the central object of the FIXM Logical Model. It groups all information about the flight.
+                [FIXM]
+                [removed] dangerousGoods, emergency, extension, flightConstraint, radioCommunicationFailure,
+                specialHandling
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:restriction base="fx:FlightType">
+                <xs:sequence>
+                    <xs:element name="aircraft" type="atmb:AtmbAircraftType" minOccurs="0" maxOccurs="1"
+                                nillable="true">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 执行航班的飞行器.
+                                [EN] Aircraft enabling the flight. [FIXM]
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="atcPhase" type="atmb:AtmbAtcPhaseType" minOccurs="0"/>
+                    <xs:element name="arrival" type="atmb:AtmbArrivalType" minOccurs="0" maxOccurs="1" nillable="true">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 飞行到港的相关信息.
+                                [EN] The actual arrival of the flight. [FIXM]
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="departure" type="atmb:AtmbDepartureType" minOccurs="0" maxOccurs="1"
+                                nillable="true">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 飞行器离港的相关信息.
+                                [EN] Contains flight departure information.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="enRoute" type="atmb:AtmbEnRouteType" minOccurs="0" maxOccurs="1" nillable="true">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 飞行器航路相关信息.
+                                [EN] Groups the en route information about the flight.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="atcProvider" type="fb:AtcUnitReferenceType" minOccurs="0"/>
+                    <xs:element name="currentFrequency" type="fb:FrequencyType" minOccurs="0"/>
+                    <xs:element name="nextFrequency" type="fb:FrequencyType" minOccurs="0"/>
+
+                    <xs:element name="dateOfFlight" type="atmb:AtmbDateType" minOccurs="0"/>
+                    <xs:element name="flightIdentification" type="fx:FlightIdentificationType" minOccurs="0"
+                                maxOccurs="1"
+                                nillable="true">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 飞行标识信息的容器.
+                                [EN] A container of flight identifying data. [FIXM]
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="flightPlanOriginator" type="fb:PersonOrOrganizationType" minOccurs="0"
+                                maxOccurs="1"
+                                nillable="true">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 飞行计划产生者.
+                                [EN] Originator of the Flight Plan, can be FF-ICE Participant or a non-upgraded ASP.
+                                [adapted
+                                from
+                                ICAO Draft FF-ICE Implementation Guidance] Equivalent to ATS 18 ORGN.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="flightPlanSubmitter" type="fb:PersonOrOrganizationType" minOccurs="0"
+                                maxOccurs="1"
+                                nillable="true">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] FF-ICE 中的飞行计划提交者.
+                                [EN] The FF-ICE Participant that submitted the flight plan. [ICAO Draft FF-ICE
+                                Implementation
+                                Guidance]
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="flightType" type="fx:TypeOfFlightType" minOccurs="0" maxOccurs="1"
+                                nillable="true">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 飞行类型.
+                                [EN] Indication of the rule under which an air traffic controller provides categorical
+                                handling of a flight. [FIXM]
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="gufi" type="fb:UniversallyUniqueIdentifierType" minOccurs="0" maxOccurs="1"
+                                nillable="true">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 一次飞行的唯一标识. 该标识码应该在全球所有系统是唯一独立的.
+                                [EN] A single reference for FF-ICE information pertinent to a flight that is unique
+                                globally. [ICAO Doc 9965] This is a reference that uniquely identifies a specific flight
+                                and is independent of any particular system. [FIXM]
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="gufiOriginator" type="fb:PersonOrOrganizationType" minOccurs="0" maxOccurs="1"
+                                nillable="true">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] GUFI 的产生对象, 可以是 FF-ICE 的参与者或者是飞行服务提供者.
+                                [EN] Originator of the GUFI, can be FF-ICE Participant or an ASP. [adapted from ICAO
+                                Draft FF-ICE Implementation Guidance]
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="operator" type="atmb:AtmbAircraftOperatorType" minOccurs="0" maxOccurs="1"
+                                nillable="true">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 飞行器的实际运营人.
+                                [EN] A person, organization or enterprise engaged in or offering to engage in an
+                                aircraft operation. [ICAO Annex 9]
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="remarks" type="fb:CharacterStringType" minOccurs="0" maxOccurs="1"
+                                nillable="true">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 备注信息, 明文描述的 ATS 授权或其他信息.
+                                [EN] Any other plain-language remarks when required by the appropriate ATS authority or
+                                deemed necessary, by the pilot-in-command for the provision of air traffic services.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="iataFlightType" type="atmb:AtmbIataTypeOfFlightType" minOccurs="0" maxOccurs="1"
+                                nillable="true">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 中国民用航空局规定的针对航空公司提交预先飞行计划要求的飞行类型.
+                                [EN] Type of flight according to CAAC.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="routeTrajectoryGroup" type="fx:RouteTrajectoryGroupContainerType" minOccurs="0"
+                                maxOccurs="1" nillable="true">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 飞行相关的航路轨迹相关信息.
+                                [EN] A logical grouping for all Route Trajectory Groups associated with the flight.
+                                [FIXM]
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="supplementaryData" type="fx:SupplementaryDataType" minOccurs="0" maxOccurs="1"
+                                nillable="true">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 关于飞行的附加信息, 需要注意的是, 这些附加信息并没有涵盖 ICAO Doc 4444 规定的所有信息.
+                                [EN] A container for supplementary data about the flight. This container does not
+                                capture the complete set of elements described in ICAO Doc 4444 ITEM 19 "Supplementary
+                                Information"; it only contains those elements that could not be modeled more logically
+                                in other FIXM structures. [FIXM]
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+</xs:schema>

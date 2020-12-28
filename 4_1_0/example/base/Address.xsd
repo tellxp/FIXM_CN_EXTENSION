@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:annotation>
+        <xs:documentation>
+            This package contains classes that model addresses and other contact information.
+            [FIXM]
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:complexType name="ContactInformationType">
+        <xs:annotation>
+            <xs:documentation>
+                Information required to enable contact with the responsible person and/or organisation.
+                This model is derived from ISO19115-2003:Geographic Information- Metadata. [AIXM
+                5.1]
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ExtensibleType">
+                <xs:sequence>
+                    <xs:element name="address" type="PostalAddressType" minOccurs="0" maxOccurs="1" >
+                        <xs:annotation>
+                            <xs:documentation>
+                                Optional postal address of the contact.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="onlineContact" type="OnlineContactType" minOccurs="0" maxOccurs="2000" >
+                        <xs:annotation>
+                            <xs:documentation>
+                                Optional e-mail address of the contact.[FIXM]
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="phoneFax" type="TelephoneContactType" minOccurs="0" maxOccurs="1" >
+                        <xs:annotation>
+                            <xs:documentation>
+                                Optional phone or facsimile number of the contact.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+                <xs:attribute name="name" type="TextNameType" use="optional" >
+                    <xs:annotation>
+                        <xs:documentation>
+                            The official name of the contact. In case of the organization use, it is the name
+                            of the person within the organization who is the contact point.
+
+                            If the usage of  ContactInformation is associated with a person, this field should
+                            not be used, insead, the Person class' name should be used instead.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="title" type="TextNameType" use="optional" >
+                    <xs:annotation>
+                        <xs:documentation>
+                            The official title of the contact.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="ContactInformation" type="ContactInformationType"  />
+
+    <xs:complexType name="OnlineContactType">
+        <xs:annotation>
+            <xs:documentation>
+                On-line or Network information that can be used to contact the individual or organisation,
+                including eMail address. The contact information can include an email address and
+                either an AFTN address or URL, but usually not both. The network attribute specifies
+                whether the address specified by the linkage attribute is an AFTN or an internet
+                address. [specialised from AIXM 5.1]
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ExtensibleType">
+                <xs:attribute name="email" type="TextAddressType" use="optional" >
+                    <xs:annotation>
+                        <xs:documentation>
+                            The address of the electronic mailbox of the responsible organisation or individual.
+                            [FIXM]
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="linkage" type="TextAddressType" use="optional" >
+                    <xs:annotation>
+                        <xs:documentation>
+                            Location (address) for on-line access using a Uniform Resource Locator address or
+                            AFTN address. [adapted from AIXM]
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="network" type="TelecomNetworkTypeType" use="optional" >
+                    <xs:annotation>
+                        <xs:documentation>
+                            The Telecom Networks that can be used to address an organisation. [adapted from AIXM]
+
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="OnlineContact" type="OnlineContactType" />
+
+    <xs:complexType name="PostalAddressType">
+        <xs:annotation>
+            <xs:documentation>
+                Physical address at which the organization or individual may be contacted. Derived
+                from ISO19115-2003
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ExtensibleType">
+                <xs:attribute name="administrativeArea" type="TextNameType" use="optional" >
+                    <xs:annotation>
+                        <xs:documentation>
+                            The state or province of the location or organisation.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="city" type="TextCityType" use="optional" >
+                    <xs:annotation>
+                        <xs:documentation>
+                            The city of the location or organisation.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="countryCode" type="TextCountryCodeType" use="optional" >
+                    <xs:annotation>
+                        <xs:documentation>
+                            The country of the physical address for the location or organisation.  ISO 3166 abbreviations.
+
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="countryName" type="TextCountryNameType" use="optional" >
+                    <xs:annotation>
+                        <xs:documentation>
+                            The country of the physical address for the location or organisation.  Full name,
+                            not ISO 3166 abbreviations.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="deliveryPoint" type="TextAddressType" use="optional" >
+                    <xs:annotation>
+                        <xs:documentation>
+                            The street address line for the location.  More than one address line may be used.
+                            [FIXM]
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="postalCode" type="TextNameType" use="optional" >
+                    <xs:annotation>
+                        <xs:documentation>
+                            The ZIP or other postal code for the location or organisation.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="PostalAddress" type="PostalAddressType"  />
+
+    <xs:simpleType name="TelecomNetworkTypeType">
+        <xs:annotation>
+            <xs:documentation>
+                The Telecom Networks that can be used to address an organisation. [adapted from AIXM]
+
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="AFTN">
+                <xs:annotation>
+                    <xs:documentation>
+                        The data interchange in the AFS is performed by the Aeronautical Fixed Telecommunications
+                        Network, AFTN. This is a message handling network running according to ICAO Standards
+                        documented in Annex 10 to the ICAO Convention.[AIXM]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="INTERNET">
+                <xs:annotation>
+                    <xs:documentation>
+                        The Internet is a worldwide, publicly accessible series of interconnected computer
+                        networks that transmit data by packet switching using the standard Internet Protocol
+                        (IP).
+                        The usage of this value indicates that a URL will be provided for the linkage property
+                        in OnlineContact.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="TelephoneContactType">
+        <xs:annotation>
+            <xs:documentation>
+                Telephone numbers at which the organisation or individual may be contacted.  From
+                ISO19115-2003. [AIXM 5.1]
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ExtensibleType">
+                <xs:attribute name="facsimile" type="TextPhoneType" use="optional" >
+                    <xs:annotation>
+                        <xs:documentation>
+                            The telephone number of a facsimile machine for the responsible organisation or individual.
+
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="voice" type="TextPhoneType" use="optional" >
+                    <xs:annotation>
+                        <xs:documentation>
+                            The telephone number by which individuals can speak to the responsible organisation
+                            or individual.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="TelephoneContact" type="TelephoneContactType"  />
+
+    <xs:simpleType name="TextAddressType">
+        <xs:annotation>
+            <xs:documentation>
+                Basis for e-mail and street addresses. [FIXM]
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="CharacterStringType">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="500"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="TextCityType">
+        <xs:annotation>
+            <xs:documentation>
+                Address city. [FIXM]
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="TextNameType"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="TextCountryCodeType">
+        <xs:annotation>
+            <xs:documentation>
+                The country code as specified by ISO 3166. [FIXM]
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="CharacterStringType">
+            <xs:pattern value="[A-Z]{2}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="TextCountryNameType">
+        <xs:annotation>
+            <xs:documentation>
+                The country of the physical address for the location or organisation.  Full name,
+                not ISO 3166 abbreviations. [AIXM 5.1]
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="TextNameType"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="TextPhoneType">
+        <xs:annotation>
+            <xs:documentation>
+                A phone or facsimile number. [AIXM 5.1]
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="CharacterStringType">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="500"/>
+            <xs:pattern value="(\+)?[0-9\s\-\(\)]+"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

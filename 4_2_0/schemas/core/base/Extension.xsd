@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.fixm.aero/base/4.2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fb="http://www.fixm.aero/base/4.2" elementFormDefault="qualified" version="4.2.0">
+	<xs:annotation>
+		<xs:documentation>Contains all the classes needed to construct extensions to the FIXM model. [FIXM]
+
+=========================================== 
+Copyright (c) 2020 Airservices Australia, DSNA, EUROCONTROL, GCAA UAE, IATA, International Coordinating Council of Aerospace Industries Associations, JCAB, NATS Limited, NAV CANADA, SESAR Joint Undertaking and US FAA 
+=========================================== 
+All rights reserved. 
+          
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met: 
+	- Redistributions of source code must retain the above copyright notice, this list of conditions and the disclaimer.
+	- Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the disclaimer in the documentation and/or other materials provided with the distribution.
+	- Neither the names of Airservices Australia, DSNA, EUROCONTROL, GCAA UAE, IATA, International Coordinating Council of Aerospace Industries Associations, JCAB, NATS Limited, NAV CANADA, SESAR Joint Undertaking and US FAA nor the names of their contributors may be used to endorse or promote products derived from this specification without specific prior written permission.
+          
+DISCLAIMER 
+          
+THIS SPECIFICATION IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+          
+========================================== 
+Editorial note: this license is an instance of the BSD license template as provided by the Open Source Initiative: 
+http://www.opensource.org/licenses/bsd-license.php 
+          
+The authoritative reference for FIXM is www.FIXM.aero. 
+          
+Details on Airservices Australia: http://www.airservicesaustralia.com/ 
+Details on DSNA: http://www.developpement-durable.gouv.fr/-Navigation-aerienne-.html 
+Details on EUROCONTROL: http://www.eurocontrol.int/ 
+Details on IATA: http://www.iata.org/Pages/default.aspx 
+Details on JCAB: http://www.mlit.go.jp/en/koku/index.html 
+Details on NATS Limited: http://www.nats.co.uk/ 
+Details on NAV CANADA: http://www.navcanada.ca/ 
+Details on the UAE GCAA: https://www.gcaa.gov.ae 
+Details on the ICCAIA: www.iccaia.org 
+Details on the SESAR JU and its members: http://www.sesarju.eu/discover-sesar/partnering-smarter-aviation/members 
+Details on the US FAA: http://www.faa.gov/ </xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="AerodromeReferenceExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all AerodromeReference class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AircraftExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all Aircraft class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AircraftOperatorExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all AircraftOperator class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AircraftTypeExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all AircraftType class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AllPackedInOneExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all AllPackedInOne class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AltitudeInTransitionExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all AltitudeInTransition class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="ArrivalExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all Arrival class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AtcUnitReferenceExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all AtcUnitReference class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="BoundaryCrossingExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all BoundaryCrossing class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="CommunicationCapabilitiesExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all CommunicationCapabilities class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="ContactInformationExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all ContactInformation class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="CruiseClimbStartExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all CruiseClimbStart class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="CruisingLevelChangeExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all CruisingLevelChange class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="CruisingSpeedChangeExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all CruisingSpeedChange class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="DangerousGoodsDimensionsExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all DangerousGoodsDimensions class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="DangerousGoodsExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all DangerousGoods class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="DangerousGoodsPackageExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all DangerousGoodsPackage class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="DangerousGoodsPackageGroupExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all DangerousGoodsPackageGroup class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="DepartureExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all Departure class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="DesignatedPointExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all DesignatedPoint class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="DinghiesExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all Dinghies class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="EnRouteDelayExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all EnRouteDelay class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="EnRouteExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all EnRoute class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="EstimatedElapsedTimeExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all EstimatedElapsedTime class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="FlightCapabilitiesExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all FlightCapabilities class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="FlightConstraintExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all FlightConstraint class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="FlightEmergencyExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all FlightEmergency class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="FlightExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all Flight class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="FlightIdentificationExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all FlightIdentification class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="FlightRouteInformationExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all FlightRouteInformation class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="GeographicalPositionExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all GeographicalPosition class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="HazardClassExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all HazardClass class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="LastContactExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all LastContact class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="LastPositionReportExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all LastPositionReport class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="LevelConstraintExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all LevelConstraint class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="MeteorologicalDataExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all MeteorologicalData class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="NavaidExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all Navaid class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="NavigationCapabilitiesExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all NavigationCapabilities class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="OnlineContactExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all OnlineContact class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="PerformanceProfileExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all PerformanceProfile class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="PersonOrOrganizationExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all PersonOrOrganization class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="PostalAddressExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all PostalAddress class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="ProfilePointExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all ProfilePoint class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="RadioactiveMaterialExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all RadioactiveMaterial class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="RadioCommunicationFailureExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all RadioCommunicationFailure class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="RankedTrajectoryExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all RankedTrajectory class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="ReclearanceInFlightExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all ReclearanceInFlight class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="RelativePointExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all RelativePoint class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="RestrictionReferenceExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all RestrictionReference class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="RouteChangeExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all RouteChange class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="RouteTrajectoryConstraintExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all RouteTrajectoryConstraint class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="RouteTrajectoryElementExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all RouteTrajectoryElement class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="RouteTrajectoryGroupContainerExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all RouteTrajectoryGroupContainer class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="RouteTrajectoryGroupExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all RouteTrajectoryGroup class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="ShippingInformationExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all ShippingInformation class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="SidStarReferenceExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all SidStarReference class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="SpeedConstraintExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all SpeedConstraint class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="SpeedScheduleExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all SpeedSchedule class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="SupplementaryDataExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all SupplementaryData class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="SurveillanceCapabilitiesExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all SurveillanceCapabilities class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="SurvivalCapabilitiesExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all SurvivalCapabilities class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="TelephoneContactExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all TelephoneContact class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="TimeConstraintExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all TimeConstraint class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="TimeRangeExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all TimeRange class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="TrajectoryPoint4DExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all TrajectoryPoint4D class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="TrajectoryPointPropertyExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all TrajectoryPointProperty class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="TrajectoryPointReferenceExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all TrajectoryPointReference class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="TrueAirspeedRangeExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all TrueAirspeedRange class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="VerticalRangeExtensionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A base class for all VerticalRange class extensions.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+</xs:schema>

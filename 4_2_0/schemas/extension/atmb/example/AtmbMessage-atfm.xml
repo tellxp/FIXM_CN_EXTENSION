@@ -1,0 +1,1011 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<atmb:messageCollection xmlns:xlink="http://www.w3.org/1999/xlink"
+                        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                        xmlns:fb="http://www.fixm.aero/base/4.2"
+                        xmlns:fx="http://www.fixm.aero/flight/4.2"
+                        xmlns:atmb="http://www.atmb.aero/4.2"
+                        xsi:schemaLocation="http://www.fixm.aero/base/4.2 ../../../core/base/Base.xsd
+          http://www.fixm.aero/flight/4.2 ../../../core/flight/Flight.xsd
+          http://www.atmb.aero/4.2 ../Atmb.xsd">
+    <atmb:message>
+        <atmb:payload>
+            <atmb:tfm>
+                <atmb:guti codeSpace="urn:uuid">9ba40100-66e5-4da8-ba10-4d35dac89cee</atmb:guti>
+                <atmb:name>去往首都机场仅用S1010，山西省、石家庄、郑州区域落地仅用S0810</atmb:name>
+                <atmb:originator>
+                    <fb:controlSectorDesignator>ZBAA-TFM</fb:controlSectorDesignator>
+                    <fb:locationIndicator>ZBAA</fb:locationIndicator>
+                </atmb:originator>
+                <atmb:publisher>
+                    <fb:controlSectorDesignator>ZBAA-TFM</fb:controlSectorDesignator>
+                    <fb:locationIndicator>ZBAA</fb:locationIndicator>
+                </atmb:publisher>
+                <atmb:previousPublisher>
+                    <fb:locationIndicator>ZBAA</fb:locationIndicator>
+                </atmb:previousPublisher>
+                <atmb:status>FUTURE</atmb:status>
+                <atmb:reason>WEATHER</atmb:reason>
+                <atmb:durationCode>CONVENTION</atmb:durationCode>
+                <atmb:atfmElement creationTime="2020-06-11T07:21:14.731Z">
+                    <atmb:conditionCombination>
+                        <atmb:conditionGroup index="1" prefixOperator="NONE">
+                            <atmb:condition index="1" prefixOperator="NONE">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZBAA</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                        </atmb:conditionGroup>
+                    </atmb:conditionCombination>
+                    <atmb:program>
+                        <atmb:airspaceAvailable>
+                            <atmb:verticalRange>
+                                <fb:lowerBound>
+                                    <fb:flightLevel uom="SM">1010</fb:flightLevel>
+                                </fb:lowerBound>
+                                <fb:upperBound>
+                                    <fb:flightLevel uom="SM">1010</fb:flightLevel>
+                                </fb:upperBound>
+                            </atmb:verticalRange>
+                        </atmb:airspaceAvailable>
+                    </atmb:program>
+                </atmb:atfmElement>
+                <atmb:atfmElement creationTime="2020-06-11T07:21:14.731Z">
+                    <atmb:conditionCombination>
+                        <atmb:conditionGroup index="1" prefixOperator="NONE">
+                            <atmb:condition index="1" prefixOperator="NONE">
+                                <atmb:inboundAirspace>ZBAASXACC</atmb:inboundAirspace>
+                            </atmb:condition>
+                            <atmb:condition index="2" prefixOperator="OR">
+                                <atmb:inboundAirspace>ZBAASJZACC</atmb:inboundAirspace>
+                            </atmb:condition>
+                            <atmb:condition index="3" prefixOperator="OR">
+                                <atmb:inboundAirspace>ZBAAZZACC</atmb:inboundAirspace>
+                            </atmb:condition>
+                        </atmb:conditionGroup>
+                    </atmb:conditionCombination>
+                    <atmb:program>
+                        <atmb:airspaceAvailable>
+                            <atmb:verticalRange>
+                                <fb:lowerBound>
+                                    <fb:flightLevel uom="SM">0810</fb:flightLevel>
+                                </fb:lowerBound>
+                                <fb:upperBound>
+                                    <fb:flightLevel uom="SM">0810</fb:flightLevel>
+                                </fb:upperBound>
+                            </atmb:verticalRange>
+                        </atmb:airspaceAvailable>
+                    </atmb:program>
+                </atmb:atfmElement>
+            </atmb:tfm>
+        </atmb:payload>
+    </atmb:message>
+
+    <atmb:message>
+        <atmb:payload>
+            <atmb:tfm>
+                <atmb:guti codeSpace="urn:uuid">b0cb20ed-b81f-4b3b-ae9a-a19e0b6e566c</atmb:guti>
+                <atmb:name>去往ZW??+敦煌、酒泉15分钟</atmb:name>
+                <atmb:originator>
+                    <fb:locationIndicator>ZBAA</fb:locationIndicator>
+                </atmb:originator>
+                <atmb:publisher>
+                    <fb:locationIndicator>ZBAA</fb:locationIndicator>
+                </atmb:publisher>
+                <atmb:previousPublisher>
+                    <fb:locationIndicator>ZBAA</fb:locationIndicator>
+                </atmb:previousPublisher>
+                <atmb:status>FUTURE</atmb:status>
+                <atmb:reason>AIRLINE</atmb:reason>
+                <atmb:durationCode>CONVENTION</atmb:durationCode>
+                <atmb:atfmElement creationTime="2020-06-11T07:21:14.731Z">
+                    <atmb:conditionCombination>
+                        <atmb:conditionGroup index="1" prefixOperator="NONE">
+                            <atmb:condition index="1" prefixOperator="NONE">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZWZZ</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="2" prefixOperator="OR">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZLDH</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="3" prefixOperator="OR">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZLJQ</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                        </atmb:conditionGroup>
+                    </atmb:conditionCombination>
+                    <atmb:program>
+                        <atmb:milesInTrail>
+                            <atmb:timeGap>PT15M</atmb:timeGap>
+                        </atmb:milesInTrail>
+                    </atmb:program>
+                </atmb:atfmElement>
+            </atmb:tfm>
+        </atmb:payload>
+    </atmb:message>
+
+    <atmb:message>
+        <atmb:payload>
+            <atmb:tfm>
+                <atmb:guti codeSpace="urn:uuid">b0cb20ed-b81f-4b3b-ae9a-a19e0b6e566c</atmb:guti>
+                <atmb:name>两口分算，山东省落地各20分钟</atmb:name>
+                <atmb:originator>
+                    <fb:locationIndicator>ZBAA</fb:locationIndicator>
+                </atmb:originator>
+                <atmb:publisher>
+                    <fb:locationIndicator>ZBAA</fb:locationIndicator>
+                </atmb:publisher>
+                <atmb:previousPublisher>
+                    <fb:locationIndicator>ZBAA</fb:locationIndicator>
+                </atmb:previousPublisher>
+                <atmb:status>FUTURE</atmb:status>
+                <atmb:reason>AIRLINE</atmb:reason>
+                <atmb:durationCode>CONVENTION</atmb:durationCode>
+                <atmb:atfmElement creationTime="2020-06-11T07:21:14.731Z">
+                    <atmb:conditionCombination>
+                        <atmb:conditionGroup index="1" prefixOperator="NONE">
+                            <atmb:condition index="1" prefixOperator="NONE">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZSJN</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="2" prefixOperator="AND">
+                                <atmb:inboundPoint>
+                                    <fb:designatedPoint>
+                                        <fb:designator>ZSLK</fb:designator>
+                                    </fb:designatedPoint>
+                                </atmb:inboundPoint>
+                            </atmb:condition>
+                        </atmb:conditionGroup>
+                    </atmb:conditionCombination>
+                    <atmb:program>
+                        <atmb:milesInTrail>
+                            <atmb:timeGap>PT20M</atmb:timeGap>
+                        </atmb:milesInTrail>
+                    </atmb:program>
+                </atmb:atfmElement>
+                <atmb:atfmElement creationTime="2020-06-11T07:21:14.731Z">
+                    <atmb:conditionCombination>
+                        <atmb:conditionGroup index="1" prefixOperator="NONE">
+                            <atmb:condition index="1" prefixOperator="NONE">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZSJN</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                        </atmb:conditionGroup>
+                    </atmb:conditionCombination>
+                    <atmb:program>
+                        <atmb:milesInTrail>
+                            <atmb:timeGap>PT20M</atmb:timeGap>
+                        </atmb:milesInTrail>
+                    </atmb:program>
+                </atmb:atfmElement>
+            </atmb:tfm>
+        </atmb:payload>
+    </atmb:message>
+    <atmb:message>
+        <atmb:payload>
+            <atmb:tfm>
+                <atmb:guti codeSpace="urn:uuid">b0cb20ed-b81f-4b3b-ae9a-a19e0b6e566c</atmb:guti>
+                <atmb:name>东三省（不含大连）+通辽落地合算20分钟</atmb:name>
+                <atmb:originator>
+                    <fb:locationIndicator>ZBAA</fb:locationIndicator>
+                </atmb:originator>
+                <atmb:publisher>
+                    <fb:locationIndicator>ZBAA</fb:locationIndicator>
+                </atmb:publisher>
+                <atmb:previousPublisher>
+                    <fb:locationIndicator>ZBAA</fb:locationIndicator>
+                </atmb:previousPublisher>
+                <atmb:status>FUTURE</atmb:status>
+                <atmb:reason>AIRLINE</atmb:reason>
+                <atmb:durationCode>CONVENTION</atmb:durationCode>
+                <atmb:atfmElement creationTime="2020-06-11T07:21:14.731Z">
+                    <atmb:conditionCombination>
+                        <atmb:conditionGroup index="1" prefixOperator="NONE">
+                            <atmb:condition index="1" prefixOperator="NONE">
+                                <atmb:inboundAirspace>ZYSH</atmb:inboundAirspace>
+                            </atmb:condition>
+                            <atmb:condition index="2" prefixOperator="AND_NOT">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZYDL</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="3" prefixOperator="OR">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZYTL</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                        </atmb:conditionGroup>
+                    </atmb:conditionCombination>
+                    <atmb:program>
+                        <atmb:milesInTrail>
+                            <atmb:timeGap>PT20M</atmb:timeGap>
+                        </atmb:milesInTrail>
+                    </atmb:program>
+                </atmb:atfmElement>
+            </atmb:tfm>
+        </atmb:payload>
+    </atmb:message>
+    <atmb:message>
+        <atmb:payload>
+            <atmb:tfm>
+                <atmb:guti codeSpace="urn:uuid">b0cb20ed-b81f-4b3b-ae9a-a19e0b6e566c</atmb:guti>
+                <atmb:name>济南、潍坊、东营落地合算40分钟一架</atmb:name>
+                <atmb:originator>
+                    <fb:locationIndicator>ZBAA</fb:locationIndicator>
+                </atmb:originator>
+                <atmb:publisher>
+                    <fb:locationIndicator>ZBAA</fb:locationIndicator>
+                </atmb:publisher>
+                <atmb:previousPublisher>
+                    <fb:locationIndicator>ZBAA</fb:locationIndicator>
+                </atmb:previousPublisher>
+                <atmb:status>FUTURE</atmb:status>
+                <atmb:reason>AIRLINE</atmb:reason>
+                <atmb:durationCode>CONVENTION</atmb:durationCode>
+                <atmb:atfmElement creationTime="2020-06-11T07:21:14.731Z">
+                    <atmb:conditionCombination>
+                        <atmb:conditionGroup index="1" prefixOperator="NONE">
+                            <atmb:condition index="1" prefixOperator="NONE">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZSJN</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="2" prefixOperator="OR">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZSWF</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="3" prefixOperator="OR">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZSDY</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                        </atmb:conditionGroup>
+                    </atmb:conditionCombination>
+                    <atmb:program>
+                        <atmb:milesInTrail>
+                            <atmb:timeGap>PT40M</atmb:timeGap>
+                        </atmb:milesInTrail>
+                    </atmb:program>
+                </atmb:atfmElement>
+            </atmb:tfm>
+        </atmb:payload>
+    </atmb:message>
+
+    <atmb:message>
+        <atmb:payload>
+            <atmb:tfm>
+                <atmb:guti codeSpace="urn:uuid">b0cb20ed-b81f-4b3b-ae9a-a19e0b6e566c</atmb:guti>
+                <atmb:name>呼和落地S0950含以下，石家庄、天津、山西省、郑州区域落地仅用S0810且20分钟（郑州只采高度限制）</atmb:name>
+                <atmb:originator>
+                    <fb:locationIndicator>ZBAA</fb:locationIndicator>
+                </atmb:originator>
+                <atmb:publisher>
+                    <fb:locationIndicator>ZBAA</fb:locationIndicator>
+                </atmb:publisher>
+                <atmb:previousPublisher>
+                    <fb:locationIndicator>ZBAA</fb:locationIndicator>
+                </atmb:previousPublisher>
+                <atmb:status>FUTURE</atmb:status>
+                <atmb:reason>AIRLINE</atmb:reason>
+                <atmb:durationCode>CONVENTION</atmb:durationCode>
+                <atmb:atfmElement creationTime="2020-06-11T07:21:14.731Z">
+                    <atmb:conditionCombination>
+                        <atmb:conditionGroup index="1" prefixOperator="NONE">
+                            <atmb:condition index="1" prefixOperator="NONE">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZBHH</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                        </atmb:conditionGroup>
+                    </atmb:conditionCombination>
+                    <atmb:program>
+                        <atmb:airspaceAvailable>
+                            <atmb:verticalRange>
+                                <fb:lowerBound>
+                                    <fb:flightLevel uom="SM">0</fb:flightLevel>
+                                </fb:lowerBound>
+                                <fb:upperBound>
+                                    <fb:flightLevel uom="SM">0950</fb:flightLevel>
+                                </fb:upperBound>
+                            </atmb:verticalRange>
+                        </atmb:airspaceAvailable>
+                    </atmb:program>
+                </atmb:atfmElement>
+                <atmb:atfmElement creationTime="2020-06-11T07:21:14.731Z">
+                    <atmb:conditionCombination>
+                        <atmb:conditionGroup index="1" prefixOperator="NONE">
+                            <atmb:condition index="1" prefixOperator="NONE">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZBSJ</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="2" prefixOperator="OR">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZBTJ</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="3" prefixOperator="OR">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZBSX</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                        </atmb:conditionGroup>
+                    </atmb:conditionCombination>
+                    <atmb:program>
+                        <atmb:airspaceAvailable>
+                            <atmb:verticalRange>
+                                <fb:lowerBound>
+                                    <fb:flightLevel uom="SM">0810</fb:flightLevel>
+                                </fb:lowerBound>
+                                <fb:upperBound>
+                                    <fb:flightLevel uom="SM">0810</fb:flightLevel>
+                                </fb:upperBound>
+                            </atmb:verticalRange>
+                        </atmb:airspaceAvailable>
+                        <atmb:milesInTrail>
+                            <atmb:timeGap>PT20M</atmb:timeGap>
+                        </atmb:milesInTrail>
+                    </atmb:program>
+                </atmb:atfmElement>
+                <atmb:atfmElement creationTime="2020-06-11T07:21:14.731Z">
+                    <atmb:conditionCombination>
+                        <atmb:conditionGroup index="1" prefixOperator="NONE">
+                            <atmb:condition index="1" prefixOperator="NONE">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZBZZ</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                        </atmb:conditionGroup>
+                    </atmb:conditionCombination>
+                    <atmb:program>
+                        <atmb:airspaceAvailable>
+                            <atmb:verticalRange>
+                                <fb:lowerBound>
+                                    <fb:flightLevel uom="SM">0810</fb:flightLevel>
+                                </fb:lowerBound>
+                                <fb:upperBound>
+                                    <fb:flightLevel uom="SM">0810</fb:flightLevel>
+                                </fb:upperBound>
+                            </atmb:verticalRange>
+                        </atmb:airspaceAvailable>
+                    </atmb:program>
+                </atmb:atfmElement>
+            </atmb:tfm>
+        </atmb:payload>
+    </atmb:message>
+
+    <atmb:message>
+        <atmb:payload>
+            <atmb:tfm>
+                <atmb:guti codeSpace="urn:uuid">9ba40100-66e5-4da8-ba10-4d35dac89cee</atmb:guti>
+                <atmb:name>郑州区域落地、运城、济宁、阜阳、邯郸、长治、临汾、徐州仅用S0810且十分钟</atmb:name>
+                <atmb:originator>
+                    <fb:locationIndicator>ZBAA</fb:locationIndicator>
+                </atmb:originator>
+                <atmb:publisher>
+                    <fb:locationIndicator>ZBAA</fb:locationIndicator>
+                </atmb:publisher>
+                <atmb:previousPublisher>
+                    <fb:locationIndicator>ZBAA</fb:locationIndicator>
+                </atmb:previousPublisher>
+                <atmb:status>FUTURE</atmb:status>
+                <atmb:reason>WEATHER</atmb:reason>
+                <atmb:durationCode>TODAY</atmb:durationCode>
+                <atmb:atfmElement creationTime="2020-11-03T20:31:22Z">
+                    <atmb:conditionCombination>
+                        <atmb:conditionGroup index="1" prefixOperator="NONE">
+                            <atmb:condition index="1" prefixOperator="NONE">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZBZZ</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="2" prefixOperator="OR">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZBYC</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="3" prefixOperator="OR">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZBJN</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="4" prefixOperator="OR">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZBFY</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="5" prefixOperator="OR">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZBHD</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="6" prefixOperator="OR">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZBCY</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="7" prefixOperator="OR">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZBLF</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="8" prefixOperator="OR">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZBXZ</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                        </atmb:conditionGroup>
+                    </atmb:conditionCombination>
+                    <atmb:program>
+                        <atmb:airspaceAvailable>
+                            <atmb:verticalRange>
+                                <fb:lowerBound>
+                                    <fb:flightLevel uom="SM">0810</fb:flightLevel>
+                                </fb:lowerBound>
+                                <fb:upperBound>
+                                    <fb:flightLevel uom="SM">0810</fb:flightLevel>
+                                </fb:upperBound>
+                            </atmb:verticalRange>
+                        </atmb:airspaceAvailable>
+                        <atmb:milesInTrail>
+                            <atmb:timeGap>PT10M</atmb:timeGap>
+                        </atmb:milesInTrail>
+                    </atmb:program>
+                </atmb:atfmElement>
+            </atmb:tfm>
+        </atmb:payload>
+    </atmb:message>
+
+    <atmb:message>
+        <atmb:payload>
+            <atmb:tfm>
+                <atmb:guti codeSpace="urn:uuid">9ba40100-66e5-4da8-ba10-4d35dac89cee</atmb:guti>
+                <atmb:name>东三省落地20分钟</atmb:name>
+                <atmb:originator>
+                    <fb:controlSectorDesignator>ZBAAACC01</fb:controlSectorDesignator>
+                </atmb:originator>
+                <atmb:publisher>
+                    <fb:locationIndicator>ZSSS</fb:locationIndicator>
+                </atmb:publisher>
+                <atmb:previousPublisher>
+                    <fb:locationIndicator>ZBAA</fb:locationIndicator>
+                </atmb:previousPublisher>
+                <atmb:status>RUNNING</atmb:status>
+                <atmb:reason>MILITARY</atmb:reason>
+                <atmb:durationCode>CROSS_DAYS</atmb:durationCode>
+                <atmb:atfmElement creationTime="2020-06-11T07:21:14.731Z">
+                    <atmb:conditionCombination>
+                        <atmb:conditionGroup index="0" prefixOperator="NONE">
+                            <atmb:condition index="0" prefixOperator="NONE">
+                                <atmb:inboundAirspace>ZYSY</atmb:inboundAirspace>
+                            </atmb:condition>
+                            <atmb:condition index="1" prefixOperator="OR">
+                                <atmb:inboundAirspace>ZYCC</atmb:inboundAirspace>
+                            </atmb:condition>
+                            <atmb:condition index="2" prefixOperator="OR">
+                                <atmb:inboundAirspace>ZYHB</atmb:inboundAirspace>
+                            </atmb:condition>
+                        </atmb:conditionGroup>
+                    </atmb:conditionCombination>
+                    <atmb:program>
+                        <atmb:milesInTrail>
+                            <atmb:timeGap>PT20M</atmb:timeGap>
+                        </atmb:milesInTrail>
+                    </atmb:program>
+                </atmb:atfmElement>
+            </atmb:tfm>
+        </atmb:payload>
+    </atmb:message>
+
+    <atmb:message>
+        <atmb:payload>
+            <atmb:tfm>
+                <atmb:guti codeSpace="urn:uuid">9ba40100-66e5-4da8-ba10-4d35dac89cee</atmb:guti>
+                <atmb:name>过P127落南昌、景德镇、九华山、黄山、安庆、上饶、衢州、武夷山、三明、九江、井冈山、宜春（高度075含以下）成都含以远起飞可用高度089</atmb:name>
+                <atmb:originator>
+                    <fb:locationIndicator>ZSSS</fb:locationIndicator>
+                </atmb:originator>
+                <atmb:publisher>
+                    <fb:locationIndicator>ZSSS</fb:locationIndicator>
+                </atmb:publisher>
+                <atmb:previousPublisher>
+                    <fb:locationIndicator>ZBAA</fb:locationIndicator>
+                </atmb:previousPublisher>
+                <atmb:status>FUTURE</atmb:status>
+                <atmb:reason>WEATHER</atmb:reason>
+                <atmb:durationCode>TODAY</atmb:durationCode>
+                <atmb:atfmElement creationTime="2020-06-11T07:21:14.731Z">
+                    <atmb:conditionCombination>
+                        <atmb:conditionGroup index="0" prefixOperator="NONE">
+                            <atmb:condition index="0" prefixOperator="NONE">
+                                <atmb:inboundPoint>
+                                    <fb:designatedPoint>
+                                        <fb:designator>P127</fb:designator>
+                                    </fb:designatedPoint>
+                                </atmb:inboundPoint>
+                            </atmb:condition>
+                        </atmb:conditionGroup>
+                        <atmb:conditionGroup index="1" prefixOperator="AND">
+                            <atmb:condition index="0" prefixOperator="NONE">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZGNC</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="1" prefixOperator="OR">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZGDZ</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="2" prefixOperator="OR">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZGJH</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="3" prefixOperator="OR">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZGHS</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="4" prefixOperator="OR">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZGAQ</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="5" prefixOperator="OR">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZGSR</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="6" prefixOperator="OR">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZGQZ</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="7" prefixOperator="OR">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZGWY</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="8" prefixOperator="OR">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZGSM</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="9" prefixOperator="OR">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZGJJ</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="10" prefixOperator="OR">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZGJG</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="11" prefixOperator="OR">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZGYC</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                        </atmb:conditionGroup>
+                    </atmb:conditionCombination>
+                    <atmb:program>
+                        <atmb:airspaceAvailable>
+                            <atmb:verticalRange>
+                                <fb:lowerBound>
+                                    <fb:flightLevel uom="SM">0</fb:flightLevel>
+                                </fb:lowerBound>
+                                <fb:upperBound>
+                                    <fb:flightLevel uom="SM">075</fb:flightLevel>
+                                </fb:upperBound>
+                            </atmb:verticalRange>
+                        </atmb:airspaceAvailable>
+                    </atmb:program>
+                </atmb:atfmElement>
+                <atmb:atfmElement creationTime="2020-06-11T07:21:14.731Z">
+                    <atmb:conditionCombination>
+                        <atmb:conditionGroup index="0" prefixOperator="NONE">
+                            <atmb:condition index="0" prefixOperator="NONE">
+                                <atmb:departureAerodrome>
+                                    <fb:locationIndicator>ZUUU</fb:locationIndicator>
+                                </atmb:departureAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="1" prefixOperator="OR">
+                                <atmb:nextPoint>
+                                    <fb:designatedPoint>
+                                        <fb:designator>ZUUU</fb:designator>
+                                    </fb:designatedPoint>
+                                </atmb:nextPoint>
+                            </atmb:condition>
+                        </atmb:conditionGroup>
+                    </atmb:conditionCombination>
+                    <atmb:program>
+                        <atmb:airspaceAvailable>
+                            <atmb:verticalRange>
+                                <fb:lowerBound>
+                                    <fb:flightLevel uom="SM">089</fb:flightLevel>
+                                </fb:lowerBound>
+                                <fb:upperBound>
+                                    <fb:flightLevel uom="SM">089</fb:flightLevel>
+                                </fb:upperBound>
+                            </atmb:verticalRange>
+                        </atmb:airspaceAvailable>
+                    </atmb:program>
+                </atmb:atfmElement>
+            </atmb:tfm>
+        </atmb:payload>
+    </atmb:message>
+
+    <atmb:message>
+        <atmb:payload>
+            <atmb:tfm>
+                <atmb:guti codeSpace="urn:uuid">9ba40100-66e5-4da8-ba10-4d35dac89cee</atmb:guti>
+                <atmb:name>0800以前不接济南落地，0800以后开车申请</atmb:name>
+                <atmb:originator>
+                    <fb:locationIndicator>ZSSS</fb:locationIndicator>
+                </atmb:originator>
+                <atmb:publisher>
+                    <fb:locationIndicator>ZSSS</fb:locationIndicator>
+                </atmb:publisher>
+                <atmb:previousPublisher>
+                    <fb:locationIndicator>ZBAA</fb:locationIndicator>
+                </atmb:previousPublisher>
+                <atmb:status>FUTURE</atmb:status>
+                <atmb:reason>WEATHER</atmb:reason>
+                <atmb:durationCode>TODAY</atmb:durationCode>
+                <atmb:atfmElement creationTime="2020-06-11T07:21:14.731Z">
+                    <atmb:conditionCombination>
+                        <atmb:conditionGroup index="0" prefixOperator="NONE">
+                            <atmb:condition index="1" prefixOperator="NONE">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZSJN</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                        </atmb:conditionGroup>
+                    </atmb:conditionCombination>
+                    <atmb:program>
+                        <atmb:groundStop>
+                            <atmb:timeSpec>
+                                <fb:latest>2020-06-11T08:00Z</fb:latest>
+                            </atmb:timeSpec>
+                        </atmb:groundStop>
+                        <atmb:request>
+                            <atmb:timeSpec>
+                                <fb:earliest>2020-06-11T08:00Z</fb:earliest>
+                            </atmb:timeSpec>
+                        </atmb:request>
+                    </atmb:program>
+                </atmb:atfmElement>
+            </atmb:tfm>
+        </atmb:payload>
+    </atmb:message>
+
+    <atmb:message>
+        <atmb:payload>
+            <atmb:tfm>
+                <atmb:guti codeSpace="urn:uuid">9ba40100-66e5-4da8-ba10-4d35dac89cee</atmb:guti>
+                <atmb:name>限制济南：飞越郑州只用072，WXI向西航班20分钟2架，最小MIT
+                    70KM；郑州、运城、长治、洛阳、南阳、十堰、襄阳落地航班100KM一架，郑州、洛阳、长治落地只用S0660（0830前济南机场起飞不限，1100后协调放行间隔）
+                </atmb:name>
+                <atmb:originator>
+                    <fb:locationIndicator>ZSSS</fb:locationIndicator>
+                </atmb:originator>
+                <atmb:publisher>
+                    <fb:locationIndicator>ZSSS</fb:locationIndicator>
+                </atmb:publisher>
+                <atmb:previousPublisher>
+                    <fb:locationIndicator>ZBAA</fb:locationIndicator>
+                </atmb:previousPublisher>
+                <atmb:status>RUNNING</atmb:status>
+                <atmb:reason>MILITARY</atmb:reason>
+                <atmb:durationCode>TODAY</atmb:durationCode>
+                <atmb:atfmElement creationTime="2020-06-11T07:21:14.731Z">
+                    <atmb:conditionCombination>
+                        <atmb:conditionGroup index="0" prefixOperator="NONE">
+                            <atmb:condition index="0" prefixOperator="NONE">
+                                <atmb:departureAerodrome>
+                                    <fb:locationIndicator>ZSJN</fb:locationIndicator>
+                                </atmb:departureAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="1" prefixOperator="AND">
+                                <atmb:overflyAirspace>ZBZZ</atmb:overflyAirspace>
+                            </atmb:condition>
+                        </atmb:conditionGroup>
+                    </atmb:conditionCombination>
+                    <atmb:program>
+                        <atmb:airspaceAvailable>
+                            <atmb:verticalRange>
+                                <fb:lowerBound>
+                                    <fb:flightLevel uom="SM">072</fb:flightLevel>
+                                </fb:lowerBound>
+                                <fb:upperBound>
+                                    <fb:flightLevel uom="SM">072</fb:flightLevel>
+                                </fb:upperBound>
+                            </atmb:verticalRange>
+                        </atmb:airspaceAvailable>
+                    </atmb:program>
+                </atmb:atfmElement>
+                <atmb:atfmElement creationTime="2020-06-11T07:21:14.731Z">
+                    <atmb:conditionCombination>
+                        <atmb:conditionGroup index="0" prefixOperator="NONE">
+                            <atmb:condition index="0" prefixOperator="NONE">
+                                <atmb:departureAerodrome>
+                                    <fb:locationIndicator>ZSJN</fb:locationIndicator>
+                                </atmb:departureAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="1" prefixOperator="AND">
+                                <atmb:outboundPoint>
+                                    <fb:designatedPoint>
+                                        <fb:designator>WXI</fb:designator>
+                                    </fb:designatedPoint>
+                                </atmb:outboundPoint>
+                            </atmb:condition>
+                            <atmb:condition index="2" prefixOperator="AND">
+                                <atmb:angleRange>
+                                    <atmb:min uom="DEG">180</atmb:min>
+                                    <atmb:max uom="DEG">360</atmb:max>
+                                </atmb:angleRange>
+                            </atmb:condition>
+                        </atmb:conditionGroup>
+                    </atmb:conditionCombination>
+                    <atmb:program>
+                        <atmb:totalControl value="2" duration="PT20M"/>
+                        <atmb:milesInTrail>
+                            <atmb:distanceGap uom="KM">70</atmb:distanceGap>
+                        </atmb:milesInTrail>
+                    </atmb:program>
+                </atmb:atfmElement>
+                <atmb:atfmElement creationTime="2020-06-11T07:21:14.731Z">
+                    <atmb:conditionCombination>
+                        <atmb:conditionGroup index="0" prefixOperator="NONE">
+                            <atmb:condition index="0" prefixOperator="NONE">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZGZZ</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="1" prefixOperator="OR">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZGYC</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="2" prefixOperator="OR">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZGCZ</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="3" prefixOperator="OR">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZGLY</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="4" prefixOperator="OR">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZGNY</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="5" prefixOperator="OR">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZGSY</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="6" prefixOperator="OR">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZGXY</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                        </atmb:conditionGroup>
+                    </atmb:conditionCombination>
+                    <atmb:program>
+                        <atmb:milesInTrail>
+                            <atmb:distanceGap uom="KM">100</atmb:distanceGap>
+                        </atmb:milesInTrail>
+                    </atmb:program>
+                </atmb:atfmElement>
+                <atmb:atfmElement creationTime="2020-06-11T07:21:14.731Z">
+                    <atmb:conditionCombination>
+                        <atmb:conditionGroup index="0" prefixOperator="NONE">
+                            <atmb:condition index="0" prefixOperator="NONE">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZGZZ</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="1" prefixOperator="OR">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZGLY</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="2" prefixOperator="OR">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZGCZ</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                        </atmb:conditionGroup>
+                    </atmb:conditionCombination>
+                    <atmb:program>
+                        <atmb:airspaceAvailable>
+                            <atmb:verticalRange>
+                                <fb:lowerBound>
+                                    <fb:flightLevel uom="SM">0660</fb:flightLevel>
+                                </fb:lowerBound>
+                                <fb:upperBound>
+                                    <fb:flightLevel uom="SM">0660</fb:flightLevel>
+                                </fb:upperBound>
+                            </atmb:verticalRange>
+                        </atmb:airspaceAvailable>
+                    </atmb:program>
+                </atmb:atfmElement>
+            </atmb:tfm>
+        </atmb:payload>
+    </atmb:message>
+
+    <atmb:message>
+        <atmb:payload>
+            <atmb:tfm>
+                <atmb:guti codeSpace="urn:uuid">9ba40100-66e5-4da8-ba10-4d35dac89cee</atmb:guti>
+                <atmb:name>经FYG飞越郑州只用078，沿B208航路进太原区域15分钟一架，西安含以远10分钟一架；郑州、运城、十堰、临汾、南阳、洛阳落地80KM一架</atmb:name>
+                <atmb:originator>
+                    <fb:locationIndicator>ZSSS</fb:locationIndicator>
+                </atmb:originator>
+                <atmb:publisher>
+                    <fb:locationIndicator>ZSSS</fb:locationIndicator>
+                </atmb:publisher>
+                <atmb:previousPublisher>
+                    <fb:locationIndicator>ZBAA</fb:locationIndicator>
+                </atmb:previousPublisher>
+                <atmb:status>FUTURE</atmb:status>
+                <atmb:reason>MILITARY</atmb:reason>
+                <atmb:durationCode>TODAY</atmb:durationCode>
+                <atmb:atfmElement creationTime="2020-06-11T07:21:14.731Z">
+                    <atmb:conditionCombination>
+                        <atmb:conditionGroup index="0" prefixOperator="NONE">
+                            <atmb:condition index="0" prefixOperator="NONE">
+                                <atmb:overflyAirspace>ZGZZ</atmb:overflyAirspace>
+                            </atmb:condition>
+                            <atmb:condition index="1" prefixOperator="AND">
+                                <atmb:outboundPoint>
+                                    <fb:designatedPoint>
+                                        <fb:designator>FYG</fb:designator>
+                                    </fb:designatedPoint>
+                                </atmb:outboundPoint>
+                            </atmb:condition>
+                        </atmb:conditionGroup>
+                    </atmb:conditionCombination>
+                    <atmb:program>
+                        <atmb:airspaceAvailable>
+                            <atmb:verticalRange>
+                                <fb:lowerBound>
+                                    <fb:flightLevel uom="SM">078</fb:flightLevel>
+                                </fb:lowerBound>
+                                <fb:upperBound>
+                                    <fb:flightLevel uom="SM">078</fb:flightLevel>
+                                </fb:upperBound>
+                            </atmb:verticalRange>
+                        </atmb:airspaceAvailable>
+                    </atmb:program>
+                </atmb:atfmElement>
+                <atmb:atfmElement creationTime="2020-06-11T07:21:14.731Z">
+                    <atmb:conditionCombination>
+                        <atmb:conditionGroup index="0" prefixOperator="NONE">
+                            <atmb:condition index="0" prefixOperator="NONE">
+                                <atmb:route>B208</atmb:route>
+                            </atmb:condition>
+                            <atmb:condition index="1" prefixOperator="AND">
+                                <atmb:inboundAirspace>ZBTYACC</atmb:inboundAirspace>
+                            </atmb:condition>
+                        </atmb:conditionGroup>
+                    </atmb:conditionCombination>
+                    <atmb:program>
+                        <atmb:milesInTrail>
+                            <atmb:timeGap>PT15M</atmb:timeGap>
+                        </atmb:milesInTrail>
+                    </atmb:program>
+                </atmb:atfmElement>
+                <atmb:atfmElement creationTime="2020-06-11T07:21:14.731Z">
+                    <atmb:conditionCombination>
+                        <atmb:conditionGroup index="0" prefixOperator="NONE">
+                            <atmb:condition index="1" prefixOperator="NONE">
+                                <atmb:nextPoint>
+                                    <fb:designatedPoint>
+                                        <fb:designator>ZLXY</fb:designator>
+                                    </fb:designatedPoint>
+                                </atmb:nextPoint>
+                            </atmb:condition>
+                        </atmb:conditionGroup>
+                    </atmb:conditionCombination>
+                    <atmb:program>
+                        <atmb:milesInTrail>
+                            <atmb:timeGap>PT10M</atmb:timeGap>
+                        </atmb:milesInTrail>
+                    </atmb:program>
+                </atmb:atfmElement>
+                <atmb:atfmElement creationTime="2020-06-11T07:21:14.731Z">
+                    <atmb:conditionCombination>
+                        <atmb:conditionGroup index="0" prefixOperator="NONE">
+                            <atmb:condition index="0" prefixOperator="NONE">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZGZZ</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="1" prefixOperator="OR">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZGYC</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="2" prefixOperator="OR">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZGSY</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="3" prefixOperator="OR">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZGLF</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="4" prefixOperator="OR">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZGNY</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="5" prefixOperator="OR">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZGLY</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                        </atmb:conditionGroup>
+                    </atmb:conditionCombination>
+                    <atmb:program>
+                        <atmb:milesInTrail>
+                            <atmb:distanceGap uom="KM">80</atmb:distanceGap>
+                        </atmb:milesInTrail>
+                    </atmb:program>
+                </atmb:atfmElement>
+            </atmb:tfm>
+        </atmb:payload>
+    </atmb:message>
+
+    <atmb:message>
+        <atmb:payload>
+            <atmb:tfm>
+                <atmb:guti codeSpace="urn:uuid">9ba40100-66e5-4da8-ba10-4d35dac89cee</atmb:guti>
+                <atmb:name>济南落地60分钟一架，HUD航班不限</atmb:name>
+                <atmb:originator>
+                    <fb:locationIndicator>ZSSS</fb:locationIndicator>
+                </atmb:originator>
+                <atmb:publisher>
+                    <fb:locationIndicator>ZSSS</fb:locationIndicator>
+                </atmb:publisher>
+                <atmb:previousPublisher>
+                    <fb:locationIndicator>ZBAA</fb:locationIndicator>
+                </atmb:previousPublisher>
+                <atmb:status>FUTURE</atmb:status>
+                <atmb:reason>WEATHER</atmb:reason>
+                <atmb:durationCode>TODAY</atmb:durationCode>
+                <atmb:atfmElement creationTime="2020-06-11T07:21:14.731Z">
+                    <atmb:conditionCombination>
+                        <atmb:conditionGroup index="0" prefixOperator="NONE">
+                            <atmb:condition index="0" prefixOperator="NONE">
+                                <atmb:destinationAerodrome>
+                                    <fb:locationIndicator>ZSJN</fb:locationIndicator>
+                                </atmb:destinationAerodrome>
+                            </atmb:condition>
+                            <atmb:condition index="1" prefixOperator="AND_NOT">
+                                <atmb:qualification>HUD</atmb:qualification>
+                            </atmb:condition>
+                        </atmb:conditionGroup>
+                    </atmb:conditionCombination>
+                    <atmb:program>
+                        <atmb:milesInTrail>
+                            <atmb:timeGap>PT60M</atmb:timeGap>
+                        </atmb:milesInTrail>
+                    </atmb:program>
+                </atmb:atfmElement>
+            </atmb:tfm>
+        </atmb:payload>
+    </atmb:message>
+</atmb:messageCollection>

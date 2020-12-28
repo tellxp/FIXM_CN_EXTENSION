@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:annotation>
+		<xs:documentation>
+			This package contains classes that model information about the aerodrome infrastructure
+			(aerodrome, runway, aircraft stand) needed by flight data. [FIXM]
+		</xs:documentation>
+	</xs:annotation>
+
+	<xs:simpleType name="AerodromeNameType">
+		<xs:annotation>
+			<xs:documentation>
+				The primary official name of an aerodrome as designated by an appropriate authority.
+				[AIXM 5.1]
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="TextNameType"/>
+	</xs:simpleType>
+
+	<xs:complexType abstract="true" name="AerodromeReferenceType">
+		<xs:annotation>
+			<xs:documentation>
+				An aerodrome reference being either:
+				- the ICAO location indicator of the aerodrome, as listed in ICAO Doc 7910 (E.g.
+				"KDFW")
+				- if no location indicator is available, the aerodrome name (E.g. "Dallas Fort Worth")
+				or the identifier assigned to the aerodrome location in accordance with rules (resolution
+				767) governed by the International Air Transport Association. (E.g. "DFW")
+				[FIXM]
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ExtensibleType">
+				<xs:sequence>
+					<xs:element name="referencePoint" type="SignificantPointType" minOccurs="0" maxOccurs="1" >
+						<xs:annotation>
+							<xs:documentation>
+								The designated geographical location of an aerodrome. [ICAO]
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="name" type="AerodromeNameType" use="optional" >
+					<xs:annotation>
+						<xs:documentation>
+							The primary official name of an aerodrome as designated by an appropriate authority.
+							[AIXM 5.1]
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="AerodromeReference" type="AerodromeReferenceType" />
+
+	<xs:simpleType name="IataAerodromeDesignatorType">
+		<xs:annotation>
+			<xs:documentation>
+				The three letter coded location identifier of an aerodrome according to the IATA
+				Resolution 763. [adapted from AIXM 5.1]
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CharacterStringType">
+			<xs:pattern value="[A-Z]{3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="IcaoAerodromeReferenceType">
+		<xs:annotation>
+			<xs:documentation>
+				An aerodrome reference relying on the aerodrome's ICAO Location Indicator. [FIXM]
+
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AerodromeReferenceType">
+				<xs:attribute name="locationIndicator" type="LocationIndicatorType" use="optional" >
+					<xs:annotation>
+						<xs:documentation>
+							A four-letter code group formulated in accordance with rules prescribed by ICAO and
+							assigned to the aerodrome. [Specialised from ICAO Annex 10]
+							The list of ICAO location indicators is provided by ICAO Doc 7910. [FIXM]
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="IcaoAerodromeReference" type="IcaoAerodromeReferenceType"  />
+
+	<xs:complexType name="OtherReferenceType">
+		<xs:annotation>
+			<xs:documentation>
+				An aerodrome reference relying on the aerodrome name ("Dallas Fort Worth") or the
+				identifier assigned to the aerodrome location in accordance with rules (resolution
+				767) governed by the International Air Transport Association.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AerodromeReferenceType">
+				<xs:attribute name="iataDesignator" type="IataAerodromeDesignatorType" use="optional" >
+					<xs:annotation>
+						<xs:documentation>
+							The three letter coded location identifier of an aerodrome according to the IATA
+							Resolution 763. [adapted from AIXM 5.1]
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="OtherReference" type="OtherReferenceType"  />
+
+	<xs:simpleType name="RunwayDirectionDesignatorType">
+		<xs:annotation>
+			<xs:documentation>
+				- A number between 01 and 36
+				- Optionally  Left (L), Center (C), or Right (R)
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CharacterStringType">
+			<xs:pattern value="(0[1-9]|[12][0-9]|3[0-6])[LRC]{0,1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

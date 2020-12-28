@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+        targetNamespace="http://www.atmb.aero/4.2"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        elementFormDefault="qualified"
+        version="4.2.0">
+
+    <xs:annotation>
+        <xs:documentation>
+            [CN] ATMB 扩展入口.
+            [EN] ATMB extension entry.
+
+            ===========================================
+            Copyright (c) 2020 Air Traffic Management Bureau China (ATMB)
+            ===========================================
+            All rights reserved.
+        </xs:documentation>
+    </xs:annotation>
+    <xs:include schemaLocation="applications/basicmessage/AtmbMessage.xsd"/>
+    <xs:include schemaLocation="base/AtmbBase.xsd"/>
+    <xs:include schemaLocation="flight/AtmbFlight.xsd"/>
+    <xs:include schemaLocation="atfm/AtmbAtfm.xsd"/>
+</xs:schema>

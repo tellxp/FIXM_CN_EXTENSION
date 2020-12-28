@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+   <xs:annotation>
+      <xs:documentation>
+         This package defines the ranked trajectory information. 
+      </xs:documentation>
+   </xs:annotation>
+
+   <xs:complexType name="RankedTrajectoryType">
+      <xs:annotation>
+         <xs:documentation>
+            A candidate 4D Trajectory, with tolerances supplied if necessary by the airspace 
+            user to define when the next ranked trajectory should be used. 
+            This is the route associated with a single Ranked 4D trajectory for a flight.  It 
+            indicates the intent of the flight and includes the path over the surface of the 
+            earth, the altitude and the speed for the flight. 
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ExtensibleType">
+            <xs:sequence>
+               <xs:element name="routeTrajectory" type="RouteTrajectoryType" minOccurs="0" maxOccurs="1" >
+                  <xs:annotation>
+                     <xs:documentation>
+                        Route Trajectory pair that is the subject of the Trajectory option. 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+            <xs:attribute name="identifier" use="optional" > 
+               <xs:annotation>
+                  <xs:documentation>
+                     Unique Identifier used to differentiate the 4D trajectories. 
+                  </xs:documentation>
+               </xs:annotation>
+               <xs:simpleType>
+                  <xs:restriction base="CharacterStringType">
+                     <xs:pattern value="[0-9]{1,2}"/>
+                  </xs:restriction>
+               </xs:simpleType>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="RankedTrajectory" type="RankedTrajectoryType" substitutionGroup="Extensible" />
+</xs:schema>

@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:annotation>
+		<xs:documentation>
+			This package contains classes that model information about the airspace infrastructure
+			(Airspace, ATS routes and Significant Points) needed by flight data. [FIXM]
+		</xs:documentation>
+	</xs:annotation>
+
+	<xs:simpleType name="AirspaceDesignatorType">
+		<xs:annotation>
+			<xs:documentation>
+				A published sequence of characters allowing the identification of the airspace. [AIXM
+				5.1]
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CharacterStringType">
+			<xs:pattern value="([A-Z]|[0-9]|[, !&quot;&amp;amp;#$%'\(\)\*\+\-\./:;&amp;lt;=&amp;gt;\?@\[\\\]\^_\|\{\}])*"/>
+			<xs:minLength value="1"/>
+			<xs:maxLength value="10"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="DesignatedPointOrNavaidType">
+		<xs:annotation>
+			<xs:documentation>
+				A named significant point, being either the site of a radio navigation aid or another
+				named geographical location, used in defining an ATS route, the flight path of an
+				aircraft or for other navigation or ATS purposes. [FIXM]
+
+				The coded designator of a navaid or designated point is not always sufficient for
+				unambiguously referring to that feature:
+				- The 5-letter coded designator of a waypoint is supposed to be unique world-wide
+				(according to ICAO Annex 11), but in reality it is not. There are at least 5% duplicates/triplicates/even
+				more…
+				- The en-route navaids (VOR, DME, NDB) designator is supposed to be unique (according
+				to ICAO Annex 11) within 600 NM. This means that these designators are not unique
+				world-wide. For airport navaids, there is no limitation.
+				The combinations of fields that would make the references unique are:
+				- For designated points: designator + position
+				- For navaids: designator + position + navaid service type
+				This FIXM class adds two optional properties 'position' and 'navaidServiceType' which
+				may be used as a complement to the 'designator' information in order to remove any
+				ambiguity on the coded designator.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="SignificantPointType">
+				<xs:sequence>
+					<xs:element name="position" type="GeographicalPositionType" minOccurs="0" maxOccurs="1" >
+						<xs:annotation>
+							<xs:documentation>
+								The values of latitude and longitude that define the position of the Designated Point
+								or Navaid on the surface of the Earth with respect to a reference datum. [specialised
+								from ICAO Doc 9881]
+								This optional field may be used as a complement of the designator in order to achieve
+								unambiguous reference to the designated point or navaid.
+								The combinations of fields that would make the reference unique are:
+								- For designated points: designator + position
+								- For navaids: designator + position + navaid service type
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="designator" type="SignificantPointDesignatorType" use="optional" >
+					<xs:annotation>
+						<xs:documentation>
+							A named significant point.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="navaidServiceType" type="NavaidServiceTypeType" use="optional" >
+					<xs:annotation>
+						<xs:documentation>
+							Type of the navaid service. [AIXM 5.1]
+							This optional field may be used as a complement of the designator in order to achieve
+							unambiguous reference to the navaid.
+							The combinations of fields that would make the reference unique are:
+							- For navaids: designator + position + navaid service type
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="DesignatedPointOrNavaid" type="DesignatedPointOrNavaidType" />
+
+	<xs:complexType name="GeographicalPositionType">
+		<xs:annotation>
+			<xs:documentation>
+				Set of coordinates (latitude and longitude) referenced to the mathematical reference
+				ellipsoid which define the position of a  point on the surface of the Earth. [ICAO
+				Annex 15]
+
+				The "srsName" attribute names the coordinate reference system (CRS) that defines
+				the semantics of the
+				lat/long pair according to the ISO6709 standard. FIXM uses only "urn:ogc:def:crs:EPSG::4326".
+
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ExtensibleType">
+				<xs:sequence>
+					<xs:element name="pos" type="xs:string" minOccurs="0" maxOccurs="1">
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="srsName" type="xs:string" >
+					<xs:annotation>
+						<xs:documentation>
+							Names the coordinate reference system (CRS) that defines the semantics of the
+							lat/long pair according to the ISO6709 standard. FIXM uses only "urn:ogc:def:crs:EPSG::4326".
+
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="GeographicalPosition" type="GeographicalPositionType" />
+
+	<xs:simpleType name="LongitudeType">
+		<xs:annotation>
+			<xs:documentation>
+				Longitude value expressed to a decimal precision.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MeasureType">
+			<xs:maxInclusive value="180"/>
+			<xs:minInclusive value="-180"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="PositionPointType">
+		<xs:annotation>
+			<xs:documentation>
+				An unnamed point designated only with a latitude/longitude. [FIXM]
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="SignificantPointType">
+				<xs:sequence>
+					<xs:element name="position" type="GeographicalPositionType" minOccurs="0" maxOccurs="1" >
+						<xs:annotation>
+							<xs:documentation>
+								The values of latitude and longitude that define the position of a point on the surface
+								of the Earth with respect to a reference datum. [specialised from ICAO Doc 9881]
+
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="PositionPoint" type="PositionPointType" />
+
+	<xs:complexType name="RelativePointType">
+		<xs:annotation>
+			<xs:documentation>
+				Bearing and distance from a reference point. [ICAO Doc 4444, Appendix 2, ITEM 15]
+
+				This FIXM class adds one optional property 'position' which may be used as a complement
+				to the bearing, distance and reference point information in order to provide the
+				computed position of the relative point, if available.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="SignificantPointType">
+				<xs:sequence>
+					<xs:element name="bearing" type="BearingType" minOccurs="0" maxOccurs="1" >
+						<xs:annotation>
+							<xs:documentation>
+								The radius from a chosen Significant Point
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="distance" type="DistanceType" minOccurs="0" maxOccurs="1" >
+						<xs:annotation>
+							<xs:documentation>
+								Distance from the chosen Significant Point to the Intersection.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="position" type="GeographicalPositionType" minOccurs="0" maxOccurs="1" >
+						<xs:annotation>
+							<xs:documentation>
+								The values of latitude and longitude that define the position of the Relative Point
+								on the surface of the Earth with respect to a reference datum. [specialised from
+								ICAO Doc 9881]
+
+								This optional field may be used to provide the actual position of the relative point
+								if already known / computed.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="referencePoint" type="DesignatedPointOrNavaidType" minOccurs="0" maxOccurs="1" >
+						<xs:annotation>
+							<xs:documentation>
+								The designated point or navaid used as reference for building an intersection
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="RelativePoint" type="RelativePointType"  />
+
+	<xs:simpleType name="RouteDesignatorType">
+		<xs:annotation>
+			<xs:documentation>
+				The coded designator for a published ATS route or route segment.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CharacterStringType">
+			<xs:pattern value="[A-Z][A-Z0-9]{1,7}"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="SidStarAbbreviatedDesignatorType">
+		<xs:annotation>
+			<xs:documentation>
+				A shortened designator of the SID or STAR. [FIXM] This abbreviated designator is
+				based on ARINC 424 chapter 7.4 rules.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CharacterStringType">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="6"/>
+			<xs:pattern value="([A-Z]|[0-9])+([ \+\-/]*([A-Z]|[0-9])+)*"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="SidStarDesignatorType">
+		<xs:annotation>
+			<xs:documentation>
+				The textual designator of a SID or STAR. [Specialised from AIXM 5.1]
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CharacterStringType">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="7"/>
+			<xs:pattern value="([A-Z]|[0-9])+([ \+\-/]*([A-Z]|[0-9])+)*"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType abstract="true" name="SignificantPointType">
+		<xs:annotation>
+			<xs:documentation>
+				A location type restricted to lat/long location, fix (waypoint) location, or FRD
+				(radial distance offset).
+			</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:element name="SignificantPoint" type="SignificantPointType"  />
+
+	<xs:simpleType name="SignificantPointDesignatorType">
+		<xs:annotation>
+			<xs:documentation>
+				A named designator for a significant point (fix).
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CharacterStringType">
+			<xs:pattern value="[A-Z0-9]{2,5}"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

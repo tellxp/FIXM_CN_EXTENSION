@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<AtmbFlightData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:noNamespaceSchemaLocation="AdccFlightData.xsd">
+
+    <flightIdentification>航班标识</flightIdentification>
+    <formerFlightIdentification>前续航班标识</formerFlightIdentification>
+    <formerGufi codeSpace="urn:uuid">9ba40100-66e5-4da8-ba10-4d35dac89acc</formerGufi>
+    <gufi codeSpace="urn:uuid">9ba40100-66e5-4da8-ba10-4d35dac89cee</gufi>
+    <missionDate>2020-06-11T00:00:00.000Z</missionDate>
+    <missionProperty>W/Z</missionProperty>
+    <flightStatus>INN</flightStatus>
+    <formerFlightStatus>OVE</formerFlightStatus>
+
+    <AtmbAircraft>
+        <aircraftColours>
+            <colourCode>RED</colourCode>
+            <colourCode>ORANGE</colourCode>
+            <colourCode>YELLOW</colourCode>
+        </aircraftColours>
+        <numberOfAircraft>2</numberOfAircraft>
+        <significantMarkings>markings</significantMarkings>
+        <agentAirline></agentAirline>
+        <airline>CCA</airline>
+        <branchAirline></branchAirline>
+        <requipment></requipment>
+    </AtmbAircraft>
+
+    <AtmbDeparture actualTimeOfDeparture="2020-06-11T07:21:14.731Z" airportSlotIdentification="slot"
+                   estimatedOffBlockTime="2020-06-11T07:20:14.731Z" runwayDirection="20L" actualStand="270">
+        <aerodrome locationIndicator="ZBAA"/>
+        <takeoffAlternateAerodrome locationIndicator="ZBTJ"/>
+        <actualDepartureAerodrome locationIndicator="ZBAA"/>
+        <estimatedDepartureAerodrome locationIndicator="ZBAA"/>
+        <scheduledDepartureAerodrome locationIndicator="ZBAA"/>
+
+        <BoardingAndClosedDoorsTime>
+            <actualClosedDoorsTime>2020-06-11T00:02:00.000Z</actualClosedDoorsTime>
+        </BoardingAndClosedDoorsTime>
+        <OffBlockTime>
+            <actualOffBlockTime>2020-06-11T00:02:00.000Z</actualOffBlockTime>
+            <calculatedOffBlockTime>2020-06-11T00:02:00.000Z</calculatedOffBlockTime>
+            <estimatedOffBlockTime>2020-06-11T00:02:00.000Z</estimatedOffBlockTime>
+        </OffBlockTime>
+        <TakeoffTime>
+            <actualReadyTime>2020-06-11T00:02:00.000Z</actualReadyTime>
+            <actualStartUpApprovalTime>2020-06-11T00:02:00.000Z</actualStartUpApprovalTime>
+        </TakeoffTime>
+
+    </AtmbDeparture>
+
+    <AtmbArrival actualTimeOfArrival="2020-06-11T00:02:00.000Z" airportSlotIdentification="slot" runwayDirection="18R"
+                 actualStand="270">
+        <aerodrome locationIndicator="ZSSS"/>
+        <arrivalAerodrome locationIndicator="ZSSS"/>
+        <destinationAerodrome locationIndicator="ZSSS"/>
+        <destinationAerodromeAlternate locationIndicator="ZSPD"/>
+
+        <LandingTime>
+            <actualLandingTime>2020-06-11T00:02:20.000Z</actualLandingTime>
+        </LandingTime>
+        <InBlockTime>
+            <actualInBlockTime>2020-06-11T00:02:25.000Z</actualInBlockTime>
+        </InBlockTime>
+        <OpenTime>
+            <actualOpenDoorTime>2020-06-11T00:02:30.000Z</actualOpenDoorTime>
+        </OpenTime>
+    </AtmbArrival>
+
+    <current>
+        <element seqNum="0">
+            <alongRouteDistance uom="KM">0.0</alongRouteDistance>
+            <point4D>
+                <level>
+                    <flightLevel uom="FL">17.0</flightLevel>
+                </level>
+                <metData/>
+                <pointProperty>
+                    <reference identifier="ZUUUACC" type="ACC"/>
+                </pointProperty>
+                <pointProperty>
+                    <reference identifier="ZUUUAR03" type="SECTOR"/>
+                </pointProperty>
+                <predictedGroundspeed uom="KM_H">156.0</predictedGroundspeed>
+                <time>
+                    <absoluteTime>2020-03-12T09:15:00.000Z</absoluteTime>
+                </time>
+				
+            </point4D>
+			<routePoint xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			            xsi:type="DesignatedPointOrNavaidType" designator="ZUUU">
+				<position>
+					<pos>1035649.0 303442.0</pos>
+				</position>
+			</routePoint>
+        </element>
+        <element seqNum="1">
+            <alongRouteDistance uom="KM">87.0</alongRouteDistance>
+            <point4D>
+                <level>
+                    <flightLevel uom="FL">17.0</flightLevel>
+                </level>
+                <metData/>
+                <pointProperty>
+                    <reference identifier="ZUUUACC" type="ACC"/>
+                </pointProperty>
+                <pointProperty>
+                    <reference identifier="ZUUUAR15" type="SECTOR"/>
+                </pointProperty>
+                <predictedGroundspeed uom="KM_H">412.0</predictedGroundspeed>
+                <time>
+                    <absoluteTime>2020-03-12T10:15:00.000Z</absoluteTime>
+                </time>
+            </point4D>
+          	<routePoint xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			            xsi:type="DesignatedPointOrNavaidType" designator="AGAVO">
+				<position>
+					<pos>1035649.0 303442.0</pos>
+				</position>
+			</routePoint>
+        </element>
+        <element seqNum="2">
+            <alongRouteDistance uom="KM">87.0</alongRouteDistance>
+            <point4D>
+                <level>
+                    <flightLevel uom="FL">17.0</flightLevel>
+                </level>
+                <metData/>
+                <pointProperty>
+                    <reference identifier="ZLXYACC" type="ACC"/>
+                </pointProperty>
+                <pointProperty>
+                    <reference identifier="ZLXYAR07" type="SECTOR"/>
+                </pointProperty>
+                <predictedGroundspeed uom="KM_H">718.0</predictedGroundspeed>
+                <time>
+                    <absoluteTime>2020-03-12T11:15:00.000Z</absoluteTime>
+                </time>
+            </point4D>
+          	<routePoint xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			            xsi:type="DesignatedPointOrNavaidType" designator="NSH">
+				<position>
+					<pos>1035649.0 303442.0</pos>
+				</position>
+			</routePoint>
+        </element>
+        <element seqNum="3">
+            <alongRouteDistance uom="KM">87.0</alongRouteDistance>
+            <point4D>
+                <level>
+                    <flightLevel uom="FL">17.0</flightLevel>
+                </level>
+                <metData/>
+                <pointProperty>
+                    <reference identifier="ZBAAACC" type="ACC"/>
+                </pointProperty>
+                <pointProperty>
+                    <reference identifier="ZBAAAR06" type="SECTOR"/>
+                </pointProperty>
+                <predictedGroundspeed uom="KM_H">156.0</predictedGroundspeed>
+                <time>
+                    <absoluteTime>2020-03-12T12:15:00.000Z</absoluteTime>
+                </time>
+            </point4D>
+           <routePoint xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			            xsi:type="DesignatedPointOrNavaidType" designator="ZBAA">
+				<position>
+					<pos>1035649.0 303442.0</pos>
+				</position>
+			</routePoint>
+        </element>
+		
+		<!-- FPL航路说明 -->
+		<routeInformation flightRulesCategory="I" 
+		routeText="AGULU H142 NSH G212 DUDIL" totalEstimatedElapsedTime="P0Y0M0DT7H15M0S" />
+    </current>
+
+    <agreed>
+        <element seqNum="0">
+            <alongRouteDistance uom="KM">87.0</alongRouteDistance>
+            <point4D>
+                <level>
+                    <flightLevel uom="FL">17.0</flightLevel>
+                </level>
+                <metData/>
+                <pointProperty>
+                    <reference identifier="ZUUUACC" type="ACC"/>
+                </pointProperty>
+                <pointProperty>
+                    <reference identifier="ZUUUAR03" type="SECTOR"/>
+                </pointProperty>
+                <predictedGroundspeed uom="KM_H">156.0</predictedGroundspeed>
+                <time>
+                    <absoluteTime>2020-03-12T09:15:00.000Z</absoluteTime>
+                </time>
+				
+            </point4D>
+			<routePoint xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			            xsi:type="DesignatedPointOrNavaidType" designator="ZUUU">
+				<position>
+					<pos>1035649.0 303442.0</pos>
+				</position>
+			</routePoint>
+        </element>
+        <element seqNum="1">
+            <alongRouteDistance uom="KM">87.0</alongRouteDistance>
+            <point4D>
+                <level>
+                    <flightLevel uom="FL">17.0</flightLevel>
+                </level>
+                <metData/>
+                <pointProperty>
+                    <reference identifier="ZUUUACC" type="ACC"/>
+                </pointProperty>
+                <pointProperty>
+                    <reference identifier="ZUUUAR15" type="SECTOR"/>
+                </pointProperty>
+                <predictedGroundspeed uom="KM_H">412.0</predictedGroundspeed>
+                <time>
+                    <absoluteTime>2020-03-12T10:15:00.000Z</absoluteTime>
+                </time>
+            </point4D>
+          	<routePoint xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			            xsi:type="DesignatedPointOrNavaidType" designator="AGAVO">
+				<position>
+					<pos>1035649.0 303442.0</pos>
+				</position>
+			</routePoint>
+        </element>
+        <element seqNum="2">
+            <alongRouteDistance uom="KM">87.0</alongRouteDistance>
+            <point4D>
+                <level>
+                    <flightLevel uom="FL">17.0</flightLevel>
+                </level>
+                <metData/>
+                <pointProperty>
+                    <reference identifier="ZLXYACC" type="ACC"/>
+                </pointProperty>
+                <pointProperty>
+                    <reference identifier="ZLXYAR07" type="SECTOR"/>
+                </pointProperty>
+                <predictedGroundspeed uom="KM_H">718.0</predictedGroundspeed>
+                <time>
+                    <absoluteTime>2020-03-12T11:15:00.000Z</absoluteTime>
+                </time>
+            </point4D>
+          	<routePoint xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			            xsi:type="DesignatedPointOrNavaidType" designator="P124">
+				<position>
+					<pos>1035649.0 303442.0</pos>
+				</position>
+			</routePoint>
+        </element>
+        <element seqNum="3">
+            <alongRouteDistance uom="KM">87.0</alongRouteDistance>
+            <point4D>
+                <level>
+                    <flightLevel uom="FL">17.0</flightLevel>
+                </level>
+                <metData/>
+                <pointProperty>
+                    <reference identifier="ZBAAACC" type="ACC"/>
+                </pointProperty>
+                <pointProperty>
+                    <reference identifier="ZBAAAR06" type="SECTOR"/>
+                </pointProperty>
+                <predictedGroundspeed uom="KM_H">156.0</predictedGroundspeed>
+                <time>
+                    <absoluteTime>2020-03-12T12:15:00.000Z</absoluteTime>
+                </time>
+            </point4D>
+           <routePoint xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			            xsi:type="DesignatedPointOrNavaidType" designator="ZBAA">
+				<position>
+					<pos>1035649.0 303442.0</pos>
+				</position>
+			</routePoint>
+        </element>
+		
+		<!-- FPL航路说明 -->
+		<routeInformation flightRulesCategory="I" 
+		routeText="AGULU H142 NSH G212 DUDIL" totalEstimatedElapsedTime="P0Y0M0DT7H15M0S" />
+    </agreed>
+
+</AtmbFlightData>
+

@@ -1,0 +1,826 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.fixm.aero/flight/4.2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fx="http://www.fixm.aero/flight/4.2" xmlns:fb="http://www.fixm.aero/base/4.2" elementFormDefault="qualified" version="4.2.0">
+	<xs:annotation>
+		<xs:documentation>The capability package contains information about the flight capabilities such as equipment.
+
+=========================================== 
+Copyright (c) 2020 Airservices Australia, DSNA, EUROCONTROL, GCAA UAE, IATA, International Coordinating Council of Aerospace Industries Associations, JCAB, NATS Limited, NAV CANADA, SESAR Joint Undertaking and US FAA 
+=========================================== 
+All rights reserved. 
+          
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met: 
+	- Redistributions of source code must retain the above copyright notice, this list of conditions and the disclaimer.
+	- Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the disclaimer in the documentation and/or other materials provided with the distribution.
+	- Neither the names of Airservices Australia, DSNA, EUROCONTROL, GCAA UAE, IATA, International Coordinating Council of Aerospace Industries Associations, JCAB, NATS Limited, NAV CANADA, SESAR Joint Undertaking and US FAA nor the names of their contributors may be used to endorse or promote products derived from this specification without specific prior written permission.
+          
+DISCLAIMER 
+          
+THIS SPECIFICATION IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+          
+========================================== 
+Editorial note: this license is an instance of the BSD license template as provided by the Open Source Initiative: 
+http://www.opensource.org/licenses/bsd-license.php 
+          
+The authoritative reference for FIXM is www.FIXM.aero. 
+          
+Details on Airservices Australia: http://www.airservicesaustralia.com/ 
+Details on DSNA: http://www.developpement-durable.gouv.fr/-Navigation-aerienne-.html 
+Details on EUROCONTROL: http://www.eurocontrol.int/ 
+Details on IATA: http://www.iata.org/Pages/default.aspx 
+Details on JCAB: http://www.mlit.go.jp/en/koku/index.html 
+Details on NATS Limited: http://www.nats.co.uk/ 
+Details on NAV CANADA: http://www.navcanada.ca/ 
+Details on the UAE GCAA: https://www.gcaa.gov.ae 
+Details on the ICCAIA: www.iccaia.org 
+Details on the SESAR JU and its members: http://www.sesarju.eu/discover-sesar/partnering-smarter-aviation/members 
+Details on the US FAA: http://www.faa.gov/ </xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://www.fixm.aero/base/4.2" schemaLocation="../../base/Base.xsd"/>
+	<xs:simpleType name="CommunicationCapabilityCodeType">
+		<xs:annotation>
+			<xs:documentation>A code indicating the capability of the aircraft and associated flight crew qualifications to communicate with ATS units. [FIXM]</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="E1">
+				<xs:annotation>
+					<xs:documentation>FMC WPR ACARS</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="E2">
+				<xs:annotation>
+					<xs:documentation>D-FIS ACARS </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="E3">
+				<xs:annotation>
+					<xs:documentation>PDC ACARS</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="H">
+				<xs:annotation>
+					<xs:documentation>HF RTF</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="M1">
+				<xs:annotation>
+					<xs:documentation>ATC RTF SATCOM (INMARSAT) </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="M2">
+				<xs:annotation>
+					<xs:documentation>ATC RTF (MTSAT)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="M3">
+				<xs:annotation>
+					<xs:documentation>ATC RTF (Iridium)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="P1">
+				<xs:annotation>
+					<xs:documentation>Reserved for RCP</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="P2">
+				<xs:annotation>
+					<xs:documentation>Reserved for RCP</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="P3">
+				<xs:annotation>
+					<xs:documentation>Reserved for RCP</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="P4">
+				<xs:annotation>
+					<xs:documentation>Reserved for RCP</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="P5">
+				<xs:annotation>
+					<xs:documentation>Reserved for RCP</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="P6">
+				<xs:annotation>
+					<xs:documentation>Reserved for RCP</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="P7">
+				<xs:annotation>
+					<xs:documentation>Reserved for RCP</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="P8">
+				<xs:annotation>
+					<xs:documentation>Reserved for RCP</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="P9">
+				<xs:annotation>
+					<xs:documentation>Reserved for RCP</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="U">
+				<xs:annotation>
+					<xs:documentation>UHF RTF</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="V">
+				<xs:annotation>
+					<xs:documentation>VHF RTF</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Y">
+				<xs:annotation>
+					<xs:documentation>VHF with 8.33 kHz channel spacing capability</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CommunicationCapabilityCodeListType">
+		<xs:annotation>
+			<xs:documentation>Helper simpleType to allow for enumerated lists in FIXM.</xs:documentation>
+		</xs:annotation>
+		<xs:list itemType="fx:CommunicationCapabilityCodeType"/>
+	</xs:simpleType>
+	<xs:simpleType name="DatalinkCommunicationCapabilityCodeType">
+		<xs:annotation>
+			<xs:documentation>A code indicating the capability of the aircraft to communicate or receive data. [FIXM]</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="J1">
+				<xs:annotation>
+					<xs:documentation>CPDLC ATN VDL Mode 2 </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="J2">
+				<xs:annotation>
+					<xs:documentation>CPDLC FANS 1/A HFDL </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="J3">
+				<xs:annotation>
+					<xs:documentation>CPDLC FANS 1/A VDL Mode A </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="J4">
+				<xs:annotation>
+					<xs:documentation>CPDLC FANS 1/A VDL Mode 2 </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="J5">
+				<xs:annotation>
+					<xs:documentation>CPDLC FANS 1/A SATCOM (INMARSAT) </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="J6">
+				<xs:annotation>
+					<xs:documentation>CPDLC FANS 1/A SATCOM (MTSAT) </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="J7">
+				<xs:annotation>
+					<xs:documentation>CPDLC FANS 1/A SATCOM (Iridium) </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DatalinkCommunicationCapabilityCodeListType">
+		<xs:annotation>
+			<xs:documentation>Helper simpleType to allow for enumerated lists in FIXM.</xs:documentation>
+		</xs:annotation>
+		<xs:list itemType="fx:DatalinkCommunicationCapabilityCodeType"/>
+	</xs:simpleType>
+	<xs:simpleType name="DinghyCoverIndicatorType">
+		<xs:annotation>
+			<xs:documentation> Indication of the covered/uncovered nature of the dinghies carried by the aircraft. [FIXM]</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="COVERED">
+				<xs:annotation>
+					<xs:documentation>Indication of the covered/uncovered nature of the dinghies carried by the aircraft. [FIXM]</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EmergencyRadioCapabilityTypeType">
+		<xs:annotation>
+			<xs:documentation>The type of serviceable communication devices available on the aircraft that are able to transmit an emergency radio signal. [FIXM]</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ULTRA_HIGH_FREQUENCY">
+				<xs:annotation>
+					<xs:documentation>UHF on frequency 243.0 MHz is available [adapted from ICAO Doc 4444, Appendix 2, ITEM 19 R/]</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VERY_HIGH_FREQUENCY">
+				<xs:annotation>
+					<xs:documentation>VHF on frequency 121.5 MHz is available [adapted from ICAO Doc 4444, Appendix 2, ITEM 19 R/]</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EMERGENCY_LOCATOR_TRANSMITTER">
+				<xs:annotation>
+					<xs:documentation>emergency locator transmitter (ELT) not available [adapted from ICAO Doc 4444, Appendix 2, ITEM 19 R/]</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EmergencyRadioCapabilityTypeListType">
+		<xs:annotation>
+			<xs:documentation>Helper simpleType to allow for enumerated lists in FIXM.</xs:documentation>
+		</xs:annotation>
+		<xs:list itemType="fx:EmergencyRadioCapabilityTypeType"/>
+	</xs:simpleType>
+	<xs:simpleType name="LifeJacketTypeType">
+		<xs:annotation>
+			<xs:documentation>The type of life jackets available on board the aircraft. [FIXM]</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="FLUORESCENCE">
+				<xs:annotation>
+					<xs:documentation>life jackets are equipped with fluorescence [adapted from ICAO Doc 4444, Appendix 2, ITEM 19 J/]</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VERY_HIGH_FREQUENCY">
+				<xs:annotation>
+					<xs:documentation>= VHF on frequency 121.5 MHz is available [adapted from ICAO Doc 4444, Appendix 2, ITEM 19 R/ and J/]</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="LIGHTS">
+				<xs:annotation>
+					<xs:documentation>life jackets are equipped with lights [adapted from ICAO Doc 4444, Appendix 2, ITEM 19 J/]</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ULTRA_HIGH_FREQUENCY">
+				<xs:annotation>
+					<xs:documentation>UHF on frequency 243.0 MHz is not available [adapted from ICAO Doc 4444, Appendix 2, ITEM 19 R/ and J/]</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LifeJacketTypeListType">
+		<xs:annotation>
+			<xs:documentation>Helper simpleType to allow for enumerated lists in FIXM.</xs:documentation>
+		</xs:annotation>
+		<xs:list itemType="fx:LifeJacketTypeType"/>
+	</xs:simpleType>
+	<xs:simpleType name="NavigationCapabilityCodeType">
+		<xs:annotation>
+			<xs:documentation>A code indicating the navigation capability of the aircraft and associated flight crew qualifications. [FIXM]</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="A">
+				<xs:annotation>
+					<xs:documentation>GBAS </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="B">
+				<xs:annotation>
+					<xs:documentation> LPV </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="C">
+				<xs:annotation>
+					<xs:documentation>LORAN C </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="D">
+				<xs:annotation>
+					<xs:documentation>DME</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="F">
+				<xs:annotation>
+					<xs:documentation>ADF </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="G">
+				<xs:annotation>
+					<xs:documentation>GNSS</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="I">
+				<xs:annotation>
+					<xs:documentation>Inertial Navigation </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="K">
+				<xs:annotation>
+					<xs:documentation>MLS </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="L">
+				<xs:annotation>
+					<xs:documentation>ILS </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="O">
+				<xs:annotation>
+					<xs:documentation>VOR </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="T">
+				<xs:annotation>
+					<xs:documentation>TACAN </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="W">
+				<xs:annotation>
+					<xs:documentation>RVSM </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="X">
+				<xs:annotation>
+					<xs:documentation>MNPS</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="NavigationCapabilityCodeListType">
+		<xs:annotation>
+			<xs:documentation>Helper simpleType to allow for enumerated lists in FIXM.</xs:documentation>
+		</xs:annotation>
+		<xs:list itemType="fx:NavigationCapabilityCodeType"/>
+	</xs:simpleType>
+	<xs:simpleType name="PerformanceBasedNavigationCapabilityCodeType">
+		<xs:annotation>
+			<xs:documentation>A coded category denoting which Required Navigation Performance (RNP) and Area Navigation (RNAV) requirements can be met by the aircraft while operating in the context of a particular airspace when supported by the appropriate navigation infrastructure. [FIXM]</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="A1">
+				<xs:annotation>
+					<xs:documentation>RNAV 10 (RNP 10) </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="B1">
+				<xs:annotation>
+					<xs:documentation>RNAV 5 All Permitted Sensors </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="B2">
+				<xs:annotation>
+					<xs:documentation>RNAV 5 GNSS </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="B3">
+				<xs:annotation>
+					<xs:documentation>RNAV 5 DME/DME </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="B4">
+				<xs:annotation>
+					<xs:documentation>RNAV 5 VOR/DME </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="B5">
+				<xs:annotation>
+					<xs:documentation>RNAV 5 INS or IRS </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="B6">
+				<xs:annotation>
+					<xs:documentation>RNAV 5 LORAN-C </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="C1">
+				<xs:annotation>
+					<xs:documentation>RNAV 2 All Permitted Sensors </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="C2">
+				<xs:annotation>
+					<xs:documentation>RNAV 2 GNSS </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="C3">
+				<xs:annotation>
+					<xs:documentation>RNAV 2 DME/DME </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="C4">
+				<xs:annotation>
+					<xs:documentation>RNAV 2 DME/DME/IRU </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="D1">
+				<xs:annotation>
+					<xs:documentation>RNAV 1 All Permitted Sensors </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="D2">
+				<xs:annotation>
+					<xs:documentation>RNAV 1 GNSS </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="D3">
+				<xs:annotation>
+					<xs:documentation>RNAV 1 DME/DME </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="D4">
+				<xs:annotation>
+					<xs:documentation>RNAV 1 DME/DME/IRU </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="L1">
+				<xs:annotation>
+					<xs:documentation>RNP 4 </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="O1">
+				<xs:annotation>
+					<xs:documentation>Basic RNP 1 All Permitted Sensors </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="O2">
+				<xs:annotation>
+					<xs:documentation>Basic RNP 1 GNSS </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="O3">
+				<xs:annotation>
+					<xs:documentation>Basic RNP 1 DME/DME </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="O4">
+				<xs:annotation>
+					<xs:documentation>Basic RNP 1 DME/DME/IRU </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="S1">
+				<xs:annotation>
+					<xs:documentation>RNP APCH</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="S2">
+				<xs:annotation>
+					<xs:documentation>RNP APCH with Barometric Vertical Navigation </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="T1">
+				<xs:annotation>
+					<xs:documentation>RNP AR APCH with RF (Authorization Required) </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="T2">
+				<xs:annotation>
+					<xs:documentation>RNP AR APCH without RF (Authorization Required)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PerformanceBasedNavigationCapabilityCodeListType">
+		<xs:annotation>
+			<xs:documentation>Helper simpleType to allow for enumerated lists in FIXM.</xs:documentation>
+		</xs:annotation>
+		<xs:list itemType="fx:PerformanceBasedNavigationCapabilityCodeType"/>
+	</xs:simpleType>
+	<xs:simpleType name="SelectiveCallingCodeType">
+		<xs:annotation>
+			<xs:documentation>A code that consists of two 2-letter pairs and acts as a paging system for an ATS unit to establish voice communications with the pilot of an aircraft.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="fb:CharacterStringType">
+			<xs:pattern value="[A-HJ-MP-S]{4}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="StandardCapabilitiesIndicatorType">
+		<xs:annotation>
+			<xs:documentation>This element indicates the aircraft carries the set of capabilities considered standard by the appropriate authority. </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="STANDARD">
+				<xs:annotation>
+					<xs:documentation>This element indicates the aircraft carries the set of capabilities considered standard by the appropriate authority.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SurveillanceCapabilityCodeType">
+		<xs:annotation>
+			<xs:documentation>A code indicating the SSR and ADS capability of the aircraft. [FIXM]</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="A">
+				<xs:annotation>
+					<xs:documentation>Transponder-Mode A (4 digits-4,096 codes) </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="B1">
+				<xs:annotation>
+					<xs:documentation>ADS-B with dedicated 1090 MHz ADS-B out capability </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="B2">
+				<xs:annotation>
+					<xs:documentation>ADS-B with dedicated 1090 MHz ADS-B out and in capability </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="C">
+				<xs:annotation>
+					<xs:documentation>Transponder-Mode A (4 digits-4,096 codes) and Mode C </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="D1">
+				<xs:annotation>
+					<xs:documentation>ADS-C with FANS 1/A capabilities </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="E">
+				<xs:annotation>
+					<xs:documentation>Transponder Mode S including aircraft identification, pressure-altitude, and extended squitter capability (ADS-B) </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="G1">
+				<xs:annotation>
+					<xs:documentation>ADS-C with ATN capabilities </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="H">
+				<xs:annotation>
+					<xs:documentation>Transponder Mode S including aircraft identification, pressure-altitude, and enhanced surveillance capability </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="I">
+				<xs:annotation>
+					<xs:documentation>Transponder Mode S including aircraft identification, but no pressure-altitude capability </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="L">
+				<xs:annotation>
+					<xs:documentation>Transponder Mode S including aircraft identification, pressure-altitude, extended squitter, and enhanced surveillance capability </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="P">
+				<xs:annotation>
+					<xs:documentation>Transponder Mode S including pressure-altitude, but no aircraft identification capability </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="S">
+				<xs:annotation>
+					<xs:documentation>Transponder-Mode S, including both pressure-altitude and aircraft identification transmission </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="U1">
+				<xs:annotation>
+					<xs:documentation>ADS-B out capability using UAT</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="U2">
+				<xs:annotation>
+					<xs:documentation>ADS-B out and in capability using UAT </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="V1">
+				<xs:annotation>
+					<xs:documentation>ADS-B out capability using VDL mode 4 </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="V2">
+				<xs:annotation>
+					<xs:documentation>ADS-B in and out capability using VDL mode 4 </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="X">
+				<xs:annotation>
+					<xs:documentation>Transponder Mode S with neither aircraft identification nor pressure-altitude capability</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SurveillanceCapabilityCodeListType">
+		<xs:annotation>
+			<xs:documentation>Helper simpleType to allow for enumerated lists in FIXM.</xs:documentation>
+		</xs:annotation>
+		<xs:list itemType="fx:SurveillanceCapabilityCodeType"/>
+	</xs:simpleType>
+	<xs:simpleType name="SurvivalEquipmentTypeType">
+		<xs:annotation>
+			<xs:documentation>The type of equipment carried on board the aircraft that can be used by the crew and passengers to assist survival in harsh environments in case of emergency. [FIXM]</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="POLAR">
+				<xs:annotation>
+					<xs:documentation>polar survival equipment is carried [ICAO Doc 4444, Appendix 3]</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DESERT">
+				<xs:annotation>
+					<xs:documentation>desert survival equipment is carried [ICAO Doc 4444, Appendix 3]</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MARITIME">
+				<xs:annotation>
+					<xs:documentation>maritime survival equipment is carried [ICAO Doc 4444, Appendix 3]</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="JUNGLE">
+				<xs:annotation>
+					<xs:documentation>jungle survival equipment is carried [ICAO Doc 4444, Appendix 3]</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SurvivalEquipmentTypeListType">
+		<xs:annotation>
+			<xs:documentation>Helper simpleType to allow for enumerated lists in FIXM.</xs:documentation>
+		</xs:annotation>
+		<xs:list itemType="fx:SurvivalEquipmentTypeType"/>
+	</xs:simpleType>
+	<xs:complexType name="CommunicationCapabilitiesType">
+		<xs:annotation>
+			<xs:documentation>The serviceable communications equipment, available on the aircraft at the time of flight, and associated flight crew qualifications that may be used to communicate with ATS units. [FIXM]</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="communicationCapabilityCode" type="fx:CommunicationCapabilityCodeListType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>A code indicating the capability of the aircraft and associated flight crew qualifications to communicate with ATS units. [FIXM]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="datalinkCommunicationCapabilityCode" type="fx:DatalinkCommunicationCapabilityCodeListType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>A code indicating the capability of the aircraft to communicate or receive data. [FIXM]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="extension" type="fb:CommunicationCapabilitiesExtensionType" minOccurs="0" maxOccurs="2000" nillable="true">
+				<xs:annotation>
+					<xs:documentation>An extension hook for attaching extension (non-core) classes.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="otherCommunicationCapabilities" type="fb:CharacterStringType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>Additional Communication capabilities available on the aircraft.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="otherDatalinkCapabilities" type="fb:CharacterStringType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>Additional data link capabilities available on the aircraft.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="selectiveCallingCode" type="fx:SelectiveCallingCodeType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>A code that consists of two 2-letter pairs and acts as a paging system for an ATS unit to establish voice communications with the pilot of an aircraft.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DinghiesType">
+		<xs:annotation>
+			<xs:documentation>Dinghy information including total capacity in persons of all dinghies carried, indicator if dinghies are covered, their colours and number.  [ICAO Doc 4444, Appendix 2, ITEM 19 D]</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="colour" type="fb:CharacterStringType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>The colour of the dinghies carried by the aircraft. [FIXM]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="covered" type="fx:DinghyCoverIndicatorType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation> Indication of the covered/uncovered nature of the dinghies carried by the aircraft.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="extension" type="fb:DinghiesExtensionType" minOccurs="0" maxOccurs="2000" nillable="true">
+				<xs:annotation>
+					<xs:documentation>An extension hook for attaching extension (non-core) classes.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="number" type="fb:CountType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>The number of dinghies carried by the aircraft. [adapted from ICAO Doc 4444, Appendix 2, ITEM 19 D/]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="totalCapacity" type="fb:CountPositiveType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>Total capacity, in persons, of all dinghies carried. [ICAO Doc 4444, Appendix 2, ITEM 19 D/]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FlightCapabilitiesType">
+		<xs:annotation>
+			<xs:documentation>The capabilities of the flight comprising of the:
+a) presence of relevant serviceable equipment on board the aircraft;
+b) equipment and capabilities commensurate with flight crew qualifications; and
+c) where applicable, authorization from the appropriate authority.
+[FIXM]</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="communication" type="fx:CommunicationCapabilitiesType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>The serviceable communications equipment, available on the aircraft at the time of flight, and associated flight crew qualifications that may be used to communicate with ATS units. [FIXM]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="extension" type="fb:FlightCapabilitiesExtensionType" minOccurs="0" maxOccurs="2000" nillable="true">
+				<xs:annotation>
+					<xs:documentation>An extension hook for attaching extension (non-core) classes.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="navigation" type="fx:NavigationCapabilitiesType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>The navigation capability of the aircraft and associated flight crew qualifications. [FIXM]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="standardCapabilities" type="fx:StandardCapabilitiesIndicatorType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>If present, indicates that aircraft has the "standard" capabilities for the flight.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="surveillance" type="fx:SurveillanceCapabilitiesType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>The serviceable Secondary Surveillance Radar (SSR) and/or Automatic Dependent Surveillance (ADS) equipment available on the aircraft at the time of flight that may be used to identify and/or locate the aircraft. [FIXM]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="survival" type="fx:SurvivalCapabilitiesType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>The emergency and survival equipments available on board the aircraft. [FIXM]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NavigationCapabilitiesType">
+		<xs:annotation>
+			<xs:documentation>The navigation capability of the aircraft and associated flight crew qualifications. [FIXM]</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="extension" type="fb:NavigationCapabilitiesExtensionType" minOccurs="0" maxOccurs="2000" nillable="true">
+				<xs:annotation>
+					<xs:documentation>An extension hook for attaching extension (non-core) classes.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="navigationCapabilityCode" type="fx:NavigationCapabilityCodeListType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>A code indicating the navigation capability of the aircraft and associated flight crew qualifications. [FIXM]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="otherNavigationCapabilities" type="fb:CharacterStringType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>Additional navigation capabilities available on board the aircraft.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="performanceBasedCode" type="fx:PerformanceBasedNavigationCapabilityCodeListType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>A coded category denoting which Required Navigation Performance (RNP) and Area Navigation (RNAV) requirements can be met by the aircraft while operating in the context of a particular airspace when supported by the appropriate navigation infrastructure.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SurveillanceCapabilitiesType">
+		<xs:annotation>
+			<xs:documentation>The serviceable Secondary Surveillance Radar (SSR) and/or Automatic Dependent Surveillance (ADS) equipment available on the aircraft at the time of flight that may be used to identify and/or locate the aircraft. [FIXM]</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="extension" type="fb:SurveillanceCapabilitiesExtensionType" minOccurs="0" maxOccurs="2000" nillable="true">
+				<xs:annotation>
+					<xs:documentation>An extension hook for attaching extension (non-core) classes.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="otherSurveillanceCapabilities" type="fb:CharacterStringType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>Additional surveillance capabilities available on board the aircraft.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="surveillanceCapabilityCode" type="fx:SurveillanceCapabilityCodeListType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>A code indicating the SSR and ADS capability of the aircraft. [FIXM]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SurvivalCapabilitiesType">
+		<xs:annotation>
+			<xs:documentation>The emergency and survival equipments available on board the aircraft. [FIXM]</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="dinghyInformation" type="fx:DinghiesType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>Dinghy information including total capacity in persons of all dinghies carried, indicator if dinghies are covered, their colours and number. [ICAO Doc 4444, Appendix 2, ITEM 19 D]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="emergencyRadioCapabilityType" type="fx:EmergencyRadioCapabilityTypeListType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>The type of serviceable communication devices available on the aircraft that are able to transmit an emergency radio signal. [FIXM]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="extension" type="fb:SurvivalCapabilitiesExtensionType" minOccurs="0" maxOccurs="2000" nillable="true">
+				<xs:annotation>
+					<xs:documentation>An extension hook for attaching extension (non-core) classes.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="lifeJacketType" type="fx:LifeJacketTypeListType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>The type of life jackets available on board the aircraft. [FIXM]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="survivalEquipmentRemarks" type="fb:CharacterStringType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>A description of survival equipment carried on the aircraft and any other useful remarks regarding survival equipment.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="survivalEquipmentType" type="fx:SurvivalEquipmentTypeListType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>The type of equipment carried on board the aircraft that can be used by the crew and passengers to assist survival in harsh environments in case of emergency. [FIXM]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

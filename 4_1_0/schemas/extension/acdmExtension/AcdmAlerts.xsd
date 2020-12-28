@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:acdm="http://www.fixm.aero/ext/sesar/acdm" xmlns:fb="http://www.fixm.aero/base/2.0" xmlns:ff="http://www.fixm.aero/foundation/2.0" xmlns:fx="http://www.fixm.aero/flight/2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.fixm.aero/ext/sesar/acdm" elementFormDefault="qualified" attributeFormDefault="qualified" version="AcdmAlerts:1.0">
+	<annotation>
+		<documentation>
+Copyright (c) 2014 EUROCONTROL
+===========================================
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+  * Redistributions of source code must retain the above copyright notice, this list of conditions and the disclaimer.
+  * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the disclaimer in the documentation and/or other materials provided with the distribution.
+  * Neither the names of EUROCONTROL nor the names of their contributors may be used to endorse or promote products derived from this specification without specific prior written permission.
+
+DISCLAIMER
+
+THIS SPECIFICATION IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+==========================================
+Editorial note: this license is an instance of the BSD license template as provided by the Open Source Initiative:
+http://www.opensource.org/licenses/bsd-license.php
+
+Details on EUROCONTROL: http://www.eurocontrol.int/	
+		</documentation>
+	</annotation>
+	<annotation>
+		<documentation>
+		This schema contains stand-alone extension properties that provide structure for the "A-CDM Alert" concept in FIXM.		
+		</documentation>
+	</annotation>
+	<import namespace="http://www.fixm.aero/base/2.0" schemaLocation="./../core/base/Base.xsd"/>
+	<include schemaLocation="Acdm.xsd"/>
+	<complexType name="AcdmAlertType">
+		<annotation>
+			<documentation>
+				A system generated message which alerts the Airport CDM Partners of an irregularity and which normally requires one or more partners to make a manual
+intervention to resolve the irregularity [A-CDM Implementation Manual].
+			</documentation>
+		</annotation>
+		<sequence>
+			<element name="alertCode" type="acdm:AcdmAlertCodeType" minOccurs="0">
+				<annotation>
+					<documentation>
+						Code of the A-CDM alert as defined in the A-CDM Implementation Manual.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="alertDescription" type="fb:FreeTextType" minOccurs="0">
+				<annotation>
+					<documentation>
+						Short textual description of the A-CDM alert as defined in the A-CDM Implementation Manual.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="alertLevel" type="acdm:AcdmAlertLevelType" minOccurs="0">
+				<annotation>
+					<documentation>
+						Describes the kind of the A-CDM alert, such as WARNING or ALERT.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="alertStatus" type="acdm:AcdmAlertStatusType" minOccurs="0">
+				<annotation>
+					<documentation>
+						Specifies whether the alert stills applicable or not.
+					</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<simpleType name="AcdmAlertCodeType">
+		<annotation>
+			<documentation>
+				String that indicates the A-CDM Alert designator, e.g. "CDM12".
+			</documentation>
+		</annotation>
+		<restriction base="xsd:string"/>
+	</simpleType>
+	<simpleType name="AcdmAlertLevelType">
+		<annotation>
+			<documentation>
+				Enumeration which indicates the A-CDM alert category kind.
+			</documentation>
+		</annotation>
+		<restriction base="xsd:string">
+			<enumeration value="WARNING"/>
+			<enumeration value="ALERT"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="AcdmAlertStatusType">
+		<annotation>
+			<documentation>
+				Enumeration which indicates if an A-CDM alert stills applicable.
+			</documentation>
+		</annotation>
+		<restriction base="xsd:string">
+			<enumeration value="ACTIVE"/>
+			<enumeration value="INACTIVE"/>
+		</restriction>
+	</simpleType>
+	<element name="AcdmAlert" type="acdm:AcdmAlertType"/>
+</schema>

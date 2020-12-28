@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+        targetNamespace="http://www.atmb.aero/4.2"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        elementFormDefault="qualified"
+        version="4.2.0">
+
+    <xs:annotation>
+        <xs:documentation>
+            [CN] 在 FIXM Base 基础上扩展的通用类型, 包括:
+            - 角度范围, 对应国内常见西侧, 东侧, 西北方向等语义
+            - 承运人, 扩展加入母公司
+            - 任务类型
+            - 港澳/台湾地区航班分类
+
+
+            [EN] Copyright (c) 2020 Air Traffic Management Bureau China (ATMB)
+            ===========================================
+            All rights reserved.
+        </xs:documentation>
+    </xs:annotation>
+    <xs:include schemaLocation="AtmbTypes.xsd"/>
+    <xs:include schemaLocation="AtmbOrganization.xsd"/>
+</xs:schema>

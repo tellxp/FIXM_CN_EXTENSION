@@ -1,0 +1,3523 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<fx:Flight xmlns:fb="http://www.fixm.aero/base/4.1" xmlns:fx="http://www.fixm.aero/flight/4.1"
+           xmlns:mesg="http://www.fixm.aero/messaging/4.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://www.fixm.aero/base/4.1 ../schemas/core/base/Base.xsd
+                              http://www.fixm.aero/flight/4.1 ../schemas/core/flight/Flight.xsd
+                              http://www.fixm.aero/messaging/4.1 ../schemas/core/messaging/Messaging.xsd"
+           flightType="S" remarks="TCAS">
+    <fx:aircraft aircraftAddress="3C65A1" aircraftApproachCategory="C" registration="DAIMA" wakeTurbulence="J">
+        <fx:aircraftType>
+            <fx:type xsi:type="fx:IcaoAircraftTypeReferenceType" icaoAircraftTypeDesignator="A388"/>
+        </fx:aircraftType>
+        <fx:capabilities standardCapabilities="STANDARD">
+            <fx:communication otherDatalinkCapabilities="SVM" selectiveCallingCode="EHJM">
+                <fx:communicationCapabilityCode>E2 E3 H M1 Y</fx:communicationCapabilityCode>
+                <fx:datalinkCommunicationCapabilityCode>J3 J4 J5</fx:datalinkCommunicationCapabilityCode>
+            </fx:communication>
+            <fx:navigation otherNavigationCapabilities="RNVD1E2A1">
+                <fx:navigationCapabilityCode>A D G I W X</fx:navigationCapabilityCode>
+                <fx:performanceBasedCode>A1 B1 C1 D1 L1 O1 S1 S2</fx:performanceBasedCode>
+            </fx:navigation>
+            <fx:surveillance>
+                <fx:surveillanceCapabilityCode>B1 D1 L</fx:surveillanceCapabilityCode>
+            </fx:surveillance>
+        </fx:capabilities>
+    </fx:aircraft>
+    <fx:arrival>
+        <fx:destinationAerodrome xsi:type="fb:IcaoAerodromeReferenceType" locationIndicator="VHHH"/>
+        <fx:destinationAerodromeAlternate xsi:type="fb:IcaoAerodromeReferenceType" locationIndicator="ZGGG"/>
+    </fx:arrival>
+    <fx:departure estimatedOffBlockTime="2018-03-02T10:00:00.000Z">
+        <fx:aerodrome xsi:type="fb:IcaoAerodromeReferenceType" locationIndicator="EDDF"/>
+    </fx:departure>
+    <fx:filed>
+        <fx:climbProfile>
+            <fx:profilePoint time="P0Y0M0DT0H0M0S">
+                <fx:distance uom="KM">0.0</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">11.0</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H1M4S">
+                <fx:distance uom="KM">3.727</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">38.1</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H1M33S">
+                <fx:distance uom="KM">5.43</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">50.5</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H1M50S">
+                <fx:distance uom="KM">6.595</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">61.0</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H2M7S">
+                <fx:distance uom="KM">8.954</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">91.4</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H2M12S">
+                <fx:distance uom="KM">9.586</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">99.4</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H2M25S">
+                <fx:distance uom="KM">11.361</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">121.9</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H2M40S">
+                <fx:distance uom="KM">13.369</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">147.9</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H2M42S">
+                <fx:distance uom="KM">13.719</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">152.4</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H3M1S">
+                <fx:distance uom="KM">16.312</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">182.9</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H3M7S">
+                <fx:distance uom="KM">17.078</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">192.1</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H3M20S">
+                <fx:distance uom="KM">18.856</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">213.4</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H3M39S">
+                <fx:distance uom="KM">21.634</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">243.8</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H3M59S">
+                <fx:distance uom="KM">24.362</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">274.3</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H4M52S">
+                <fx:distance uom="KM">32.967</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">304.8</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H5M12S">
+                <fx:distance uom="KM">36.671</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">335.3</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H5M33S">
+                <fx:distance uom="KM">40.511</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">365.8</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H5M53S">
+                <fx:distance uom="KM">44.536</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">396.2</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H6M15S">
+                <fx:distance uom="KM">48.61</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">426.7</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H6M37S">
+                <fx:distance uom="KM">53.005</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">457.2</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H7M1S">
+                <fx:distance uom="KM">57.586</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">487.7</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H7M11S">
+                <fx:distance uom="KM">59.685</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">501.1</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H7M25S">
+                <fx:distance uom="KM">62.351</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">518.2</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H7M47S">
+                <fx:distance uom="KM">66.787</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">544.5</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H7M50S">
+                <fx:distance uom="KM">67.487</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">548.6</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H8M16S">
+                <fx:distance uom="KM">72.993</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">579.1</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H8M44S">
+                <fx:distance uom="KM">78.684</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">609.6</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H9M12S">
+                <fx:distance uom="KM">84.746</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">640.1</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H9M41S">
+                <fx:distance uom="KM">91.263</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">670.6</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H10M13S">
+                <fx:distance uom="KM">98.066</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">701.0</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H10M32S">
+                <fx:distance uom="KM">102.413</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">719.0</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H10M46S">
+                <fx:distance uom="KM">105.424</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">731.5</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H11M20S">
+                <fx:distance uom="KM">113.287</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">762.0</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H11M57S">
+                <fx:distance uom="KM">121.892</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">792.5</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H12M3S">
+                <fx:distance uom="KM">123.262</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">797.0</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H12M37S">
+                <fx:distance uom="KM">131.187</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">823.0</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H13M19S">
+                <fx:distance uom="KM">141.222</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">853.4</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H14M4S">
+                <fx:distance uom="KM">152.049</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">883.9</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H14M53S">
+                <fx:distance uom="KM">164.071</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">914.4</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H15M36S">
+                <fx:distance uom="KM">174.636</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">944.9</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H16M16S">
+                <fx:distance uom="KM">184.446</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">975.4</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H16M46S">
+                <fx:distance uom="KM">191.986</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">997.4</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H16M58S">
+                <fx:distance uom="KM">194.858</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">1005.8</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H17M45S">
+                <fx:distance uom="KM">206.334</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">1036.3</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H18M38S">
+                <fx:distance uom="KM">219.196</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">1066.8</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H19M20S">
+                <fx:distance uom="KM">229.402</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">1088.0</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H19M38S">
+                <fx:distance uom="KM">233.861</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">1097.3</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H20M17S">
+                <fx:distance uom="KM">243.151</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">1111.9</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H20M58S">
+                <fx:distance uom="KM">253.285</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">1127.8</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+        </fx:climbProfile>
+        <fx:descentProfile>
+            <fx:profilePoint time="P0Y0M0DT0H0M0S">
+                <fx:distance uom="KM">0.0</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">1280.2</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H4M17S">
+                <fx:distance uom="KM">26.676</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">1225.6</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H6M0S">
+                <fx:distance uom="KM">37.37</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">954.6</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H8M31S">
+                <fx:distance uom="KM">58.071</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">672.8</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H10M9S">
+                <fx:distance uom="KM">72.118</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">508.2</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H11M54S">
+                <fx:distance uom="KM">88.24</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">314.5</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H15M25S">
+                <fx:distance uom="KM">128.735</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">254.9</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H17M33S">
+                <fx:distance uom="KM">156.582</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">189.4</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H20M15S">
+                <fx:distance uom="KM">203.727</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">92.2</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H24M3S">
+                <fx:distance uom="KM">250.151</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">66.1</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+            <fx:profilePoint time="P0Y0M0DT0H24M8S">
+                <fx:distance uom="KM">261.039</fx:distance>
+                <fx:level>
+                    <fb:flightLevel uom="SM">0.8</fb:flightLevel>
+                </fx:level>
+            </fx:profilePoint>
+        </fx:descentProfile>
+        <fx:element seqNum="0">
+            <fx:alongRouteDistance uom="KM">0.0</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>50.03330555555556 8.570455555555556</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="SM">11.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">4.3</fx:temperature>
+                    <fx:windDirection uom="DEG">248.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">10.41</fx:windSpeed>
+                </fx:metData>
+                <fx:pointProperty propertyType="INITIAL_PREDICTION_POINT"/>
+                <fx:predictedAirspeed uom="KM_H">0.0</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:absoluteTime>2018-03-02T10:10:00.000Z</fx:absoluteTime>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:standardInstrumentDeparture>SULUS8G</fx:standardInstrumentDeparture>
+            </fx:routeDesignatorToNextElement>
+        </fx:element>
+        <fx:element seqNum="1">
+            <fx:alongRouteDistance uom="KM">5.186</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>50.028816666666664 8.518772222222223</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="SM">49.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">1.7</fx:temperature>
+                    <fx:windDirection uom="DEG">259.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">13.21</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">574.2</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT0H1M28S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:standardInstrumentDeparture>SULUS8G</fx:standardInstrumentDeparture>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="DF134"/>
+        </fx:element>
+        <fx:element seqNum="2">
+            <fx:alongRouteDistance uom="KM">6.888</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>50.01791111111111 8.50206388888889</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="SM">65.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">1.1</fx:temperature>
+                    <fx:windDirection uom="DEG">261.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">13.75</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">574.2</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT0H1M52S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:standardInstrumentDeparture>SULUS8G</fx:standardInstrumentDeparture>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="DF141"/>
+        </fx:element>
+        <fx:element seqNum="3">
+            <fx:alongRouteDistance uom="KM">11.044</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>49.98273888888889 8.482497222222221</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="SM">124.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-3.5</fx:temperature>
+                    <fx:windDirection uom="DEG">263.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">14.96</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">574.2</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT0H2M26S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:standardInstrumentDeparture>SULUS8G</fx:standardInstrumentDeparture>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="DF143"/>
+        </fx:element>
+        <fx:element seqNum="4">
+            <fx:alongRouteDistance uom="KM">14.828</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>49.965922222222225 8.528455555555556</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="SM">169.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-5.4</fx:temperature>
+                    <fx:windDirection uom="DEG">265.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">15.18</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">574.2</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT0H2M51S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:standardInstrumentDeparture>SULUS8G</fx:standardInstrumentDeparture>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="DF137"/>
+        </fx:element>
+        <fx:element seqNum="5">
+            <fx:alongRouteDistance uom="KM">18.537</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>49.94960833333333 8.573644444444444</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="SM">211.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-7.4</fx:temperature>
+                    <fx:windDirection uom="DEG">268.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">14.8</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">574.2</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT0H3M16S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:standardInstrumentDeparture>SULUS8G</fx:standardInstrumentDeparture>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="DF159"/>
+        </fx:element>
+        <fx:element seqNum="6">
+            <fx:alongRouteDistance uom="KM">61.143</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>49.76222222222222 9.091666666666667</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="SM">505.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-29.4</fx:temperature>
+                    <fx:windDirection uom="DEG">282.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">11.92</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">574.2</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT0H7M6S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:standardInstrumentDeparture>SULUS8G</fx:standardInstrumentDeparture>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="AMTIX"/>
+        </fx:element>
+        <fx:element seqNum="7">
+            <fx:alongRouteDistance uom="KM">68.246</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>49.74679444444445 9.187541666666666</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="SM">549.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-34.3</fx:temperature>
+                    <fx:windDirection uom="DEG">285.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">11.08</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">574.2</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT0H7M40S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:standardInstrumentDeparture>SULUS8G</fx:standardInstrumentDeparture>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="AKONI"/>
+        </fx:element>
+        <fx:element seqNum="8">
+            <fx:alongRouteDistance uom="KM">103.871</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>49.66821111111111 9.667538888888888</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="SM">726.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-47.5</fx:temperature>
+                    <fx:windDirection uom="DEG">281.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">8.81</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">574.2</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT0H10M23S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:standardInstrumentDeparture>SULUS8G</fx:standardInstrumentDeparture>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="GIBSA"/>
+        </fx:element>
+        <fx:element seqNum="9">
+            <fx:alongRouteDistance uom="KM">124.72</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>49.717530555555555 9.947</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="SM">806.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-51.7</fx:temperature>
+                    <fx:windDirection uom="DEG">270.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">11.82</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">574.2</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT0H11M53S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:standardInstrumentDeparture>SULUS8G</fx:standardInstrumentDeparture>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="WUR"/>
+        </fx:element>
+        <fx:element seqNum="10">
+            <fx:alongRouteDistance uom="KM">193.444</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>50.07519166666667 10.728808333333333</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="SM">997.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-45.2</fx:temperature>
+                    <fx:windDirection uom="DEG">250.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">17.68</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">574.2</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT0H16M22S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>UZ650</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="SULUS"/>
+        </fx:element>
+        <fx:element seqNum="11">
+            <fx:alongRouteDistance uom="KM">230.86</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>49.969722222222224 11.225833333333334</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">350.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-45.1</fx:temperature>
+                    <fx:windDirection uom="DEG">249.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">19.06</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">528.12</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT0H18M44S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>UZ650</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="TONSU"/>
+        </fx:element>
+        <fx:element seqNum="12">
+            <fx:alongRouteDistance uom="KM">244.609</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>49.931 11.40821388888889</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">350.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-45.3</fx:temperature>
+                    <fx:windDirection uom="DEG">248.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">19.32</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">528.12</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT0H19M36S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>UZ715</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="ERETO"/>
+        </fx:element>
+        <fx:element seqNum="13">
+            <fx:alongRouteDistance uom="KM">267.003</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>50.07280277777778 11.630463888888888</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">350.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-45.2</fx:temperature>
+                    <fx:windDirection uom="DEG">247.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">18.74</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">528.12</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT0H20M58S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>UL984</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="KULOK"/>
+        </fx:element>
+        <fx:element seqNum="14">
+            <fx:alongRouteDistance uom="KM">300.086</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>50.06919444444444 12.093719444444444</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">350.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-45.2</fx:temperature>
+                    <fx:windDirection uom="DEG">245.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">18.84</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">528.12</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT0H23M1S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>UL984</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="ABERU"/>
+        </fx:element>
+        <fx:element seqNum="15">
+            <fx:alongRouteDistance uom="KM">322.374</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>50.06514722222222 12.405738888888889</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">350.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-45.3</fx:temperature>
+                    <fx:windDirection uom="DEG">244.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">18.92</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">528.12</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT0H24M24S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>L984</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="OKG"/>
+        </fx:element>
+        <fx:element seqNum="16">
+            <fx:alongRouteDistance uom="KM">364.844</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>50.08081388888889 13.0</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">350.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-45.4</fx:temperature>
+                    <fx:windDirection uom="DEG">242.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">19.43</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">528.12</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT0H27M1S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>L984</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="DONAD"/>
+        </fx:element>
+        <fx:element seqNum="17">
+            <fx:alongRouteDistance uom="KM">373.776</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>50.08081388888889 13.125111111111112</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">350.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-45.6</fx:temperature>
+                    <fx:windDirection uom="DEG">242.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">19.56</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">527.76</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT0H27M35S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>T46</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="DOPOV"/>
+        </fx:element>
+        <fx:element seqNum="18">
+            <fx:alongRouteDistance uom="KM">508.741</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>50.62761111111111 14.82238888888889</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">350.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-46.3</fx:temperature>
+                    <fx:windDirection uom="DEG">228.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">19.69</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">527.76</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT0H35M52S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>N871</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="DOKEL"/>
+        </fx:element>
+        <fx:element seqNum="19">
+            <fx:alongRouteDistance uom="KM">551.408</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>50.795275 15.367088888888889</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">350.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-47.5</fx:temperature>
+                    <fx:windDirection uom="DEG">225.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">20.58</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">527.4</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT0H38M30S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>N871</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="LAGAR"/>
+        </fx:element>
+        <fx:element seqNum="20">
+            <fx:alongRouteDistance uom="KM">604.38</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>50.973055555555554 16.067222222222224</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">350.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-47.7</fx:temperature>
+                    <fx:windDirection uom="DEG">223.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">22.23</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">527.0400000000001</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT0H41M46S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>N871</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="RUDUB"/>
+        </fx:element>
+        <fx:element seqNum="21">
+            <fx:alongRouteDistance uom="KM">669.451</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>51.185833333333335 16.934444444444445</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">350.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-48.1</fx:temperature>
+                    <fx:windDirection uom="DEG">219.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">23.67</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">527.0400000000001</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT0H45M47S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>N871</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="MISKA"/>
+        </fx:element>
+        <fx:element seqNum="22">
+            <fx:alongRouteDistance uom="KM">715.708</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>51.33305555555555 17.555833333333332</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">350.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-48.7</fx:temperature>
+                    <fx:windDirection uom="DEG">217.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">24.53</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">526.6800000000001</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT0H48M38S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>N871</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="VAGSA"/>
+        </fx:element>
+        <fx:element seqNum="23">
+            <fx:alongRouteDistance uom="KM">752.841</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>51.44888888888889 18.0575</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">350.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-49.2</fx:temperature>
+                    <fx:windDirection uom="DEG">215.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">25.37</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">526.6800000000001</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT0H50M55S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>N871</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="LUNUK"/>
+        </fx:element>
+        <fx:element seqNum="24">
+            <fx:alongRouteDistance uom="KM">792.339</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>51.569722222222225 18.593888888888888</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">350.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-49.7</fx:temperature>
+                    <fx:windDirection uom="DEG">214.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">26.29</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">526.3199999999999</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT0H53M21S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>N871</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="OKENO"/>
+        </fx:element>
+        <fx:element seqNum="25">
+            <fx:alongRouteDistance uom="KM">828.059</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>51.676944444444445 19.08138888888889</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">350.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-50.1</fx:temperature>
+                    <fx:windDirection uom="DEG">213.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">27.05</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">526.3199999999999</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT0H55M34S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>N871</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="ABAKU"/>
+        </fx:element>
+        <fx:element seqNum="26">
+            <fx:alongRouteDistance uom="KM">869.951</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>51.8 19.656111111111112</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">350.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-50.7</fx:temperature>
+                    <fx:windDirection uom="DEG">213.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">27.83</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">526.3199999999999</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT0H58M9S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>Z169</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="POLON"/>
+        </fx:element>
+        <fx:element seqNum="27">
+            <fx:alongRouteDistance uom="KM">893.947</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>51.850833333333334 19.995277777777776</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">350.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-51.2</fx:temperature>
+                    <fx:windDirection uom="DEG">213.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">28.33</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">526.3199999999999</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT0H59M38S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>Z169</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="XALUR"/>
+        </fx:element>
+        <fx:element seqNum="28">
+            <fx:alongRouteDistance uom="KM">1048.738</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>52.155277777777776 22.200833333333332</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">350.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-52.7</fx:temperature>
+                    <fx:windDirection uom="DEG">211.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">27.24</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">526.3199999999999</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT1H9M18S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>P851</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="GERVI"/>
+        </fx:element>
+        <fx:element seqNum="29">
+            <fx:alongRouteDistance uom="KM">1117.954</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>52.227777777777774 23.20888888888889</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">350.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-54.3</fx:temperature>
+                    <fx:windDirection uom="DEG">209.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">25.07</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">525.96</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT1H13M43S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeChange xsi:type="fx:SpeedChangeType" seqNum="0">
+                <fx:speed uom="KM_H">887.0</fx:speed>
+            </fx:routeChange>
+            <fx:routeChange xsi:type="fx:LevelChangeType" seqNum="1">
+                <fx:level>
+                    <fb:flightLevel uom="FL">350.0</fb:flightLevel>
+                </fx:level>
+            </fx:routeChange>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>P851</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="ABERO"/>
+        </fx:element>
+        <fx:element seqNum="30">
+            <fx:alongRouteDistance uom="KM">1135.635</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>52.225 23.468333333333334</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">350.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-54.7</fx:temperature>
+                    <fx:windDirection uom="DEG">208.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">24.43</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">526.3199999999999</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT1H14M52S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>P851</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="VALOL"/>
+        </fx:element>
+        <fx:element seqNum="31">
+            <fx:alongRouteDistance uom="KM">1178.364</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>52.21333333333333 24.095</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">350.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-55.1</fx:temperature>
+                    <fx:windDirection uom="DEG">207.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">23.3</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">526.3199999999999</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT1H17M39S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>Z860</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="RAVOK"/>
+        </fx:element>
+        <fx:element seqNum="32">
+            <fx:alongRouteDistance uom="KM">1241.196</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>52.36 24.986666666666668</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">350.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-56.1</fx:temperature>
+                    <fx:windDirection uom="DEG">205.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">22.62</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">525.6</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT1H21M40S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>Z860</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="MAPAT"/>
+        </fx:element>
+        <fx:element seqNum="33">
+            <fx:alongRouteDistance uom="KM">1398.054</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>52.69 27.24</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">350.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-57.6</fx:temperature>
+                    <fx:windDirection uom="DEG">207.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">19.79</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">525.6</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT1H31M49S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>Z860</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="OGARA"/>
+        </fx:element>
+        <fx:element seqNum="34">
+            <fx:alongRouteDistance uom="KM">1676.629</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>52.968333333333334 31.35972222222222</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">350.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-56.9</fx:temperature>
+                    <fx:windDirection uom="DEG">204.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">11.3</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">525.6</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT1H50M12S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeChange xsi:type="fx:SpeedChangeType" seqNum="0">
+                <fx:speed uom="KM_H">880.0</fx:speed>
+            </fx:routeChange>
+            <fx:routeChange xsi:type="fx:LevelChangeType" seqNum="1">
+                <fx:level>
+                    <fb:flightLevel uom="FL">350.0</fb:flightLevel>
+                </fx:level>
+            </fx:routeChange>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B365</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="TOBLO"/>
+        </fx:element>
+        <fx:element seqNum="35">
+            <fx:alongRouteDistance uom="KM">1746.358</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>53.01638888888889 32.39805555555556</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">350.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-57.4</fx:temperature>
+                    <fx:windDirection uom="DEG">195.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">14.61</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">525.24</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT1H54M52S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B365</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="GIBRA"/>
+        </fx:element>
+        <fx:element seqNum="36">
+            <fx:alongRouteDistance uom="KM">1798.653</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>53.10472222222222 33.16638888888889</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">350.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-57.5</fx:temperature>
+                    <fx:windDirection uom="DEG">192.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">15.88</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">524.8800000000001</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT1H58M20S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B365</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="LETRU"/>
+        </fx:element>
+        <fx:element seqNum="37">
+            <fx:alongRouteDistance uom="KM">1867.087</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>53.213055555555556 34.17638888888889</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">350.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-57.4</fx:temperature>
+                    <fx:windDirection uom="DEG">189.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">16.74</fx:windSpeed>
+                </fx:metData>
+                <fx:pointProperty propertyType="TOP_OF_DESCENT"/>
+                <fx:pointProperty propertyType="TCP_ALTITUDE"/>
+                <fx:predictedAirspeed uom="KM_H">524.8800000000001</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT2H2M54S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeChange xsi:type="fx:SpeedChangeType" seqNum="0">
+                <fx:speed uom="KM_H">865.0</fx:speed>
+            </fx:routeChange>
+            <fx:routeChange xsi:type="fx:LevelChangeType" seqNum="1">
+                <fx:level>
+                    <fb:flightLevel uom="FL">330.0</fb:flightLevel>
+                </fx:level>
+            </fx:routeChange>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B365</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="BANIP"/>
+        </fx:element>
+        <fx:element seqNum="38">
+            <fx:alongRouteDistance uom="KM">1877.56</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>53.23374722222222 34.32980555555555</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">330.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-58.3</fx:temperature>
+                    <fx:windDirection uom="DEG">188.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">22.04</fx:windSpeed>
+                </fx:metData>
+                <fx:pointProperty propertyType="TCP_ALTITUDE"/>
+                <fx:predictedAirspeed uom="KM_H">592.56</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT2H3M37S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B365</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+        </fx:element>
+        <fx:element seqNum="39">
+            <fx:alongRouteDistance uom="KM">1951.794</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>53.374722222222225 35.42138888888889</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">330.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-57.5</fx:temperature>
+                    <fx:windDirection uom="DEG">189.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">21.67</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">539.2800000000001</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT2H8M37S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B365</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="BERUN"/>
+        </fx:element>
+        <fx:element seqNum="40">
+            <fx:alongRouteDistance uom="KM">1981.247</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>53.42805555555555 35.85638888888889</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">330.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-57.6</fx:temperature>
+                    <fx:windDirection uom="DEG">189.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">21.69</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">538.92</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT2H10M36S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B365</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="RIMAK"/>
+        </fx:element>
+        <fx:element seqNum="41">
+            <fx:alongRouteDistance uom="KM">2007.706</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>53.47472222222222 36.24805555555555</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">330.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-57.7</fx:temperature>
+                    <fx:windDirection uom="DEG">190.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">21.77</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">538.92</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT2H12M23S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B365</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="UNORI"/>
+        </fx:element>
+        <fx:element seqNum="42">
+            <fx:alongRouteDistance uom="KM">2062.183</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>53.57333333333333 37.055</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">330.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-57.5</fx:temperature>
+                    <fx:windDirection uom="DEG">193.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">20.53</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">538.92</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT2H16M3S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B365</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="GD"/>
+        </fx:element>
+        <fx:element seqNum="43">
+            <fx:alongRouteDistance uom="KM">2112.114</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>53.663333333333334 37.79638888888889</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">330.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-57.2</fx:temperature>
+                    <fx:windDirection uom="DEG">196.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">19.12</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">538.56</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT2H19M24S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B365</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="GOMUR"/>
+        </fx:element>
+        <fx:element seqNum="44">
+            <fx:alongRouteDistance uom="KM">2126.528</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>53.690555555555555 38.01027777777778</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">330.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-57.1</fx:temperature>
+                    <fx:windDirection uom="DEG">198.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">18.49</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">538.2</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT2H20M22S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B365</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="UPIRA"/>
+        </fx:element>
+        <fx:element seqNum="45">
+            <fx:alongRouteDistance uom="KM">2159.071</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>53.74472222222222 38.49611111111111</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">330.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-57.1</fx:temperature>
+                    <fx:windDirection uom="DEG">200.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">16.99</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">538.2</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT2H22M33S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B365</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="US"/>
+        </fx:element>
+        <fx:element seqNum="46">
+            <fx:alongRouteDistance uom="KM">2196.366</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>53.745 39.06305555555556</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">330.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-57.0</fx:temperature>
+                    <fx:windDirection uom="DEG">204.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">14.92</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">538.92</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT2H25M4S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B365</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="AGLUR"/>
+        </fx:element>
+        <fx:element seqNum="47">
+            <fx:alongRouteDistance uom="KM">2220.713</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>53.74 39.433055555555555</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">330.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-56.6</fx:temperature>
+                    <fx:windDirection uom="DEG">207.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">13.59</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">538.56</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT2H26M43S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B365</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="NEMRI"/>
+        </fx:element>
+        <fx:element seqNum="48">
+            <fx:alongRouteDistance uom="KM">2325.417</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>53.70444444444445 41.022777777777776</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">330.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-55.9</fx:temperature>
+                    <fx:windDirection uom="DEG">225.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">10.32</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">538.56</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT2H33M47S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B365</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="GOLRI"/>
+        </fx:element>
+        <fx:element seqNum="49">
+            <fx:alongRouteDistance uom="KM">2368.769</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>53.680277777777775 41.679722222222225</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">330.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-55.5</fx:temperature>
+                    <fx:windDirection uom="DEG">230.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">10.09</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">538.2</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT2H36M41S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B365</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="AL"/>
+        </fx:element>
+        <fx:element seqNum="50">
+            <fx:alongRouteDistance uom="KM">2433.775</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>53.65 42.664722222222224</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">330.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-55.3</fx:temperature>
+                    <fx:windDirection uom="DEG">234.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">9.84</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">537.84</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT2H41M3S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B365</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="DIGUS"/>
+        </fx:element>
+        <fx:element seqNum="51">
+            <fx:alongRouteDistance uom="KM">2529.609</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>53.6 44.115</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">330.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-54.7</fx:temperature>
+                    <fx:windDirection uom="DEG">236.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">7.83</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">537.84</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT2H47M29S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B365</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="SORUB"/>
+        </fx:element>
+        <fx:element seqNum="52">
+            <fx:alongRouteDistance uom="KM">2601.243</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>53.56666666666667 45.19833333333333</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">330.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-54.4</fx:temperature>
+                    <fx:windDirection uom="DEG">229.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">7.23</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">537.84</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT2H52M19S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B923</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="OLUPI"/>
+        </fx:element>
+        <fx:element seqNum="53">
+            <fx:alongRouteDistance uom="KM">2679.721</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>53.29333333333334 46.29</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">330.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-54.3</fx:temperature>
+                    <fx:windDirection uom="DEG">236.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">7.39</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">538.2</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT2H57M39S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B923</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="REGDA"/>
+        </fx:element>
+        <fx:element seqNum="54">
+            <fx:alongRouteDistance uom="KM">2764.893</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>52.985 47.458333333333336</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">330.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-54.1</fx:temperature>
+                    <fx:windDirection uom="DEG">243.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">7.61</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">537.84</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT3H3M25S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B923</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="MEGAP"/>
+        </fx:element>
+        <fx:element seqNum="55">
+            <fx:alongRouteDistance uom="KM">2844.978</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>52.685 48.541666666666664</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">330.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-53.8</fx:temperature>
+                    <fx:windDirection uom="DEG">255.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">8.45</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">537.12</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT3H8M49S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B923</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="LEBAT"/>
+        </fx:element>
+        <fx:element seqNum="56">
+            <fx:alongRouteDistance uom="KM">2915.553</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>52.415 49.48583333333333</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">330.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-53.4</fx:temperature>
+                    <fx:windDirection uom="DEG">256.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">8.85</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">536.76</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT3H13M33S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B923</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="TADUR"/>
+        </fx:element>
+        <fx:element seqNum="57">
+            <fx:alongRouteDistance uom="KM">2992.44</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>52.111666666666665 50.50055555555556</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">330.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-53.4</fx:temperature>
+                    <fx:windDirection uom="DEG">260.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">9.72</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">536.4</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT3H18M42S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B923</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="PENIR"/>
+        </fx:element>
+        <fx:element seqNum="58">
+            <fx:alongRouteDistance uom="KM">3099.549</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>51.67472222222222 51.89083333333333</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">330.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-53.2</fx:temperature>
+                    <fx:windDirection uom="DEG">269.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">11.95</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">536.0400000000001</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT3H25M50S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B142</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="BEKAS"/>
+        </fx:element>
+        <fx:element seqNum="59">
+            <fx:alongRouteDistance uom="KM">3136.942</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>51.46666666666667 52.315555555555555</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">330.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-53.0</fx:temperature>
+                    <fx:windDirection uom="DEG">272.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">13.24</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">535.3199999999999</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT3H28M19S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B142</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="INRIS"/>
+        </fx:element>
+        <fx:element seqNum="60">
+            <fx:alongRouteDistance uom="KM">3340.701</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>50.3075 54.56361111111111</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">330.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-52.6</fx:temperature>
+                    <fx:windDirection uom="DEG">278.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">17.77</fx:windSpeed>
+                </fx:metData>
+                <fx:pointProperty propertyType="TCP_ALTITUDE"/>
+                <fx:predictedAirspeed uom="KM_H">534.6</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT3H41M41S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeChange xsi:type="fx:SpeedChangeType" seqNum="0">
+                <fx:speed uom="KM_H">898.0</fx:speed>
+            </fx:routeChange>
+            <fx:routeChange xsi:type="fx:LevelChangeType" seqNum="1">
+                <fx:level>
+                    <fb:flightLevel uom="FL">390.0</fb:flightLevel>
+                </fx:level>
+            </fx:routeChange>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>G3</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="SIVKO"/>
+        </fx:element>
+        <fx:element seqNum="61">
+            <fx:alongRouteDistance uom="KM">3427.017</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>50.29412777777778 55.77803611111111</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">390.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-54.4</fx:temperature>
+                    <fx:windDirection uom="DEG">274.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">19.91</fx:windSpeed>
+                </fx:metData>
+                <fx:pointProperty propertyType="TOP_OF_CLIMB"/>
+                <fx:pointProperty propertyType="TCP_ALTITUDE"/>
+                <fx:predictedAirspeed uom="KM_H">574.2</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT3H47M10S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>G3</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+        </fx:element>
+        <fx:element seqNum="62">
+            <fx:alongRouteDistance uom="KM">3447.244</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>50.28916666666667 56.0625</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">390.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-54.2</fx:temperature>
+                    <fx:windDirection uom="DEG">275.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">19.95</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">486.0</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT3H48M25S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>G3</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="LARPI"/>
+        </fx:element>
+        <fx:element seqNum="63">
+            <fx:alongRouteDistance uom="KM">3526.971</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>50.26305555555555 57.183055555555555</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">390.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-54.6</fx:temperature>
+                    <fx:windDirection uom="DEG">276.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">20.72</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">486.0</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT3H53M21S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>A360</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="AKB"/>
+        </fx:element>
+        <fx:element seqNum="64">
+            <fx:alongRouteDistance uom="KM">3608.427</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>50.17583333333334 58.31916666666667</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">390.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-55.0</fx:temperature>
+                    <fx:windDirection uom="DEG">277.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">21.43</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">486.0</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT3H58M22S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>A360</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="OMITO"/>
+        </fx:element>
+        <fx:element seqNum="65">
+            <fx:alongRouteDistance uom="KM">3685.794</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>50.08277777777778 59.39416666666666</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">390.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-54.8</fx:temperature>
+                    <fx:windDirection uom="DEG">279.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">21.79</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">485.64000000000004</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT4H3M8S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>A360</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="DINLA"/>
+        </fx:element>
+        <fx:element seqNum="66">
+            <fx:alongRouteDistance uom="KM">3734.012</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>50.01972222222222 60.06194444444444</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">390.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-54.8</fx:temperature>
+                    <fx:windDirection uom="DEG">281.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">21.89</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">485.64000000000004</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT4H6M6S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>A360</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="KESOT"/>
+        </fx:element>
+        <fx:element seqNum="67">
+            <fx:alongRouteDistance uom="KM">3912.246</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>49.75361111111111 62.513888888888886</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">390.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-55.1</fx:temperature>
+                    <fx:windDirection uom="DEG">285.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">21.57</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">485.64000000000004</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT4H17M5S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>A360</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="BEKOR"/>
+        </fx:element>
+        <fx:element seqNum="68">
+            <fx:alongRouteDistance uom="KM">3983.289</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>49.63333333333333 63.483333333333334</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">390.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-55.6</fx:temperature>
+                    <fx:windDirection uom="DEG">285.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">21.62</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">485.28000000000003</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT4H21M28S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>A360</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="TIBDA"/>
+        </fx:element>
+        <fx:element seqNum="69">
+            <fx:alongRouteDistance uom="KM">4094.76</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>49.34583333333333 64.96083333333333</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">390.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-56.2</fx:temperature>
+                    <fx:windDirection uom="DEG">287.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">21.56</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">485.28000000000003</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT4H28M21S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>A360</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="ARBIM"/>
+        </fx:element>
+        <fx:element seqNum="70">
+            <fx:alongRouteDistance uom="KM">4242.324</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>48.93638888888889 66.88916666666667</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">390.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-56.9</fx:temperature>
+                    <fx:windDirection uom="DEG">287.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">21.3</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">485.28000000000003</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT4H37M29S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>A360</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="UMDEM"/>
+        </fx:element>
+        <fx:element seqNum="71">
+            <fx:alongRouteDistance uom="KM">4283.031</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>48.81805555555555 67.41555555555556</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">390.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-57.7</fx:temperature>
+                    <fx:windDirection uom="DEG">287.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">21.16</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">484.91999999999996</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT4H40M1S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>A360</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="GORIM"/>
+        </fx:element>
+        <fx:element seqNum="72">
+            <fx:alongRouteDistance uom="KM">4353.649</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>48.60666666666667 68.3225</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">390.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-58.2</fx:temperature>
+                    <fx:windDirection uom="DEG">287.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">21.5</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">484.91999999999996</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT4H44M24S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>A360</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="AKITU"/>
+        </fx:element>
+        <fx:element seqNum="73">
+            <fx:alongRouteDistance uom="KM">4376.073</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>48.53805555555556 68.60888888888888</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">390.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-58.4</fx:temperature>
+                    <fx:windDirection uom="DEG">287.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">21.59</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">484.91999999999996</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT4H45M48S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>A360</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="MAKUT"/>
+        </fx:element>
+        <fx:element seqNum="74">
+            <fx:alongRouteDistance uom="KM">4438.707</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>48.342777777777776 69.40472222222222</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">390.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-58.5</fx:temperature>
+                    <fx:windDirection uom="DEG">287.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">21.89</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">484.91999999999996</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT4H49M41S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>A360</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="DITKI"/>
+        </fx:element>
+        <fx:element seqNum="75">
+            <fx:alongRouteDistance uom="KM">4549.715</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>47.983333333333334 70.8</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">390.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-58.7</fx:temperature>
+                    <fx:windDirection uom="DEG">287.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">21.91</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">484.56</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT4H56M35S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>A360</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="KUROL"/>
+        </fx:element>
+        <fx:element seqNum="76">
+            <fx:alongRouteDistance uom="KM">4631.324</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>47.73111111111111 71.82638888888889</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">390.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-59.2</fx:temperature>
+                    <fx:windDirection uom="DEG">286.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">21.45</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">484.56</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT5H1M40S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>A360</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="AGAKO"/>
+        </fx:element>
+        <fx:element seqNum="77">
+            <fx:alongRouteDistance uom="KM">4745.809</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>47.36194444444445 73.24916666666667</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">390.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-59.8</fx:temperature>
+                    <fx:windDirection uom="DEG">282.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">21.89</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">484.56</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT5H8M49S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>A360</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="TOGDI"/>
+        </fx:element>
+        <fx:element seqNum="78">
+            <fx:alongRouteDistance uom="KM">4807.59</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>47.15555555555556 74.00861111111111</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">390.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-60.4</fx:temperature>
+                    <fx:windDirection uom="DEG">281.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">22.46</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">484.2</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT5H12M40S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>A360</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="NEPLA"/>
+        </fx:element>
+        <fx:element seqNum="79">
+            <fx:alongRouteDistance uom="KM">4887.408</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>46.881388888888885 74.98083333333334</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">390.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-60.7</fx:temperature>
+                    <fx:windDirection uom="DEG">280.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">23.11</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">484.2</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT5H17M39S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>A110</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="BLH"/>
+        </fx:element>
+        <fx:element seqNum="80">
+            <fx:alongRouteDistance uom="KM">4977.863</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>46.411944444444444 75.9475</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">390.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-61.2</fx:temperature>
+                    <fx:windDirection uom="DEG">280.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">23.49</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">484.2</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT5H23M19S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>A110</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="LASDO"/>
+        </fx:element>
+        <fx:element seqNum="81">
+            <fx:alongRouteDistance uom="KM">5016.433</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>46.20944444444444 76.35472222222222</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">390.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-61.6</fx:temperature>
+                    <fx:windDirection uom="DEG">280.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">23.61</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">483.84000000000003</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT5H25M44S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>A110</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="EROMI"/>
+        </fx:element>
+        <fx:element seqNum="82">
+            <fx:alongRouteDistance uom="KM">5078.336</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>45.88111111111111 77.00166666666667</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">390.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-61.6</fx:temperature>
+                    <fx:windDirection uom="DEG">279.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">22.66</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">483.84000000000003</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT5H29M38S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>A110</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="UDEKA"/>
+        </fx:element>
+        <fx:element seqNum="83">
+            <fx:alongRouteDistance uom="KM">5107.906</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>45.723055555555554 77.30805555555555</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">390.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-61.5</fx:temperature>
+                    <fx:windDirection uom="DEG">279.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">22.24</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">483.84000000000003</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT5H31M30S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>A110</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="AKIRA"/>
+        </fx:element>
+        <fx:element seqNum="84">
+            <fx:alongRouteDistance uom="KM">5155.87</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>45.465 77.8013888888889</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">390.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-61.5</fx:temperature>
+                    <fx:windDirection uom="DEG">279.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">21.9</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">483.84000000000003</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT5H34M32S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>A110</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="KONAT"/>
+        </fx:element>
+        <fx:element seqNum="85">
+            <fx:alongRouteDistance uom="KM">5219.244</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>45.10619444444445 78.42988888888888</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">390.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-61.8</fx:temperature>
+                    <fx:windDirection uom="DEG">278.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">21.55</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">483.84000000000003</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT5H38M33S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>A124</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="TDK"/>
+        </fx:element>
+        <fx:element seqNum="86">
+            <fx:alongRouteDistance uom="KM">5261.37</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>44.85638888888889 78.83194444444445</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">390.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-62.0</fx:temperature>
+                    <fx:windDirection uom="DEG">278.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">21.12</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">483.84000000000003</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT5H41M14S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>A124</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="ATPOR"/>
+        </fx:element>
+        <fx:element seqNum="87">
+            <fx:alongRouteDistance uom="KM">5312.5</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>44.53527777777778 79.29416666666667</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">390.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-62.1</fx:temperature>
+                    <fx:windDirection uom="DEG">278.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">20.1</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">484.2</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT5H44M30S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>A124</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="BARUR"/>
+        </fx:element>
+        <fx:element seqNum="88">
+            <fx:alongRouteDistance uom="KM">5382.775</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>44.09111111111111 79.92138888888888</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">390.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-62.2</fx:temperature>
+                    <fx:windDirection uom="DEG">279.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">18.35</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">484.2</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT5H49M1S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>A124</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="LAGUK"/>
+        </fx:element>
+        <fx:element seqNum="89">
+            <fx:alongRouteDistance uom="KM">5475.381</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>43.500277777777775 80.73305555555555</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">390.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-62.3</fx:temperature>
+                    <fx:windDirection uom="DEG">277.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">16.42</fx:windSpeed>
+                </fx:metData>
+                <fx:pointProperty propertyType="TCP_ALTITUDE"/>
+                <fx:predictedAirspeed uom="KM_H">484.2</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT5H55M0S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeChange xsi:type="fx:SpeedChangeType" seqNum="0">
+                <fx:speed uom="KM_H">878.0</fx:speed>
+            </fx:routeChange>
+            <fx:routeChange xsi:type="fx:LevelChangeType" seqNum="1">
+                <fx:level>
+                    <fb:flightLevel uom="SM">1190.0</fb:flightLevel>
+                </fx:level>
+            </fx:routeChange>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>A460</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="RULAD"/>
+        </fx:element>
+        <fx:element seqNum="90">
+            <fx:alongRouteDistance uom="KM">5476.189</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>43.49493611111111 80.73983055555556</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">390.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-62.6</fx:temperature>
+                    <fx:windDirection uom="DEG">277.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">16.42</fx:windSpeed>
+                </fx:metData>
+                <fx:pointProperty propertyType="TOP_OF_CLIMB"/>
+                <fx:pointProperty propertyType="TCP_ALTITUDE"/>
+                <fx:predictedAirspeed uom="KM_H">574.2</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT5H55M3S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>A460</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+        </fx:element>
+        <fx:element seqNum="91">
+            <fx:alongRouteDistance uom="KM">5597.026</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>42.69166666666667 81.74</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">390.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-62.6</fx:temperature>
+                    <fx:windDirection uom="DEG">274.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">14.4</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">483.84000000000003</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT6H2M57S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>A460</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="XITUP"/>
+        </fx:element>
+        <fx:element seqNum="92">
+            <fx:alongRouteDistance uom="KM">5747.11</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>41.715 82.995</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">390.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-62.2</fx:temperature>
+                    <fx:windDirection uom="DEG">269.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">14.75</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">483.84000000000003</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT6H12M47S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>L888</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="KCA"/>
+        </fx:element>
+        <fx:element seqNum="93">
+            <fx:alongRouteDistance uom="KM">6058.84</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>40.07666666666667 86.0</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">390.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-63.1</fx:temperature>
+                    <fx:windDirection uom="DEG">268.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">18.67</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">483.11999999999995</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT6H33M3S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>L888</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="SADAN"/>
+        </fx:element>
+        <fx:element seqNum="94">
+            <fx:alongRouteDistance uom="KM">6345.778</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>38.575 88.70833333333333</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">390.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-63.9</fx:temperature>
+                    <fx:windDirection uom="DEG">274.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">22.04</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">482.76</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT6H51M33S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>L888</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="NOLEP"/>
+        </fx:element>
+        <fx:element seqNum="95">
+            <fx:alongRouteDistance uom="KM">6504.047</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>37.75833333333333 90.18833333333333</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">390.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-63.9</fx:temperature>
+                    <fx:windDirection uom="DEG">277.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">22.79</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">482.04</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT7H1M37S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>L888</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="TONAX"/>
+        </fx:element>
+        <fx:element seqNum="96">
+            <fx:alongRouteDistance uom="KM">6840.302</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>36.0 93.25833333333334</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">390.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-62.2</fx:temperature>
+                    <fx:windDirection uom="DEG">271.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">23.44</fx:windSpeed>
+                </fx:metData>
+                <fx:pointProperty propertyType="TCP_ALTITUDE"/>
+                <fx:predictedAirspeed uom="KM_H">482.04</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT7H22M57S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeChange xsi:type="fx:SpeedChangeType" seqNum="0">
+                <fx:speed uom="KM_H">882.0</fx:speed>
+            </fx:routeChange>
+            <fx:routeChange xsi:type="fx:LevelChangeType" seqNum="1">
+                <fx:level>
+                    <fb:flightLevel uom="SM">1250.0</fb:flightLevel>
+                </fx:level>
+            </fx:routeChange>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>L888</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="LEBAK"/>
+        </fx:element>
+        <fx:element seqNum="97">
+            <fx:alongRouteDistance uom="KM">6878.329</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>35.80226944444444 93.60208055555556</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">410.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-61.7</fx:temperature>
+                    <fx:windDirection uom="DEG">270.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">21.41</fx:windSpeed>
+                </fx:metData>
+                <fx:pointProperty propertyType="TOP_OF_CLIMB"/>
+                <fx:pointProperty propertyType="TCP_ALTITUDE"/>
+                <fx:predictedAirspeed uom="KM_H">574.2</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT7H25M25S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>L888</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+        </fx:element>
+        <fx:element seqNum="98">
+            <fx:alongRouteDistance uom="KM">6945.303</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>35.45166666666667 94.20333333333333</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">410.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-62.2</fx:temperature>
+                    <fx:windDirection uom="DEG">270.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">23.05</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">464.40000000000003</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT7H29M40S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>L888</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="TEMOL"/>
+        </fx:element>
+        <fx:element seqNum="99">
+            <fx:alongRouteDistance uom="KM">7203.167</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>34.108333333333334 96.5</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">410.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-62.6</fx:temperature>
+                    <fx:windDirection uom="DEG">271.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">33.65</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">464.04</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT7H45M45S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>L888</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="MUMAN"/>
+        </fx:element>
+        <fx:element seqNum="100">
+            <fx:alongRouteDistance uom="KM">7489.913</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>32.60166666666667 99.0</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">410.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-62.0</fx:temperature>
+                    <fx:windDirection uom="DEG">277.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">43.63</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">462.96</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT8H3M0S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>L888</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="LUVAR"/>
+        </fx:element>
+        <fx:element seqNum="101">
+            <fx:alongRouteDistance uom="KM">7605.461</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>32.0 100.0</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">410.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-61.4</fx:temperature>
+                    <fx:windDirection uom="DEG">278.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">43.91</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">462.6</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT8H9M48S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>L888</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="SANLI"/>
+        </fx:element>
+        <fx:element seqNum="102">
+            <fx:alongRouteDistance uom="KM">7724.819</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>30.928333333333335 100.0</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">410.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-60.1</fx:temperature>
+                    <fx:windDirection uom="DEG">274.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">45.49</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">464.40000000000003</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT8H17M51S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B213</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="PEXUN"/>
+        </fx:element>
+        <fx:element seqNum="103">
+            <fx:alongRouteDistance uom="KM">7907.518</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>30.783333333333335 101.90333333333334</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">410.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-59.7</fx:temperature>
+                    <fx:windDirection uom="DEG">277.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">44.39</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">461.88000000000005</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT8H28M21S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B213</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="KAMAX"/>
+        </fx:element>
+        <fx:element seqNum="104">
+            <fx:alongRouteDistance uom="KM">8008.955</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>30.698333333333334 102.95833333333333</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">410.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-59.9</fx:temperature>
+                    <fx:windDirection uom="DEG">278.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">45.24</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">461.88000000000005</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT8H34M11S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B213</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="MIKOS"/>
+        </fx:element>
+        <fx:element seqNum="105">
+            <fx:alongRouteDistance uom="KM">8078.98</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>30.645 103.68666666666667</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">410.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-60.1</fx:temperature>
+                    <fx:windDirection uom="DEG">279.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">45.82</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">461.52</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT8H38M12S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B213</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="CZH"/>
+        </fx:element>
+        <fx:element seqNum="106">
+            <fx:alongRouteDistance uom="KM">8104.847</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>30.573333333333334 103.94333333333333</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">410.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-60.1</fx:temperature>
+                    <fx:windDirection uom="DEG">279.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">46.11</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">461.52</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT8H39M41S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B213</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="CTU"/>
+        </fx:element>
+        <fx:element seqNum="107">
+            <fx:alongRouteDistance uom="KM">8157.552</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>30.606666666666666 104.49166666666666</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">410.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-60.1</fx:temperature>
+                    <fx:windDirection uom="DEG">280.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">46.11</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">461.52</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT8H42M43S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B330</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="WFX"/>
+        </fx:element>
+        <fx:element seqNum="108">
+            <fx:alongRouteDistance uom="KM">8214.775</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>30.118333333333332 104.67666666666666</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">410.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-59.9</fx:temperature>
+                    <fx:windDirection uom="DEG">279.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">47.25</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">462.6</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT8H46M20S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B330</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="ZYG"/>
+        </fx:element>
+        <fx:element seqNum="109">
+            <fx:alongRouteDistance uom="KM">8443.35</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>28.171666666666667 105.42</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">410.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-59.8</fx:temperature>
+                    <fx:windDirection uom="DEG">280.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">56.23</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">462.6</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT9H0M41S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B330</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="XYO"/>
+        </fx:element>
+        <fx:element seqNum="110">
+            <fx:alongRouteDistance uom="KM">8464.559</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>28.0 105.51333333333334</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">410.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-59.9</fx:temperature>
+                    <fx:windDirection uom="DEG">280.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">56.11</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">461.88000000000005</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT9H1M58S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B330</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="UKEGO"/>
+        </fx:element>
+        <fx:element seqNum="111">
+            <fx:alongRouteDistance uom="KM">8504.084</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>27.68 105.68666666666667</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">410.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-59.9</fx:temperature>
+                    <fx:windDirection uom="DEG">280.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">55.95</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">461.88000000000005</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT9H4M23S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B330</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="IDSEG"/>
+        </fx:element>
+        <fx:element seqNum="112">
+            <fx:alongRouteDistance uom="KM">8582.89</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>27.041666666666668 106.03</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">410.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-59.8</fx:temperature>
+                    <fx:windDirection uom="DEG">280.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">54.32</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">461.88000000000005</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT9H9M11S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B330</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="QNX"/>
+        </fx:element>
+        <fx:element seqNum="113">
+            <fx:alongRouteDistance uom="KM">8678.401</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>26.523333333333333 106.795</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">410.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-59.8</fx:temperature>
+                    <fx:windDirection uom="DEG">279.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">53.0</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">460.8</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT9H14M39S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B330</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="KWE"/>
+        </fx:element>
+        <fx:element seqNum="114">
+            <fx:alongRouteDistance uom="KM">8703.933</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>26.456666666666667 107.04</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">410.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-59.8</fx:temperature>
+                    <fx:windDirection uom="DEG">279.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">52.9</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">460.8</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT9H16M5S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B330</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="KAGRA"/>
+        </fx:element>
+        <fx:element seqNum="115">
+            <fx:alongRouteDistance uom="KM">8791.352</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>26.235 107.88</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">410.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-59.6</fx:temperature>
+                    <fx:windDirection uom="DEG">278.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">52.11</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">460.44000000000005</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT9H20M59S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B330</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="ESNIB"/>
+        </fx:element>
+        <fx:element seqNum="116">
+            <fx:alongRouteDistance uom="KM">8845.262</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>26.096666666666668 108.39666666666666</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">410.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-59.4</fx:temperature>
+                    <fx:windDirection uom="DEG">278.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">51.06</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">460.44000000000005</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT9H24M2S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B330</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="ELKAL"/>
+        </fx:element>
+        <fx:element seqNum="117">
+            <fx:alongRouteDistance uom="KM">8971.938</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>25.776666666666667 109.61</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">410.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-59.3</fx:temperature>
+                    <fx:windDirection uom="DEG">279.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">48.83</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">460.44000000000005</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT9H31M12S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B330</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="SJG"/>
+        </fx:element>
+        <fx:element seqNum="118">
+            <fx:alongRouteDistance uom="KM">9059.785</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>25.205 110.21166666666667</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">410.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-59.3</fx:temperature>
+                    <fx:windDirection uom="DEG">278.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">45.66</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">461.15999999999997</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT9H36M25S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B330</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="MAMSI"/>
+        </fx:element>
+        <fx:element seqNum="119">
+            <fx:alongRouteDistance uom="KM">9142.311</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>24.67 110.77666666666667</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">410.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-59.2</fx:temperature>
+                    <fx:windDirection uom="DEG">276.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">41.98</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">461.15999999999997</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT9H41M22S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B330</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="QP"/>
+        </fx:element>
+        <fx:element seqNum="120">
+            <fx:alongRouteDistance uom="KM">9213.938</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>24.21 111.27</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">410.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-59.2</fx:temperature>
+                    <fx:windDirection uom="DEG">273.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">38.84</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">461.15999999999997</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT9H45M43S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B330</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="MUBEL"/>
+        </fx:element>
+        <fx:element seqNum="121">
+            <fx:alongRouteDistance uom="KM">9391.57</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>23.07 112.48666666666666</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">410.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-59.4</fx:temperature>
+                    <fx:windDirection uom="DEG">269.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">32.38</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">461.52</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT9H56M42S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B330</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="GYA"/>
+        </fx:element>
+        <fx:element seqNum="122">
+            <fx:alongRouteDistance uom="KM">9447.996</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>23.032552777777777 113.03553333333333</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">410.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-59.5</fx:temperature>
+                    <fx:windDirection uom="DEG">268.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">32.36</fx:windSpeed>
+                </fx:metData>
+                <fx:pointProperty propertyType="TOP_OF_DESCENT"/>
+                <fx:pointProperty propertyType="TCP_ALTITUDE"/>
+                <fx:predictedAirspeed uom="KM_H">460.8</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT10H0M6S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>B330</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+        </fx:element>
+        <fx:element seqNum="123">
+            <fx:alongRouteDistance uom="KM">9463.882</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>23.02166666666667 113.19</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="FL">387.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-55.9</fx:temperature>
+                    <fx:windDirection uom="DEG">271.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">32.27</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">592.56</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT10H1M3S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>R473</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="POU"/>
+        </fx:element>
+        <fx:element seqNum="124">
+            <fx:alongRouteDistance uom="KM">9510.306</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>22.625 113.32833333333333</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="SM">924.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-42.5</fx:temperature>
+                    <fx:windDirection uom="DEG">280.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">27.07</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">592.56</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT10H4M0S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>R473</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="VIBOS"/>
+        </fx:element>
+        <fx:element seqNum="125">
+            <fx:alongRouteDistance uom="KM">9557.451</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>22.221666666666668 113.46666666666667</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="SM">677.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-20.3</fx:temperature>
+                    <fx:windDirection uom="DEG">276.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">19.43</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">592.56</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT10H7M6S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:routeDesignator>R473</fx:routeDesignator>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="ZUH"/>
+        </fx:element>
+        <fx:element seqNum="126">
+            <fx:alongRouteDistance uom="KM">9585.298</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>21.985 113.55333333333333</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="SM">529.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">-8.3</fx:temperature>
+                    <fx:windDirection uom="DEG">274.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">17.08</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">592.56</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT10H9M6S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:standardInstrumentArrival>SIERA7A</fx:standardInstrumentArrival>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="SIERA"/>
+        </fx:element>
+        <fx:element seqNum="127">
+            <fx:alongRouteDistance uom="KM">9625.793</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>21.650730555555555 113.70696944444444</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="SM">328.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">1.3</fx:temperature>
+                    <fx:windDirection uom="DEG">273.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">10.95</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">592.56</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT10H12M20S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:standardInstrumentArrival>SIERA7A</fx:standardInstrumentArrival>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="CANTO"/>
+        </fx:element>
+        <fx:element seqNum="128">
+            <fx:alongRouteDistance uom="KM">9641.915</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>21.757844444444444 113.81166666666667</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="SM">295.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">8.3</fx:temperature>
+                    <fx:windDirection uom="DEG">273.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">10.14</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">592.56</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT10H13M49S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:standardInstrumentArrival>SIERA7A</fx:standardInstrumentArrival>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="MURRY"/>
+        </fx:element>
+        <fx:element seqNum="129">
+            <fx:alongRouteDistance uom="KM">9655.962</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>21.851194444444445 113.90292777777778</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="SM">235.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">11.0</fx:temperature>
+                    <fx:windDirection uom="DEG">271.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">7.69</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">592.56</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT10H15M20S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:standardInstrumentArrival>SIERA7A</fx:standardInstrumentArrival>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="SILVA"/>
+        </fx:element>
+        <fx:element seqNum="130">
+            <fx:alongRouteDistance uom="KM">9687.357</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>22.107044444444444 113.77565555555556</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="SM">93.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">17.2</fx:temperature>
+                    <fx:windDirection uom="DEG">268.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">3.82</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">592.56</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT10H19M4S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:standardInstrumentArrival>SIERA7A</fx:standardInstrumentArrival>
+            </fx:routeDesignatorToNextElement>
+            <fx:routePoint xsi:type="fb:DesignatedPointOrNavaidType" designator="LIMES"/>
+        </fx:element>
+        <fx:element seqNum="131">
+            <fx:alongRouteDistance uom="KM">9687.621</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>22.108483333333332 113.77664166666666</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="SM">92.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">21.1</fx:temperature>
+                    <fx:windDirection uom="DEG">268.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">3.81</fx:windSpeed>
+                </fx:metData>
+                <fx:pointProperty propertyType="TCP_ALTITUDE"/>
+                <fx:predictedAirspeed uom="KM_H">592.56</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT10H19M6S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+            <fx:routeDesignatorToNextElement>
+                <fx:standardInstrumentArrival>SIERA7A</fx:standardInstrumentArrival>
+            </fx:routeDesignatorToNextElement>
+        </fx:element>
+        <fx:element seqNum="132">
+            <fx:alongRouteDistance uom="KM">9724.397</fx:alongRouteDistance>
+            <fx:point4D srsName="urn:ogc:def:crs:EPSG::4326">
+                <fb:pos>22.308888888888887 113.91472222222222</fb:pos>
+                <fx:level>
+                    <fb:flightLevel uom="SM">1.0</fb:flightLevel>
+                </fx:level>
+                <fx:metData>
+                    <fx:temperature uom="C">24.4</fx:temperature>
+                    <fx:windDirection uom="DEG">239.0</fx:windDirection>
+                    <fx:windSpeed uom="M_SEC">2.28</fx:windSpeed>
+                </fx:metData>
+                <fx:predictedAirspeed uom="KM_H">592.56</fx:predictedAirspeed>
+                <fx:time>
+                    <fx:relativeTimeFromInitialPredictionPoint>P0Y0M0DT10H25M6S
+                    </fx:relativeTimeFromInitialPredictionPoint>
+                </fx:time>
+            </fx:point4D>
+        </fx:element>
+        <fx:routeInformation flightRulesCategory="I"
+                             routeText="SULUS8G SULUS UZ650 ERETO UZ715 KULOK UL984 OKG L984 DOPOV T46 DOKEL N871 POLON Z169 GERVI P851 ABERO/K0887F350 P851 RAVOK Z860 TOBLO/K0880F350 B365 BANIP/K0865F330 B365 OLUPI B923 BEKAS B142 SIVKO/K0898F390 G3 AKB A360 BLH A110 TDK A124 RULAD/K0878S1190 A460 KCA L888 LEBAK/K0882S1250 L888 PEXUN B213 WFX B330 POU R473 SIERA"
+                             totalEstimatedElapsedTime="P0Y0M0DT10H15M0S">
+            <fx:cruisingLevel>
+                <fb:flightLevel uom="FL">350.0</fb:flightLevel>
+            </fx:cruisingLevel>
+            <fx:cruisingSpeed uom="KT">491.0</fx:cruisingSpeed>
+        </fx:routeInformation>
+        <fx:takeoffWeight uom="KG">458849.0</fx:takeoffWeight>
+    </fx:filed>
+    <fx:flightIdentification aircraftIdentification="DLH796"/>
+    <fx:gufi codeSpace="urn:uuid">a2e8be28-e1d5-4089-b95a-057226c49990</fx:gufi>
+    <fx:operator designatorIcao="DLH"/>
+</fx:Flight>

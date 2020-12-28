@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<atmb:messageCollection xmlns:xlink="http://www.w3.org/1999/xlink"
+                        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                        xmlns:fb="http://www.fixm.aero/base/4.2"
+                        xmlns:fx="http://www.fixm.aero/flight/4.2"
+                        xmlns:atmb="http://www.atmb.aero/4.2"
+                        xsi:schemaLocation="http://www.fixm.aero/base/4.2 ../../../core/base/Base.xsd
+          http://www.fixm.aero/flight/4.2 ../../../core/flight/Flight.xsd
+          http://www.atmb.aero/4.2 ../Atmb.xsd">
+    <atmb:message>
+        <atmb:payload>
+            <atmb:flight>
+                <atmb:aircraft>
+                    <atmb:aircraftAddress>79A060</atmb:aircraftAddress>
+                    <atmb:aircraftType>
+                        <fx:numberOfAircraft>1</fx:numberOfAircraft>
+                        <fx:type>
+                            <fx:icaoAircraftTypeDesignator>A320</fx:icaoAircraftTypeDesignator>
+                        </fx:type>
+                    </atmb:aircraftType>
+                    <atmb:capabilities>
+                        <fx:communication>
+                            <fx:communicationCapabilityCode>E2 E3 H V</fx:communicationCapabilityCode>
+                            <fx:selectiveCallingCode>CFRS</fx:selectiveCallingCode>
+                        </fx:communication>
+                        <fx:navigation>
+                            <fx:navigationCapabilityCode>F G I O L W</fx:navigationCapabilityCode>
+                            <fx:performanceBasedCode>A1 B2 C1 D1 L1 O2 S2</fx:performanceBasedCode>
+                        </fx:navigation>
+                        <fx:surveillance>
+                            <fx:surveillanceCapabilityCode>B1 L S</fx:surveillanceCapabilityCode>
+                        </fx:surveillance>
+                    </atmb:capabilities>
+
+                    <atmb:registration>B6011</atmb:registration>
+                    <atmb:wakeTurbulence>M</atmb:wakeTurbulence>
+
+                </atmb:aircraft>
+                <atmb:atcPhase>CONTROL</atmb:atcPhase>
+                <atmb:arrival>
+                    <atmb:timeOfArrival estimated="2018-11-23T10:09:00Z"/>
+                    <atmb:destinationAerodrome>
+                        <fb:locationIndicator>ZUCK</fb:locationIndicator>
+                    </atmb:destinationAerodrome>
+                    <atmb:destinationAerodromeAlternate>
+                        <fb:locationIndicator>ZUUU</fb:locationIndicator>
+                    </atmb:destinationAerodromeAlternate>
+                </atmb:arrival>
+                <atmb:departure>
+                    <atmb:timeOfDeparture actual="2018-11-23T07:48:00Z"/>
+                    <atmb:aerodrome>
+                        <fb:locationIndicator>ZSNB</fb:locationIndicator>
+                    </atmb:aerodrome>
+                    <atmb:offBlockTime estimated="2018-11-23T07:10:00Z"/>
+                </atmb:departure>
+                <atmb:enRoute>
+                    <atmb:boundaryCrossingCoordination>
+                        <atmb:requestLevel>
+                            <fb:flightLevel uom="SM">0980</fb:flightLevel>
+                        </atmb:requestLevel>
+                        <atmb:clearedLevel>
+                            <fb:flightLevel uom="SM">0840</fb:flightLevel>
+                        </atmb:clearedLevel>
+                    </atmb:boundaryCrossingCoordination>
+                    <atmb:currentModeACode>7027</atmb:currentModeACode>
+                </atmb:enRoute>
+                <atmb:atcProvider>
+                    <fb:controlSectorDesignator>AC13</fb:controlSectorDesignator>
+                </atmb:atcProvider>
+                <atmb:dateOfFlight>2018-11-23Z</atmb:dateOfFlight>
+                <atmb:flightIdentification>
+                    <fx:aircraftIdentification>CES2395</fx:aircraftIdentification>
+                </atmb:flightIdentification>
+                <atmb:flightType>S</atmb:flightType>
+                <atmb:remarks>TCAS II CAT II APPROVED</atmb:remarks>
+                <atmb:iataFlightType>WZ</atmb:iataFlightType>
+                <atmb:routeTrajectoryGroup>
+                    <fx:current>
+                        <fx:element seqNum="0">
+                            <fx:constraint>
+                                <fx:time>
+                                    <fx:condition>AT</fx:condition>
+                                    <fx:timeSpecification>
+                                        <fb:timeValue>2018-11-23T07:48:00Z</fb:timeValue>
+                                    </fx:timeSpecification>
+                                </fx:time>
+                            </fx:constraint>
+                            <fx:elementStartPoint>
+                                <fb:aerodromeReferencePoint>
+                                    <fb:locationIndicator>ZSNB</fb:locationIndicator>
+                                </fb:aerodromeReferencePoint>
+                            </fx:elementStartPoint>
+                        </fx:element>
+                        <fx:element seqNum="1">
+                            <fx:constraint>
+                                <fx:time>
+                                    <fx:condition>AT</fx:condition>
+                                    <fx:timeSpecification>
+                                        <fb:timeValue>2018-11-23T09:39:01Z</fb:timeValue>
+                                    </fx:timeSpecification>
+                                </fx:time>
+                            </fx:constraint>
+                            <fx:elementStartPoint>
+                                <fb:designatedPoint>
+                                    <fb:designator>P448</fb:designator>
+                                </fb:designatedPoint>
+                            </fx:elementStartPoint>
+                        </fx:element>
+                        <fx:element seqNum="2">
+                            <fx:constraint>
+                                <fx:time>
+                                    <fx:condition>AT</fx:condition>
+                                    <fx:timeSpecification>
+                                        <fb:timeValue>2018-11-23T09:40:53Z</fb:timeValue>
+                                    </fx:timeSpecification>
+                                </fx:time>
+                            </fx:constraint>
+                            <fx:elementStartPoint>
+                                <fb:designatedPoint>
+                                    <fb:designator>P127</fb:designator>
+                                </fb:designatedPoint>
+                            </fx:elementStartPoint>
+                        </fx:element>
+                        <fx:element seqNum="3">
+                            <fx:constraint>
+                                <fx:time>
+                                    <fx:condition>AT</fx:condition>
+                                    <fx:timeSpecification>
+                                        <fb:timeValue>2018-11-23T09:48:24Z</fb:timeValue>
+                                    </fx:timeSpecification>
+                                </fx:time>
+                            </fx:constraint>
+                            <fx:elementStartPoint>
+                                <fb:designatedPoint>
+                                    <fb:designator>SAKPU</fb:designator>
+                                </fb:designatedPoint>
+                            </fx:elementStartPoint>
+                            <fx:routeDesignatorToNextElement>
+                                <fx:standardInstrumentArrival>
+                                    <fb:designator>SAK20A</fb:designator>
+                                </fx:standardInstrumentArrival>
+                            </fx:routeDesignatorToNextElement>
+                        </fx:element>
+                        <fx:element seqNum="4">
+                            <fx:constraint>
+                                <fx:time>
+                                    <fx:condition>AT</fx:condition>
+                                    <fx:timeSpecification>
+                                        <fb:timeValue>2018-11-23T10:28:00Z</fb:timeValue>
+                                    </fx:timeSpecification>
+                                </fx:time>
+                            </fx:constraint>
+                            <fx:elementStartPoint>
+                                <fb:aerodromeReferencePoint>
+                                    <fb:locationIndicator>ZUCK</fb:locationIndicator>
+                                </fb:aerodromeReferencePoint>
+                            </fx:elementStartPoint>
+                        </fx:element>
+                        <fx:routeInformation>
+                            <fx:cruisingSpeed uom="KT">0864</fx:cruisingSpeed>
+                            <fx:estimatedElapsedTime seqNum="0">
+                                <fx:elapsedTime>PT01H15M</fx:elapsedTime>
+                                <fx:location>
+                                    <fx:region>ZGZU</fx:region>
+                                </fx:location>
+                            </fx:estimatedElapsedTime>
+                            <fx:estimatedElapsedTime seqNum="1">
+                                <fx:elapsedTime>PT02H</fx:elapsedTime>
+                                <fx:location>
+                                    <fx:region>ZPKM</fx:region>
+                                </fx:location>
+                            </fx:estimatedElapsedTime>
+                            <fx:flightRulesCategory>I</fx:flightRulesCategory>
+                            <fx:routeText>P448/H0938 P127/H0940 K0864S0840 SAKPU</fx:routeText>
+                            <fx:totalEstimatedElapsedTime>PT02H40M</fx:totalEstimatedElapsedTime>
+                        </fx:routeInformation>
+                    </fx:current>
+                </atmb:routeTrajectoryGroup>
+
+            </atmb:flight>
+        </atmb:payload>
+    </atmb:message>
+    <atmb:timestamp>2020-12-10T09:39:03Z</atmb:timestamp>
+    <atmb:type>IFPL</atmb:type>
+</atmb:messageCollection>
+

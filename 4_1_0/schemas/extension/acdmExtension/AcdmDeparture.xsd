@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:acdm="http://www.fixm.aero/ext/sesar/acdm" xmlns:fb="http://www.fixm.aero/base/2.0" xmlns:ff="http://www.fixm.aero/foundation/2.0" xmlns:fx="http://www.fixm.aero/flight/2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.fixm.aero/ext/sesar/acdm" elementFormDefault="qualified" attributeFormDefault="qualified" version="AcdmDeparture:1.0">
+	<annotation>
+		<documentation>
+Copyright (c) 2014 EUROCONTROL
+===========================================
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+  * Redistributions of source code must retain the above copyright notice, this list of conditions and the disclaimer.
+  * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the disclaimer in the documentation and/or other materials provided with the distribution.
+  * Neither the names of EUROCONTROL nor the names of their contributors may be used to endorse or promote products derived from this specification without specific prior written permission.
+
+DISCLAIMER
+
+THIS SPECIFICATION IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+==========================================
+Editorial note: this license is an instance of the BSD license template as provided by the Open Source Initiative:
+http://www.opensource.org/licenses/bsd-license.php
+
+Details on EUROCONTROL: http://www.eurocontrol.int/	
+		</documentation>
+	</annotation>
+	<annotation>
+		<documentation>
+		This schema is an extension of the "Departure" schema of the FIXM core, enriching it with more properties to cover the extension scope.		
+		</documentation>
+	</annotation>
+	<import namespace="http://www.fixm.aero/base/2.0" schemaLocation="./../core/base/Base.xsd"/>
+	<import namespace="http://www.fixm.aero/flight/2.0" schemaLocation="./../core/flight/flight/Flight.xsd"/>
+	<import namespace="http://www.fixm.aero/foundation/2.0" schemaLocation="./../core/foundation/Foundation.xsd"/>
+	<include schemaLocation="Acdm.xsd"/>
+	<complexType name="AcdmFlightDepartureType">
+		<annotation>
+			<documentation>
+				FlightDeparture extenison which allows to use dedicated properties in the scope of Airport CDM.
+			</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="fx:FlightDepartureType">
+				<sequence>
+					<element name="acdmDepartureGate" type="acdm:AcdmGateType" minOccurs="0">
+						<annotation>
+							<documentation>
+								Gate at which the passengers access for boarding.
+							</documentation>
+						</annotation>
+					</element>
+					<element name="deicingPosition" type="fb:StandPositionType" minOccurs="0">
+						<annotation>
+							<documentation>
+								Aircraft stand position at which the de-icing procedure takes place.
+							</documentation>
+						</annotation>
+					</element>
+					<element name="estimatedDeicingTime" type="ff:DurationType" minOccurs="0">
+						<annotation>
+							<documentation>
+								Forecast duration of the de-icing procedure.
+							</documentation>
+						</annotation>
+					</element>
+					<element name="estimatedTaxiOutTime" type="ff:DurationType" minOccurs="0">
+						<annotation>
+							<documentation>
+								Estimated Taxi-Out Time: the estimated taxi time between off-block and take off. This estimate includes any delay buffer time at the holding point or remote deicing prior to take off. [A-CDM Implementation Manual].
+							</documentation>
+						</annotation>
+					</element>
+					<element name="remoteDeicing" type="acdm:AcdmRemoteDeicingType" minOccurs="0">
+						<annotation>
+							<documentation>
+								Indicates whether the deicing procedure is executed in remote position or not, i.e. on departure stand.
+							</documentation>
+						</annotation>
+					</element>
+					<element name="tobtUpdateCount" type="fb:CountType" minOccurs="0">
+						<annotation>
+							<documentation>
+								The number of updates to Target Off Block Time after Target Start Up Approval Time has been issued. (e.g. max 3 updates after Target Start Up Approval Time issue).
+							</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<element name="AcdmFlightDeparture" type="acdm:AcdmFlightDepartureType" substitutionGroup="fx:FlightDeparture"/>
+	<complexType name="AcdmGateType">
+		<annotation>
+			<documentation>
+				A specified location for boarding and leaving an aircraft in an airport.
+			</documentation>
+		</annotation>
+		<sequence>
+			<element name="designator" type="acdm:AcdmGateNameType" minOccurs="0">
+				<annotation>
+					<documentation>
+						Common gate name.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="terminalName" type="ff:TerminalNameType" minOccurs="0">
+				<annotation>
+					<documentation>
+						Terminal name where the gate is located.
+					</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<simpleType name="AcdmRemoteDeicingType">
+		<annotation>
+			<documentation>
+				Indicates whether the de-icing procedure is executed in remote position or on departure stand.
+			</documentation>
+		</annotation>
+		<restriction base="xsd:string">
+			<enumeration value="REMOTE"/>
+			<enumeration value="ONSTAND"/>
+		</restriction>
+	</simpleType>
+</schema>

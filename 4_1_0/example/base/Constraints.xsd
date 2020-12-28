@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+   <xs:annotation>
+      <xs:documentation>
+         Constraints package contains details about any constraints that are associated with 
+         the route points. 
+      </xs:documentation>
+   </xs:annotation>
+
+   <xs:complexType abstract="true" name="AbstractConstraintType">
+      <xs:annotation>
+         <xs:documentation>
+            An Abstract class that defines a constraint to an route point or trajectory. 
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ExtensibleType">
+            <xs:attribute name="constraintReference" type="CharacterStringType" use="optional" > 
+               <xs:annotation>
+                  <xs:documentation>
+                     Reference to a named constraint, if applicable. 
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="departureOrArrivalIndicator" type="DepartureOrArrivalIndicatorType" use="optional" > 
+               <xs:annotation>
+                  <xs:documentation>
+                     Identifies whether the constraint is applicable on climb or descent.  This provides 
+                     an indication of which constraints take priority in the event of conflict when establishing 
+                     
+                     a profile. 
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="seqNum" use="optional" > 
+               <xs:annotation>
+                  <xs:documentation>
+                     Incrementing identifier used to ensure the sequence of ordered lists is retained. 
+                     [FIXM]. The identifier should begin at zero. 
+                  </xs:documentation>
+               </xs:annotation>
+               <xs:simpleType>
+                  <xs:restriction base="xs:int">
+                     <xs:minInclusive value="0"/>
+                  </xs:restriction>
+               </xs:simpleType>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="AbstractConstraint" type="AbstractConstraintType" substitutionGroup="Extensible" /> 
+
+   <xs:simpleType name="ActivationType">
+      <xs:annotation>
+         <xs:documentation>
+            Provides an indication of whether the profile constraint is met or initiated at the 
+            Location 
+         </xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="PLAN_TO_COMMENCE"/>
+         <xs:enumeration value="PLAN_TO_ATTAIN"/>
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:simpleType name="DepartureOrArrivalIndicatorType">
+      <xs:annotation>
+         <xs:documentation>
+            Identifies whether the constraint is applicable on climb or descent.  This provides 
+            an indication of which constraints take priority in the event of conflict when establishing 
+            
+            a profile. 
+         </xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="DEPARTURE"/>
+         <xs:enumeration value="ARRIVAL"/>
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:simpleType name="LevelConditionType">
+      <xs:annotation>
+         <xs:documentation>
+            Specifies that the flight level or altitude be achieved based on the condition relative 
+            to the point. 
+         </xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="AT"/>
+         <xs:enumeration value="AT_OR_ABOVE"/>
+         <xs:enumeration value="AT_OR_BELOW"/>
+         <xs:enumeration value="BETWEEN"/>
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:complexType name="LevelConstraintType">
+      <xs:annotation>
+         <xs:documentation>
+            The altitude constraint applicable to a specific point or segment on the route. 
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="AbstractConstraintType">
+            <xs:sequence>
+               <xs:element name="level" type="FlightLevelOrAltitudeChoiceType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        Level or altitude specification of the constraint. 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+            <xs:attribute name="activation" type="ActivationType" use="optional" > 
+               <xs:annotation>
+                  <xs:documentation>
+                     Provides an indication of whether the profile constraint is met or initiated at the 
+                     Location 
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="condition" type="LevelConditionType" use="optional" > 
+               <xs:annotation>
+                  <xs:documentation>
+                     Specifies that the flight level or altitude be achieved based on the condition relative 
+                     to the point. 
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="LevelConstraint" type="LevelConstraintType" substitutionGroup="Extensible" /> 
+
+   <xs:simpleType name="SpeedConditionType">
+      <xs:annotation>
+         <xs:documentation>
+            Specifies that the speed  be achieved based on the condition relative to the point. 
+            
+         </xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="AT"/>
+         <xs:enumeration value="AT_OR_GREATER"/>
+         <xs:enumeration value="AT_OR_LESS"/>
+         <xs:enumeration value="BETWEEN"/>
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:complexType name="SpeedConstraintType">
+      <xs:annotation>
+         <xs:documentation>
+            The speed constraint applicable to a specific point or segment on the route. 
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="AbstractConstraintType">
+            <xs:sequence>
+               <xs:element name="speed" type="TrueAirspeedChoiceType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        Speed specification of the speed constraint. Can be either an absolute speed or a 
+                        speed range. 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+            <xs:attribute name="activation" type="ActivationType" use="optional" > 
+               <xs:annotation>
+                  <xs:documentation>
+                     Provides an indication of whether the profile constraint is met or initiated at the 
+                     Location 
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="condition" type="SpeedConditionType" use="optional" > 
+               <xs:annotation>
+                  <xs:documentation>
+                     Specifies that the speed be achieved based on the condition relative to the point. 
+                     
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="SpeedConstraint" type="SpeedConstraintType" substitutionGroup="Extensible" /> 
+
+   <xs:simpleType name="TimeConditionType">
+      <xs:annotation>
+         <xs:documentation>
+            Describes the type of time constraint. The associated which specifies how the time 
+            relates to the point. 
+         </xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="AT"/>
+         <xs:enumeration value="AT_OR_BEFORE"/>
+         <xs:enumeration value="AT_OR_AFTER"/>
+         <xs:enumeration value="BETWEEN"/>
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:complexType name="TimeConstraintType">
+      <xs:annotation>
+         <xs:documentation>
+            The time constraint applicable to a specific point on the route. 
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="AbstractConstraintType">
+            <xs:sequence>
+               <xs:element name="temporalSpecification" type="TemporalChoiceType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        Date and time associated with the constraint. 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+            <xs:attribute name="condition" type="TimeConditionType" use="optional" > 
+               <xs:annotation>
+                  <xs:documentation>
+                     Type of time constraint that describes the condition relative to the time constraint. 
+                     
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="TimeConstraint" type="TimeConstraintType" substitutionGroup="Extensible" /> 
+</xs:schema>

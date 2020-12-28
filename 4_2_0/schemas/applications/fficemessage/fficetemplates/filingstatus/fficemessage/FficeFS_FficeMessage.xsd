@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.fixm.aero/app/ffice/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ffice="http://www.fixm.aero/app/ffice/1.0" xmlns:fx="http://www.fixm.aero/flight/4.2" xmlns:fb="http://www.fixm.aero/base/4.2" elementFormDefault="qualified" version="1.0.0">
+	<xs:annotation>
+		<xs:documentation>An FF-ICE Filing Status message template for the FficeMessage package.
+
+=========================================== 
+Copyright (c) 2020 Airservices Australia, DSNA, EUROCONTROL, GCAA UAE, IATA, International Coordinating Council of Aerospace Industries Associations, JCAB, NATS Limited, NAV CANADA, SESAR Joint Undertaking and US FAA 
+=========================================== 
+All rights reserved. 
+          
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met: 
+	- Redistributions of source code must retain the above copyright notice, this list of conditions and the disclaimer.
+	- Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the disclaimer in the documentation and/or other materials provided with the distribution.
+	- Neither the names of Airservices Australia, DSNA, EUROCONTROL, GCAA UAE, IATA, International Coordinating Council of Aerospace Industries Associations, JCAB, NATS Limited, NAV CANADA, SESAR Joint Undertaking and US FAA nor the names of their contributors may be used to endorse or promote products derived from this specification without specific prior written permission.
+          
+DISCLAIMER 
+          
+THIS SPECIFICATION IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+          
+========================================== 
+Editorial note: this license is an instance of the BSD license template as provided by the Open Source Initiative: 
+http://www.opensource.org/licenses/bsd-license.php 
+          
+The authoritative reference for FIXM is www.FIXM.aero. 
+          
+Details on Airservices Australia: http://www.airservicesaustralia.com/ 
+Details on DSNA: http://www.developpement-durable.gouv.fr/-Navigation-aerienne-.html 
+Details on EUROCONTROL: http://www.eurocontrol.int/ 
+Details on IATA: http://www.iata.org/Pages/default.aspx 
+Details on JCAB: http://www.mlit.go.jp/en/koku/index.html 
+Details on NATS Limited: http://www.nats.co.uk/ 
+Details on NAV CANADA: http://www.navcanada.ca/ 
+Details on the UAE GCAA: https://www.gcaa.gov.ae 
+Details on the ICCAIA: www.iccaia.org 
+Details on the SESAR JU and its members: http://www.sesarju.eu/discover-sesar/partnering-smarter-aviation/members 
+Details on the US FAA: http://www.faa.gov/</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://www.fixm.aero/base/4.2" schemaLocation="../base/FficeFS_Base.xsd"/>
+	<xs:import namespace="http://www.fixm.aero/flight/4.2" schemaLocation="../flight/FficeFS_Flight.xsd"/>
+	<xs:include schemaLocation="../../../FficeMessage.xsd"/>
+	<xs:simpleType name="FficeFS_MessageTypeType">
+		<xs:annotation>
+			<xs:documentation>Represents the type of message. [FIXM]</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ffice:MessageTypeType">
+			<xs:enumeration value="FILING_STATUS">
+				<xs:annotation>
+					<xs:documentation>Provides information concerning the status of the filed flight plan and typically concerns route/trajectory acceptability. [FF-ICE]</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="FficeFS_FficeMessageType">
+		<xs:annotation>
+			<xs:documentation>A discrete unit of communication, expressed electronically, and intended by the source for consumption by some recipient or group of recipients. [FF-ICE]</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="ffice:FficeMessageType">
+				<xs:sequence>
+					<xs:element name="extension" type="ffice:FficeMessageExtensionType" minOccurs="0" maxOccurs="2000">
+						<xs:annotation>
+							<xs:documentation>An extension hook for attaching extension (non-core) classes.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="filingStatus" type="ffice:FficeFS_FilingStatusType" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The status of the filed flight plan with respect to the eASP.  [FF-ICE]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="flight" type="fx:FficeFS_FlightType" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A flight associated with the message.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="operatorFlightPlanVersion" type="fb:CountPositiveType" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A unique identifier for the latest version of a flight plan submitted by an Operator (Airspace User). A flight plan version should be operationally usable for verification that the pilot or operator and ATM personnel are using the same information for the flight. [adapted from ICAO Draft FF-ICE Implementation Guidance]. The identifier should begin at one and increase by one with each revision.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="originator" type="fb:FficeFS_PersonOrOrganizationType" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Sender of the message [adapted from ICAO Draft FF-ICE Implementation Guidance]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="recipient" type="fb:FficeFS_PersonOrOrganizationType" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The one or more intended recipients of the flight information. [adapted from ICAO Draft FF-ICE Implementation Guidance]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="timestamp" type="fb:TimeType" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The time and date that the communication was sent. [FIXM]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="type" type="ffice:FficeFS_MessageTypeType" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Represents the type of message. [FIXM]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="uniqueMessageIdentifier" type="fb:UniversallyUniqueIdentifierType" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A unique message identifier for FIXM messages. [FIXM]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="FficeFS_FilingStatusType">
+		<xs:annotation>
+			<xs:documentation>The Filing Status provides information concerning the status of the route and trajectory, as submitted. [adapted from ICAO Draft FF-ICE Implementation Guidance ]</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="ffice:FilingStatusType">
+				<xs:sequence>
+					<xs:element name="explanation" type="fb:CharacterStringType" minOccurs="0" maxOccurs="2000">
+						<xs:annotation>
+							<xs:documentation>A textual description of the reason a message was rejected. [ICAO Draft FF-ICE Implementation Guidance]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="extension" type="ffice:FilingStatusExtensionType" minOccurs="0" maxOccurs="2000">
+						<xs:annotation>
+							<xs:documentation>An extension hook for attaching extension (non-core) classes.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="value" type="ffice:FilingStatusValueType" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Possible values of an operational filing status (ACCEPTABLE, NOT_ACCEPTABLE). [FF-ICE]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

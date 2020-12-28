@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+        targetNamespace="http://www.atmb.aero/4.2"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:fb="http://www.fixm.aero/base/4.2"
+        xmlns:atmb="http://www.atmb.aero/4.2"
+        elementFormDefault="qualified"
+        version="4.2.0">
+    <xs:annotation>
+        <xs:documentation>
+            [CN] 该 package 包含组织领域模型扩展类.
+            [EN] This package contains organization extension model class.
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:import namespace="http://www.fixm.aero/base/4.2" schemaLocation="../../../core/base/Base.xsd"/>
+
+    <xs:simpleType name="AtmbIataAircraftOperatorDesignatorType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 航空运营人 IATA 二字代码.
+                [EN] Two letter code for aircraft operator by IATA.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="fb:CharacterStringType">
+            <xs:pattern value="[A-Z]{2}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="AtmbOrganizationRegionClassificationType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 组织所属地区分类, 地区代码遵循 ISO 3166-1 规范.
+                [EN] Classification of organization region, country and region code follows ISO 3166-1.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="CHN">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 中国大陆.
+                        [EN] China mainland.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="FOREIGN">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 境外国家.
+                        [EN] Foreign country.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="HKG">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 香港特别行政区.
+                        [EN] HongKong SAR.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="MAC">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 澳门特别行政区.
+                        [EN] Macao SAR.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="TWN">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 台湾地区.
+                        [EN] Taiwan region.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="AtmbAircraftOperatorType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 参与到航空器运营的实际个人, 组织或企业.
+                [EN] A person, organization or enterprise engaged in or offering to engage in an aircraft operation.
+
+                [extended]
+
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="designatorIcao" type="fb:AircraftOperatorDesignatorType" minOccurs="0" nillable="true">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] ICAO 为飞行器运营者指定的唯一代码. ICAO 代码是为航空器运行代理人, 航空授权和服务机构指定的代码，
+                        这一代码在 ICAO Doc 8585 手册中定义并标准化.
+                        [EN] The identifier of the Aircraft Operator as assigned by ICAO. [FIXM]
+                        This is the ICAO Operator Code as standardised by ICAO Doc 8585 Manual on Designators for
+                        Aircraft Operating Agencies, Aeronautical Authorities and Services.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="designatorIata" type="atmb:AtmbIataAircraftOperatorDesignatorType">
+                <xs:annotation>
+                    <xs:documentation>
+                        [extended]
+                        [CN] IATA 为航空器承运人指定的二字代码.
+                        [EN] The two letter coded location identifier of an aerodrome according to the IATA.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="operatingOrganization" type="fb:PersonOrOrganizationType" minOccurs="0" maxOccurs="1"
+                        nillable="true">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 组织机构名称, 即参与到航空器运营活动的法人或自然人名称.
+                        [EN] Aircraft Operator Identity: Identity of a person, organization or enterprise engaged in or
+                        offering to engage in aircraft operation.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="parentOrganization" type="fb:PersonOrOrganizationType" minOccurs="0" maxOccurs="1"
+                        nillable="true">
+                <xs:annotation>
+                    <xs:documentation>
+                        [extended]
+                        [CN] 母公司名称.
+                        [EN] Parent organization name.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+
+</xs:schema>

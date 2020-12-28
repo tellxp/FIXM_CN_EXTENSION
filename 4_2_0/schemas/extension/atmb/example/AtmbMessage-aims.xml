@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<atmb:message xmlns:xlink="http://www.w3.org/1999/xlink"
+              xmlns:xs="http://www.w3.org/2001/XMLSchema"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xmlns:fb="http://www.fixm.aero/base/4.2"
+              xmlns:fx="http://www.fixm.aero/flight/4.2"
+              xmlns:atmb="http://www.atmb.aero/4.2"
+              xsi:schemaLocation="http://www.fixm.aero/base/4.2 ../../../core/base/Base.xsd
+          http://www.fixm.aero/flight/4.2 ../../../core/flight/Flight.xsd
+          http://www.atmb.aero/4.2 ../Atmb.xsd">
+    <atmb:payload>
+        <atmb:flight>
+            <atmb:aircraft>
+                <atmb:aircraftType>
+                    <fx:numberOfAircraft>1</fx:numberOfAircraft>
+                    <fx:type>
+                        <fx:icaoAircraftTypeDesignator>A332</fx:icaoAircraftTypeDesignator>
+                    </fx:type>
+                </atmb:aircraftType>
+                <atmb:capabilities>
+                    <fx:navigation>
+                        <fx:navigationCapabilityCode>W</fx:navigationCapabilityCode>
+                        <fx:performanceBasedCode>A1 B1 C1 D1 L1 O1 S2 T1</fx:performanceBasedCode>
+                    </fx:navigation>
+                </atmb:capabilities>
+                <atmb:registration>B8962</atmb:registration>
+            </atmb:aircraft>
+            <atmb:arrival>
+                <atmb:destinationAerodrome>
+                    <fb:locationIndicator>YMML</fb:locationIndicator>
+                </atmb:destinationAerodrome>
+                <atmb:inBlockTime scheduled="2019-11-06T11:30:00Z" estimated="2019-11-06T10:33:00Z"/>
+            </atmb:arrival>
+            <atmb:departure>
+                <atmb:aerodrome>
+                    <fb:locationIndicator>ZUGY</fb:locationIndicator>
+                </atmb:aerodrome>
+                <atmb:offBlockTime scheduled="2019-11-06T01:00:00Z" estimated="2019-11-06T01:00:00Z"
+                                   actual="2019-11-06T01:03:00Z"/>
+            </atmb:departure>
+            <atmb:enRoute>
+                <atmb:boundaryCrossingCoordination>
+                    <atmb:crossingPoint>
+                        <fb:designatedPoint>
+                            <fb:designator>LAGEX</fb:designator>
+                        </fb:designatedPoint>
+                    </atmb:crossingPoint>
+                </atmb:boundaryCrossingCoordination>
+                <atmb:currentModeACode>1564</atmb:currentModeACode>
+            </atmb:enRoute>
+            <atmb:flightIdentification>
+                <fx:aircraftIdentification>CSC8417</fx:aircraftIdentification>
+            </atmb:flightIdentification>
+            <atmb:flightPlanOriginator>
+                <fb:name>AIMS</fb:name>
+            </atmb:flightPlanOriginator>
+            <atmb:flightType>S</atmb:flightType>
+            <atmb:gufi codeSpace="urn:uuid">b0cb20ed-b81f-4b3b-ae9a-a19e0b6e566c</atmb:gufi>
+            <atmb:remarks>{ZUUU:}{ZUGY:航路航线审核中；出入境点TAMOT；或350/321/320/319执行}</atmb:remarks>
+            <atmb:routeTrajectoryGroup>
+                <fx:agreed>
+                    <fx:routeInformation>
+                        <fx:cruisingLevel>
+                            <fb:flightLevel uom="SM">1070</fb:flightLevel>
+                        </fx:cruisingLevel>
+                        <fx:routeText>KWE UGUGU LAGEX P168 SJG MAMSI QP MUBEL GYA POU TAMOT CH GRUPA BEMAG ATAGA CON
+                            SABNO
+                            A583 ZAM VYK IKENU HG P285 WXI P385 AKOMA IDULA ZHO OBLIK HOK LKO DAPRO AKUBA LUMKO LIG P113
+                            P376 BUBDA YIN SHL IDUMA BEKOL DN J251 TN J30 TNK T25 BHI J19 NATYA H119 ARBEY
+                        </fx:routeText>
+                    </fx:routeInformation>
+                </fx:agreed>
+                <fx:filed>
+                    <fx:routeInformation>
+                        <fx:routeText>KWE W585 UGUGU/K0880S0950 W182 LAGEX G586 SJG/K0885S1010 B330 TAMOT/N0479F330 B330
+                            CH
+                            DCT GRUPA V5 SABNO/M080F330 A583 ZAM/N0475F330 A461 MOLLY/N0475F350 A461 DN J251 TN J30 TNK
+                            T25
+                            BHI J19 NATYA H119 ARBEY
+                        </fx:routeText>
+                    </fx:routeInformation>
+                </fx:filed>
+            </atmb:routeTrajectoryGroup>
+        </atmb:flight>
+    </atmb:payload>
+    <atmb:timestamp>2019-11-06T01:00:00Z</atmb:timestamp>
+    <atmb:type>AIMS</atmb:type>
+</atmb:message>
+

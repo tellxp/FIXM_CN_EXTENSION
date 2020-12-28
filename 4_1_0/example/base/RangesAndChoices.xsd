@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:annotation>
+        <xs:documentation>
+            This package contains combinations and choices comprised of various measure elements.
+            [FIXM]
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:complexType name="ColourChoiceType">
+        <xs:annotation>
+            <xs:documentation>
+                A choice between a predefined colour code or any other colour. [FIXM]
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ExtensibleType">
+                <xs:choice>
+                    <xs:element name="colourCode" type="ColourCodeType" minOccurs="0" maxOccurs="2000" >
+                        <xs:annotation>
+                            <xs:documentation>
+                                A code indicating a colour. The list of allowable values comprises 'named' colours,
+                                not colours being only describable using the RGB or the CYMK or another colour system
+                                combination. [AIXM 5.1]
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="otherColour" type="CharacterStringType" minOccurs="0" maxOccurs="1" >
+                        <xs:annotation>
+                            <xs:documentation>
+                                Any other color that is not among the standards set. [FIXM]
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:choice>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="ColourChoice" type="ColourChoiceType"  />
+
+    <xs:simpleType name="ColourCodeType">
+        <xs:annotation>
+            <xs:documentation>
+                A code indicating a colour. The list of allowable values comprises 'named' colours,
+                not colours being only describable using the RGB or the CYMK or another colour system
+                combination. [AIXM 5.1]
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="RED"/>
+            <xs:enumeration value="ORANGE"/>
+            <xs:enumeration value="YELLOW">
+                <xs:annotation>
+                    <xs:documentation>
+                        A code indicating a colour. The list of allowable values comprises 'named' colours,
+                        not colours being only describable using the RGB or the CYMK or another colour system
+                        combination. [AIXM 5.1]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="GREEN"/>
+            <xs:enumeration value="BLUE"/>
+            <xs:enumeration value="VIOLET"/>
+            <xs:enumeration value="BLACK"/>
+            <xs:enumeration value="WHITE"/>
+            <xs:enumeration value="GRAY"/>
+            <xs:enumeration value="SILVER"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="FlightLevelOrAltitudeType">
+        <xs:annotation>
+            <xs:documentation>
+                The Choice between flight level or altitude specification.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ExtensibleType">
+                <xs:choice>
+                    <xs:element name="altitude" type="AltitudeType" minOccurs="0" maxOccurs="1" >
+                        <xs:annotation>
+                            <xs:documentation>
+                                Altitude specification.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="flightLevel" type="FlightLevelType" minOccurs="0" maxOccurs="1" >
+                        <xs:annotation>
+                            <xs:documentation>
+                                Flight Level Specification
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:choice>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="FlightLevelOrAltitude" type="FlightLevelOrAltitudeType"  />
+
+    <xs:complexType name="FlightLevelOrAltitudeChoiceType">
+        <xs:annotation>
+            <xs:documentation>
+                The altitude choice allows to either represent a specific altitude or an altitude
+                range with a lower and upper bound
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ExtensibleType">
+                <xs:choice>
+                    <xs:element name="flightLevelOrAltitudeRange" type="VerticalRangeType" minOccurs="0" maxOccurs="1" >
+                        <xs:annotation>
+                            <xs:documentation>
+                                Altitude or Flight Level that can be expressed as a range between a lower and upper
+                                bound.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="flightLevelOrAltitudeValue" type="FlightLevelOrAltitudeType" minOccurs="0" maxOccurs="1" >
+                        <xs:annotation>
+                            <xs:documentation>
+                                Altitude or Flight Level that is defined by a specific value
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:choice>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="FlightLevelOrAltitudeChoice" type="FlightLevelOrAltitudeChoiceType"  />
+
+    <xs:complexType name="TemporalChoiceType">
+        <xs:annotation>
+            <xs:documentation>
+                Allows to specify either a time or a time range.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ExtensibleType">
+                <xs:choice>
+                    <xs:element name="temporalRange" type="TemporalRangeType" minOccurs="0" maxOccurs="1" >
+                        <xs:annotation>
+                            <xs:documentation>
+                                Specified range of time.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="timeValue" type="TimeType" minOccurs="0" maxOccurs="1" >
+                        <xs:annotation>
+                            <xs:documentation>
+                                Value of time specification.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:choice>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="TemporalChoice" type="TemporalChoiceType" />
+
+    <xs:complexType name="TemporalRangeType">
+        <xs:annotation>
+            <xs:documentation>
+                Temporal range resulting from assigned speed range.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ExtensibleType">
+                <xs:attribute name="earliest" type="TimeType" use="optional" >
+                    <xs:annotation>
+                        <xs:documentation>
+                            lower bound of the temporal range.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="latest" type="TimeType" use="optional" >
+                    <xs:annotation>
+                        <xs:documentation>
+                            Upper bound of the temporal range.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="TemporalRange" type="TemporalRangeType" />
+
+    <xs:complexType name="TrueAirspeedChoiceType">
+        <xs:annotation>
+            <xs:documentation>
+                The true airspeed choice indicates that indicated airspeed can either be expressed
+                as specific with a speed condition or a speed range between lower and upper bounds.
+
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ExtensibleType">
+                <xs:choice>
+                    <xs:element name="airspeedRange" type="TrueAirspeedRangeType" minOccurs="0" maxOccurs="1" >
+                        <xs:annotation>
+                            <xs:documentation>
+                                The airspeed that can be expressed as a range between a lower and upper bound.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="airspeedValue" type="TrueAirspeedType" minOccurs="0" maxOccurs="1" >
+                        <xs:annotation>
+                            <xs:documentation>
+                                The airspeed can be expressed as a specific speed.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:choice>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="TrueAirspeedChoice" type="TrueAirspeedChoiceType" />
+
+    <xs:complexType name="TrueAirspeedRangeType">
+        <xs:annotation>
+            <xs:documentation>
+                The airspeed that can be expressed as a range between a lower and upper bound.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ExtensibleType">
+                <xs:sequence>
+                    <xs:element name="lowerSpeed" type="TrueAirspeedType" minOccurs="0" maxOccurs="1" >
+                        <xs:annotation>
+                            <xs:documentation>
+                                Lower bound of the speed range.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="upperSpeed" type="TrueAirspeedType" minOccurs="0" maxOccurs="1" >
+                        <xs:annotation>
+                            <xs:documentation>
+                                Upper bound of the speed range
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="TrueAirspeedRange" type="TrueAirspeedRangeType" />
+
+    <xs:complexType name="VerticalRangeType">
+        <xs:annotation>
+            <xs:documentation>
+                Represents a vertical range from a lower bound altitude to an upper bound altitude.
+
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ExtensibleType">
+                <xs:sequence>
+                    <xs:element name="lowerBound" type="FlightLevelOrAltitudeType" minOccurs="0" maxOccurs="1" >
+                        <xs:annotation>
+                            <xs:documentation>
+                                Lower bound altitude of the vertical range.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="upperBound" type="FlightLevelOrAltitudeType" minOccurs="0" maxOccurs="1" >
+                        <xs:annotation>
+                            <xs:documentation>
+                                Upper bound altitude of the vertical range.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="VerticalRange" type="VerticalRangeType" />
+</xs:schema>

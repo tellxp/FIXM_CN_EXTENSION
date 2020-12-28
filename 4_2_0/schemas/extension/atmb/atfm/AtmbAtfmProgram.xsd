@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+        targetNamespace="http://www.atmb.aero/4.2"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:fb="http://www.fixm.aero/base/4.2"
+        xmlns:fx="http://www.fixm.aero/flight/4.2"
+        xmlns:atmb="http://www.atmb.aero/4.2"
+        elementFormDefault="qualified"
+        version="4.2.0">
+
+    <xs:annotation>
+        <xs:documentation>
+            ATMB 流量管理措施, 包括 AS AFP GDP TC MIT
+
+            ===========================================
+            Copyright (c) 2020 Air Traffic Management Bureau China (ATMB)
+            ===========================================
+            All rights reserved.
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:import namespace="http://www.fixm.aero/base/4.2" schemaLocation="../../../core/base/Base.xsd"/>
+    <xs:import namespace="http://www.fixm.aero/flight/4.2" schemaLocation="../../../core/flight/Flight.xsd"/>
+
+    <xs:complexType name="AtmbAtfmProgramType">
+        <xs:sequence>
+            <xs:element name="assignedSlot" type="atmb:AtmbAtfmProgramAssignedSlotType" minOccurs="0"/>
+            <xs:element name="airspaceAvailable" type="atmb:AtmbAtfmAirspaceAvailableType" minOccurs="0"/>
+            <xs:element name="airspaceFlow" type="atmb:AtmbAtfmAirspaceFlowProgramType" minOccurs="0"/>
+            <xs:element name="groundDelay" type="atmb:AtmbAtfmGroundDelayProgramType" minOccurs="0"/>
+            <xs:element name="totalControl" type="atmb:AtmbAtfmTotalControlType" minOccurs="0"/>
+            <xs:element name="milesInTrail" type="atmb:AtmbAtfmMilesInTrailType" minOccurs="0"/>
+            <xs:element name="groundStop" type="AtmbAtfmGroundStopType" minOccurs="0"/>
+            <xs:element name="request" type="AtmbAtfmRequestType" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AtmbAtfmProgramAssignedSlotType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 指定时隙流量措施.
+                [EN] Assigned slot program.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="slot" type="fb:DurationType" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="AtmbAtfmAirspaceFlowProgramType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 空域流量计划.
+                [EN] Airspace flow program.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="startTime" type="fb:TimeType" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    [CN] 开始时间.
+                    [EN] Start time.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="stopTime" type="fb:TimeType" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    [CN] 结束时间.
+                    [EN] End time.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="value" type="fb:CountPositiveType" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    [CN] 允许的飞行器数量, 正整数.
+                    [EN] Allowed aircraft count.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="AtmbAtfmAirspaceAvailableType">
+        <xs:sequence>
+            <xs:element name="verticalRange" type="fb:VerticalRangeType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AtmbAtfmGroundDelayProgramType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 地面延误程序流量措施.
+                [EN] Ground delay program.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="startTime" type="fb:TimeType" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    [CN] 开始时间.
+                    [EN] Start time.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="stopTime" type="fb:TimeType" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    [CN] 结束时间.
+                    [EN] Stop time.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="value" type="fb:CountPositiveType" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    [CN] 允许的飞行器数量.
+                    [EN] Allowed aircraft count.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="AtmbAtfmTotalControlType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 总量控制.
+                [EN] Total control program.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="value" type="fb:CountPositiveType" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    [CN] 控制的架次.
+                    [EN] Total flights count.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="duration" type="fb:DurationType" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    [CN] 持续时长.
+                    [EN] Time duration of program.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="AtmbAtfmMilesInTrailType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 尾随间隔控制程序.
+                [EN] Miles in trail program.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:choice>
+            <xs:element name="timeGap" type="fb:DurationType"/>
+            <xs:element name="distanceGap" type="fb:DistanceType"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:complexType name="AtmbAtfmGroundStopType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 地面停止.
+                [EN] Ground stop.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="timeSpec" type="fb:TimeRangeType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AtmbAtfmRequestType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 开车申请.
+                [EN] Request before startup.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="timeSpec" type="fb:TimeRangeType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="AtmbAtfmProgramCodeType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 流量措施枚举.
+                [EN] ATFM program enumeration.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="GS">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 地面停止 (GS) 是指当机场或空域单元容量因突发情况急剧下降或关闭, 导致流量已经或短时间内将要显著超出容量时,
+                        而控制未起飞航班进行地面停留等待的流量管理措施.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="MIT">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 尾随间隔 (MIT/ MINIT)是一种战术流量管理方法, 是指机场或空域单元流量超出容量时, 为实现容流平衡,
+                        要求通过某一航路点前往该机场或进入空域单元的航班保持指定的距离或时间间隔.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="AS">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 指定时隙, 航班需要在指定的时间间隔内起飞.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="REQ">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 上客申请, 也叫开车申请. 命中开车申请的航班, 系统会继续分配时隙, 交由人工确认.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="TC">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 总量控制, 单位时间接收 N 架次航班. 单位时间为 15 min 的倍数, N&gt;2, 最小间隔应 &lt;= “等效尾随间隔” 的50%.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="GDP">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 地面延误程序 (GDP) 是指当预测某机场的进场流量显著超出机场进场接收率 (AAR) , 且持续时间较长时,
+                        对某个时段范围内计划在该机场进港的航班统一安排其起飞时刻的流量管理措施.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="AFP">
+                <xs:annotation>
+                    <xs:documentation>
+                        空域流量程序 (AFP) 是指通过类似地面延误程序来指定航班进入某一空域单元的时隙, 即当预测进入某一空域单元 (选定或划设的空域单元, 扇区) 流量将显著超出该空域单元容量,
+                        且持续时间较长时, 对某个时段范围内计划进入该空域单元的航班统一安排其起飞时刻的流量管理措施. 空域流量程序(AFP)通常也称为基于空域的延误程序。
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="CT">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 改航（Rerouting）作为一种空间调整手段, 可使航空器按照调整后的飞行计划或空管部门指定的路径飞行, 有效规避受限空域单元的影响.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="AA">
+                <xs:annotation>
+                    <xs:documentation>空域可用:限制某个空域是否可用</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="BREQ">
+                <xs:annotation>
+                    <xs:documentation>上客申请</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="WI">
+                <xs:annotation>
+                    <xs:documentation>空中等待</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>

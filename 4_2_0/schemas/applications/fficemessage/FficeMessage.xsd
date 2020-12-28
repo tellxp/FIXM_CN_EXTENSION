@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.fixm.aero/app/ffice/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:ffice="http://www.fixm.aero/app/ffice/1.0" xmlns:fx="http://www.fixm.aero/flight/4.2"
+           xmlns:fb="http://www.fixm.aero/base/4.2" elementFormDefault="qualified" version="1.0.0">
+    <xs:annotation>
+        <xs:documentation>Defines message metadata elements and some negotiation related elements in support of
+            messaging-related aspects required by the FF-ICE/1 concept and guidance document: FF-ICE Manual d0.91.docx.
+
+            ===========================================
+            Copyright (c) 2020 Airservices Australia, DSNA, EUROCONTROL, GCAA UAE, IATA, International Coordinating
+            Council of Aerospace Industries Associations, JCAB, NATS Limited, NAV CANADA, SESAR Joint Undertaking and US
+            FAA
+            ===========================================
+            All rights reserved.
+
+            Redistribution and use in source and binary forms, with or without modification, are permitted provided that
+            the following conditions are met:
+            - Redistributions of source code must retain the above copyright notice, this list of conditions and the
+            disclaimer.
+            - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the
+            disclaimer in the documentation and/or other materials provided with the distribution.
+            - Neither the names of Airservices Australia, DSNA, EUROCONTROL, GCAA UAE, IATA, International Coordinating
+            Council of Aerospace Industries Associations, JCAB, NATS Limited, NAV CANADA, SESAR Joint Undertaking and US
+            FAA nor the names of their contributors may be used to endorse or promote products derived from this
+            specification without specific prior written permission.
+
+            DISCLAIMER
+
+            THIS SPECIFICATION IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
+            WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+            PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY
+            DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+            PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+            HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+            NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+            POSSIBILITY OF SUCH DAMAGE.
+
+            ==========================================
+            Editorial note: this license is an instance of the BSD license template as provided by the Open Source
+            Initiative:
+            http://www.opensource.org/licenses/bsd-license.php
+
+            The authoritative reference for FIXM is www.FIXM.aero.
+
+            Details on Airservices Australia: http://www.airservicesaustralia.com/
+            Details on DSNA: http://www.developpement-durable.gouv.fr/-Navigation-aerienne-.html
+            Details on EUROCONTROL: http://www.eurocontrol.int/
+            Details on IATA: http://www.iata.org/Pages/default.aspx
+            Details on JCAB: http://www.mlit.go.jp/en/koku/index.html
+            Details on NATS Limited: http://www.nats.co.uk/
+            Details on NAV CANADA: http://www.navcanada.ca/
+            Details on the UAE GCAA: https://www.gcaa.gov.ae
+            Details on the ICCAIA: www.iccaia.org
+            Details on the SESAR JU and its members:
+            http://www.sesarju.eu/discover-sesar/partnering-smarter-aviation/members
+            Details on the US FAA: http://www.faa.gov/
+        </xs:documentation>
+    </xs:annotation>
+    <xs:import namespace="http://www.fixm.aero/base/4.2" schemaLocation="../../core/base/Base.xsd"/>
+    <xs:import namespace="http://www.fixm.aero/flight/4.2" schemaLocation="../../core/flight/Flight.xsd"/>
+    <xs:element name="FficeMessage" type="ffice:FficeMessageType">
+        <xs:annotation>
+            <xs:documentation>The FficeMessage element is an entry point to the FIXM model.</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:simpleType name="FilingStatusValueType">
+        <xs:annotation>
+            <xs:documentation>Possible values of an operational filing status (ACCEPTABLE, NOT_ACCEPTABLE). [FF-ICE]
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ACCEPTABLE">
+                <xs:annotation>
+                    <xs:documentation>The flight plan and in particular the Filed Trajectory/route is acceptable.
+                        [FF-ICE]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="NOT_ACCEPTABLE">
+                <xs:annotation>
+                    <xs:documentation>The flight plan, typically the route/trajectory, does not comply with operational
+                        requirements. [FF-ICE]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="MessageTypeType">
+        <xs:annotation>
+            <xs:documentation>Represents the type of message. [FIXM]</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="FILED_FLIGHT_PLAN">
+                <xs:annotation>
+                    <xs:documentation>The ATS flight plan as provided by the pilot or a designated representative.
+                        [FF-ICE]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="FILING_STATUS">
+                <xs:annotation>
+                    <xs:documentation>Provides information concerning the status of the filed flight plan and typically
+                        concerns route/trajectory acceptability. [FF-ICE]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="FLIGHT_ARRIVAL">
+                <xs:annotation>
+                    <xs:documentation>A Flight Arrival message can be used in any situation where an ARR message would
+                        have been used per PANS-ATM 11.4.2.2.7. [FF-ICE]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="FLIGHT_CANCELLATION">
+                <xs:annotation>
+                    <xs:documentation>Used to delete or remove a flight plan (Preliminary and/or Filed). [FF-ICE]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="FLIGHT_DATA_REQUEST">
+                <xs:annotation>
+                    <xs:documentation>Used to obtain information about a flight. Designed to allow customized flight
+                        data queries, but the following should be a minimum set for implementation:
+                        a) Flight Plan - request a copy of the flight plan as submitted.
+                        b) Supplementary Plan - request a copy of the supplementary data filed for the flight.
+                        c) Flight Status - request a copy of the latest Planning or Filing status for the flight.
+                        [FF-ICE]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="FLIGHT_DATA_RESPONSE">
+                <xs:annotation>
+                    <xs:documentation>Used to return the information requested by a Flight Data Request. [FIXM]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="FLIGHT_DEPARTURE">
+                <xs:annotation>
+                    <xs:documentation>A Flight Departure Message can be used in any situation where a DEP message would
+                        have been used per PANS-ATM 11.4.2.2.6. [FF-ICE]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="FLIGHT_PLAN_UPDATE">
+                <xs:annotation>
+                    <xs:documentation>A Flight Plan Update may be used to update either a Preliminary Flight Plan or a
+                        Filed Flight Plan. [FF-ICE]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="PLANNING_STATUS">
+                <xs:annotation>
+                    <xs:documentation>Provides information concerning the status of the preliminary flight plan and
+                        typically concerns route/trajectory acceptability. [FF-ICE]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="PRELIMINARY_FLIGHT_PLAN">
+                <xs:annotation>
+                    <xs:documentation>Specified information submitted by an operator to conduct collaborative planning
+                        of a flight prior to submission of a Filed Flight Plan. [FF-ICE]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="SUBMISSION_RESPONSE">
+                <xs:annotation>
+                    <xs:documentation>An immediate response provided by an eASP to the message originator indicating
+                        acceptance or rejection of the message received. [FF-ICE]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="TRIAL_REQUEST">
+                <xs:annotation>
+                    <xs:documentation>A Trial Request may be submitted to evaluate changes to either a Preliminary or
+                        Filed flight plan. Existing flight plan data will not be modified as a result of a Trial
+                        Request. [FF-ICE]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="TRIAL_RESPONSE">
+                <xs:annotation>
+                    <xs:documentation>Provides information concerning the status of a Trial Request and typically
+                        concerns route/trajectory acceptability. [FIXM]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="PlanningStatusValueType">
+        <xs:annotation>
+            <xs:documentation>The applicable planning status values (CONCUR, NON_CONCUR, NEGOTIATE) of the route and
+                trajectory, as submitted. [FF-ICE]
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="CONCUR">
+                <xs:annotation>
+                    <xs:documentation>The flight plan and in particular the route and trajectory is acceptable without
+                        the need for modification. This should mean that if the flight plan were to be filed, it would
+                        be accepted. [FF-ICE]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="NON_CONCUR">
+                <xs:annotation>
+                    <xs:documentation>The flight plan does not comply with published airspace/route availability or
+                        published restrictions and would result in a rejection or an unacceptable status if the flight
+                        plan were to be filed. [FF-ICE]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="NEGOTIATE">
+                <xs:annotation>
+                    <xs:documentation>The flight plan and in particular the route and trajectory is acceptable and would
+                        be accepted if filed. However the trajectory determined by the eASP has included additional
+                        constraints and/or has applied ATM configuration factors such as runway-in-use or Met data which
+                        may have resulted in a different trajectory. The operator is expected to assess the feedback and
+                        determine whether or not it wishes to amend it's Desired trajectory. [FF-ICE]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="RequestTypeType">
+        <xs:annotation>
+            <xs:documentation>The minimum set of flight information request types required by FF-ICE. [FF-ICE]
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="FLIGHT_PLAN">
+                <xs:annotation>
+                    <xs:documentation>Used to request the latest submitted flight plan. [FF-ICE]</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="FLIGHT_STATUS">
+                <xs:annotation>
+                    <xs:documentation>Used to request the latest status (Planning or Filing) from an eASP. [FF-ICE]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="SUPPLEMENTARY_FLIGHT_PLAN">
+                <xs:annotation>
+                    <xs:documentation>Used to request the latest submitted search and rescue information. [FF-ICE]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="RoleTypeType">
+        <xs:annotation>
+            <xs:documentation>Type of participant, FF-ICE or NON_FF-ICE [FIXM]</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="FFICE_PARTICIPANT">
+                <xs:annotation>
+                    <xs:documentation>An ASP that is capable of providing FF-ICE services. [FF-ICE]</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="NON_FFICE_PARTICIPANT">
+                <xs:annotation>
+                    <xs:documentation>An ASP that is unable to provide FF-ICE services. [FF-ICE]</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="SubmissionStatusValueType">
+        <xs:annotation>
+            <xs:documentation>Possible values of a submission status (ACK, REJECT or MANUAL) [FF-ICE]</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ACK">
+                <xs:annotation>
+                    <xs:documentation>An 'acknowledge' (ACK) response indicates that the message received can be
+                        processed by the eASP and will be acted upon. [FF-ICE]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="MANUAL">
+                <xs:annotation>
+                    <xs:documentation>A 'manual' (MAN) response indicates that the message has been queued for manual
+                        processing. [FF-ICE]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="REJECT">
+                <xs:annotation>
+                    <xs:documentation>A 'rejected' (REJ) response indicates that the message received could not be
+                        processed. The message has therefore not been processed or acted upon by the eASP and none of
+                        the data has been retained. [FF-ICE]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="AtmServiceProviderType">
+        <xs:annotation>
+            <xs:documentation>A Unit involved in performing Air Traffic Management responsibilities as introduced in the
+                PANS-ATM. [FF-ICE]
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="extension" type="ffice:AtmServiceProviderExtensionType" minOccurs="0" maxOccurs="2000">
+                <xs:annotation>
+                    <xs:documentation>An extension hook for attaching extension (non-core) classes.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="provider" type="fb:PersonOrOrganizationType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Identification information and associated communication address(es) for an ATM
+                        service provider. [FF-ICE]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="providerType" type="ffice:RoleTypeType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Type of participant, FF-ICE or NON_FF-ICE [FIXM]</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="AtmServiceProviderExtensionType" abstract="true">
+        <xs:annotation>
+            <xs:documentation>A base class for all AtmServiceProvider class extensions.</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+    <xs:complexType name="FficeMessageType">
+        <xs:annotation>
+            <xs:documentation>A discrete unit of communication, expressed electronically, and intended by the source for
+                consumption by some recipient or group of recipients. [FF-ICE]
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="extension" type="ffice:FficeMessageExtensionType" minOccurs="0" maxOccurs="2000">
+                <xs:annotation>
+                    <xs:documentation>An extension hook for attaching extension (non-core) classes.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="filingStatus" type="ffice:FilingStatusType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>The status of the filed flight plan with respect to the eASP. [FF-ICE]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="flight" type="fx:FlightType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>A flight associated with the message.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="informationRequest" type="ffice:RequestedInformationChoiceType" minOccurs="0"
+                        maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Indicates what information about the flight is being requested. [FF-ICE]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="operatorFlightPlanVersion" type="fb:CountPositiveType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>A unique identifier for the latest version of a flight plan submitted by an
+                        Operator (Airspace User). A flight plan version should be operationally usable for verification
+                        that the pilot or operator and ATM personnel are using the same information for the flight.
+                        [adapted from ICAO Draft FF-ICE Implementation Guidance]. The identifier should begin at one and
+                        increase by one with each revision.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="originator" type="fb:PersonOrOrganizationType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Sender of the message [adapted from ICAO Draft FF-ICE Implementation Guidance]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="planningStatus" type="ffice:PlanningStatusType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>The status of the preliminary flight plan with respect to the eASP. [FF-ICE]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="recipient" type="fb:PersonOrOrganizationType" minOccurs="0" maxOccurs="2000">
+                <xs:annotation>
+                    <xs:documentation>The one or more intended recipients of the flight information. [adapted from ICAO
+                        Draft FF-ICE Implementation Guidance]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="referencedMessageIdentifier" type="fb:UniversallyUniqueIdentifierType" minOccurs="0"
+                        maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>The unique message identifier of the message being responded to. [FIXM]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="relevantAtmServiceProvider" type="ffice:AtmServiceProviderType" minOccurs="0"
+                        maxOccurs="2000">
+                <xs:annotation>
+                    <xs:documentation>An ATM Service Provider whose airspace is entered by the flight plan route of
+                        flight or along the possible route of flight described in filed routing to a revised
+                        destination, and therefore should receive a flight plan from the operator of the flight.
+                        [FF-ICE]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="submissionStatus" type="ffice:SubmissionStatusType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>A status indicating if a message could be processed and acted on. [adapted from
+                        ICAO Draft FF-ICE Implementation Guidance]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="timestamp" type="fb:TimeType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>The time and date that the communication was sent. [FIXM]</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="translationProvider" type="fb:PersonOrOrganizationType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Identifies the provider that has been requested to translate and forward the
+                        message to identified translation recipients. [FF-ICE]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="translationRecipient" type="fb:PersonOrOrganizationType" minOccurs="0" maxOccurs="2000">
+                <xs:annotation>
+                    <xs:documentation>The one or more intended recipients of the translation and forwarding service.
+                        [FF-ICE]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="type" type="ffice:MessageTypeType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Represents the type of message. [FIXM]</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="uniqueMessageIdentifier" type="fb:UniversallyUniqueIdentifierType" minOccurs="0"
+                        maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>A unique message identifier for FIXM messages. [FIXM]</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="FficeMessageExtensionType" abstract="true">
+        <xs:annotation>
+            <xs:documentation>A base class for all FficeMessage class extensions.</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+    <xs:complexType name="FilingStatusType">
+        <xs:annotation>
+            <xs:documentation>The Filing Status provides information concerning the status of the route and trajectory,
+                as submitted. [adapted from ICAO Draft FF-ICE Implementation Guidance ]
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="explanation" type="fb:CharacterStringType" minOccurs="0" maxOccurs="2000">
+                <xs:annotation>
+                    <xs:documentation>A textual description of the reason a message was rejected. [ICAO Draft FF-ICE
+                        Implementation Guidance]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="extension" type="ffice:FilingStatusExtensionType" minOccurs="0" maxOccurs="2000">
+                <xs:annotation>
+                    <xs:documentation>An extension hook for attaching extension (non-core) classes.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="value" type="ffice:FilingStatusValueType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Possible values of an operational filing status (ACCEPTABLE, NOT_ACCEPTABLE).
+                        [FF-ICE]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="FilingStatusExtensionType" abstract="true">
+        <xs:annotation>
+            <xs:documentation>A base class for all FilingStatusExtension class extensions.</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+    <xs:complexType name="PlanningStatusType">
+        <xs:annotation>
+            <xs:documentation>The Planning Status provides information concerning the status of the route and
+                trajectory, as submitted.[adapted from ICAO Draft FF-ICE Implementation Guidance ]
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="explanation" type="fb:CharacterStringType" minOccurs="0" maxOccurs="2000">
+                <xs:annotation>
+                    <xs:documentation>Textual explanation of the operational acceptability returned. [ICAO Draft FF-ICE
+                        Implementation Guidance]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="extension" type="ffice:PlanningStatusExtensionType" minOccurs="0" maxOccurs="2000">
+                <xs:annotation>
+                    <xs:documentation>An extension hook for attaching extension (non-core) classes.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="value" type="ffice:PlanningStatusValueType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>The applicable planning status values (CONCUR, NON_CONCUR, NEGOTIATE) of the route
+                        and trajectory, as submitted. [FF-ICE]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="PlanningStatusExtensionType" abstract="true">
+        <xs:annotation>
+            <xs:documentation>A base class for all PlanningStatus class extensions.</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+    <xs:complexType name="RequestedInformationChoiceType">
+        <xs:annotation>
+            <xs:documentation>Indicates what information about the flight is being requested. [FF-ICE]
+            </xs:documentation>
+        </xs:annotation>
+        <xs:choice>
+            <xs:element name="other" type="fb:CharacterStringType" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Used to represent any custom types established by a flight data request service.
+                        [FF-ICE]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="type" type="ffice:RequestTypeType" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Indicates the type of information being requested. [FF-ICE]</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:choice>
+    </xs:complexType>
+    <xs:complexType name="SubmissionStatusType">
+        <xs:annotation>
+            <xs:documentation>A status indicating if a message could be processed and acted on. [adapted from ICAO Draft
+                FF-ICE Implementation Guidance]
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="explanation" type="fb:CharacterStringType" minOccurs="0" maxOccurs="2000">
+                <xs:annotation>
+                    <xs:documentation>A textual description of the reason a message was rejected. [ICAO Draft FF-ICE
+                        Implementation Guidance]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="extension" type="ffice:SubmissionStatusExtensionType" minOccurs="0" maxOccurs="2000">
+                <xs:annotation>
+                    <xs:documentation>An extension hook for attaching extension (non-core) classes.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="value" type="ffice:SubmissionStatusValueType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Possible values of a submission status (ACK, REJECT or MANUAL) [FF-ICE]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="SubmissionStatusExtensionType" abstract="true">
+        <xs:annotation>
+            <xs:documentation>A base class for all SubmissionStatus class extensions.</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+</xs:schema>

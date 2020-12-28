@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.fixm.aero/flight/4.2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fx="http://www.fixm.aero/flight/4.2" xmlns:fb="http://www.fixm.aero/base/4.2" elementFormDefault="qualified" version="4.2.0">
+	<xs:annotation>
+		<xs:documentation>An FF-ICE Trial Response message RouteTrajectory template.
+
+=========================================== 
+Copyright (c) 2020 Airservices Australia, DSNA, EUROCONTROL, GCAA UAE, IATA, International Coordinating Council of Aerospace Industries Associations, JCAB, NATS Limited, NAV CANADA, SESAR Joint Undertaking and US FAA 
+=========================================== 
+All rights reserved. 
+          
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met: 
+	- Redistributions of source code must retain the above copyright notice, this list of conditions and the disclaimer.
+	- Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the disclaimer in the documentation and/or other materials provided with the distribution.
+	- Neither the names of Airservices Australia, DSNA, EUROCONTROL, GCAA UAE, IATA, International Coordinating Council of Aerospace Industries Associations, JCAB, NATS Limited, NAV CANADA, SESAR Joint Undertaking and US FAA nor the names of their contributors may be used to endorse or promote products derived from this specification without specific prior written permission.
+          
+DISCLAIMER 
+          
+THIS SPECIFICATION IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+          
+========================================== 
+Editorial note: this license is an instance of the BSD license template as provided by the Open Source Initiative: 
+http://www.opensource.org/licenses/bsd-license.php 
+          
+The authoritative reference for FIXM is www.FIXM.aero. 
+          
+Details on Airservices Australia: http://www.airservicesaustralia.com/ 
+Details on DSNA: http://www.developpement-durable.gouv.fr/-Navigation-aerienne-.html 
+Details on EUROCONTROL: http://www.eurocontrol.int/ 
+Details on IATA: http://www.iata.org/Pages/default.aspx 
+Details on JCAB: http://www.mlit.go.jp/en/koku/index.html 
+Details on NATS Limited: http://www.nats.co.uk/ 
+Details on NAV CANADA: http://www.navcanada.ca/ 
+Details on the UAE GCAA: https://www.gcaa.gov.ae 
+Details on the ICCAIA: www.iccaia.org 
+Details on the SESAR JU and its members: http://www.sesarju.eu/discover-sesar/partnering-smarter-aviation/members 
+Details on the US FAA: http://www.faa.gov/</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://www.fixm.aero/base/4.2" schemaLocation="../../base/FficeTRP_Base.xsd"/>
+	<xs:include schemaLocation="FficeTRP_RouteChanges.xsd"/>
+	<xs:include schemaLocation="FficeTRP_Constraints.xsd"/>
+	<xs:include schemaLocation="../../../../../../core/flight/flightroutetrajectory/RouteTrajectory.xsd"/>
+	<xs:complexType name="FficeTRP_FlightRouteInformationType">
+		<xs:annotation>
+			<xs:documentation>Contains basic information about the Flight Route that pertains to the whole flight.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="fx:FlightRouteInformationType">
+				<xs:sequence>
+					<xs:element name="cruisingLevel" type="fb:FlightLevelOrAltitudeChoiceType" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The filed altitude (flight level) for the first or the whole cruising portion of the flight.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="cruisingSpeed" type="fb:TrueAirspeedType" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The true airspeed for the first or the whole cruising portion of the flight.  This can be for a filed flight or an active flight.  This element is strategic in nature. </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="extension" type="fb:FlightRouteInformationExtensionType" minOccurs="0" maxOccurs="2000" nillable="true">
+						<xs:annotation>
+							<xs:documentation>An extension hook for attaching extension (non-core) classes.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="totalEstimatedElapsedTime" type="fb:DurationType" minOccurs="0" maxOccurs="1" nillable="true">
+						<xs:annotation>
+							<xs:documentation>For IFR flights, the estimated time required from take-off to arrive over that designated point, defined by reference to navigation aids, from which it is intended that an instrument approach procedure will be commenced, or, if no navigation aid is associated with the destination aerodrome, to arrive over the destination aerodrome. For VFR flights, the estimated time required from take-off to arrive over the destination aerodrome. [ICAO Doc 4444]
+For a flight plan received from an aircraft in flight, the total estimated elapsed time is the estimated time from the first point of the route to which the flight plan applies to the termination point of the flight plan. [ICAO Doc 4444, Appendix 2, ITEM 16]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="FficeTRP_RouteTrajectoryElementType">
+		<xs:annotation>
+			<xs:documentation>A portion of the route that can be at one of three levels as described below:
+a) A Route Element defined by a Significant Point and the ATS Route (or direct route) to be followed until a change in route.
+b) An Expanded Route Element defined by a Significant Point and the ATS Route (or direct route) to be followed until the next Significant Point, which may be along the same ATS Route.
+c)A Trajectory Element defined by a geographic point and the ATS Route (or direct route) followed until the next trajectory point. [FF-ICE/1 Implementation Guidance Manual, Appendix B, Chapter B-3.2]</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="fx:RouteTrajectoryElementType">
+				<xs:sequence>
+					<xs:element name="alongRouteDistance" type="fb:DistanceType" minOccurs="0" maxOccurs="1" nillable="true">
+						<xs:annotation>
+							<xs:documentation>The distance along the route.  For an eASP-provided expanded route, it is computed from the first converted point in the eASP's airspace for each route point in the expanded route. For an operator-provided expanded route, it is computed from the beginning of the route.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="constraint" type="fx:FficeTRP_RouteTrajectoryConstraintType" minOccurs="0" maxOccurs="2000" nillable="true">
+						<xs:annotation>
+							<xs:documentation>A number of constraints can be associated with each Expanded Route Point and Trajectory point.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="elementStartPoint" type="fb:SignificantPointChoiceType" minOccurs="0" maxOccurs="1" nillable="true">
+						<xs:annotation>
+							<xs:documentation>A specified geographical location used in defining the flight route or expanded route. [FIXM]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="enRouteDelay" type="fx:EnRouteDelayType" minOccurs="0" maxOccurs="1" nillable="true">
+						<xs:annotation>
+							<xs:documentation>En Route delay or holding planned to occur at a significant point or along a route element.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="extension" type="fb:RouteTrajectoryElementExtensionType" minOccurs="0" maxOccurs="2000" nillable="true">
+						<xs:annotation>
+							<xs:documentation>An extension hook for attaching extension (non-core) classes.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="flightRulesChange" type="fx:FlightRulesType" minOccurs="0" maxOccurs="1" nillable="true">
+						<xs:annotation>
+							<xs:documentation>Describes the planned change of flight rules (e.g., IFR/VFR) associated with a route point.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="modified" type="fx:ModifiedRouteItemIndicatorType" minOccurs="0" maxOccurs="1" nillable="true">
+						<xs:annotation>
+							<xs:documentation>Identifies if the route point or element was modified from the reference version, identified in the message, during negotiation by an ASP. </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="modifiedRouteItemReference" type="fb:CharacterStringType" minOccurs="0" maxOccurs="1" nillable="true">
+						<xs:annotation>
+							<xs:documentation>A reference to an ATFM program name that modified the route.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="point4D" type="fx:FficeTRP_TrajectoryPoint4DType" minOccurs="0" maxOccurs="1" nillable="true">
+						<xs:annotation>
+							<xs:documentation>Identifies the location, altitude and time of a trajectory point.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="routeChange" type="fx:FficeTRP_RouteChangeType" minOccurs="0" maxOccurs="1" nillable="true">
+						<xs:annotation>
+							<xs:documentation>Flight Route element may contain a list of route changes.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="routeDesignatorToNextElement" type="fx:RouteDesignatorToNextElementChoiceType" minOccurs="0" maxOccurs="1" nillable="true">
+						<xs:annotation>
+							<xs:documentation>The route (airway) to the next element on the route. Can be either an en route airway, standard instrument departure route, or standard instrument arrival route. [FIXM]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="routeTruncationIndicator" type="fx:RouteTruncationIndicatorType" minOccurs="0" maxOccurs="1" nillable="true">
+						<xs:annotation>
+							<xs:documentation>Indicates the route description is truncated at the preceding point.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="seqNum" use="optional" type="fb:CountType">
+					<xs:annotation>
+						<xs:documentation>Incrementing identifier used to ensure the sequence of ordered lists is retained. The identifier should begin at zero. [FIXM]</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="FficeTRP_RouteTrajectoryGroupType">
+		<xs:annotation>
+			<xs:documentation>A data container supporting the representation of aircraft movement descriptions with variable levels of granularity.  This container enables the representation of a flight route and a 4D trajectory, as described in ICAO Doc 9965 Volume 2.  [FIXM]</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="fx:RouteTrajectoryGroupType">
+				<xs:sequence>
+					<xs:element name="climbProfile" type="fx:PerformanceProfileType" minOccurs="0" maxOccurs="1" nillable="true">
+						<xs:annotation>
+							<xs:documentation>A zero-wind, standard atmosphere, unconstrained climb profile reflective of the flight capabilities and desired parameters during climb.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="climbSchedule" type="fx:SpeedScheduleType" minOccurs="0" maxOccurs="1" nillable="true">
+						<xs:annotation>
+							<xs:documentation>Initially submitted by the airspace user, this defines the target speed in both Indicated Airspeed (IAS) and MACH so the aircraft can climb through the crossover altitude and target the MACH speed when needed.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="descentProfile" type="fx:PerformanceProfileType" minOccurs="0" maxOccurs="1" nillable="true">
+						<xs:annotation>
+							<xs:documentation>A zero-wind, standard atmosphere, unconstrained descent profile reflective of the flight capabilities and desired parameters during descent.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="descentSchedule" type="fx:SpeedScheduleType" minOccurs="0" maxOccurs="1" nillable="true">
+						<xs:annotation>
+							<xs:documentation>Initially submitted by the airspace user, this defines the target speed in both (Indicated Airspeed) IAS and MACH so the aircraft can descend through the crossover altitude and target the IAS speed when needed.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="element" type="fx:FficeTRP_RouteTrajectoryElementType" minOccurs="0" maxOccurs="2000" nillable="true">
+						<xs:annotation>
+							<xs:documentation>A container for information pertinent to a single point in a trajectory. The elements are ordered according to increasing time/distance from the start point.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="extension" type="fb:RouteTrajectoryGroupExtensionType" minOccurs="0" maxOccurs="2000" nillable="true">
+						<xs:annotation>
+							<xs:documentation>An extension hook for attaching extension (non-core) classes.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="routeInformation" type="fx:FficeTRP_FlightRouteInformationType" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Contains information about the Flight Route. The route is comprised of Route Segments, which are comprised of Route Point/Airway pairs. Route also contains an expanded route.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="takeoffMass" type="fb:MassType" minOccurs="0" maxOccurs="1" nillable="true">
+						<xs:annotation>
+							<xs:documentation>The estimated takeoff mass of the aircraft.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="FficeTRP_TrajectoryPoint4DType">
+		<xs:annotation>
+			<xs:documentation>Identifies relevant information about a trajectory point including location, altitude, time, etc.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="fx:TrajectoryPoint4DType">
+				<xs:sequence>
+					<xs:element name="altimeterSetting" type="fb:PressureType" minOccurs="0" maxOccurs="1" nillable="true">
+						<xs:annotation>
+							<xs:documentation>The barometric pressure reading used to adjust a pressure altimeter for variations in existing atmospheric pressure or to the standard altimeter setting (29.92).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="extension" type="fb:TrajectoryPoint4DExtensionType" minOccurs="0" maxOccurs="2000" nillable="true">
+						<xs:annotation>
+							<xs:documentation>An extension hook for attaching extension (non-core) classes.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="level" type="fb:FlightLevelOrAltitudeChoiceType" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Altitude of the 4D point.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="metData" type="fx:MeteorologicalDataType" minOccurs="0" maxOccurs="1" nillable="true">
+						<xs:annotation>
+							<xs:documentation>In a predicted trajectory, the instantaneous temperature and wind vector used at the 4D Point for creating the 4D trajectory.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="pointProperty" type="fx:TrajectoryPointPropertyType" minOccurs="0" maxOccurs="2000" nillable="true">
+						<xs:annotation>
+							<xs:documentation>Describes any applicable properties of the trajectory point.  May include multiple properties per point.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="position" type="fb:GeographicalPositionType" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The geographical location of the 4D point.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="predictedAirspeed" type="fb:IndicatedAirspeedType" minOccurs="0" maxOccurs="1" nillable="true">
+						<xs:annotation>
+							<xs:documentation>The predicted  indicated airspeed or Mach at the trajectory point.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="predictedGroundspeed" type="fb:GroundSpeedType" minOccurs="0" maxOccurs="1" nillable="true">
+						<xs:annotation>
+							<xs:documentation>The predicted ground speed at the Trajectory Point in knots or kilometers per hour.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="time" type="fx:Point4DTimeChoiceType" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>4D Point time expressed as either absolute or relative time.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="verticalRange" type="fb:VerticalRangeType" minOccurs="0" maxOccurs="1" nillable="true">
+						<xs:annotation>
+							<xs:documentation>Vertical Range representing block altitude clearances</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

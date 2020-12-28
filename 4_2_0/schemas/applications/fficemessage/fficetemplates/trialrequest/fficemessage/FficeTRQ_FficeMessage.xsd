@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.fixm.aero/app/ffice/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ffice="http://www.fixm.aero/app/ffice/1.0" xmlns:fx="http://www.fixm.aero/flight/4.2" xmlns:fb="http://www.fixm.aero/base/4.2" elementFormDefault="qualified" version="1.0.0">
+	<xs:annotation>
+		<xs:documentation>An FF-ICE Trial Request message template for the FficeMessage package.
+
+=========================================== 
+Copyright (c) 2020 Airservices Australia, DSNA, EUROCONTROL, GCAA UAE, IATA, International Coordinating Council of Aerospace Industries Associations, JCAB, NATS Limited, NAV CANADA, SESAR Joint Undertaking and US FAA 
+=========================================== 
+All rights reserved. 
+          
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met: 
+	- Redistributions of source code must retain the above copyright notice, this list of conditions and the disclaimer.
+	- Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the disclaimer in the documentation and/or other materials provided with the distribution.
+	- Neither the names of Airservices Australia, DSNA, EUROCONTROL, GCAA UAE, IATA, International Coordinating Council of Aerospace Industries Associations, JCAB, NATS Limited, NAV CANADA, SESAR Joint Undertaking and US FAA nor the names of their contributors may be used to endorse or promote products derived from this specification without specific prior written permission.
+          
+DISCLAIMER 
+          
+THIS SPECIFICATION IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+          
+========================================== 
+Editorial note: this license is an instance of the BSD license template as provided by the Open Source Initiative: 
+http://www.opensource.org/licenses/bsd-license.php 
+          
+The authoritative reference for FIXM is www.FIXM.aero. 
+          
+Details on Airservices Australia: http://www.airservicesaustralia.com/ 
+Details on DSNA: http://www.developpement-durable.gouv.fr/-Navigation-aerienne-.html 
+Details on EUROCONTROL: http://www.eurocontrol.int/ 
+Details on IATA: http://www.iata.org/Pages/default.aspx 
+Details on JCAB: http://www.mlit.go.jp/en/koku/index.html 
+Details on NATS Limited: http://www.nats.co.uk/ 
+Details on NAV CANADA: http://www.navcanada.ca/ 
+Details on the UAE GCAA: https://www.gcaa.gov.ae 
+Details on the ICCAIA: www.iccaia.org 
+Details on the SESAR JU and its members: http://www.sesarju.eu/discover-sesar/partnering-smarter-aviation/members 
+Details on the US FAA: http://www.faa.gov/</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://www.fixm.aero/base/4.2" schemaLocation="../base/FficeTRQ_Base.xsd"/>
+	<xs:import namespace="http://www.fixm.aero/flight/4.2" schemaLocation="../flight/FficeTRQ_Flight.xsd"/>
+	<xs:include schemaLocation="../../../FficeMessage.xsd"/>
+	<xs:simpleType name="FficeTRQ_MessageTypeType">
+		<xs:annotation>
+			<xs:documentation>Represents the type of message. [FIXM]</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ffice:MessageTypeType">
+			<xs:enumeration value="TRIAL_REQUEST">
+				<xs:annotation>
+					<xs:documentation>A Trial Request may be submitted to evaluate changes to either a Preliminary or Filed flight plan. Existing flight plan data will not be modified as a result of a Trial Request. [FF-ICE]</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="FficeTRQ_AtmServiceProviderType">
+		<xs:annotation>
+			<xs:documentation>A Unit involved in performing Air Traffic Management responsibilities as introduced in the PANS-ATM. [FF-ICE]</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="ffice:AtmServiceProviderType">
+				<xs:sequence>
+					<xs:element name="extension" type="ffice:AtmServiceProviderExtensionType" minOccurs="0" maxOccurs="2000">
+						<xs:annotation>
+							<xs:documentation>An extension hook for attaching extension (non-core) classes.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="provider" type="fb:PersonOrOrganizationType" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Identification information and associated communication address(es) for an ATM service provider.  [FF-ICE]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="providerType" type="ffice:RoleTypeType" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Type of participant, FF-ICE or NON_FF-ICE [FIXM]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="FficeTRQ_FficeMessageType">
+		<xs:annotation>
+			<xs:documentation>A discrete unit of communication, expressed electronically, and intended by the source for consumption by some recipient or group of recipients. [FF-ICE]</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="ffice:FficeMessageType">
+				<xs:sequence>
+					<xs:element name="extension" type="ffice:FficeMessageExtensionType" minOccurs="0" maxOccurs="2000">
+						<xs:annotation>
+							<xs:documentation>An extension hook for attaching extension (non-core) classes.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="flight" type="fx:FficeTRQ_FlightType" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A flight associated with the message.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="originator" type="fb:FficeTRQ_PersonOrOrganizationType" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Sender of the message [adapted from ICAO Draft FF-ICE Implementation Guidance]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="recipient" type="fb:FficeTRQ_PersonOrOrganizationType" minOccurs="1" maxOccurs="2000">
+						<xs:annotation>
+							<xs:documentation>The one or more intended recipients of the flight information. [adapted from ICAO Draft FF-ICE Implementation Guidance]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="relevantAtmServiceProvider" type="ffice:FficeTRQ_AtmServiceProviderType" minOccurs="1" maxOccurs="2000">
+						<xs:annotation>
+							<xs:documentation>An ATM Service Provider whose airspace is entered by the flight plan route of flight or along the possible route of flight described in filed routing to a revised destination, and therefore should receive a flight plan from the operator of the flight. [FF-ICE]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="timestamp" type="fb:TimeType" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The time and date that the communication was sent. [FIXM]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="translationProvider" type="fb:FficeTRQ_PersonOrOrganizationType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Identifies the provider that has been requested to translate and forward the message to identified translation recipients. [FF-ICE]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="translationRecipient" type="fb:PersonOrOrganizationType" minOccurs="0" maxOccurs="2000">
+						<xs:annotation>
+							<xs:documentation>The one or more intended recipients of the translation and forwarding service.  [FF-ICE]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="type" type="ffice:FficeTRQ_MessageTypeType" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Represents the type of message. [FIXM]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="uniqueMessageIdentifier" type="fb:UniversallyUniqueIdentifierType" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A unique message identifier for FIXM messages. [FIXM]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

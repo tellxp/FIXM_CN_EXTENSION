@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+        targetNamespace="http://www.atmb.aero/4.2"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:fb="http://www.fixm.aero/base/4.2"
+        xmlns:fx="http://www.fixm.aero/flight/4.2"
+        xmlns:atmb="http://www.atmb.aero/4.2"
+        elementFormDefault="qualified"
+        version="4.2.0">
+    <xs:annotation>
+        <xs:documentation>
+            [CN] EnRoute package 包括航班在航路飞行中, 不同空中交通管制单位之间协调和移交的相关信息.
+            [EN] The EnRoute package consists of flight information while the flight is en route including coordination
+            between the air traffic control unit as the flight transitions between the unit boundaries along the route.
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:import namespace="http://www.fixm.aero/base/4.2" schemaLocation="../../../../core/base/Base.xsd"/>
+    <xs:import namespace="http://www.fixm.aero/flight/4.2" schemaLocation="../../../../core/flight/Flight.xsd"/>
+
+    <xs:include schemaLocation="../../base/AtmbBase.xsd"/>
+
+    <xs:include schemaLocation="../aircraft/AtmbAircraft.xsd"/>
+
+    <xs:simpleType name="AtmbBoundaryCrossingConditionType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 说明边界穿越/移交相对某个飞行高度层的状态, 平飞, 高于, 低于等.
+                [EN] Specifies whether the boundary crossing occurs at or above or below the specified level.
+
+                [extended] AT
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="fx:BoundaryCrossingConditionType">
+            <xs:enumeration value="AT">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 表示移交高度必须等于某一高度.
+                        [EN] Indicates that the transition altitude is at the specified.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="AT_OR_ABOVE">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 表示转换高度必须大于或者等于某一高度.
+                        [EN] Indicates that the transition altitude is at or above the specified.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="AT_OR_BELOW">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 表示转换高度必须小于或者等于某一高度.
+                        [EN] Indicates that the transition altitude is at or below the specified.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="AtmbAltitudeInTransitionType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 飞行器飞越某一边界点的高度限制.
+                [EN] An altitude (flight level) at or above/below which (specified in Boundary Crossing Condition) an
+                aircraft will cross the associated boundary point.
+
+                [removed] extension
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:restriction base="fx:AltitudeInTransitionType">
+                <xs:sequence>
+                    <xs:element name="crossingCondition" type="atmb:AtmbBoundaryCrossingConditionType" minOccurs="0"
+                                maxOccurs="1" nillable="true">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 飞越条件, 高于或者低于.
+                                [EN] Specifies whether the boundary crossing occurs at or above or at or below the
+                                specified
+                                level.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="level" type="fb:FlightLevelOrAltitudeChoiceType" minOccurs="0" maxOccurs="1"
+                                nillable="true">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 具体穿越边界航路点的飞行高度.
+                                [EN] An altitude (flight level) at or above/below which (specified in Boundary Crossing
+                                Condition) an aircraft will cross the associated boundary point.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="AtmbCrossingTimeType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 飞越某一航路点的时间序列.
+                [EN] Time sequence of crossing a point.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="estimated" type="fb:TimeType"/>
+        <xs:attribute name="calculated" type="fb:TimeType"/>
+        <xs:attribute name="actual" type="fb:TimeType"/>
+
+    </xs:complexType>
+    <xs:complexType name="AtmbBoundaryCrossingType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 不同管制单位之间协商的穿越航路点数据.
+                [EN] Boundary Crossing contains estimate data conveyed between ATS Units during the process of
+                Controller Coordination. [FIXM]
+
+                [removed] extension
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:restriction base="fx:BoundaryCrossingType">
+                <xs:sequence>
+                    <xs:element name="altitudeInTransition" type="atmb:AtmbAltitudeInTransitionType" minOccurs="0"
+                                maxOccurs="1"
+                                nillable="true">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 协商的穿越航路点高度.
+                                [EN] Negotiated boundary crossing transition altitude.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="initialLevel" type="fb:FlightLevelOrAltitudeChoiceType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 飞行器起始高度.
+                                [EN] Initial flight level according to AIP.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="requestLevel" type="fb:FlightLevelOrAltitudeChoiceType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 飞行器请求的飞行高度.
+                                [EN] Flight level requested by pilot.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="clearedLevel" type="fb:FlightLevelOrAltitudeChoiceType" minOccurs="0"
+                                maxOccurs="1"
+                                nillable="true">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 飞行器穿越边界点的指令高度, 如果飞行器正在爬升或者下降, 指令高度指的是飞行器将要到达的高度.
+                                [EN] The cleared altitude (flight level) at which the aircraft will cross the boundary
+                                crossing point if in level cruising flight or, if the aircraft is climbing or descending
+                                at the boundary crossing point, the cleared flight level to which it is proceeding.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="crossingPoint" type="fb:SignificantPointChoiceType" minOccurs="0" maxOccurs="1"
+                                nillable="true">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 飞行器穿越管制区的航路点.
+                                [EN] The point where the flight will cross an ATS facility boundary.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="crossingTime" type="atmb:AtmbCrossingTimeType" minOccurs="0" maxOccurs="1"
+                                nillable="true">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 飞行器预计穿越边界航路点的时间.
+                                [EN] The estimated time at which a flight will cross the associated boundary crossing
+                                point.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AtmbEnRouteType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 航班在航路飞行的相关信息.
+                [EN] Groups the en route information about the flight.
+
+                [removed] extension
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:restriction base="fx:EnRouteType">
+                <xs:sequence>
+                    <xs:element name="alternateAerodrome" type="fb:AerodromeReferenceType" minOccurs="0"
+                                maxOccurs="2000"
+                                nillable="true">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 备降机场.
+                                [EN] An ICAO designator of the aerodrome to which a flight could be diverted while en
+                                route, if needed.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="boundaryCrossingCoordination" type="atmb:AtmbBoundaryCrossingType" minOccurs="0"
+                                maxOccurs="1" nillable="true">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] 边界移交协商信息, 包括高度, 边界点和飞越时间.
+                                [EN] A proposed boundary crossing information with associated details including
+                                altitude, crossing point and crossing time.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="currentModeACode" type="fb:ModeACodeType" minOccurs="0" maxOccurs="1"
+                                nillable="true">
+                        <xs:annotation>
+                            <xs:documentation>
+                                [CN] A 类二次应答机代码
+                                [EN] Current assigned Mode A code. [FIXM]
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+</xs:schema>

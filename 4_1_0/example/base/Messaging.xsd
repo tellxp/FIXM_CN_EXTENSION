@@ -1,0 +1,625 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:annotation>
+      <xs:documentation>
+         Copyright (c) 2017 Airservices Australia, DSNA, EUROCONTROL, GCAA UAE, IATA, 
+         International Coordinating Council of Aerospace Industries Associations, JCAB, NATS 
+
+         Limited, 
+         NAV CANADA, SESAR Joint Undertaking  US FAA 
+         =========================================== 
+         All rights reserved. 
+          
+         Redistribution and use in source and binary forms, with or without modification, 
+
+         are permitted provided that the 
+         following conditions are met: 
+  * Redistributions of source code must retain the above copyright notice, this list of conditions and the disclaimer.
+  * Redistributions in binary form must reproduce the above copyright notice, this list of conditions
+    and the disclaimer in the documentation and/or other materials provided with the distribution.
+  * Neither the names of Airservices Australia, DSNA, EUROCONTROL, GCAA UAE, IATA, International Coordinating 
+    Council of Aerospace Industries Associations, JCAB, NATS Limited, NAV CANADA, SESAR Joint Undertaking  
+    US FAA nor the names of their contributors may be used to endorse or promote products derived from this
+    specification without specific prior written permission.
+          
+         DISCLAIMER 
+          
+         THIS SPECIFICATION IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
+
+         AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+
+         WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+
+         IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+
+         INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED 
+
+         TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR 
+
+         BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
+
+         CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+
+         ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH 
+
+         DAMAGE. 
+          
+         ========================================== 
+         Editorial note: this license is an instance of the BSD license template as provided 
+
+         by the Open Source Initiative: 
+         http://www.opensource.org/licenses/bsd-license.php 
+          
+         The authoritative reference for FIXM is www.FIXM.aero. 
+          
+         Details on Airservices Australia: http://www.airservicesaustralia.com/ 
+         Details on DSNA: http://www.developpement-durable.gouv.fr/-Navigation-aerienne-.html 
+
+         
+         Details on EUROCONTROL: http://www.eurocontrol.int/ 
+         Details on IATA: http://www.iata.org/Pages/default.aspx 
+         Details on JCAB: http://www.mlit.go.jp/en/koku/index.html 
+         Details on NATS Limited: http://www.nats.co.uk/ 
+         Details on NAV CANADA: http://www.navcanada.ca/ 
+         Details on the UAE GCAA: https://www.gcaa.gov.ae 
+         Details on the ICCAIA: www.iccaia.org 
+         Details on the SESAR JU and its members: http://www.sesarju.eu/discover-sesar/partnering-smarter-aviation/members 
+
+         
+         Details on the US FAA: http://www.faa.gov/ 
+      </xs:documentation>
+   </xs:annotation>
+   <!-- <xs:import namespace="http://www.fixm.aero/base/4.1" schemaLocation="./../base/Base.xsd"/>
+   <xs:import namespace="http://www.fixm.aero/flight/4.1" schemaLocation="./../flight/Flight.xsd"/>
+   -->
+   
+	<xs:include schemaLocation="Address.xsd"/>
+	<xs:include schemaLocation="Aerodrome.xsd"/>
+	<xs:include schemaLocation="Airspace.xsd"/>
+	<xs:include schemaLocation="Extension.xsd"/>
+	<xs:include schemaLocation="Measures.xsd"/>
+	<xs:include schemaLocation="Navaid.xsd"/>
+	<xs:include schemaLocation="UnitsOfMeasure.xsd"/>
+	<xs:include schemaLocation="Organization.xsd"/>
+	<xs:include schemaLocation="Types.xsd"/>
+	<xs:include schemaLocation="RangesAndChoices.xsd"/>
+   
+   <xs:annotation>
+      <xs:documentation>
+         Defines message metadata elements and some negotiation related elements in support 
+
+         of messaging-related aspects required by the FF-ICE/1 concept and guidance documents. 
+
+         Ambiguity regarding FF-ICE support by FIXM: the way elements are packaged and used 
+
+         is not, according to the ICAO SWIM concept, within the formal scope of FIXM. 
+      </xs:documentation>
+   </xs:annotation>
+
+   <xs:complexType name="FIXMUniqueMessageIdentifierType">
+      <xs:annotation>
+         <xs:documentation>
+            A reference that uniquely identifies a specific FIXM message and that is independent 
+
+            of any particular system. 
+            <xs:deprecated> 
+               <xs:deletionVersion>Not specified yet.</xs:deletionVersion>
+               <xs:deprecationVersion>4.1.0</xs:deprecationVersion>
+               <xs:rationale>CR 28</xs:rationale>
+               <xs:replacement>N/A. See the FIXM Implementation guidance for recommendations about messages.</xs:replacement>
+            </xs:deprecated>
+         </xs:documentation>
+      </xs:annotation>
+      <xs:simpleContent>
+         <xs:extension base="RestrictedFIXMUniqueMessageIdentifierType">
+            <xs:attribute name="codeSpace" type="CharacterStringType" fixed="urn:uuid" use="required" > 
+               <xs:annotation>
+                  <xs:documentation>
+                     Code Space of the FIXM Message Identifier 
+                     <xs:deprecated> 
+                        <xs:deletionVersion>not decided yet</xs:deletionVersion>
+                        <xs:deprecationVersion>4.1.0</xs:deprecationVersion>
+                        <xs:rationale>CR #28</xs:rationale>
+                        <xs:replacement>N/A. See the FIXM Implementation guidance for recommendations about messages.</xs:replacement>
+                     </xs:deprecated>
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:extension>
+      </xs:simpleContent>
+   </xs:complexType>
+
+   <xs:simpleType name="RestrictedFIXMUniqueMessageIdentifierType">
+      <xs:annotation>
+         <xs:documentation>
+            Helper type for restrictions on FIXMUniqueMessageIdentifierType 
+            <xs:deprecated> 
+               <xs:deletionVersion>Not specified yet.</xs:deletionVersion>
+               <xs:deprecationVersion>4.1.0</xs:deprecationVersion>
+               <xs:rationale>CR 28</xs:rationale>
+               <xs:replacement>N/A. See the FIXM Implementation guidance for recommendations about messages.</xs:replacement>
+            </xs:deprecated>
+         </xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="CharacterStringType">
+         <xs:pattern value="[0-9|aA-fF]{8}-[0-9|aA-fF]{4}-4[0-9|aA-fF]{3}-[89aAbB]{1}[0-9|aA-fF]{3}-[0-9|aA-fF]{12}"/>
+      </xs:restriction>
+   </xs:simpleType>
+
+	<!-- 20200612 WH 暂时不使用，使用时需要将对应的TYPE的依赖xsd引入
+   <xs:complexType name="FlightPlanNegotiationStatusType">
+      <xs:annotation>
+         <xs:documentation>
+            The status of the flight plan, as perceived by each eASP and provided within the 
+
+            Planning or Filing response, as applicable. [adapted from ICAO Draft FF-ICE Implementation 
+
+            Guidance] 
+            <xs:deprecated> 
+               <xs:deletionVersion>Not spefied yet</xs:deletionVersion>
+               <xs:deprecationVersion>4.1.0</xs:deprecationVersion>
+               <xs:rationale>CR 28</xs:rationale>
+               <xs:replacement>N/A. See the FIXM Implementation guidance for recommendations about messages.</xs:replacement>
+            </xs:deprecated>
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ExtensibleType">
+            <xs:sequence>
+               <xs:element name="filingStatus" type="FilingStatusType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        The Filing Status provides information concerning the status of the route and trajectory, 
+
+                        as submitted.[adapted from ICAO Draft FF-ICE Implementation Guidance ] 
+                        <xs:deprecated> 
+                           <xs:deletionVersion>Not specified yet</xs:deletionVersion>
+                           <xs:deprecationVersion>4.1.0</xs:deprecationVersion>
+                           <xs:rationale>CR 28</xs:rationale>
+                           <xs:replacement>N/A. See the FIXM Implementation guidance for recommendations about messages.</xs:replacement>
+                        </xs:deprecated>
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="planningStatus" type="PlanningStatusType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        The reference of the Flight Plan Version to which the response pertains. 
+                        <xs:deprecated> 
+                           <xs:deletionVersion>Not specified yet</xs:deletionVersion>
+                           <xs:deprecationVersion>4.1.0</xs:deprecationVersion>
+                           <xs:rationale>CR 28</xs:rationale>
+                           <xs:replacement>N/A. See the FIXM Implementation guidance for recommendations about messages.</xs:replacement>
+                        </xs:deprecated>
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="FlightPlanNegotiationStatus" type="FlightPlanNegotiationStatusType" substitutionGroup="Extensible" /> 
+
+   <xs:complexType name="FlightPlanVersionType">
+      <xs:annotation>
+         <xs:documentation>
+            The flight plan version shall indicate uniquely the latest version of a flight plan. 
+
+            Two different kinds of version can exist for a given flight plan: one from the AU 
+
+            and one from the ASP. [adapted from ICAO Draft FF-ICE Implementation Guidance] 
+            <xs:deprecated> 
+               <xs:deletionVersion>Not specified yet</xs:deletionVersion>
+               <xs:deprecationVersion>4.1.0</xs:deprecationVersion>
+               <xs:rationale>CR 28</xs:rationale>
+               <xs:replacement>N/A. See the FIXM Implementation guidance for recommendations about messages.</xs:replacement>
+            </xs:deprecated>
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ExtensibleType">
+            <xs:sequence>
+               <xs:element name="referenceVersion" type="FlightPlanVersionTypeChoiceType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        The reference of the Flight Plan Version to which the response pertains. 
+                        <xs:deprecated> 
+                           <xs:deletionVersion>Not specified yet</xs:deletionVersion>
+                           <xs:deprecationVersion>4.1.0</xs:deprecationVersion>
+                           <xs:replacemnet>N/A. See the FIXM Implementation guidance for recommendations about messages.</xs:replacemnet>
+                           <xs:rationale>CR 28</xs:rationale>
+                        </xs:deprecated>
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="version" type="FlightPlanVersionTypeChoiceType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        The flight plan version shall indicate uniquely the latest version of a flight plan. 
+
+                        Two different kinds of version can exist for a given flight plan: one from the AU 
+
+                        and one from the ASP. [adapted from ICAO Draft FF-ICE Implementation Guidance] 
+                        <xs:deprecated> 
+                           <xs:deletionVersion>Not specified yet</xs:deletionVersion>
+                           <xs:deprecationVersion>4.1.0</xs:deprecationVersion>
+                           <xs:rationale>CR 28</xs:rationale>
+                           <xs:replacement>N/A. See the FIXM Implementation guidance for recommendations about messages.</xs:replacement>
+                        </xs:deprecated>
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="FlightPlanVersion" type="FlightPlanVersionType" substitutionGroup="Extensible" /> 
+
+   <xs:complexType name="FlightPlanVersionTypeChoiceType">
+      <xs:annotation>
+         <xs:documentation>
+            The FlightPlanVersionChoice class allows specifying an AU flight plan version or 
+
+            an ASP flight plan version. [FIXM] 
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ExtensibleType">
+            <xs:choice>
+               <xs:element name="aspFlightPlanVersion" type="AspFlightPlanVersionTypeType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        A unique identifier for the latest version of a flight plan as distributed by the 
+
+                        sending ASP. A flight plan version should be operationally usable for verification 
+
+                        that the pilot or operator and ATM personnel are using the same information for the 
+
+                        flight. [adapted from ICAO Draft FF-ICE Implementation Guidance]. The identifier 
+
+                        should begin at one and increase by one with each revision. 
+                        <xs:deprecated> 
+                           <xs:deletionVersion>Not specified yet</xs:deletionVersion>
+                           <xs:deprecationVersion>4.1.0</xs:deprecationVersion>
+                           <xs:rationale>CR 28</xs:rationale>
+                           <xs:replacement>N/A. See the FIXM Implementation guidance for recommendations about messages.</xs:replacement>
+                        </xs:deprecated>
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="auFlightPlanVersion" type="AuFlightPlanVersionTypeType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        A unique identifier for the latest version of a flight plan submitted by an Airspace 
+
+                        User. A flight plan version should be operationally usable for verification that 
+
+                        the pilot or operator and ATM personnel are using the same information for the flight. 
+
+                        [adapted from ICAO Draft FF-ICE Implementation Guidance]. The identifier should begin 
+
+                        at one and increase by one with each revision. 
+                        <xs:deprecated> 
+                           <xs:deletionVersion>Not specified yet</xs:deletionVersion>
+                           <xs:deprecationVersion>4.1.0</xs:deprecationVersion>
+                           <xs:replacemnet>N/A. See the FIXM Implementation guidance for recommendations about messages.</xs:replacemnet>
+                           <xs:rationale>CR 28</xs:rationale>
+                        </xs:deprecated>
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:choice>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="FlightPlanVersionTypeChoice" type="FlightPlanVersionTypeChoiceType" substitutionGroup="Extensible" /> 
+
+   <xs:complexType name="MessageType">
+      <xs:annotation>
+         <xs:documentation>
+            A communication sent from one location to another and comprising an integral number 
+
+            of fields. [ICAO Doc 9426]. The Message element is an entry point to the FIXM model. 
+
+            
+            <xs:deprecated> 
+               <xs:deletionVersion>Not specified yet.</xs:deletionVersion>
+               <xs:deprecationVersion>4.1.0</xs:deprecationVersion>
+               <xs:rationale>CR 28</xs:rationale>
+            </xs:deprecated>
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="AbstractMessageType">
+            <xs:sequence>
+               <xs:element name="flight" type="FlightType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        A flight associated with the message. 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="flightPlanNegotiationStatus" type="FlightPlanNegotiationStatusType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        The status of the flight plan, as perceived by each eASP and provided within the 
+
+                        Planning or Filing response, as applicable. [adapted from ICAO Draft FF-ICE Implementation 
+
+                        Guidance] 
+                        <xs:deprecated> 
+                           <xs:deletionVersion>Not specified yet</xs:deletionVersion>
+                           <xs:deprecationVersion>4.1.0</xs:deprecationVersion>
+                           <xs:rationale>CR 28</xs:rationale>
+                           <xs:replacement>N/A. See the FIXM Implementation guidance for recommendations about messages.</xs:replacement>
+                        </xs:deprecated>
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="flightPlanVersion" type="FlightPlanVersionType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        The flight plan version shall indicate uniquely the latest version of a flight plan. 
+
+                        Two different kinds of version can exist for a given flight plan: one from the AU 
+
+                        and one from the ASP. [adapted from ICAO Draft FF-ICE Implementation Guidance] 
+                        <xs:deprecated> 
+                           <xs:deletionVersion>Not specified yet</xs:deletionVersion>
+                           <xs:deprecationVersion>4.1.0</xs:deprecationVersion>
+                           <xs:rationale>CR 28</xs:rationale>
+                           <xs:replacement>N/A. See the FIXM Implementation guidance for recommendations about messages.</xs:replacement>
+                        </xs:deprecated>
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="referenceMessage" type="FIXMUniqueMessageIdentifierType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        The unique message identifier of the message being responded. [FIXM] 
+                        <xs:deprecated> 
+                           <xs:deletionVersion>Not specified yet</xs:deletionVersion>
+                           <xs:deprecationVersion>4.1.0</xs:deprecationVersion>
+                           <xs:rationale>CR 28</xs:rationale>
+                           <xs:replacement>N/A. See the FIXM Implementation guidance for recommendations about messages.</xs:replacement>
+                        </xs:deprecated>
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="submissionStatus" type="SubmissionStatusType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        A status indicating if a message could be processed and acted on. [adapted from ICAO 
+
+                        Draft FF-ICE Implementation Guidance] 
+                        <xs:deprecated> 
+                           <xs:deletionVersion>Not specified yet</xs:deletionVersion>
+                           <xs:deprecationVersion>4.1.0</xs:deprecationVersion>
+                           <xs:rationale>CR 28</xs:rationale>
+                           <xs:replacement>N/A. See the FIXM Implementation guidance for recommendations about messages.</xs:replacement>
+                        </xs:deprecated>
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="Message" type="MessageType" substitutionGroup="Extensible" /> 
+
+   <xs:complexType name="MessageCollectionType">
+      <xs:annotation>
+         <xs:documentation>
+            A structure allowing multiple messages to be sent together. [FIXM] The MessageCollection 
+
+            element is an entry point to the FIXM model. 
+            <xs:deprecated> 
+               <xs:deletionVersion>Not Specified yet</xs:deletionVersion>
+               <xs:deprecationVersion>4.1.0</xs:deprecationVersion>
+               <xs:rationale>CR 28</xs:rationale>
+            </xs:deprecated>
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="AbstractMessageType">
+            <xs:sequence>
+               <xs:element name="message" type="AbstractMessageType" minOccurs="0" maxOccurs="2000" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        Each of the messages grouped in a Message Collection [FIXM] 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="MessageCollection" type="MessageCollectionType" substitutionGroup="Extensible" /> 
+
+   <xs:complexType name="PlanningStatusType">
+      <xs:annotation>
+         <xs:documentation>
+            The Planning Status provides information concerning the status of the route and trajectory, 
+
+            as submitted.[adapted from ICAO Draft FF-ICE Implementation Guidance ] 
+            <xs:deprecated> 
+               <xs:deletionVersion>Not specified yet</xs:deletionVersion>
+               <xs:deprecationVersion>4.1.0</xs:deprecationVersion>
+               <xs:rationale>CR 28</xs:rationale>
+               <xs:replacement>N/A. See the FIXM Implementation guidance for recommendations about messages.</xs:replacement>
+            </xs:deprecated>
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ExtensibleType">
+            <xs:attribute name="status" type="PlanningStatusValueType" use="optional" > 
+               <xs:annotation>
+                  <xs:documentation>
+                     The Planning Status provides information concerning the status of the route and trajectory, 
+
+                     as submitted.[adapted from ICAO Draft FF-ICE Implementation Guidance ] 
+                     <xs:deprecated> 
+                        <xs:deletionVersion>Not specified yet</xs:deletionVersion>
+                        <xs:deprecationVersion>4.1.0</xs:deprecationVersion>
+                        <xs:replacemnet>N/A. See the FIXM Implementation guidance for recommendations about messages.</xs:replacemnet>
+                        <xs:rationale>CR 28</xs:rationale>
+                     </xs:deprecated>
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="statusReason" type="CharacterStringType" use="optional" > 
+               <xs:annotation>
+                  <xs:documentation>
+                     Textual explanation of the operational acceptability returned. [ICAO Draft FF-ICE 
+
+                     Implementation Guidance] 
+                     <xs:deprecated> 
+                        <xs:deletionVersion>not decided yet</xs:deletionVersion>
+                        <xs:deprecationVersion>4.1.0</xs:deprecationVersion>
+                        <xs:rationale>CR #28</xs:rationale>
+                        <xs:replacement>N/A. See the FIXM Implementation guidance for recommendations about messages.</xs:replacement>
+                     </xs:deprecated>
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="PlanningStatus" type="PlanningStatusType" substitutionGroup="Extensible" /> 
+
+   <xs:complexType name="SubmissionStatusType">
+      <xs:annotation>
+         <xs:documentation>
+            A status indicating if a message could be processed and acted on. [adapted from ICAO 
+
+            Draft FF-ICE Implementation Guidance] 
+            <xs:deprecated> 
+               <xs:deletionVersion>Not specified yet</xs:deletionVersion>
+               <xs:deprecationVersion>4.1.0</xs:deprecationVersion>
+               <xs:rationale>CR 28</xs:rationale>
+               <xs:replacement>N/A. See the FIXM Implementation guidance for recommendations about messages.</xs:replacement>
+            </xs:deprecated>
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ExtensibleType">
+            <xs:attribute name="status" type="SubmissionStatusValueType" use="optional" > 
+               <xs:annotation>
+                  <xs:documentation>
+                     Possible values of a submission status (Ack, Reject or Manual) [adapted from ICAO 
+
+                     Draft FF-ICE Implementation Guidance] 
+                     <xs:deprecated> 
+                        <xs:deletionVersion>Not specified yet</xs:deletionVersion>
+                        <xs:deprecationVersion>4.1.0</xs:deprecationVersion>
+                        <xs:rationale>CR 28</xs:rationale>
+                        <xs:replacement>N/A. See the FIXM Implementation guidance for recommendations about messages.</xs:replacement>
+                     </xs:deprecated>
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="statusReason" type="CharacterStringType" use="optional" > 
+               <xs:annotation>
+                  <xs:documentation>
+                     A textual description of the reason a message was rejected. [ICAO Draft FF-ICE Implementation 
+
+                     Guidance] 
+                     <xs:deprecated> 
+                        <xs:deletionVersion>not decided yet</xs:deletionVersion>
+                        <xs:deprecationVersion>4.1.0</xs:deprecationVersion>
+                        <xs:rationale>CR #28</xs:rationale>
+                        <xs:replacement>N/A. See the FIXM Implementation guidance for recommendations about messages.</xs:replacement>
+                     </xs:deprecated>
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="SubmissionStatus" type="SubmissionStatusType" substitutionGroup="Extensible" /> 
+
+   <xs:simpleType name="FilingStatusValueType">
+      <xs:annotation>
+         <xs:documentation>
+            Possible values of an operational filing status (ACCEPTABLE, NON_ACCEPTABLE) [adapted 
+
+            from ICAO Draft FF-ICE Implementation Guidance] 
+            <xs:deprecated> 
+               <xs:deletionVersion>Not specified yet</xs:deletionVersion>
+               <xs:deprecationVersion>4.1.0</xs:deprecationVersion>
+               <xs:rationale>CR 28</xs:rationale>
+               <xs:replacement>N/A. See the FIXM Implementation guidance for recommendations about messages.</xs:replacement>
+            </xs:deprecated>
+         </xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="ACCEPTABLE"/>
+         <xs:enumeration value="NOT_ACCEPTABLE"/>
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:simpleType name="PlanningStatusValueType">
+      <xs:annotation>
+         <xs:documentation>
+            The applicable planning status values of the route and trajectory, as submitted. 
+
+            [adapted from ICAO Draft FF-ICE Implementation Guidance ] 
+            <xs:deprecated> 
+               <xs:deletionVersion>Not specified yet</xs:deletionVersion>
+               <xs:deprecationVersion>4.1.0</xs:deprecationVersion>
+               <xs:rationale>CR 28</xs:rationale>
+               <xs:replacement>N/A. See the FIXM Implementation guidance for recommendations about messages.</xs:replacement>
+            </xs:deprecated>
+         </xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="CONCUR"/>
+         <xs:enumeration value="NON_CONCUR"/>
+         <xs:enumeration value="NEGOTIATE"/>
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:simpleType name="SubmissionStatusValueType">
+      <xs:annotation>
+         <xs:documentation>
+            Possible values of a submission status (Ack, Reject or Manual) [adapted from ICAO 
+
+            Draft FF-ICE Implementation Guidance] 
+         </xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="ACK">
+            <xs:annotation>
+               <xs:documentation>
+                  A submission status of "Ack" shall indicate that a message could be processed and 
+
+                  acted on. [ICAO Draft FF-ICE Implementation Guidance] 
+               </xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="REJECT">
+            <xs:annotation>
+               <xs:documentation>
+                  A submission status of "Reject" shall indicate that a message could not be processed 
+
+                  and acted on, and was not retained by the receiving system. [ICAO Draft FF-ICE Implementation 
+
+                  Guidance] 
+               </xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="MANUAL">
+            <xs:annotation>
+               <xs:documentation>
+                  A submission status of "Manual" shall indicate that a message could not be processed 
+
+                  and acted on, and the receiving unit is attempting manual handling of the message. 
+
+                  [ICAO Draft FF-ICE Implementation Guidance] 
+               </xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+      </xs:restriction>
+   </xs:simpleType>
+   -->
+</xs:schema>

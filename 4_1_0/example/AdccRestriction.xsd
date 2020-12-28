@@ -1,0 +1,872 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:include schemaLocation="../schemas/core/base/Address.xsd"/>
+    <xs:include schemaLocation="../schemas/core/base/Aerodrome.xsd"/>
+    <xs:include schemaLocation="../schemas/core/base/Airspace.xsd"/>
+    <xs:include schemaLocation="../schemas/core/base/Extension.xsd"/>
+    <xs:include schemaLocation="../schemas/core/base/Measures.xsd"/>
+    <xs:include schemaLocation="../schemas/core/base/Navaid.xsd"/>
+    <xs:include schemaLocation="../schemas/core/base/UnitsOfMeasure.xsd"/>
+    <xs:include schemaLocation="../schemas/core/base/Organization.xsd"/>
+    <xs:include schemaLocation="../schemas/core/base/Types.xsd"/>
+    <xs:include schemaLocation="../schemas/core/base/RangesAndChoices.xsd"/>
+
+
+    <xs:element name="Restriction">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="RestrictionInfo" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="RestrictionElement" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="RestrictionInfo" type="RestrictionInfo"/>
+    <xs:complexType name="RestrictionInfo">
+        <xs:complexContent>
+            <xs:extension base="ExtensibleType">
+                <xs:sequence>
+                    <xs:element ref="Identifier" minOccurs="0" maxOccurs="1"/>
+                    <xs:element ref="restrictionStatus" minOccurs="0" maxOccurs="1"/>
+                    <xs:element ref="restrictionReason" minOccurs="0" maxOccurs="1"/>
+                    <xs:element ref="restrictionPeriod" minOccurs="0" maxOccurs="1"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="Identifier" type="Identifier"/>
+    <xs:complexType name="Identifier">
+        <xs:complexContent>
+            <xs:extension base="ExtensibleType">
+                <xs:sequence>
+                    <xs:element name="restrictionFormerGufi" type="GloballyUniqueFlightIdentifierType" minOccurs="0"
+                                maxOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>前序流控GUFI：如果当前流控是原发流控，则通过这个Gufi查到原发流控</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="restrictionGufi" type="GloballyUniqueFlightIdentifierType" minOccurs="0"
+                                maxOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>流控ID: 流控唯一标识</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="restrictionName" type="CharacterStringType" minOccurs="0" maxOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>流控名称：记录流控名称</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="restrictionOriginalSource" type="CharacterStringType" minOccurs="0" maxOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>流控原发单位：如果该流控属于转发，记录原发单位流控的初始发布单位，不变</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element ref="restrictionPublishType" minOccurs="0" maxOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>流控发布状态</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="restrictionPublishUnit" type="CharacterStringType" minOccurs="0" maxOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>流控发布单位：记录流控发布单位具体发布流控的单位（无论是转发流控还是原发流控，根据发布单位实时更新），如ZUUUATFM
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="restrictionPublishUser" type="CharacterStringType" minOccurs="0" maxOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>流控发布用户：记录流控发布用户具体发布流控的用户名</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="restrictionPeriod" type="restrictionPeriod"/>
+    <xs:simpleType name="restrictionPeriod">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="TODAY">
+                <xs:annotation>
+                    <xs:documentation>流控当日有效</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="CROSSDAYS">
+                <xs:annotation>
+                    <xs:documentation>多日有效</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="LONGTERM">
+                <xs:annotation>
+                    <xs:documentation>长期有效</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="CONVENTION">
+                <xs:annotation>
+                    <xs:documentation>常规流控</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name="restrictionPublishType" type="restrictionPublishType"/>
+    <xs:simpleType name="restrictionPublishType">
+        <xs:annotation>
+            <xs:documentation>流控发布类型</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ORIGINAL"/>
+            <xs:enumeration value="FORWARDING"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name="restrictionReason" type="restrictionReason"/>
+    <xs:simpleType name="restrictionReason">
+        <xs:annotation>
+            <xs:documentation>流控原因:
+                机场/军事活动/流量/天气/机场/航空公司/航班时刻/联检/油料/离港系统/旅客/公共安全/重大保障活动/其它
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="AIRPORT">
+                <xs:annotation>
+                    <xs:documentation>机场</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="MILITARY">
+                <xs:annotation>
+                    <xs:documentation>军事活动</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="CONTROL">
+                <xs:annotation>
+                    <xs:documentation>流量</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="WEATHER">
+                <xs:annotation>
+                    <xs:documentation>天气</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="SCHDULE">
+                <xs:annotation>
+                    <xs:documentation>航班时刻</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="JOINT_INSPECTON">
+                <xs:annotation>
+                    <xs:documentation>联检</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="OIL">
+                <xs:annotation>
+                    <xs:documentation>油料</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="DEPART_SYSTEM">
+                <xs:annotation>
+                    <xs:documentation>离港系统</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="PASSENGER">
+                <xs:annotation>
+                    <xs:documentation>旅客</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="PUBLIC_SECURITY">
+                <xs:annotation>
+                    <xs:documentation>公共安全</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="MAJOR_SECURITY_ACTIVITIES">
+                <xs:annotation>
+                    <xs:documentation>重大保障活动</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="AIRLINE"/>
+            <xs:enumeration value="OTHER">
+                <xs:annotation>
+                    <xs:documentation>其它</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name="restrictionStatus" type="restrictionStatus"/>
+    <xs:simpleType name="restrictionStatus">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="FUTURE">
+                <xs:annotation>
+                    <xs:documentation>待生效</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="RUNNING">
+                <xs:annotation>
+                    <xs:documentation>生效中</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="FINISHED">
+                <xs:annotation>
+                    <xs:documentation>已结束</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="TERMINATED_MANUAL">
+                <xs:annotation>
+                    <xs:documentation>人工终止</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="TERMINATED_AUTO">
+                <xs:annotation>
+                    <xs:documentation>系统终止</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:element name="RestrictionElement" type="RestrictionElement"/>
+    <xs:complexType name="RestrictionElement">
+        <xs:complexContent>
+            <xs:extension base="ExtensibleType">
+                <xs:sequence>
+                    <xs:element ref="RestrictionTime" minOccurs="0" maxOccurs="1"/>
+                    <xs:element ref="RestrictionDirection" minOccurs="0" maxOccurs="1"/>
+                    <xs:element ref="RestrictionFlight" minOccurs="0" maxOccurs="1"/>
+                    <xs:element ref="RestrictionMeasure" minOccurs="0" maxOccurs="1"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="RestrictionTime" type="RestrictionTime"/>
+    <xs:complexType name="RestrictionTime">
+        <xs:complexContent>
+            <xs:extension base="ExtensibleType">
+                <xs:sequence>
+                    <xs:element name="restrictionCreateTime" type="TimeType" minOccurs="0" maxOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>流控创建时间:流控创建，但未发布</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="restrictionPublishTime" type="TimeType" minOccurs="0" maxOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>流控发布时间:流控正式对外发布</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="restrictionUpdateTime" type="TimeType" minOccurs="0" maxOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>流控更新时间:修改流控时间</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="restrictionStartTime" type="TimeType" minOccurs="0" maxOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>流控生效时间:流控计算时段开始时间</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="restrictionEndTime" type="TimeType" minOccurs="0" maxOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>流控失效时间:流控计算时段结束时间</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="restrictionStartCalculateTime" type="TimeType" minOccurs="0" maxOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>
+                                流控纳入计算时间:流控纳入计算时间在流控生效时间之前。流控加入时就应提前进行预计算，后面按一定时间间隔进行计算，对时间进行不断校正，以结束时间进行预计算。同时在流控期间，流控一直在不停计算。
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="restrictionEndCalculateTime" type="TimeType" minOccurs="0" maxOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>
+                                流控退出计算时间:流控纳入计算时间在流控生效时间之前。流控加入时就应提前进行预计算，后面按一定时间间隔进行计算，对时间进行不断校正，以结束时间进行预计算。同时在流控期间，流控一直在不停计算。
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="restrictionReserveSlot" type="CharacterStringType" minOccurs="0" maxOccurs="1"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="RestrictionDirection" type="RestrictionDirection"/>
+    <xs:complexType name="RestrictionDirection">
+        <xs:complexContent>
+            <xs:extension base="ExtensibleType">
+                <xs:sequence>
+                    <xs:element ref="RestrictionAerodrome" minOccurs="0" maxOccurs="1"/>
+                    <xs:element ref="RestrictionArea" minOccurs="0" maxOccurs="1"/>
+                    <xs:element ref="RestrictionPoint" minOccurs="0" maxOccurs="1"/>
+                    <xs:element ref="RestrictionRoute" minOccurs="0" maxOccurs="1"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="RestrictionAerodrome" type="RestrictionAerodrome"/>
+    <xs:complexType name="RestrictionAerodrome">
+        <xs:annotation>
+            <xs:documentation>Aerodrome</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ExtensibleType">
+                <xs:sequence>
+                    <xs:element name="restrictionDepartureAerodrome" type="IcaoAerodromeReferenceType" minOccurs="0"
+                                maxOccurs="unbounded">
+                        <xs:annotation>
+                            <xs:documentation>受控起飞机场</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="exemptDepartureAerodrome" type="IcaoAerodromeReferenceType" minOccurs="0"
+                                maxOccurs="unbounded">
+                        <xs:annotation>
+                            <xs:documentation>豁免起飞机场</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="restrictionDestinationAerodrome" type="IcaoAerodromeReferenceType" minOccurs="0"
+                                maxOccurs="unbounded">
+                        <xs:annotation>
+                            <xs:documentation>受控降落机场</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="exemptDestinationAerodrome" type="IcaoAerodromeReferenceType" minOccurs="0"
+                                maxOccurs="unbounded">
+                        <xs:annotation>
+                            <xs:documentation>豁免降落机场</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="RestrictionArea" type="RestrictionArea"/>
+    <xs:complexType name="RestrictionArea">
+        <xs:complexContent>
+            <xs:extension base="ExtensibleType">
+                <xs:sequence>
+                    <xs:element name="restrictionEnterArea" type="CharacterStringType" minOccurs="0" maxOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>受控管制区域（进入）</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="restrictionEnterSector" type="CharacterStringType" minOccurs="0" maxOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>受控管制扇区（进入）</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="restrictionOverflyArea" type="CharacterStringType" minOccurs="0" maxOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>受控管制区域（飞越）</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="restrictionOverflySector" type="CharacterStringType" minOccurs="0" maxOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>受控管制扇区（飞越）</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="RestrictionPoint" type="RestrictionPoint"/>
+    <xs:complexType name="RestrictionPoint">
+        <xs:complexContent>
+            <xs:extension base="ExtensibleType">
+                <xs:sequence>
+                    <xs:element name="restrictionInPoint" type="DesignatedPointOrNavaidType" minOccurs="0"
+                                maxOccurs="unbounded">
+                        <xs:annotation>
+                            <xs:documentation>受控航路点-入点</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="restrictionInPointStartTime" type="TimeType" minOccurs="0" maxOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>受控航路点-入点 开始时间</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="restrictionInPointEndTime" type="TimeType" minOccurs="0" maxOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>受控航路点-入点 结束时间</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="restrictionOutPoint" type="DesignatedPointOrNavaidType" minOccurs="0"
+                                maxOccurs="unbounded">
+                        <xs:annotation>
+                            <xs:documentation>受控航路点-出点</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="restrictionOutPointStartTime" type="TimeType" minOccurs="0" maxOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>受控航路点-出点 开始时间</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="restrictionOutPointEndTime" type="TimeType" minOccurs="0" maxOccurs="1"/>
+                    <xs:element name="restrictionPrePoint" type="DesignatedPointOrNavaidType" minOccurs="0"
+                                maxOccurs="unbounded">
+                        <xs:annotation>
+                            <xs:documentation>
+                                受控前序航路点:类似于P125,AGULU,英文逗号分隔以航路点ENH为例，假如ENH为受控航路点-入点，那么能够进入ENH点之前的所有航路点均为其前序航路点，这些前序航路点中可以指定哪些为受控前序航路点，哪些为豁免前序航路点。如果未指定，均不受流控影响。
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="exemptPrePoint" type="DesignatedPointOrNavaidType" minOccurs="0" maxOccurs="unbounded">
+                        <xs:annotation>
+                            <xs:documentation>
+                                豁免前序航路点:类似于P126,AGULU,英文逗号分隔以航路点ENH为例，假如ENH为受控航路点-入点，那么能够进入ENH点之前的所有航路点均为其前序航路点，这些前序航路点中可以指定哪些为受控前序航路点，哪些为豁免前序航路点。如果未指定，均不受流控影响。
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="restrictionFollowPoint" type="DesignatedPointOrNavaidType" minOccurs="0"
+                                maxOccurs="unbounded">
+                        <xs:annotation>
+                            <xs:documentation>
+                                受控后续航路点:类似于P127,AGULU,英文逗号分隔以航路点ENH为例，假如ENH为受控航路点-出点，那么ENH点之后能够经过的所有航路点均为其后续航路点，这些后续航路点中可以指定哪些为受控后续航路点，哪些为豁免后续航路点。如果未指定，均不受流控影响。
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="exemptFollowPoint" type="DesignatedPointOrNavaidType" minOccurs="0"
+                                maxOccurs="unbounded">
+                        <xs:annotation>
+                            <xs:documentation>
+                                豁免后续航路点:类似于P128,AGULU,英文逗号分隔以航路点ENH为例，假如ENH为受控航路点-出点，那么ENH点之后能够经过的所有航路点均为其后续航路点，这些后续航路点中可以指定哪些为受控后续航路点，哪些为豁免后续航路点。如果未指定，均不受流控影响。
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="RestrictionRoute" type="RestrictionRoute"/>
+    <xs:complexType name="RestrictionRoute">
+        <xs:complexContent>
+            <xs:extension base="ExtensibleType">
+                <xs:sequence>
+                    <xs:element name="restrictionRoute" type="CharacterStringType" minOccurs="0" maxOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>受控航路</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="exemptRoute" type="CharacterStringType" minOccurs="0" maxOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>豁免航路</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="RestrictionFlight" type="RestrictionFlight"/>
+    <xs:complexType name="RestrictionFlight">
+        <xs:complexContent>
+            <xs:extension base="ExtensibleType">
+                <xs:sequence>
+                    <xs:element ref="RestrictionFlightType" minOccurs="0" maxOccurs="1"/>
+                    <xs:element ref="RestrictionAircraftType" minOccurs="0" maxOccurs="1"/>
+                    <xs:element ref="RestrictionAirline" minOccurs="0" maxOccurs="1"/>
+                    <xs:element ref="RestrictionQualification" minOccurs="0" maxOccurs="1"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="RestrictionFlightType" type="RestrictionFlightType"/>
+    <xs:complexType name="RestrictionFlightType">
+        <xs:complexContent>
+            <xs:extension base="ExtensibleType">
+				<xs:sequence>
+					<xs:element name="restrictionPassengerCargoType" type="restrictionPassengerCargoType" minOccurs="0" maxOccurs="1" />
+					<xs:element name="exemptPassengerCargoType" type="restrictionPassengerCargoType" minOccurs="0" maxOccurs="1" />
+					<xs:element name="restrictionTaskType" type="restrictionTaskType" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="exemptTaskType" type="restrictionTaskType" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="restrictionMissionType" type="restrictionMissionType" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="exemptMissionType" type="restrictionMissionType" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="restrictionMilitaryCivilType" type="restrictionMilitaryCivilType" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="exemptMilitaryCivilType" type="restrictionMilitaryCivilType" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="restrictionOperationType" type="restrictionOperationType" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="exemptOperationType" type="restrictionOperationType" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="RestrictionAircraftType" type="RestrictionAircraftType"/>
+    <xs:complexType name="RestrictionAircraftType">
+        <xs:complexContent>
+            <xs:extension base="ExtensibleType">
+                <xs:sequence>
+                    <xs:element name="exemptAircraftType" type="CharacterStringType" minOccurs="0" maxOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>豁免机型</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="restrictionAircraftType" type="CharacterStringType" minOccurs="0" maxOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>受控机型</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="RestrictionAirline" type="RestrictionAirline"/>
+    <xs:complexType name="RestrictionAirline">
+        <xs:complexContent>
+            <xs:extension base="ExtensibleType">
+                <xs:sequence>
+                    <xs:element name="restrictionAirline" type="CharacterStringType" minOccurs="0" maxOccurs="1"/>
+                    <xs:element name="exemptAirline" type="CharacterStringType" minOccurs="0" maxOccurs="1"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="RestrictionQualification" type="RestrictionQualification"/>
+    <xs:complexType name="RestrictionQualification">
+        <xs:sequence>
+            <xs:element name="restrictionQualification" type="CharacterStringType" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="exemptQualification" type="CharacterStringType" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+	<xs:element name="restrictionPassengerCargoType" type="restrictionPassengerCargoType"/>
+	<xs:simpleType name="restrictionPassengerCargoType">
+		<xs:annotation>
+			<xs:documentation>客货班</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PASSENGER">
+				<xs:annotation>
+					<xs:documentation>客班</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CARGO">
+				<xs:annotation>
+					<xs:documentation>货班</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="restrictionTaskType" type="restrictionTaskType"/>
+	<xs:simpleType name="restrictionTaskType">
+		<xs:annotation>
+			<xs:documentation>任务类型</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="REGULAR">
+				<xs:annotation>
+					<xs:documentation>正班</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PATCH">
+				<xs:annotation>
+					<xs:documentation>补班</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="restrictionMissionType" type="restrictionMissionType"/>
+	<xs:simpleType name="restrictionMissionType">
+		<xs:annotation>
+			<xs:documentation>航线类型</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="DOMESTIC">
+				<xs:annotation>
+					<xs:documentation>国内</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="INTERNATIONAL">
+				<xs:annotation>
+					<xs:documentation>国际</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="HONGKONG">
+				<xs:annotation>
+					<xs:documentation>港澳</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="LONGAO">
+				<xs:annotation>
+					<xs:documentation>龙澳</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OVERFLY">
+				<xs:annotation>
+					<xs:documentation>飞越</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="restrictionMilitaryCivilType" type="restrictionMilitaryCivilType"/>
+	<xs:simpleType name="restrictionMilitaryCivilType">
+		<xs:annotation>
+			<xs:documentation>军民航类型</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CIVIL">
+				<xs:annotation>
+					<xs:documentation>民航</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MILITARY">
+				<xs:annotation>
+					<xs:documentation>军航</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="restrictionOperationType" type="restrictionOperationType"/>
+	<xs:simpleType name="restrictionOperationType">
+		<xs:annotation>
+			<xs:documentation>航空公司类型</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NATIONAL">
+				<xs:annotation>
+					<xs:documentation>内机</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FOREIGNAL">
+				<xs:annotation>
+					<xs:documentation>外机</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TAIWAN">
+				<xs:annotation>
+					<xs:documentation>台湾机</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="HONGKONG">
+				<xs:annotation>
+					<xs:documentation>港澳机</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+
+    <xs:element name="RestrictionMeasure" type="RestrictionMeasure"/>
+    <xs:complexType name="RestrictionMeasure">
+        <xs:complexContent>
+            <xs:extension base="ExtensibleType">
+                <xs:sequence>
+                    <xs:element ref="restrictionMode" minOccurs="0" maxOccurs="1"/>
+                    <xs:element ref="restrictionRemark" minOccurs="0" maxOccurs="1"/>
+					<xs:element ref="RestrictionAA" minOccurs="0" maxOccurs="1"/>
+                    <xs:element ref="RestrictionAS" minOccurs="0" maxOccurs="1"/>
+					<xs:element ref="RestrictionAFP" minOccurs="0" maxOccurs="1"/>
+                    <xs:element ref="RestrictionGDP" minOccurs="0" maxOccurs="1"/>
+                    <xs:element ref="RestrictionTC" minOccurs="0" maxOccurs="1"/>
+                    <xs:element ref="RestrictionMIT" minOccurs="0" maxOccurs="1"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="restrictionMode" type="restrictionMode"/>
+    <xs:simpleType name="restrictionMode">
+        <xs:annotation>
+            <xs:documentation>流控限制方式</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="GS">
+                <xs:annotation>
+                    <xs:documentation>地面停止:命中地面停止的航班，系统不会再分配时隙，直至结束或人工终止</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="MIT">
+                <xs:annotation>
+                    <xs:documentation>最小尾流间隔:最小尾流间隔，需要再指定间隔时间</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="AS">
+                <xs:annotation>
+                    <xs:documentation>指定时隙:</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="REQ">
+                <xs:annotation>
+                    <xs:documentation>上客申请:也叫开车申请。命中开车申请的航班，系统会继续分配时隙，交由人工确认</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="TC">
+                <xs:annotation>
+                    <xs:documentation>总量控制:单位时间接收N架次航班。单位时间为15min倍数，N&gt;2，最小间隔应&lt;=“等效尾随间隔”的50%。</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="GDP">
+                <xs:annotation>
+                    <xs:documentation>地面延误程序:Ground Delay Program</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="AFP">
+                <xs:annotation>
+                    <xs:documentation>空中流量程序:Airspace Flow Program</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="CT">
+                <xs:annotation>
+                    <xs:documentation>
+                        改航:CHANG_TRACK，改航的形式有如下三种：强制改航情景、设定高度层上限的情景(通过限制飞行高度层的方式执行的一项措施)、选择性或咨询性航线选择情景(为了减轻某些区域内的交通负荷，向空域用户提供的备选航线。)。
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="AA">
+                <xs:annotation>
+                    <xs:documentation>空域可用:限制某个空域是否可用</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="BREQ">
+                <xs:annotation>
+                    <xs:documentation>上客申请</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="WI">
+                <xs:annotation>
+                    <xs:documentation>空中等待</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name="restrictionRemark" type="restrictionRemark"/>
+    <xs:complexType name="restrictionRemark">
+        <xs:annotation>
+            <xs:documentation>流控备注</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ExtensibleType">
+                <xs:sequence>
+                    <xs:element name="restrictionRemark" type="CharacterStringType" minOccurs="0" maxOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>流控备注</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="RestrictionAA" type="RestrictionAA"/>
+    <xs:complexType name="RestrictionAA">
+        <xs:sequence>
+            <xs:element name="restrictionMinHeight" type="FlightLevelOrAltitudeType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>受控最小高度限制高度层是一个范围，在这个高度层范围之间禁止飞行。</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+			<xs:element name="restrictionMinHeightIncluded" type="CharacterStringType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>1包含等于的意思，0不包含</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="restrictionMaxHeight" type="FlightLevelOrAltitudeType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>受控最高高度限制高度层是一个范围，在这个高度层范围之间禁止飞行。</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+			<xs:element name="restrictionMaxHeightIncluded" type="CharacterStringType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>1包含等于的意思，0不包含</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="exemptMinHeight" type="FlightLevelOrAltitudeType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>豁免最小高度限制高度层是一个范围，在这个高度层范围之间可以飞行。</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+			<xs:element name="exemptMinHeightIncluded" type="CharacterStringType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>1包含等于的意思，0不包含</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="exemptMaxHeight" type="FlightLevelOrAltitudeType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>豁免最高高度限制高度层是一个范围，在这个高度层范围之间可以飞行。</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+			<xs:element name="exemptMaxHeightIncluded" type="CharacterStringType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>1包含等于的意思，0不包含</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="restrictionArea" type="CharacterStringType" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="RestrictionAS" type="RestrictionAS"/>
+    <xs:complexType name="RestrictionAS">
+        <xs:annotation>
+            <xs:documentation>AS指定时隙时刻</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="restrictionValue" type="CharacterStringType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>如：21min,27min</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="restrictionValueUnit" type="CharacterStringType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>如：min</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="RestrictionAFP" type="RestrictionAFP"/>
+    <xs:complexType name="RestrictionAFP">
+        <xs:annotation>
+            <xs:documentation>AFP通行能力限制值</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="restrictionTimeSequence" type="CharacterStringType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>如：0100，0200</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="restrictionValueSequence" type="CharacterStringType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>如：10架，20架</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="RestrictionGDP" type="RestrictionGDP"/>
+    <xs:complexType name="RestrictionGDP">
+        <xs:annotation>
+            <xs:documentation>GDP通行能力限制值</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="restrictionTimeSequence" type="CharacterStringType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>如：0100，0200</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="restrictionValueSequence" type="CharacterStringType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>如：10架，20架</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="RestrictionMIT" type="RestrictionMIT"/>
+    <xs:complexType name="RestrictionMIT">
+        <xs:annotation>
+            <xs:documentation>MIT间隔时间</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="restrictionValue" type="CharacterStringType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>如：3min /15km</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="restrictionValueUnit" type="CharacterStringType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>如：min/km</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="RestrictionTC" type="RestrictionTC"/>
+    <xs:complexType name="RestrictionTC">
+        <xs:annotation>
+            <xs:documentation>总量控制接收架次</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="restrictionPeriodValue" type="CharacterStringType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>如：2架</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="restrictionPeriodDuration" type="CharacterStringType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>如：15min</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

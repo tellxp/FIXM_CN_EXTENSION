@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+        targetNamespace="http://www.atmb.aero/4.2"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:fb="http://www.fixm.aero/base/4.2"
+        xmlns:fx="http://www.fixm.aero/flight/4.2"
+        xmlns:atmb="http://www.atmb.aero/4.2"
+        elementFormDefault="qualified"
+        version="4.2.0">
+    <xs:annotation>
+        <xs:documentation>
+            ATMB 流量管理扩展, 该 package 包括流量管理扩展的所有内容
+
+            ===========================================
+            Copyright (c) 2020 Air Traffic Management Bureau China (ATMB)
+            ===========================================
+            All rights reserved.
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:import namespace="http://www.fixm.aero/base/4.2" schemaLocation="../../../core/base/Base.xsd"/>
+    <xs:import namespace="http://www.fixm.aero/flight/4.2" schemaLocation="../../../core/flight/Flight.xsd"/>
+
+    <xs:include schemaLocation="AtmbAtfmRestriction.xsd"/>
+    <xs:include schemaLocation="AtmbAtfmProgram.xsd"/>
+
+</xs:schema>

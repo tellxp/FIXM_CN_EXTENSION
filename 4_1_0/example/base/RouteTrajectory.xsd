@@ -1,0 +1,984 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+   <xs:annotation>
+      <xs:documentation>
+         Trajectory package contains the 4D Trajectory information. 
+      </xs:documentation>
+   </xs:annotation>
+
+   <xs:complexType name="ElapsedTimeLocationType">
+      <xs:annotation>
+         <xs:documentation>
+            The location associated with estimated elapsed time. It can be a longitude, significant 
+            point or flight information region. 
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ExtensibleType">
+            <xs:choice>
+               <xs:element name="longitude" type="LongitudeType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        Longitude associated with the elapsed time. 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="point" type="SignificantPointType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        Point associated with the estimated elapsed time. 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="region" type="AirspaceDesignatorType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        Flight information boundary associated with the elapsed time. 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:choice>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="ElapsedTimeLocation" type="ElapsedTimeLocationType" substitutionGroup="Extensible" /> 
+
+   <xs:complexType name="EnRouteDelayType">
+      <xs:annotation>
+         <xs:documentation>
+            En Route delay or holding planned to occur at a significant point or along a route 
+            element. 
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ExtensibleType">
+            <xs:attribute name="delayReference" type="CharacterStringType" use="optional" > 
+               <xs:annotation>
+                  <xs:documentation>
+                     Indicates a named hold pattern, airspace or aerodrome at which the en route delay 
+                     is expected to occur. 
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="delayType" type="EnRouteDelayTypeType" use="optional" > 
+               <xs:annotation>
+                  <xs:documentation>
+                     Indicates if the en route delay is planned airborne holding, or Airspace User (AU)-requested 
+                     operations at a specified location. 
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="delayValue" type="DurationType" use="optional" > 
+               <xs:annotation>
+                  <xs:documentation>
+                     The length of time the flight is expected to be delayed at a specific point en route. 
+                     
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="EnRouteDelay" type="EnRouteDelayType" substitutionGroup="Extensible" /> 
+
+   <xs:simpleType name="EnRouteDelayTypeType">
+      <xs:annotation>
+         <xs:documentation>
+            Indicates if the en route delay is planned airborne holding, or Airspace User (AU)-requested 
+            operations at a specified location. 
+         </xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="AU_REQUEST_POINT">
+            <xs:annotation>
+               <xs:documentation>
+                  The delay is an AU request to 'spend time' at the point, thus the delay has to be 
+                  added to the flight duration to the next point to compute the estimate to the next 
+                  point. 
+               </xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="AU_REQUEST_SEGMENT">
+            <xs:annotation>
+               <xs:documentation>
+                  The delay is an AU request to 'spend time' at the segment starting at point, thus 
+                  the delay has to be understood as the total duration between the point and the next 
+                  one. 
+               </xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="AU_REQUEST_AIRSPACE">
+            <xs:annotation>
+               <xs:documentation>
+                  The delay is an AU request to 'spend time' in an airspace after the RoutePoint the 
+                  name of which is in delayReference, the delayValue is the time in that airspace, 
+                  the entry and exit time into that airspace is in the BEGIN_STAY and END_STAY info 
+                  of the trajectory. 
+               </xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="AU_REQUEST_AERODROME">
+            <xs:annotation>
+               <xs:documentation>
+                  The delay is an AU request to 'spend time' at an aerodrome after the RoutePoint, 
+                  the name of the aerodrome is in the delayReference field, the points at which the 
+                  AU leaves its route and rejoin it go to the aerodrome are in the BEGIN_STAY and END_STAY 
+                  info of the trajectory 
+               </xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="AU_REQUEST_HOLDING">
+            <xs:annotation>
+               <xs:documentation>
+                  The delay is an AU request to 'spend time' at a holding pattern the anchor point 
+                  of which is the RoutePoint.  The holding pattern name if any is in delayReference. 
+                   delayValue used to compute estimates as in AU_REQUEST_POINT 
+               </xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="ATFM">
+            <xs:annotation>
+               <xs:documentation>
+                  The delay is an ASP request for airborne holding. The holding pattern name is in 
+                  the delayReference field. The delay value used to compute estimates as in AU_REQUEST_POINT. 
+                  
+               </xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:complexType name="EstimatedElapsedTimeType">
+      <xs:annotation>
+         <xs:documentation>
+            The estimated amount of time from takeoff to reach a significant point or Flight 
+            Information Region (FIR) boundary along the route of flight. 
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ExtensibleType">
+            <xs:sequence>
+               <xs:element name="location" type="ElapsedTimeLocationType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        The location associated with estimated elapsed time. It can be a longitude, significant 
+                        point or flight information region. 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+            <xs:attribute name="elapsedTime" type="DurationType" use="optional" > 
+               <xs:annotation>
+                  <xs:documentation>
+                     The estimated amount of elapsed time. 
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="seqNum" use="optional" > 
+               <xs:annotation>
+                  <xs:documentation>
+                     Incrementing identifier used to ensure the sequence of ordered lists is retained. 
+                     [FIXM]. The identifier should begin at zero. 
+                  </xs:documentation>
+               </xs:annotation>
+               <xs:simpleType>
+                  <xs:restriction base="xs:int">
+                     <xs:minInclusive value="0"/>
+                  </xs:restriction>
+               </xs:simpleType>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="EstimatedElapsedTime" type="EstimatedElapsedTimeType" substitutionGroup="Extensible" /> 
+
+   <xs:complexType name="FlightRouteElementType">
+      <xs:annotation>
+         <xs:documentation>
+            A container for information pertinent to a single point in a trajectory. 
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ExtensibleType">
+            <xs:sequence>
+               <xs:element name="alongRouteDistance" type="DistanceType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        The distance along the route, computed from the first converted fix in the ASP s 
+                        airspace for each route point in the route. 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="constraint" type="AbstractConstraintType" minOccurs="0" maxOccurs="2000" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        A number of constraints can be associated with each Expanded Route Point and Trajectory 
+                        point. 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="enRouteDelay" type="EnRouteDelayType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        En Route delay or holding planned to occur at a significant point or along a route 
+                        element. 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="point4D" type="TrajectoryPoint4DType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        Identifies the location, altitude and time of a trajectory point. 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="routeChange" type="AbstractRouteChangeType" minOccurs="0" maxOccurs="2000" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        Flight Route element may contain an ordered list of route changes. 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="routeDesignatorToNextElement" type="RouteDesignatorToNextElementType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        The route (airway) to the next element on the route. Can be either an en route airway, 
+                        standard instrument departure route, or standard instrument arrival route. [FIXM] 
+                        
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="routePoint" type="SignificantPointType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        Describes the significant points (i.e., point at which a change in ATS Route occurs) 
+                        contained in the route and points at which certain events occur (e.g., change of 
+                        speed or level, change of flight rules, start of cruise climb). 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="sidStarAbbreviatedDesignatorToNextElement" type="SidStarAbbreviatedDesignatorToNextElementType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        The shortened designator of a SID or a STAR to the next element on the route, as 
+                        a complement to RouteDesignatorToNextElement.[FIXM] 
+                         
+                        Limitations in the display equipment on board aircraft may require shortening of 
+                        the basic indicator of the SID or STAR designator. [derived from ICAO Annex 11, Appendix 
+                        3, chapter 2.2].  This optional name may be provided in FIXM when the SID or STAR 
+                        designator is seven characters. 
+                         
+                        Shortened names [...] are used in FMS databases and in some ground automation systems. 
+                        Making both names available allows each system to use the designator consistent with 
+                        their database. Note also, that as automated uplink of clearances to aircraft is 
+                        implemented a ground system using the seven-character name will need to upload the 
+                        shorter name for it to load to the FMS successfully. [FF-ICE Implementation Guidance 
+                        Manual] 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+            <xs:attribute name="flightRulesChange" type="FlightRulesType" use="optional" > 
+               <xs:annotation>
+                  <xs:documentation>
+                     Describes the planned change of flight rules (e.g., IFR/VFR) associated with a route 
+                     point. 
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="modified" type="ModifiedRouteItemIndicatorType" use="optional" > 
+               <xs:annotation>
+                  <xs:documentation>
+                     Identifies if the route point or element was modified from the reference version, 
+                     identified in the message, during negotiation by an ASP. 
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="modifiedRouteItemReference" type="CharacterStringType" use="optional" > 
+               <xs:annotation>
+                  <xs:documentation>
+                     A reference to an ATFM program name that modified the route. 
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="routeTerminationIndicator" type="RouteTruncationIndicatorType" use="optional" > 
+               <xs:annotation>
+                  <xs:documentation>
+                     Indicates the route description is truncated at the preceding point. 
+                     <xs:deprecated> 
+                        <xs:deletionVersion>5.0.0</xs:deletionVersion>
+                        <xs:deprecationVersion>4.1.0</xs:deprecationVersion>
+                        <xs:rationale>CR #37 Align with FF-ICE Terminology</xs:rationale>
+                        <xs:replacement>Fixm.Flight.FlightRouteTrajectory.RouteTrajectory.FlightRouteElement.routeTruncationIndicator</xs:replacement>
+                     </xs:deprecated>
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="routeTruncationIndicator" type="RouteTruncationIndicatorType" use="optional" > 
+               <xs:annotation>
+                  <xs:documentation>
+                     Indicates the route description is truncated at the preceding point. 
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="seqNum" use="optional" > 
+               <xs:annotation>
+                  <xs:documentation>
+                     Incrementing identifier used to ensure the sequence of ordered lists is retained. 
+                     [FIXM]. The identifier should begin at zero. 
+                  </xs:documentation>
+               </xs:annotation>
+               <xs:simpleType>
+                  <xs:restriction base="xs:int">
+                     <xs:minInclusive value="0"/>
+                  </xs:restriction>
+               </xs:simpleType>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="FlightRouteElement" type="FlightRouteElementType" substitutionGroup="Extensible" /> 
+
+   <xs:complexType name="FlightRouteInformationType">
+      <xs:annotation>
+         <xs:documentation>
+            Contains basic information about the Flight Route that pertains to the whole flight. 
+            
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ExtensibleType">
+            <xs:sequence>
+               <xs:element name="cruisingLevel" type="FlightLevelOrAltitudeType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        The filed altitude (flight level) for the first or the whole cruising portion of 
+                        the flight. 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="cruisingSpeed" type="TrueAirspeedType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        The true airspeed for the first or the whole cruising portion of the flight.  This 
+                        can be for a filed flight or an active flight.  This element is strategic in nature. 
+                        
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="estimatedElapsedTime" type="EstimatedElapsedTimeType" minOccurs="0" maxOccurs="2000" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        The estimated amount of time from takeoff to reach a significant point or Flight 
+                        Information Region (FIR) boundary along the route of flight. Elements are ordered 
+                        according to increasing duration from start. 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+            <xs:attribute name="airfileRouteStartTime" type="TimeType" use="optional" > 
+               <xs:annotation>
+                  <xs:documentation>
+                     The actual or estimated time of departure from the first point on the route for a 
+                     flight filed in the air. 
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="flightRulesCategory" type="FlightRulesCategoryType" use="optional" > 
+               <xs:annotation>
+                  <xs:documentation>
+                     The category of flight rules with which the pilot intends to comply. [ICAO Doc 4444, 
+                     Appendix 2, Item 8] 
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="routeText" type="CharacterStringType" use="optional" > 
+               <xs:annotation>
+                  <xs:documentation>
+                     A string of route elements complying with PANS-ATM Item 15c 
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="totalEstimatedElapsedTime" type="DurationType" use="optional" > 
+               <xs:annotation>
+                  <xs:documentation>
+                     For IFR flights, the estimated time required from take-off to arrive over that designated 
+                     point, defined by reference to navigation aids, from which it is intended that an 
+                     instrument approach procedure will be commenced, or, if no navigation aid is associated 
+                     with the destination aerodrome, to arrive over the destination aerodrome. For VFR 
+                     flights, the estimated time required from take-off to arrive over the destination 
+                     aerodrome. [ICAO Doc 4444] 
+                     For a flight plan received from an aircraft in flight, the total estimated elapsed 
+                     time is the estimated time from the first point of the route to which the flight 
+                     plan applies to the termination point of the flight plan. [ICAO Doc 4444, Appendix 
+                     2, ITEM 16] 
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="FlightRouteInformation" type="FlightRouteInformationType" substitutionGroup="Extensible" /> 
+
+   <xs:simpleType name="FlightRulesType">
+      <xs:annotation>
+         <xs:documentation>
+            The regulation, or combination of regulations, that governs all aspects of operations 
+            under which the pilot plans to fly. 
+         </xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="IFR">
+            <xs:annotation>
+               <xs:documentation>
+                  Instrument Flight Rules 
+               </xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="VFR">
+            <xs:annotation>
+               <xs:documentation>
+                  Visual Flight Rules 
+               </xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:simpleType name="FlightRulesCategoryType">
+      <xs:annotation>
+         <xs:documentation>
+            The category of flight rules with which the pilot intends to comply. [ICAO Doc 4444, 
+            Appendix 2, Item 8] 
+         </xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="I"/>
+         <xs:enumeration value="V"/>
+         <xs:enumeration value="Y"/>
+         <xs:enumeration value="Z"/>
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:complexType name="MeteorologicalDataType">
+      <xs:annotation>
+         <xs:documentation>
+            In a predicted trajectory, the instantaneous temperature and wind vector used at 
+            the 4D Point for creating the 4D trajectory. 
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ExtensibleType">
+            <xs:sequence>
+               <xs:element name="temperature" type="TemperatureType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        In a predicted trajectory, the instantaneous temperature used at the 4D Point for 
+                        creating the 4D trajectory. 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="windDirection" type="WindDirectionType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        In a predicted trajectory, the instantaneous wind direction used at the 4D Point 
+                        for creating the 4D trajectory. 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="windSpeed" type="WindSpeedType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        In a predicted trajectory, the instantaneous wind speed used at the 4D Point for 
+                        creating the 4D trajectory. 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="MeteorologicalData" type="MeteorologicalDataType" substitutionGroup="Extensible" /> 
+
+   <xs:simpleType name="ModifiedRouteItemIndicatorType">
+      <xs:annotation>
+         <xs:documentation>
+            Indication that the route item was modified 
+         </xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="MODIFIED_ROUTE_ITEM"/>
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:complexType name="PerformanceProfileType">
+      <xs:annotation>
+         <xs:documentation>
+            A zero-wind, standard atmosphere, unconstrained movement profile reflective of the 
+            flight capabilities and desired parameters during climb or descent. 
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ExtensibleType">
+            <xs:sequence>
+               <xs:element name="profilePoint" type="ProfilePointType" minOccurs="0" maxOccurs="2000" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        A point in a performance climb or descent profile. 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="PerformanceProfile" type="PerformanceProfileType" substitutionGroup="Extensible" /> 
+
+   <xs:complexType name="Point4DTimeChoiceType">
+      <xs:annotation>
+         <xs:documentation>
+            Allows to either specify a 4D point time as either an absolute time or relative time. 
+            
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ExtensibleType">
+            <xs:choice>
+               <xs:element name="absoluteTime" type="TimeType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        Absolute Time of the 4D point. 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="relativeTimeFromInitialPredictionPoint" type="DurationType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        Relative Time of the 4D point (expressed as duration from takeoff). 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:choice>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="Point4DTimeChoice" type="Point4DTimeChoiceType" substitutionGroup="Extensible" /> 
+
+   <xs:complexType name="ProfilePointType">
+      <xs:annotation>
+         <xs:documentation>
+            A point in a performance climb or descent profile. 
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ExtensibleType">
+            <xs:sequence>
+               <xs:element name="airspeed" type="TrueAirspeedType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        The true airspeed of a point in a zero-wind, standard atmosphere, unconstrained profile. 
+                        
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="distance" type="DistanceType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        The distance (from the start of the profile) at a point in a zero-wind, unconstrained 
+                        profile. 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="level" type="FlightLevelOrAltitudeType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        The altitude of a point in a zero-wind, unconstrained profile. 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+            <xs:attribute name="time" type="DurationType" use="optional" > 
+               <xs:annotation>
+                  <xs:documentation>
+                     The time (from the start of the profile) at a point in a zero-wind, unconstrained 
+                     profile. 
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="ProfilePoint" type="ProfilePointType" substitutionGroup="Extensible" /> 
+
+   <xs:complexType name="RouteDesignatorToNextElementType">
+      <xs:annotation>
+         <xs:documentation>
+            The route (airway) to the next element on the route. Can be either an en route airway, 
+            standard instrument departure route, or standard instrument arrival route. [FIXM] 
+            
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ExtensibleType">
+            <xs:choice>
+               <xs:element name="routeDesignator" type="RouteDesignatorType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        Provides a reference to the route point or element on the route and/or expanded route. 
+                        
+                        Flight route element  contained within the route. Each segment may contain a route 
+                        point or an airway. 
+                        The route element describes an ATS route (Field 15(c2)), a Standard Departure Route 
+                        (Field 15(c1)), or a Standard Arrival Route (Field 15(c3)). These fields may be used 
+                        consistent with the definition in ICAO Doc 4444. 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="standardInstrumentArrival" type="SidStarDesignatorType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        The textual designator of the Standard Instrument Arrival (STAR). 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="standardInstrumentDeparture" type="SidStarDesignatorType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        This is the name of a published procedure extending from the departure runway to 
+                        the start of the en route part of the aircraft's route. 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:choice>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="RouteDesignatorToNextElement" type="RouteDesignatorToNextElementType" substitutionGroup="Extensible" /> 
+
+   <xs:complexType name="RouteTrajectoryType">
+      <xs:annotation>
+         <xs:documentation>
+            Groups and associates a Route and Trajectory. 
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ExtensibleType">
+            <xs:sequence>
+               <xs:element name="climbProfile" type="PerformanceProfileType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        A zero-wind, standard atmosphere, unconstrained climb profile reflective of the flight 
+                        capabilities and desired parameters during climb. 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="climbSchedule" type="SpeedScheduleType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        Initially submitted by the airspace user, this defines the target speed in both Indicated 
+                        Airspeed (IAS) and MACH so the aircraft can climb through the crossover altitude 
+                        and target the MACH speed when needed. 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="descentProfile" type="PerformanceProfileType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        A zero-wind, standard atmosphere, unconstrained descent profile reflective of the 
+                        flight capabilities and desired parameters during descent. 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="descentSchedule" type="SpeedScheduleType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        Initially submitted by the airspace user, this defines the target speed in both (Indicated 
+                        Airspeed) IAS and MACH so the aircraft can descend through the crossover altitude 
+                        and target the IAS speed when needed. 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="element" type="FlightRouteElementType" minOccurs="0" maxOccurs="2000" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        A container for information pertinent to a single point in a trajectory. The elements 
+                        are ordered according to increasing time/distance from the start point. 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="routeInformation" type="FlightRouteInformationType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        Contains information about the Flight Route. The route is comprised of Route Segments, 
+                        which are comprised of Route Point/Airway pairs. Route also contains an expanded 
+                        route. 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="takeoffWeight" type="WeightType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        The estimated takeoff weight of the aircraft. 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="RouteTrajectory" type="RouteTrajectoryType" substitutionGroup="Extensible" /> 
+
+   <xs:simpleType name="RouteTruncationIndicatorType">
+      <xs:annotation>
+         <xs:documentation>
+            Indicates the route description is truncated at the preceding point 
+         </xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="ROUTE_TRUNCATION"/>
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:complexType name="SidStarAbbreviatedDesignatorToNextElementType">
+      <xs:annotation>
+         <xs:documentation>
+            The shortened designator of a SID or a STAR to the next element on the route, as 
+            a complement to RouteDesignatorToNextElement.[FIXM] 
+             
+            Limitations in the display equipment on board aircraft may require shortening of 
+            the basic indicator of the SID or STAR designator. [derived from ICAO Annex 11, Appendix 
+            3, chapter 2.2].  This optional name may be provided in FIXM when the SID or STAR 
+            designator is seven characters. 
+             
+            Shortened names [...] are used in FMS databases and in some ground automation systems. 
+            Making both names available allows each system to use the designator consistent with 
+            their database. Note also, that as automated uplink of clearances to aircraft is 
+            implemented a ground system using the seven-character name will need to upload the 
+            shorter name for it to load to the FMS successfully. [FF-ICE Implementation Guidance 
+            Manual] 
+         </xs:documentation>
+      </xs:annotation>
+      <xs:choice>
+         <xs:element name="sidAbbreviatedDesignator" type="SidStarAbbreviatedDesignatorType" minOccurs="0" maxOccurs="1" > 
+            <xs:annotation>
+               <xs:documentation>
+                  A shortened designator of a SID. [FIXM] 
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="starAbbreviatedDesignator" type="SidStarAbbreviatedDesignatorType" minOccurs="0" maxOccurs="1" > 
+            <xs:annotation>
+               <xs:documentation>
+                  A shortened designator of a STAR. [FIXM] 
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:choice>
+   </xs:complexType>
+   <xs:element name="SidStarAbbreviatedDesignatorToNextElement" type="SidStarAbbreviatedDesignatorToNextElementType" /> 
+
+   <xs:complexType name="SpeedScheduleType">
+      <xs:annotation>
+         <xs:documentation>
+            Defines the speed schedule for climb and descent of the aircraft through the crossover 
+            altitude. 
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ExtensibleType">
+            <xs:sequence>
+               <xs:element name="initialSpeed" type="IndicatedAirspeedType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        Initial speed of the aircraft during the climb 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="subsequentSpeed" type="IndicatedAirspeedType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        Subsequent speed of the aircraft during the climb 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="SpeedSchedule" type="SpeedScheduleType" substitutionGroup="Extensible" /> 
+
+   <xs:complexType name="TrajectoryPoint4DType">
+      <xs:annotation>
+         <xs:documentation>
+            Identifies relevant information about a trajectory point including location, altitude, 
+            time, etc. 
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="GeographicalPositionType">
+            <xs:sequence>
+               <xs:element name="altimeterSetting" type="PressureType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        The barometric pressure reading used to adjust a pressure altimeter for variations 
+                        in existing atmospheric pressure or to the standard altimeter setting (29.92). 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="level" type="FlightLevelOrAltitudeType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        Altitude of the 4D point. 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="metData" type="MeteorologicalDataType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        In a predicted trajectory, the instantaneous temperature and wind vector used at 
+                        the 4D Point for creating the 4D trajectory. 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="pointProperty" type="TrajectoryPointPropertyType" minOccurs="0" maxOccurs="2000" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        Describes any applicable properties of the trajectory point.  May include multiple 
+                        properties per point. 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="predictedAirspeed" type="IndicatedAirspeedType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        The airspeed (or range of speeds) of the flight at the 4D Point expressed as either 
+                        Indicated Airspeed or Mach. 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="predictedGroundspeed" type="GroundSpeedType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        Aircraft predicted ground speed (or range of speeds) at this point. 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="time" type="Point4DTimeChoiceType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        4D Point time expressed as either absolute or relative time. 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="verticalRange" type="VerticalRangeType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        Vertical Range representing block altitude clearances 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="TrajectoryPoint4D" type="TrajectoryPoint4DType" substitutionGroup="Extensible" /> 
+
+   <xs:complexType name="TrajectoryPointPropertyType">
+      <xs:annotation>
+         <xs:documentation>
+            Describes any applicable properties of the trajectory point.  May include multiple 
+            properties per point. 
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ExtensibleType">
+            <xs:sequence>
+               <xs:element name="reference" type="TrajectoryPointReferenceType" minOccurs="0" maxOccurs="1" > 
+                  <xs:annotation>
+                     <xs:documentation>
+                        A reference providing an identifier of airspace or program affecting the point. 
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+            <xs:attribute name="propertyType" type="TrajectoryPointPropertyTypeType" use="optional" > 
+               <xs:annotation>
+                  <xs:documentation>
+                     Provides the type of trajectory point property. 
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="TrajectoryPointProperty" type="TrajectoryPointPropertyType" substitutionGroup="Extensible" /> 
+
+   <xs:simpleType name="TrajectoryPointPropertyTypeType">
+      <xs:annotation>
+         <xs:documentation>
+            Enumerates any applicable properties of the trajectory point. 
+         </xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="TOP_OF_CLIMB"/>
+         <xs:enumeration value="TOP_OF_DESCENT"/>
+         <xs:enumeration value="CROSSOVER_ALTITUDE"/>
+         <xs:enumeration value="TRANSITION_ALTITUDE_OR_LEVEL"/>
+         <xs:enumeration value="TCP_ALTITUDE"/>
+         <xs:enumeration value="TCP_SPEED"/>
+         <xs:enumeration value="TCP_LATERAL"/>
+         <xs:enumeration value="DEPARTURE_RUNWAY_END"/>
+         <xs:enumeration value="START_TAKEOFF_ROLL"/>
+         <xs:enumeration value="END_LANDING_ROLL"/>
+         <xs:enumeration value="WHEELS_OFF"/>
+         <xs:enumeration value="WHEELS_ON"/>
+         <xs:enumeration value="ENTRY_RESTRICTED_OR_RESERVED_AIRSPACE"/>
+         <xs:enumeration value="EXIT_RESTRICTED_OR_RESERVED_AIRSPACE"/>
+         <xs:enumeration value="CROSSING_CONSTRAINED_AIRSPACE"/>
+         <xs:enumeration value="EXIT_CONSTRAINED_AIRSPACE"/>
+         <xs:enumeration value="INITIAL_PREDICTION_POINT"/>
+         <xs:enumeration value="END_PREDICTION_POINT"/>
+         <xs:enumeration value="HOLD_ENTRY"/>
+         <xs:enumeration value="HOLD_EXIT"/>
+         <xs:enumeration value="BEGIN_STAY"/>
+         <xs:enumeration value="END_STAY"/>
+         <xs:enumeration value="START_EXPECT_VECTORS"/>
+         <xs:enumeration value="END_EXPECT_VECTORS"/>
+         <xs:enumeration value="CONSTRAINT_POINT"/>
+         <xs:enumeration value="FIR_BOUNDARY_CROSSING_POINT"/>
+         <xs:enumeration value="RUNWAY_THRESHOLD"/>
+         <xs:enumeration value="PRESCRIBED_EET_POINT"/>
+         <xs:enumeration value="ENTRY_CONSTRAINED_AIRSPACE"/>
+         <xs:enumeration value="AIRPORT_REFERENCE_LOCATION"/>
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:complexType name="TrajectoryPointReferenceType">
+      <xs:annotation>
+         <xs:documentation>
+            A reference providing an identifier of airspace or program affecting the point. 
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ExtensibleType">
+            <xs:attribute name="identifier" type="CharacterStringType" use="optional" > 
+               <xs:annotation>
+                  <xs:documentation>
+                     The name of the particular airspace or program (e.g., FCA016, CTP001, RRDCC123) 
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="type" type="CharacterStringType" use="optional" > 
+               <xs:annotation>
+                  <xs:documentation>
+                     The nature of the airspace or program (e.g., special activity airspace, GDP, MIT, 
+                     etc.) 
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="TrajectoryPointReference" type="TrajectoryPointReferenceType" substitutionGroup="Extensible" /> 
+</xs:schema>

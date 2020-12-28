@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+        targetNamespace="http://www.atmb.aero/4.2"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:fb="http://www.fixm.aero/base/4.2"
+        xmlns:fx="http://www.fixm.aero/flight/4.2"
+        xmlns:atmb="http://www.atmb.aero/4.2"
+        elementFormDefault="qualified"
+        version="4.2.0">
+
+    <xs:annotation>
+        <xs:documentation>
+            ATMB 流量管理核心数据对象.
+
+            ===========================================
+            Copyright (c) 2020 Air Traffic Management Bureau China (ATMB)
+            ===========================================
+            All rights reserved.
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:import namespace="http://www.fixm.aero/base/4.2" schemaLocation="../../../core/base/Base.xsd"/>
+    <xs:import namespace="http://www.fixm.aero/flight/4.2" schemaLocation="../../../core/flight/Flight.xsd"/>
+    <xs:include schemaLocation="../flight/AtmbFlight.xsd"/>
+    <xs:include schemaLocation="AtmbAtfmProgram.xsd"/>
+
+
+    <xs:complexType name="AtmbAtfmType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 流量管理的核心对象.
+                [EN] Core entity of ATFM.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="guti" type="fb:UniversallyUniqueIdentifierType">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 流控ID, 流控唯一标识.
+                        [EN] Unified identifier of atfm.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="previousGuti" type="fb:UniversallyUniqueIdentifierType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 前序流控GUTI, 如果当前流控是不是原发流控, 则通过这个GUTI查到原发流控.
+                        [EN] Previous atfm identifier, which can be used to track origin ATFM restriction.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="name" type="fb:CharacterStringType">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 流控名称: 记录流控名称.
+                        [EN] Name of ATFM restriction.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="originator" type="fb:AtcUnitReferenceType">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 流控原发单位, 如果该流控属于转发, 记录原发单位流控的初始发布单位.
+                        [EN] Original unit of ATFM restriction.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="publisher" type="fb:AtcUnitReferenceType">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 流控发布单位, 记录流控发布单位具体发布流控的单位 (无论是转发流控还是原发流控, 根据发布单位实时更新),
+                        如 ZUUUATFM
+                        [EN] Publish unit of ATFM restriction.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="previousPublisher" type="fb:AtcUnitReferenceType">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 上一级流控发布单位.
+                        [EN] Previous ATFM restriction publisher.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="status" type="atmb:AtmbAtfmPhaseCodeType">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 流控状态编码.
+                        [EN] ATFM status code.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="reason" type="atmb:AtmbAtfmReasonCodeType">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 流控原因编码.
+                        [CN] ATFM restriction reason code.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="durationCode" type="atmb:AtmbAtfmDurationCodeType">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 流控持续时间编码.
+                        [EN] ATFM restriction duration code.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="atfmElement" type="atmb:AtmbAtfmElement" maxOccurs="1000">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 流控元素, 描述流量控制信息的最小对象.
+                        [EN] ATFM restriction element. The min entity to describe ATFM restriction.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="AtmbAtfmSourceCodeType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 流控发布类型编码.
+                [EN] ATFM publish type code.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ORIGINAL"/>
+            <xs:enumeration value="FORWARDING"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="AtmbAtfmPhaseCodeType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="FUTURE">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 待生效.
+                        [EN] Will be effective.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="RUNNING">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 生效中.
+                        [EN] Running and being effective.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="FINISHED">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 已结束.
+                        [EN] Finished.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="TERMINATED_MANUAL">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 人工终止.
+                        [EN] Terminated manually by human.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="TERMINATED_AUTO">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 系统终止.
+                        [EN] Terminated automatically by system.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="AtmbAtfmReasonCodeType">
+        <xs:annotation>
+            <xs:documentation>流控原因:
+                机场/军事活动/流量/天气/机场/航空公司/航班时刻/联检/油料/离港系统/旅客/公共安全/重大保障活动/其它
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="AIRPORT">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 机场原因.
+                        [EN] Due to airport.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="MILITARY">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 军事活动.
+                        [EN] Military activity.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="CONTROL">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 流量超限.
+                        [EN] Traffic overflow.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="WEATHER">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 天气.
+                        [EN] Weather influence.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="SCHEDULE">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 航班时刻.
+                        [EN] Flight schedule.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="JOINT_INSPECTION">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 联检.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="OIL">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 油料.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="DEPART_SYSTEM">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 离港系统.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="PASSENGER">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 旅客.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="PUBLIC_SECURITY">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 公共安全.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="MAJOR_SECURITY_ACTIVITIES">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 重大保障活动.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="AIRLINE">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 航空公司.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="OTHER">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 其它.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="AtmbAtfmDurationCodeType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="TODAY">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 流控当日有效
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="CROSS_DAYS">
+                <xs:annotation>
+                    <xs:documentation>[CN] 多日有效</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="LONG_TERM">
+                <xs:annotation>
+                    <xs:documentation>[CN] 长期有效</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="CONVENTION">
+                <xs:annotation>
+                    <xs:documentation>[CN] 常规流控</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="AtmbAtfmElement">
+        <xs:sequence>
+            <xs:element name="conditionCombination" type="atmb:AtmbAtfmConditionCombinationType">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 流量管理元素, 流量管理的最小对象, 由条件 (condition) 和 措施 (program) 组成.
+                        [EN] ATFM element, the min entity of ATFM restriction. Composed of condition and program.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="program" type="atmb:AtmbAtfmProgramType"/>
+            <xs:element name="remark" type="fb:CharacterStringType" minOccurs="0"/>
+        </xs:sequence>
+
+        <xs:attribute name="reserveSlot" type="fb:CharacterStringType"/>
+
+        <xs:attribute name="creationTime" type="fb:TimeType" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    [CN] 流控创建时间, 流控创建, 但未发布.
+                    [EN] ATFM restriction created time. Created, but not published.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="publishTime" type="fb:TimeType">
+            <xs:annotation>
+                <xs:documentation>
+                    [CN] 流控发布时间, 流控正式对外发布.
+                    [EN] ATFM restriction publish time.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="updateTime" type="fb:TimeType">
+            <xs:annotation>
+                <xs:documentation>
+                    [CN] 流控更新时间, 修改流控时间.
+                    [EN] ATFM restriction update time.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="validTime" type="fb:TimeType">
+            <xs:annotation>
+                <xs:documentation>
+                    [CN] 流控生效时间, 流控计算时段开始时间.
+                    [EN] ATFM restriction valid time, which indicate the restriction being effective.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="invalidTime" type="fb:TimeType">
+            <xs:annotation>
+                <xs:documentation>
+                    [CN] 流控失效时间, 流控计算时段结束时间.
+                    [EN] ATFM restriction invalid time.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="calculationStartTime" type="fb:TimeType">
+            <xs:annotation>
+                <xs:documentation>
+                    [CN] 流控纳入计算时间: 流控纳入计算时间在流控生效时间之前. 流控加入时就应提前进行预计算, 后面按一定时间间隔进行计算,
+                    对时间进行不断校正, 以结束时间进行预计算. 同时在流控期间, 流控一直在不停计算.
+                    [EN] Calculation start time.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="calculationStopTime" type="fb:TimeType">
+            <xs:annotation>
+                <xs:documentation>
+                    [CN] 流控退出计算时间: 流控纳入计算时间在流控生效时间之前. 流控加入时就应提前进行预计算, 后面按一定时间间隔进行计算,
+                    对时间进行不断校正, 以结束时间进行预计算. 同时在流控期间, 流控一直在不停计算.
+                    [EN] Calculation stop time.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="AtmbAtfmConditionChoiceType">
+        <xs:choice>
+            <xs:element name="departureAerodrome" type="fb:AerodromeReferenceType"/>
+            <xs:element name="destinationAerodrome" type="fb:AerodromeReferenceType"/>
+            <xs:element name="inboundAirspace" type="fb:AirspaceDesignatorType"/>
+            <xs:element name="overflyAirspace" type="fb:AirspaceDesignatorType"/>
+            <xs:element name="inboundPoint" type="fb:SignificantPointChoiceType"/>
+            <xs:element name="outboundPoint" type="fb:SignificantPointChoiceType"/>
+            <xs:element name="previousPoint" type="fb:SignificantPointChoiceType"/>
+            <xs:element name="nextPoint" type="fb:SignificantPointChoiceType"/>
+            <xs:element name="route" type="fb:RouteDesignatorType"/>
+            <xs:element name="verticalRange" type="fb:VerticalRangeType"/>
+            <xs:element name="angleRange" type="atmb:AtmbAngleRangeType"/>
+
+            <xs:element name="aircraftModel" type="fb:AircraftTypeDesignatorType"/>
+            <xs:element name="flightPlanCategory" type="atmb:AtmbFlightPlanCategoryType"/>
+            <xs:element name="taskClassification" type="atmb:AtmbTaskClassificationType"/>
+            <xs:element name="routeClassification" type="atmb:AtmbRouteClassificationType"/>
+            <xs:element name="iataTypeOfFlight" type="atmb:AtmbIataTypeOfFlightType"/>
+            <xs:element name="airline" type="fb:AircraftOperatorType"/>
+            <xs:element name="qualification" type="fb:CharacterStringType"/>
+        </xs:choice>
+
+        <xs:attribute name="index" type="fb:CountType" use="required"/>
+        <xs:attribute name="prefixOperator" type="atmb:AtmbAtfmConditionOperationType" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="AtmbAtfmConditionGroupType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 条件组. 通过多个条件选择一组符合条件的航班.
+                [EN] Condition group. Select a group of flight by condition combination.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="condition" type="atmb:AtmbAtfmConditionChoiceType" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 条件选择器.
+                        [EN] Condition filter.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="index" type="fb:CountType" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    [CN] 条件索引, 标识条件运算的先后顺序.
+                    [EN] Condition index, identify sequence of logic operation.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="prefixOperator" type="atmb:AtmbAtfmConditionOperationType" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    [CN] 前置逻辑运算符.
+                    [EN] Prefix logic operator, all logic operator are in front of condition in this model.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+    <xs:complexType name="AtmbAtfmConditionCombinationType">
+        <xs:sequence>
+            <xs:element name="conditionGroup" type="atmb:AtmbAtfmConditionGroupType" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 条件组, 多个条件组成一组选择.
+                        [EN] Condition group, multiple condition composed a group of combination.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+
+    </xs:complexType>
+    <xs:simpleType name="AtmbAtfmConditionOperationType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 逻辑操作.
+                [EN] Logic operation.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="AND">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 与.
+                        [EN] And operator.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="OR">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 或.
+                        [EN] Or operator.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="NOT">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 非.
+                        [EN] Not operator.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="AND_NOT">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 与非.
+                        [EN] And not operator.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="OR_NOT">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 或非.
+                        [EN] Or not operator.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="NONE">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 无, 适用于单运算.
+                        [EN] None, for single operation.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

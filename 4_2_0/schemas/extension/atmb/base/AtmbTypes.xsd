@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+        targetNamespace="http://www.atmb.aero/4.2"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:fb="http://www.fixm.aero/base/4.2"
+        elementFormDefault="qualified"
+        version="4.2.0">
+    <xs:annotation>
+        <xs:documentation>
+            Atmb 扩展通用类型
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:import namespace="http://www.fixm.aero/base/4.2" schemaLocation="../../../core/base/Base.xsd"/>
+
+    <xs:simpleType name="AtmbDateType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 日期类型.
+                [EN] Date type.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:date">
+            <xs:pattern value="-?([1-9][0-9]{3,}|0[0-9]{3})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])Z"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="AtmbAngleRangeType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 角度范围类型.
+                [EN] Angle range.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="min" type="fb:AngleType">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 角度范围最小值.
+                        [EN] Min (start) value of angle range.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="max" type="fb:AngleType">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 角度范围最大值
+                        [EN] Max (end) value of angle range.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="AtmbAutomaticTerminalInformationServiceType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 自动通播服务的描述.
+                [EN] ATIS description.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="frequency" type="fb:FrequencyType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 通播频率.
+                        [EN] Frequency of atis.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="code" type="AtmbAutomaticTerminalInformationServiceCodeType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 通播代码.
+                        [EN] Code of current atis.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="content" type="fb:CharacterStringType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 通播内容.
+                        [EN] Content of atis.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="AtmbAutomaticTerminalInformationServiceCodeType">
+        <xs:annotation>
+            <xs:documentation>
+                [CN] 通播代码, 由单个大写英文字符组成.
+                [EN] Code of atis, represented by one capitalize character.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="fb:CharacterStringType">
+            <xs:pattern value="[A-Z]"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="AtmbGateType">
+        <xs:sequence>
+            <xs:element name="designator" type="fb:CharacterStringType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 登机口标识.
+                        [EN] Code of gate.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="associatedStand" type="AtmbStandType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 登机口关联的停机位.
+                        [EN] Stand associated to the gate.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="AtmbStandType">
+        <xs:attribute name="designator" type="fb:CharacterStringType">
+            <xs:annotation>
+                <xs:documentation>
+                    [CN] 停机位编号.
+                    [EN] Code of stand.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="type" type="AtmbTypeOfStandType">
+            <xs:annotation>
+                <xs:documentation>
+                    [CN] 停机位类型. 根据 AIXM 5.1
+                    [EN] Type of stand. According to AIXM 5.1.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:simpleType name="AtmbTypeOfStandType">
+        <xs:restriction>
+            <xs:enumeration value="ANG_NI">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 有角度的机鼻朝内停机位.
+                        [EN] Angled nose-in parking position.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="ANG_NO">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 有角度的机鼻朝外停机位.
+                        [EN] Angled nose-out parking position.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="ISOL">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 隔离单独的停机位.
+                        [EN] Isolated parking position.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="NI">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 机鼻朝内的停机位.
+                        [EN] Nose-in parking position.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="PARALLEL">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 平行于建筑物的停机位.
+                        [EN] Parallel (to building) parking position.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="RMT">
+                <xs:annotation>
+                    <xs:documentation>
+                        [CN] 远机位.
+                        [EN] Remote parking position.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

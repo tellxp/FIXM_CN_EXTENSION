@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.fixm.aero/flight/4.2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fx="http://www.fixm.aero/flight/4.2" xmlns:fb="http://www.fixm.aero/base/4.2" elementFormDefault="qualified" version="4.2.0">
+	<xs:annotation>
+		<xs:documentation>The Packaging schema contains information about the packaging of dangerous goods.
+
+=========================================== 
+Copyright (c) 2020 Airservices Australia, DSNA, EUROCONTROL, GCAA UAE, IATA, International Coordinating Council of Aerospace Industries Associations, JCAB, NATS Limited, NAV CANADA, SESAR Joint Undertaking and US FAA 
+=========================================== 
+All rights reserved. 
+          
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met: 
+	- Redistributions of source code must retain the above copyright notice, this list of conditions and the disclaimer.
+	- Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the disclaimer in the documentation and/or other materials provided with the distribution.
+	- Neither the names of Airservices Australia, DSNA, EUROCONTROL, GCAA UAE, IATA, International Coordinating Council of Aerospace Industries Associations, JCAB, NATS Limited, NAV CANADA, SESAR Joint Undertaking and US FAA nor the names of their contributors may be used to endorse or promote products derived from this specification without specific prior written permission.
+          
+DISCLAIMER 
+          
+THIS SPECIFICATION IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+          
+========================================== 
+Editorial note: this license is an instance of the BSD license template as provided by the Open Source Initiative: 
+http://www.opensource.org/licenses/bsd-license.php 
+          
+The authoritative reference for FIXM is www.FIXM.aero. 
+          
+Details on Airservices Australia: http://www.airservicesaustralia.com/ 
+Details on DSNA: http://www.developpement-durable.gouv.fr/-Navigation-aerienne-.html 
+Details on EUROCONTROL: http://www.eurocontrol.int/ 
+Details on IATA: http://www.iata.org/Pages/default.aspx 
+Details on JCAB: http://www.mlit.go.jp/en/koku/index.html 
+Details on NATS Limited: http://www.nats.co.uk/ 
+Details on NAV CANADA: http://www.navcanada.ca/ 
+Details on the UAE GCAA: https://www.gcaa.gov.ae 
+Details on the ICCAIA: www.iccaia.org 
+Details on the SESAR JU and its members: http://www.sesarju.eu/discover-sesar/partnering-smarter-aviation/members 
+Details on the US FAA: http://www.faa.gov/ </xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://www.fixm.aero/base/4.2" schemaLocation="../../base/Base.xsd"/>
+	<xs:include schemaLocation="RadioactiveMaterials.xsd"/>
+	<xs:simpleType name="AircraftDangerousGoodsLimitationType">
+		<xs:annotation>
+			<xs:documentation>Describes whether the shipment is packed to comply with the limitations prescribed for passenger and cargo aircraft or the limitations for cargo aircraft only.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CARGO_AIRCRAFT_ONLY">
+				<xs:annotation>
+					<xs:documentation>Specified that the shipment is packed to comply with the limitations prescribed for the limitations for cargo aircraft only.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PASSENGER_AND_CARGO_AIRCRAFT">
+				<xs:annotation>
+					<xs:documentation>Specified that the shipment is packed to comply with the limitations prescribed for passenger and cargo aircraft.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CompatibilityGroupType">
+		<xs:annotation>
+			<xs:documentation>When shipping dangerous goods, the reference to the group which identifies the kind of substances and articles deemed to be compatible. </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="fb:CharacterStringType">
+			<xs:pattern value="[A-H|K-L|N|S]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="HazardDivisionType">
+		<xs:annotation>
+			<xs:documentation>A number representing a subdivision (Division) within the Class.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="fb:CharacterStringType">
+			<xs:pattern value="[0-9]|[1-9][0-9]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PackingGroupType">
+		<xs:annotation>
+			<xs:documentation>A code that indicates the relative degree of danger presented by various articles and substances within a Class or Division.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="I">
+				<xs:annotation>
+					<xs:documentation>Represents high danger.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="II">
+				<xs:annotation>
+					<xs:documentation>Represents medium danger.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="III">
+				<xs:annotation>
+					<xs:documentation>Represents low danger.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RestrictedHazardClassType">
+		<xs:annotation>
+			<xs:documentation>Helper type for restrictions on HazardClass.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="fb:CharacterStringType">
+			<xs:pattern value="[1-9]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="UnNumberType">
+		<xs:annotation>
+			<xs:documentation>A four-digit identification number assigned by the United Nations Committee of Experts on the Transport of Dangerous Goods to identify a substance or a particular group of substances considered dangerous goods.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="fb:CharacterStringType">
+			<xs:pattern value="(UN|ID|NA)?\d{4}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="AllPackedInOneType">
+		<xs:annotation>
+			<xs:documentation>A statement identifying the dangerous goods listed are all contained within the same outer packaging.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="extension" type="fb:AllPackedInOneExtensionType" minOccurs="0" maxOccurs="2000" nillable="true">
+				<xs:annotation>
+					<xs:documentation>An extension hook for attaching extension (non-core) classes.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="numberOfPackages" type="fb:CountPositiveType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>The number of packages in the same outer packaging.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DangerousGoodsDimensionsType">
+		<xs:annotation>
+			<xs:documentation>Weight and volume (not height, width, and depth):</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="extension" type="fb:DangerousGoodsDimensionsExtensionType" minOccurs="0" maxOccurs="2000" nillable="true">
+				<xs:annotation>
+					<xs:documentation>An extension hook for attaching extension (non-core) classes.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="grossWeight" type="fb:WeightType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>The total gross weight of dangerous goods transported for each unique UN number.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="netWeight" type="fb:WeightType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>The total net weight of dangerous goods transported for each unique UN number.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="volume" type="fb:VolumeType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>The total displacement of dangerous goods transported for each unique UN number.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DangerousGoodsPackageType">
+		<xs:annotation>
+			<xs:documentation>The part of the IATA Shipper's Declaration For Dangerous Goods that contains the Line Item information for the shipment.
+The part of the IATA Shipper's Declaration For Dangerous Goods that contains the Overpack Detail for the shipment.
+The part of the IATA Shipper's Declaration For Dangerous Goods that contains the Package Details for the shipment.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="allPackedInOne" type="fx:AllPackedInOneType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>A statement identifying the dangerous goods listed are all contained within the same outer packaging.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="compatibilityGroup" type="fx:CompatibilityGroupType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>When shipping dangerous goods, the reference to the group which identifies the kind of substances and articles deemed to be compatible. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dangerousGoodsLimitation" type="fx:AircraftDangerousGoodsLimitationType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>Describes whether the shipment is packed to comply with the limitations prescribed for passenger and cargo aircraft or the limitations for cargo aircraft only.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dangerousGoodsQuantity" type="fb:CountPositiveType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>The total number of dangerous good packages of the same type and content.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="extension" type="fb:DangerousGoodsPackageExtensionType" minOccurs="0" maxOccurs="2000" nillable="true">
+				<xs:annotation>
+					<xs:documentation>An extension hook for attaching extension (non-core) classes.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="hazardClass" type="fx:HazardClassType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>A number assigned to a dangerous good that represents a classification (Class) according to the most dominant hazard it represents, potentially followed by a number representing a subdivision (Division) within the Class.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="packingGroup" type="fx:PackingGroupType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>A code that indicates the relative degree of danger presented by various articles and substances within a Class or Division.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="properShippingName" type="fb:CharacterStringType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>The name used to describe a particular article or substance in all shipping documents and notifications and, where appropriate, on packaging, as shown in the UN Model Regulations Dangerous Goods List.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="radioactiveMaterials" type="fx:RadioactiveMaterialType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>The grouping element for goods that contain radioactive materials.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="shipmentDimensions" type="fx:DangerousGoodsDimensionsType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>Weight and volume (not height, width, and depth)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="subsidiaryHazardClass" type="fx:HazardClassType" minOccurs="0" maxOccurs="2" nillable="true">
+				<xs:annotation>
+					<xs:documentation>An identifier of any subsidiary hazard class(es)/division(s) in addition to the primary hazard class and division.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="unNumber" type="fx:UnNumberType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>A four-digit identification number assigned by the United Nations Committee of Experts on the Transport of Dangerous Goods to identify a substance or a particular group of substances considered dangerous goods.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DangerousGoodsPackageGroupType">
+		<xs:annotation>
+			<xs:documentation>The part of the IATA Shipper's Declaration For Dangerous Goods that contains the Package Details for the shipment.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="dangerousGoodsPackage" type="fx:DangerousGoodsPackageType" minOccurs="0" maxOccurs="2000" nillable="true">
+				<xs:annotation>
+					<xs:documentation>A collection of at least one DangerousGoodsPackage.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="extension" type="fb:DangerousGoodsPackageGroupExtensionType" minOccurs="0" maxOccurs="2000" nillable="true">
+				<xs:annotation>
+					<xs:documentation>An extension hook for attaching extension (non-core) classes.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="shipmentDimensions" type="fx:DangerousGoodsDimensionsType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>Weight and volume (not height, width, and depth)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="HazardClassType">
+		<xs:annotation>
+			<xs:documentation>A number assigned to a dangerous good that represents a classification (Class) according to the most dominant hazard it represents, potentially followed by a number representing a subdivision (Division) within the Class.
+An identifier of any subsidiary hazard class(es)/division(s) in addition to the primary hazard class and division.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="class" type="fx:RestrictedHazardClassType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>A number assigned to a dangerous good that represents a classification (Class) according to the most dominant hazard it represents.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="division" type="fx:HazardDivisionType" minOccurs="0" maxOccurs="1" nillable="true">
+				<xs:annotation>
+					<xs:documentation>A number representing a subdivision (Division) within the Class.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="extension" type="fb:HazardClassExtensionType" minOccurs="0" maxOccurs="2000" nillable="true">
+				<xs:annotation>
+					<xs:documentation>An extension hook for attaching extension (non-core) classes.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

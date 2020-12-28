@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:annotation>
+		<xs:documentation>
+			This package contains classes that model information about organizations and units,
+			including contact information. [FIXM]
+		</xs:documentation>
+	</xs:annotation>
+
+	<xs:complexType name="AircraftOperatorType">
+		<xs:annotation>
+			<xs:documentation>
+				A person, organization or enterprise engaged in or offering to engage in an aircraft
+				operation. [ICAO Annex 9]
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ExtensibleType">
+				<xs:sequence>
+					<xs:element name="operatingOrganization" type="PersonOrOrganizationType" minOccurs="0" maxOccurs="1" >
+						<xs:annotation>
+							<xs:documentation>
+								.Aircraft Operator Identity: Identity of a person, organization or enterprise engaged
+								in or offering to engage in aircraft operation.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="designatorIcao" type="AircraftOperatorDesignatorType" use="optional" >
+					<xs:annotation>
+						<xs:documentation>
+							The identifier of the Aircraft Operator as assigned by ICAO. [FIXM]
+							This is the ICAO Operator Code as standardised by ICAO Doc 8585 Manual on Designators
+							for Aircraft Operating Agencies, Aeronautical Authorities and Services.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="AircraftOperator" type="AircraftOperatorType" />
+
+	<xs:simpleType name="AircraftOperatorDesignatorType">
+		<xs:annotation>
+			<xs:documentation>
+				The identifier of the Aircraft Operator as assigned by ICAO. [FIXM]
+				This is the ICAO Operator Code as standardised by ICAO Doc 8585 Manual on Designators
+				for Aircraft Operating Agencies, Aeronautical Authorities and Services.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CharacterStringType">
+			<xs:pattern value="[A-Z]{3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="AtcUnitNameType">
+		<xs:annotation>
+			<xs:documentation>
+				The name of the ATC center with authority over the corresponding Flight Information
+				Region (FIR). [FIXM]
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CharacterStringType">
+			<xs:pattern value="[A-Za-z0-9]{1,}"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType abstract="true" name="AtcUnitReferenceType">
+		<xs:annotation>
+			<xs:documentation>
+				A reference to an area control centre, approach control unit or aerodrome control
+				tower being either:
+				- the ICAO location indicator of the atc unit, as listed in ICAO Doc 7910
+				- if no ICAO location indicator is available, the ATC unit name and optionally its
+				geographical position. [FIXM]
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ExtensibleType">
+				<xs:attribute name="controlSectorDesignator" type="AirspaceDesignatorType" use="optional" >
+					<xs:annotation>
+						<xs:documentation>
+							A published sequence of characters allowing the identification of a subdivision of
+							a designated control area within which responsibility is assigned to one controller
+							or to a small group of controllers.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="AtcUnitReference" type="AtcUnitReferenceType" />
+
+	<xs:complexType name="IcaoUnitReferenceType">
+		<xs:annotation>
+			<xs:documentation>
+				A reference to an area control centre, approach control unit or aerodrome control
+				tower using the ICAO location indicator of the atc unit, as listed in ICAO DOC 7910.
+				[FIXM]
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AtcUnitReferenceType">
+				<xs:attribute name="locationIndicator" type="LocationIndicatorType" use="optional" >
+					<xs:annotation>
+						<xs:documentation>
+							A four-letter code group formulated in accordance with rules prescribed by ICAO and
+							assigned to the atc unit. [Specialised from ICAO Annex 10] The list of ICAO location
+							indicators is provided by ICAO Doc 7910.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="IcaoUnitReference" type="IcaoUnitReferenceType" />
+
+	<xs:simpleType name="LocationIndicatorType">
+		<xs:annotation>
+			<xs:documentation>
+				A four-letter code group formulated in accordance with rules prescribed by ICAO and
+				assigned to the location of an aeronautical fixed station. [ICAO Doc 4444]
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CharacterStringType">
+			<xs:pattern value="[A-Z]{4}"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="OtherUnitReferenceType">
+		<xs:annotation>
+			<xs:documentation>
+				A reference to an area control centre, approach control unit or aerodrome control
+				tower using the ATC unit name and optionally its geographical position, if no ICAO
+				location indicator is available. [FIXM]
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AtcUnitReferenceType">
+				<xs:sequence>
+					<xs:element name="position" type="GeographicalPositionType" minOccurs="0" maxOccurs="1" >
+						<xs:annotation>
+							<xs:documentation>
+								The geographical point of the Unit. [AIXM 5.1]
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="atcUnitNameOrAlternate" type="TextNameType" use="optional" >
+					<xs:annotation>
+						<xs:documentation>
+							The full textual name of the ATC unit [adapted from AIXM 5.1] or an alternate identifier
+							for the unit. [FIXM]
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="OtherUnitReference" type="OtherUnitReferenceType"  />
+
+	<xs:simpleType name="ParticipantTypeType">
+		<xs:annotation>
+			<xs:documentation>
+				Type of participant, FF-ICE or NON_FF-ICE [FIXM]
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="FFICE_PARTICIPANT"/>
+			<xs:enumeration value="NON_FFICE_PARTICIPANT"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="PersonOrOrganizationType">
+		<xs:annotation>
+			<xs:documentation>
+				An identifiable, responsible entity that can be either a natural person or an organization.
+
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ExtensibleType">
+				<xs:sequence>
+					<xs:element name="contact" type="ContactInformationType" minOccurs="0" maxOccurs="1" >
+						<xs:annotation>
+							<xs:documentation>
+								Optional ContactInformation reference.[FIXM]
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="name" type="TextNameType" use="optional" >
+					<xs:annotation>
+						<xs:documentation>
+							The full official name of the Person, State, Organisation, Authority, aircraft operating
+							agency, handling agency etc. [FIXM]
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="participantType" type="ParticipantTypeType" use="optional" >
+					<xs:annotation>
+						<xs:documentation>
+							Type of participant, FF-ICE or NON_FF-ICE [FIXM]
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="PersonOrOrganization" type="PersonOrOrganizationType"/>
+</xs:schema>

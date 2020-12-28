@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:annotation>
+		<xs:documentation>This package contains information related to navaids [FIXM].</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="NavaidServiceTypeType">
+		<xs:annotation>
+			<xs:documentation>Types of Navaid Services. [AIXM 5.1]</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="DF">
+				<xs:annotation>
+					<xs:documentation>Direction Finder.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DME">
+				<xs:annotation>
+					<xs:documentation>Distance Measuring Equipment.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ILS">
+				<xs:annotation>
+					<xs:documentation>Instrument Landing System</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ILS_DME">
+				<xs:annotation>
+					<xs:documentation>ILS with collocated DME. Collocation can be with the antenna or the loc.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="LOC">
+				<xs:annotation>
+					<xs:documentation>Localizer.  </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="LOC_DME">
+				<xs:annotation>
+					<xs:documentation>LOC and DME collocated.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MKR">
+				<xs:annotation>
+					<xs:documentation>Marker Beacon</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MLS">
+				<xs:annotation>
+					<xs:documentation>Microwave Landing System</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MLS_DME">
+				<xs:annotation>
+					<xs:documentation>MLS with collocated DME.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NDB">
+				<xs:annotation>
+					<xs:documentation>Non-Directional Radio Beacon</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NDB_DME">
+				<xs:annotation>
+					<xs:documentation>NDB and DME collocated.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NDB_MKR">
+				<xs:annotation>
+					<xs:documentation>Non-Directional Radio Beacon and Marker Beacon</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SDF">
+				<xs:annotation>
+					<xs:documentation>Simplified Directional Facility.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TACAN">
+				<xs:annotation>
+					<xs:documentation>Tactical Air Navigation Beacon</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TLS">
+				<xs:annotation>
+					<xs:documentation>Transponder Landing System</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VOR">
+				<xs:annotation>
+					<xs:documentation>VHF Omni directional Radio Range.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VOR_DME">
+				<xs:annotation>
+					<xs:documentation>VOR and DME collocated.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VORTAC">
+				<xs:annotation>
+					<xs:documentation>VOR and TACAN collocated.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

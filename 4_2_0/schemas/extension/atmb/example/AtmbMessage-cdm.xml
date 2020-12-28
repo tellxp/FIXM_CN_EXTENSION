@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<atmb:messageCollection xmlns:xlink="http://www.w3.org/1999/xlink"
+                        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                        xmlns:fb="http://www.fixm.aero/base/4.2"
+                        xmlns:fx="http://www.fixm.aero/flight/4.2"
+                        xmlns:atmb="http://www.atmb.aero/4.2"
+                        xsi:schemaLocation="http://www.fixm.aero/base/4.2 ../../../core/base/Base.xsd
+          http://www.fixm.aero/flight/4.2 ../../../core/flight/Flight.xsd
+          http://www.atmb.aero/4.2 ../Atmb.xsd">
+
+    <atmb:message>
+        <atmb:payload>
+            <atmb:flight>
+                <atmb:aircraft>
+                    <atmb:aircraftTypePrevious>
+                        <fx:numberOfAircraft>1</fx:numberOfAircraft>
+                        <fx:type>
+                            <fx:icaoAircraftTypeDesignator>A319</fx:icaoAircraftTypeDesignator>
+                        </fx:type>
+                    </atmb:aircraftTypePrevious>
+                    <atmb:aircraftType>
+                        <fx:numberOfAircraft>1</fx:numberOfAircraft>
+                        <fx:type>
+                            <fx:icaoAircraftTypeDesignator>A320</fx:icaoAircraftTypeDesignator>
+                        </fx:type>
+                    </atmb:aircraftType>
+
+                    <atmb:registration>B9962</atmb:registration>
+                </atmb:aircraft>
+                <atmb:arrival>
+                    <atmb:destinationAerodromePrevious>
+                        <fb:locationIndicator>ZPPP</fb:locationIndicator>
+                    </atmb:destinationAerodromePrevious>
+                    <atmb:destinationAerodrome>
+                        <fb:locationIndicator>ZPPP</fb:locationIndicator>
+                    </atmb:destinationAerodrome>
+
+                    <atmb:landingTime estimated="2019-11-13T09:54:00Z"/>
+                    <atmb:taxiInDuration estimated="PT15M"/>
+                    <atmb:inBlockTime scheduled="2019-11-13T10:45:00Z"/>
+                </atmb:arrival>
+                <atmb:departure>
+                    <atmb:aerodrome>
+                        <fb:locationIndicator>ZSNJ</fb:locationIndicator>
+                    </atmb:aerodrome>
+                    <atmb:doorClosedTime actual="2019-11-13T06:59:00Z"/>
+                    <atmb:offBlockTime scheduled="2019-11-13T07:15:00Z" estimated="2019-11-13T07:15:00Z"
+                                       target="2019-11-13T07:15:00Z"/>
+                </atmb:departure>
+                <atmb:flightIdentification>
+                    <fx:aircraftIdentification>CBJ5515</fx:aircraftIdentification>
+                </atmb:flightIdentification>
+                <atmb:routeTrajectoryGroup>
+                    <fx:agreed>
+                        <fx:routeInformation>
+                            <fx:routeText>SUNBO W163 HFE W50 XSH H50 P324 A581 XISLI</fx:routeText>
+                        </fx:routeInformation>
+                    </fx:agreed>
+                </atmb:routeTrajectoryGroup>
+            </atmb:flight>
+        </atmb:payload>
+    </atmb:message>
+    <atmb:message>
+        <atmb:payload>
+            <atmb:flight>
+                <atmb:aircraft>
+                    <atmb:aircraftTypePrevious>
+                        <fx:numberOfAircraft>1</fx:numberOfAircraft>
+                        <fx:type>
+                            <fx:icaoAircraftTypeDesignator>A319</fx:icaoAircraftTypeDesignator>
+                        </fx:type>
+                    </atmb:aircraftTypePrevious>
+                    <atmb:aircraftType>
+                        <fx:numberOfAircraft>1</fx:numberOfAircraft>
+                        <fx:type>
+                            <fx:icaoAircraftTypeDesignator>A320</fx:icaoAircraftTypeDesignator>
+                        </fx:type>
+                    </atmb:aircraftType>
+                    <atmb:registration>B9962</atmb:registration>
+                </atmb:aircraft>
+                <atmb:arrival>
+                    <atmb:destinationAerodromePrevious>
+                        <fb:locationIndicator>ZSNJ</fb:locationIndicator>
+                    </atmb:destinationAerodromePrevious>
+                    <atmb:destinationAerodrome>
+                        <fb:locationIndicator>ZSNJ</fb:locationIndicator>
+                    </atmb:destinationAerodrome>
+                    <atmb:landingTime estimated="2019-11-13T14:29:00Z"/>
+                    <atmb:inBlockTime scheduled="2019-11-13T15:00:00Z"/>
+                </atmb:arrival>
+                <atmb:departure>
+                    <atmb:aerodromePrevious>
+                        <fb:locationIndicator>ZPPP</fb:locationIndicator>
+                    </atmb:aerodromePrevious>
+                    <atmb:aerodrome>
+                        <fb:locationIndicator>ZPPP</fb:locationIndicator>
+                    </atmb:aerodrome>
+                    <atmb:runwayDirection>03</atmb:runwayDirection>
+                    <atmb:onBoardGate>
+                        <atmb:associatedStand designator="166"/>
+                    </atmb:onBoardGate>
+
+                    <atmb:startBoardingTime actual="2019-11-13T11:30:00Z"/>
+                    <atmb:doorClosedTime actual="2019-11-13T12:04:00Z"/>
+                    <atmb:offBlockTime scheduled="2019-11-13T12:15:00Z" estimated="2019-11-13T12:15:00Z"
+                                       negotiated="2019-11-13T12:15:00Z"
+                                       target="2019-11-13T12:15:00Z" calculated="2019-11-13T12:15:00Z"
+                                       actual="2019-11-13T12:13:00Z"/>
+                    <atmb:taxiOutDuration estimated="PT15M"/>
+                    <atmb:takeoffTime calculated="2019-11-13T12:41:00Z"/>
+                </atmb:departure>
+                <atmb:flightIdentification>
+                    <fx:aircraftIdentification>CBJ5516</fx:aircraftIdentification>
+                </atmb:flightIdentification>
+                <atmb:routeTrajectoryGroup>
+                    <fx:agreed>
+                        <fx:element seqNum="0">
+                            <fx:routeDesignatorToNextElement>
+                                <fx:standardInstrumentDeparture>
+                                    <fb:designator>KIB9X</fb:designator>
+                                </fx:standardInstrumentDeparture>
+                            </fx:routeDesignatorToNextElement>
+                        </fx:element>
+                        <fx:routeInformation>
+                            <fx:routeText>KIBES W143 LPS A581 WHA R343 HFE W51 LEGIV W164 OREVO</fx:routeText>
+                        </fx:routeInformation>
+                    </fx:agreed>
+                </atmb:routeTrajectoryGroup>
+            </atmb:flight>
+        </atmb:payload>
+    </atmb:message>
+    <atmb:timestamp>2020-12-04T12:13:55Z</atmb:timestamp>
+    <atmb:type>CDM</atmb:type>
+</atmb:messageCollection>
+
