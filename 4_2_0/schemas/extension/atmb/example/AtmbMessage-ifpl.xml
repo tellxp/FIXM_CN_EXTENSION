@@ -75,7 +75,7 @@
                 <atmb:flightType>S</atmb:flightType>
                 <atmb:remarks>TCAS II CAT II APPROVED</atmb:remarks>
                 <atmb:iataFlightType>WZ</atmb:iataFlightType>
-                <atmb:routeTrajectoryGroup>
+                <atmb:routeTrajectoryGroupContainer>
                     <fx:current>
                         <fx:element seqNum="0">
                             <fx:constraint>
@@ -176,7 +176,7 @@
                             <fx:totalEstimatedElapsedTime>PT02H40M</fx:totalEstimatedElapsedTime>
                         </fx:routeInformation>
                     </fx:current>
-                </atmb:routeTrajectoryGroup>
+                </atmb:routeTrajectoryGroupContainer>
 
             </atmb:flight>
         </atmb:payload>

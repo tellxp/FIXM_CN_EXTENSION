@@ -101,7 +101,7 @@
                 <atmb:flightIdentification>
                     <fx:aircraftIdentification>CES5321</fx:aircraftIdentification>
                 </atmb:flightIdentification>
-                <atmb:routeTrajectoryGroup>
+                <atmb:routeTrajectoryGroupContainer>
                     <fx:current>
                         <fx:element seqNum="0">
                             <fx:point4D>
@@ -121,7 +121,7 @@
                             </fx:routeDesignatorToNextElement>
                         </fx:element>
                     </fx:current>
-                </atmb:routeTrajectoryGroup>
+                </atmb:routeTrajectoryGroupContainer>
             </atmb:flight>
         </atmb:payload>
         <atmb:timestamp>2019-11-18T10:03:12Z</atmb:timestamp>

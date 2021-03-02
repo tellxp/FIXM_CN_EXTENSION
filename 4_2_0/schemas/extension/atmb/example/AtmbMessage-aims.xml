@@ -57,7 +57,7 @@
             <atmb:flightType>S</atmb:flightType>
             <atmb:gufi codeSpace="urn:uuid">b0cb20ed-b81f-4b3b-ae9a-a19e0b6e566c</atmb:gufi>
             <atmb:remarks>{ZUUU:}{ZUGY:航路航线审核中；出入境点TAMOT；或350/321/320/319执行}</atmb:remarks>
-            <atmb:routeTrajectoryGroup>
+            <atmb:routeTrajectoryGroupContainer>
                 <fx:agreed>
                     <fx:routeInformation>
                         <fx:cruisingLevel>
@@ -80,7 +80,7 @@
                         </fx:routeText>
                     </fx:routeInformation>
                 </fx:filed>
-            </atmb:routeTrajectoryGroup>
+            </atmb:routeTrajectoryGroupContainer>
         </atmb:flight>
     </atmb:payload>
     <atmb:timestamp>2019-11-06T01:00:00Z</atmb:timestamp>

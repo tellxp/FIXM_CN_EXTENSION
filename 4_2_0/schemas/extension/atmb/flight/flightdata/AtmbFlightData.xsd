@@ -435,7 +435,7 @@
                             </xs:documentation>
                         </xs:annotation>
                     </xs:element>
-                    <xs:element name="routeTrajectoryGroup" type="fx:RouteTrajectoryGroupContainerType" minOccurs="0"
+                    <xs:element name="routeTrajectoryGroupContainer" type="fx:RouteTrajectoryGroupContainerType" minOccurs="0"
                                 maxOccurs="1" nillable="true">
                         <xs:annotation>
                             <xs:documentation>

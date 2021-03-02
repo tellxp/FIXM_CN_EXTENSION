@@ -51,13 +51,13 @@
                 <atmb:flightIdentification>
                     <fx:aircraftIdentification>CBJ5515</fx:aircraftIdentification>
                 </atmb:flightIdentification>
-                <atmb:routeTrajectoryGroup>
+                <atmb:routeTrajectoryGroupContainer>
                     <fx:agreed>
                         <fx:routeInformation>
                             <fx:routeText>SUNBO W163 HFE W50 XSH H50 P324 A581 XISLI</fx:routeText>
                         </fx:routeInformation>
                     </fx:agreed>
-                </atmb:routeTrajectoryGroup>
+                </atmb:routeTrajectoryGroupContainer>
             </atmb:flight>
         </atmb:payload>
     </atmb:message>
@@ -113,7 +113,7 @@
                 <atmb:flightIdentification>
                     <fx:aircraftIdentification>CBJ5516</fx:aircraftIdentification>
                 </atmb:flightIdentification>
-                <atmb:routeTrajectoryGroup>
+                <atmb:routeTrajectoryGroupContainer>
                     <fx:agreed>
                         <fx:element seqNum="0">
                             <fx:routeDesignatorToNextElement>
@@ -126,7 +126,7 @@
                             <fx:routeText>KIBES W143 LPS A581 WHA R343 HFE W51 LEGIV W164 OREVO</fx:routeText>
                         </fx:routeInformation>
                     </fx:agreed>
-                </atmb:routeTrajectoryGroup>
+                </atmb:routeTrajectoryGroupContainer>
             </atmb:flight>
         </atmb:payload>
     </atmb:message>
